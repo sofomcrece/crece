@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
+  resources :agents
+  resources :companies
+  resources :branch_offices
+  resources :users
+  get 'users/perfil',to:'users#perfil',as:'perfil'
+#  get 'profile/show',to:'profile#show',as:'show_profile'
+#  get 'profile/new',to:'profile#new',as:'new_profile'
+#  post 'profile/create',to:'profile#create',as:'create_profile'
+#  get 'profile',to:'profile#index',as:'profile'
+#  patch 'profile/update',to:'profile#update',as:'update_profile'
+  
   devise_for :models
-  get 'welcome/index'
+  get 'welcome/hola'
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'welcome#hola'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

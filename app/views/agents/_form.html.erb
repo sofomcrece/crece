@@ -1,0 +1,149 @@
+<%= form_for(@agent) do |f| %>
+  <% if @agent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved:</h2>
+
+      <ul>
+      <% @agent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :clave %><br>
+    <%= f.text_field :clave %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_del_agente %><br>
+    <%= f.text_field :nombre_del_agente %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_materno %><br>
+    <%= f.text_field :apellido_materno %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_paterno %><br>
+    <%= f.text_field :apellido_paterno %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_1 %><br>
+    <%= f.text_field :nombre_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_2 %><br>
+    <%= f.text_field :nombre_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :RFC %><br>
+    <%= f.text_field :RFC %>
+  </div>
+  <div class="field">
+    <%= f.label :calle %><br>
+    <%= f.text_field :calle %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_interior %><br>
+    <%= f.number_field :numero_interior %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_exterior %><br>
+    <%= f.number_field :numero_exterior %>
+  </div>
+  <div class="field">
+    <%= f.label :colonia %><br>
+    <%= f.text_field :colonia %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo_postal %><br>
+    <%= f.number_field :codigo_postal %>
+  </div>
+  <div class="field">
+    <%= f.label :municipio %><br>
+    <%= f.text_field :municipio %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br>
+    <%= f.text_field :estado %>
+  </div>
+  <div class="field">
+    <%= f.label :CURP %><br>
+    <%= f.text_field :CURP %>
+  </div>
+  <div class="field">
+    <%= f.label :seguro_social %><br>
+    <%= f.text_field :seguro_social %>
+  </div>
+  <div class="field">
+    <%= f.label :INE %><br>
+    <%= f.text_field :INE %>
+  </div>
+  <div class="field">
+    <%= f.label :nacionalidad %><br>
+    <%= f.text_field :nacionalidad %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_de_nacimiento %><br>
+    <%= f.date_select :fecha_de_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :ciudad_de_nacimiento %><br>
+    <%= f.text_field :ciudad_de_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_de_nacimiento %><br>
+    <%= f.text_field :estado_de_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :pais_de_nacimiento %><br>
+    <%= f.text_field :pais_de_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :sexo %><br>
+    <%= f.check_box :sexo %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_de_casa %><br>
+    <%= f.text_field :telefono_de_casa %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_celular %><br>
+    <%= f.text_field :telefono_celular %>
+  </div>
+  <div class="field">
+    <%= f.label :correo_electronico_1 %><br>
+    <%= f.text_field :correo_electronico_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :correo_electronico_2 %><br>
+    <%= f.text_field :correo_electronico_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :cuenta_bancaria %><br>
+    <%= f.text_field :cuenta_bancaria %>
+  </div>
+  <div class="field">
+    <%= f.label :banco %><br>
+    <%= f.text_field :banco %>
+  </div>
+  <div class="field">
+    <%= f.label :comision_por_cobranza %><br>
+    <%= f.text_field :comision_por_cobranza %>
+  </div>
+  <div class="field">
+    <%= f.label :comision_por_colocacion %><br>
+    <%= f.text_field :comision_por_colocacion %>
+  </div>
+  <div class="field">
+    <%= f.label :monto_maximo_de_prestamo %><br>
+    <%= f.text_field :monto_maximo_de_prestamo %>
+  </div>
+  <div class="field">
+    <%= f.label :permitir_prestamo_multiple %><br>
+    <%= f.check_box :permitir_prestamo_multiple %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

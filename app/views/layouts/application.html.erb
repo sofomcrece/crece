@@ -10,8 +10,8 @@
 </head>
 <body>
      <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Marjor</a>
+      <div class="nav-wrapper deep-orange">
+        <%=link_to "Marjor",root_path,class:"brand-logo"%>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <%=render "partials/menu"%>
@@ -21,8 +21,7 @@
         </ul>
       </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
 <%= yield %>
 </body>
 </html>

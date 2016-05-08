@@ -1,7 +1,7 @@
-<h2>Sign up</h2>
+<h2>Registrar</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(@user,url:'/profile/create') do |f| %>
+  
 
   <div class="field">
     <%= f.label :email %><br />
@@ -26,119 +26,119 @@
       <%= f.radio_button  :tipo,1 %> <%= f.label "#{:tipo}_1", "Administrador general" %>
       <%= f.radio_button  :tipo,2 %> <%= f.label "#{:tipo}_2", "Asistente Marjor" %>
       <%= f.radio_button  :tipo,3 %> <%= f.label "#{:tipo}_3", "Sucursal" %>
-      <%= f.radio_button  :tipo,4 %> <%= f.label "#{:tipo}_4", "Consultas" %>
+      <%= f.radio_button  :tipo,4,checked:true %> <%= f.label "#{:tipo}_4", "Consultas" %>
     </p>
   </div>
   
   <div class="field">
-    <%= f.label :app %><br />
+    <%= f.label :app,"Apellido paterno *" %><br />
     <%= f.text_field :app, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :apm %><br />
+    <%= f.label :apm,"Apellido materno *" %><br />
     <%= f.text_field :apm, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nom1 %><br />
+    <%= f.label :nom1,"Nombre 1 *" %><br />
     <%= f.text_field :nom1, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nom2 %><br />
+    <%= f.label :nom2,"Nombre 2 (opcional)" %><br />
     <%= f.text_field :nom2, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :RFC %><br />
+    <%= f.label :RFC,"RFC *"%><br />
     <%= f.text_field :RFC, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :CURP %><br />
+    <%= f.label :CURP,"CURP *" %><br />
     <%= f.text_field :CURP, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :seguro %><br />
+    <%= f.label :seguro,"Seguro *" %><br />
     <%= f.text_field :seguro, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :INE %><br />
+    <%= f.label :INE,"INE *" %><br />
     <%= f.text_field :INE, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nacionalidad %><br />
+    <%= f.label :nacionalidad,"Nacionalida *" %><br />
     <%= f.text_field :nacionalidad, autocomplete: "off" %>
   </div>
-  
   <div class="field">
-    <%= f.label :fecha_nacimiento %><br />
-    <%= f.text_field :fecha_nacimiento, autocomplete: "off" %>
+    <%= f.label :fecha_nacimiento,"Fecha de nacimiento *" %><br />
+    <%= f.text_field :fecha_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nac_ciudad %><br />
+    <%= f.label :nac_ciudad,"Ciudad natal *" %><br />
     <%= f.text_field :nac_ciudad, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nac_estado %><br />
+    <%= f.label :nac_estado,"Estado natal *" %><br />
     <%= f.text_field :nac_estado, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :nac_pais %><br />
+    <%= f.label :nac_pais,"Pais natal *" %><br />
     <%= f.text_field :nac_pais, autocomplete: "off" %>
   </div>
   
   <div class="field">
+    <%= f.label :sexo,"Sexo *" %><br />
     <p>
-      <%= f.radio_button  :sexo,true %> <%= f.label "#{:sexo}_true", "Hombre" %>
+      <%= f.radio_button  :sexo,true,checked:true%> <%= f.label "#{:sexo}_true", "Hombre" %>
       <%= f.radio_button  :sexo,false %> <%= f.label "#{:sexo}_false", "Mujer" %>
     </p>
   </div>
   
   <div class="field">
-    <%= f.label :telefono_casa %><br />
+    <%= f.label :telefono_casa,"Telefono de casa *" %><br />
     <%= f.text_field :telefono_casa, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :telefono_celular %><br />
+    <%= f.label :telefono_celular,"Telefono celular *" %><br />
     <%= f.text_field :telefono_celular, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :correo1 %><br />
+    <%= f.label :correo1,"Correo principal *" %><br />
     <%= f.text_field :correo1, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :correo2 %><br />
+    <%= f.label :correo2,"Correo secundario " %><br />
     <%= f.text_field :correo2, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :calle %><br />
+    <%= f.label :calle,"Calle *" %><br />
     <%= f.text_field :calle, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :numero_ext %><br />
+    <%= f.label :numero_ext,"Numero exterior *" %><br />
     <%= f.number_field :numero_ext, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :numero_int %><br />
+    <%= f.label :numero_int,"Numero interior *" %><br />
     <%= f.number_field :numero_int, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :colonia %><br />
+    <%= f.label :colonia,"Colonia *" %><br />
     <%= f.text_field :colonia, autocomplete: "off" %>
   </div>
   
@@ -148,23 +148,22 @@
   </div>
   
   <div class="field">
-    <%= f.label :municipio %><br />
+    <%= f.label :municipio,"Municipio *" %><br />
     <%= f.text_field :municipio, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :estado %><br />
+    <%= f.label :estado,"Estado *" %><br />
     <%= f.text_field :estado, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :pais %><br />
+    <%= f.label :pais,"Pais *" %><br />
     <%= f.text_field :pais, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Crear usuario" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>

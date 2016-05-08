@@ -11,7 +11,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428075954) do
+ActiveRecord::Schema.define(version: 20160506021811) do
+
+  create_table "agents", force: :cascade do |t|
+    t.string   "clave"
+    t.string   "nombre_del_agente"
+    t.string   "apellido_materno"
+    t.string   "apellido_paterno"
+    t.string   "nombre_1"
+    t.string   "nombre_2"
+    t.string   "RFC"
+    t.string   "calle"
+    t.integer  "numero_interior"
+    t.integer  "numero_exterior"
+    t.string   "colonia"
+    t.integer  "codigo_postal"
+    t.string   "municipio"
+    t.string   "estado"
+    t.string   "CURP"
+    t.string   "seguro_social"
+    t.string   "INE"
+    t.string   "nacionalidad"
+    t.date     "fecha_de_nacimiento"
+    t.string   "ciudad_de_nacimiento"
+    t.string   "estado_de_nacimiento"
+    t.string   "pais_de_nacimiento"
+    t.boolean  "sexo"
+    t.string   "telefono_de_casa"
+    t.string   "telefono_celular"
+    t.string   "correo_electronico_1"
+    t.string   "correo_electronico_2"
+    t.string   "cuenta_bancaria"
+    t.string   "banco"
+    t.decimal  "comision_por_cobranza"
+    t.decimal  "comision_por_colocacion"
+    t.decimal  "monto_maximo_de_prestamo"
+    t.boolean  "permitir_prestamo_multiple"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "branch_offices", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "calle"
+    t.integer  "no_ext"
+    t.integer  "no_int"
+    t.string   "colonia"
+    t.integer  "codigo_postal"
+    t.string   "municipio"
+    t.string   "estado"
+    t.string   "telefono_oficina"
+    t.string   "telefono_celular"
+    t.string   "correo1"
+    t.string   "correo2"
+    t.decimal  "comision_por_colocacion"
+    t.decimal  "comision_por_cobranza"
+    t.decimal  "monto_maximo_adeudo_sucursal"
+    t.integer  "formato_impresion"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "clave"
+    t.string   "nombre_de_empresa"
+    t.string   "razon_social"
+    t.string   "calle"
+    t.integer  "numero_exterior"
+    t.integer  "numero_interior"
+    t.string   "colonia"
+    t.integer  "codigo_postal"
+    t.string   "municipio"
+    t.string   "estado"
+    t.string   "apellido_paterno"
+    t.string   "apellido_materno"
+    t.string   "nombre_1"
+    t.string   "nombre_2"
+    t.string   "telefono_de_oficina"
+    t.string   "telefono_celular"
+    t.string   "correo_electronico_1"
+    t.string   "correo_electronico_2"
+    t.string   "cuenta_bacaria"
+    t.string   "banco"
+    t.decimal  "comicion_por_cobranza"
+    t.decimal  "comicion_por_colocacion"
+    t.decimal  "monto_maximo_de_prestamo"
+    t.boolean  "permitir_prestamo_multiple"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +118,13 @@ ActiveRecord::Schema.define(version: 20160428075954) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+
+  create_table "perros", force: :cascade do |t|
+    t.string   "color"
+    t.string   "edad"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

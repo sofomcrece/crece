@@ -1,0 +1,5 @@
+<%=@notificacion unless @notificacion.nil?%>
+<h2>Editar informacion de usuario</h2>
+<h4><%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%></h4>
+<h5><%="correo: #{@user.email} "%></h5>
+<%=render "form"%>
