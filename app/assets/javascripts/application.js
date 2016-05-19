@@ -23,7 +23,7 @@ $(document).ready(function(){
      $(".field-b").addClass("col s12 m4 l4");
      $(".actions").addClass("btn waves-effect waves-light");
      $(".crud-links").addClass("btn waves-effect red");
-     $(".show p").addClass("btn deep-orange lighten-1 col s12 m4 l4");
+     $(".show p").addClass("card deep-orange lighten-1 col s12 m4 l4");
      $("table").addClass("responsive-table");
     
      $('.datepicker').pickadate({
