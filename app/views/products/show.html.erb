@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<div class="row card-panel deep-orange lighten-1">  
+  <h5 class="center-align ">
+    <strong>Nombre del producto:</strong>
+    <%= @product.nombre_del_producto %>
+  </h5>
+</div>
+<div class="show row">  
+  <p>
+    <strong>Registro del contrado de adhesion:</strong>
+    <%= @product.registro_del_contrado_de_adhesion %>
+  </p>
+  
+  <p>
+    <strong>Plazo de prestamo:</strong>
+    <%= @product.plazo_de_prestamo %>
+  </p>
+  
+  <p>
+    <strong>Numero de pagos a realizar:</strong>
+    <%= @product.numero_de_pagos_a_realizar %>
+  </p>
+  
+  <p>
+    <strong>Tipo de prestamo:</strong>
+    <%=@product.loan.nombre %>
+  </p>
+  <p>
+    <strong>Forma de pago:</strong>
+    <%=@product.payout.nombre %>
+  </p>
+  <p>
+    <strong>Taza de interes ordinaria:</strong>
+    <%= @product.taza_de_interes_ordinaria %>
+  </p>
+  
+  <p>
+    <strong>Taza de interes moratoria:</strong>
+    <%= @product.taza_de_interes_moratoria %>
+  </p>
+  
+  <p>
+    <strong>Cat sin iva:</strong>
+    <%= @product.cat_sin_iva %>
+  </p>
+  
+  <p>
+    <strong>Numero de meses de sueldo para prestemo:</strong>
+    <%= @product.numero_de_meses_de_sueldo_para_prestemo %>
+  </p>
+</div>
+<%= link_to 'Editar', edit_product_path(@product) %> |
+<%= link_to 'Atras', products_path %>

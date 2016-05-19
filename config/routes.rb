@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  resources :payouts
+  resources :loans
+  resources :products
+  devise_for :users
   resources :agents
   resources :companies
   resources :branch_offices
   resources :users
-  get 'users/perfil',to:'users#perfil',as:'perfil'
+  get 'perfil',to:'users#perfil',as:'perfil'
+   post 'users/create2',to:'users#create2'
 #  get 'profile/show',to:'profile#show',as:'show_profile'
 #  get 'profile/new',to:'profile#new',as:'new_profile'
 #  post 'profile/create',to:'profile#create',as:'create_profile'
@@ -13,7 +18,7 @@ Rails.application.routes.draw do
   devise_for :models
   get 'welcome/hola'
 
-  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506021811) do
+ActiveRecord::Schema.define(version: 20160515071410) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -49,7 +49,10 @@ ActiveRecord::Schema.define(version: 20160506021811) do
     t.boolean  "permitir_prestamo_multiple"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "branch_offices_id"
   end
+
+  add_index "agents", ["branch_offices_id"], name: "index_agents_on_branch_offices_id"
 
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
@@ -70,7 +73,12 @@ ActiveRecord::Schema.define(version: 20160506021811) do
     t.integer  "formato_impresion"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "user_id"
+    t.integer  "product_id"
   end
+
+  add_index "branch_offices", ["product_id"], name: "index_branch_offices_on_product_id"
+  add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id"
 
   create_table "companies", force: :cascade do |t|
     t.string   "clave"
@@ -101,6 +109,12 @@ ActiveRecord::Schema.define(version: 20160506021811) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "loans", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "models", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -119,12 +133,38 @@ ActiveRecord::Schema.define(version: 20160506021811) do
   add_index "models", ["email"], name: "index_models_on_email", unique: true
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
 
+  create_table "payouts", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "perros", force: :cascade do |t|
     t.string   "color"
     t.string   "edad"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "nombre_del_producto"
+    t.string   "registro_del_contrado_de_adhesion"
+    t.string   "plazo_de_prestamo"
+    t.integer  "numero_de_pagos_a_realizar"
+    t.decimal  "taza_de_interes_ordinaria"
+    t.decimal  "taza_de_interes_moratoria"
+    t.decimal  "cat_sin_iva"
+    t.decimal  "numero_de_meses_de_sueldo_para_prestemo"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "tipo_de_prestamo"
+    t.integer  "forma_de_pago"
+    t.integer  "loan_id"
+    t.integer  "payout_id"
+  end
+
+  add_index "products", ["loan_id"], name: "index_products_on_loan_id"
+  add_index "products", ["payout_id"], name: "index_products_on_payout_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

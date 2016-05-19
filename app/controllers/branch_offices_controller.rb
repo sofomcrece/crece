@@ -4,7 +4,8 @@ class BranchOfficesController < ApplicationController
   # GET /branch_offices
   # GET /branch_offices.json
   def index
-    @branch_offices = BranchOffice.all
+    @branch_offices = BranchOffice.order(:nombre)
+    
   end
 
   # GET /branch_offices/1
@@ -15,6 +16,7 @@ class BranchOfficesController < ApplicationController
   # GET /branch_offices/new
   def new
     @branch_office = BranchOffice.new
+    @usuarios = User.all.collect { |m| [m.nom1, m.id] }
   end
 
   # GET /branch_offices/1/edit
@@ -69,6 +71,6 @@ class BranchOfficesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_office_params
-      params.require(:branch_office).permit(:nombre, :calle, :no_ext, :no_int, :colonia, :codigo_postal, :municipio, :estado, :telefono_oficina, :telefono_celular, :correo1, :correo2, :comision_por_colocacion, :comision_por_cobranza, :monto_maximo_adeudo_sucursal, :formato_impresion)
+      params.require(:branch_office).permit(:product_id,:user_id,:nombre, :calle, :no_ext, :no_int, :colonia, :codigo_postal, :municipio, :estado, :telefono_oficina, :telefono_celular, :correo1, :correo2, :comision_por_colocacion, :comision_por_cobranza, :monto_maximo_adeudo_sucursal, :formato_impresion)
     end
 end

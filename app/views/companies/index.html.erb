@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Companies</h1>
+<h1>Listas de Empresas</h1>
 
 <table>
   <thead>
@@ -8,27 +8,9 @@
       <th>Clave</th>
       <th>Nombre de empresa</th>
       <th>Razon social</th>
-      <th>Calle</th>
-      <th>Numero exterior</th>
-      <th>Numero interior</th>
-      <th>Colonia</th>
-      <th>Codigo postal</th>
       <th>Municipio</th>
       <th>Estado</th>
-      <th>Apellido paterno</th>
-      <th>Apellido materno</th>
-      <th>Nombre 1</th>
-      <th>Nombre 2</th>
-      <th>Telefono de oficina</th>
-      <th>Telefono celular</th>
-      <th>Correo electronico 1</th>
-      <th>Correo electronico 2</th>
-      <th>Cuenta bacaria</th>
-      <th>Banco</th>
-      <th>Comicion por cobranza</th>
-      <th>Comicion por colocacion</th>
-      <th>Monto maximo de prestamo</th>
-      <th>Permitir prestamo multiple</th>
+      <th>Nombre</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -39,30 +21,13 @@
         <td><%= company.clave %></td>
         <td><%= company.nombre_de_empresa %></td>
         <td><%= company.razon_social %></td>
-        <td><%= company.calle %></td>
-        <td><%= company.numero_exterior %></td>
-        <td><%= company.numero_interior %></td>
-        <td><%= company.colonia %></td>
-        <td><%= company.codigo_postal %></td>
         <td><%= company.municipio %></td>
         <td><%= company.estado %></td>
-        <td><%= company.apellido_paterno %></td>
-        <td><%= company.apellido_materno %></td>
-        <td><%= company.nombre_1 %></td>
-        <td><%= company.nombre_2 %></td>
-        <td><%= company.telefono_de_oficina %></td>
-        <td><%= company.telefono_celular %></td>
-        <td><%= company.correo_electronico_1 %></td>
-        <td><%= company.correo_electronico_2 %></td>
-        <td><%= company.cuenta_bacaria %></td>
-        <td><%= company.banco %></td>
-        <td><%= company.comicion_por_cobranza %></td>
-        <td><%= company.comicion_por_colocacion %></td>
-        <td><%= company.monto_maximo_de_prestamo %></td>
-        <td><%= company.permitir_prestamo_multiple %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%="#{company.apellido_paterno} #{ company.apellido_materno} #{company.nombre_1} #{company.nombre_2}"  %></td>
+   
+        <td><%= link_to 'Mostrar', company,class:'crud-links' %></td>
+        <td><%= link_to 'Editar', edit_company_path(company),class:'crud-links' %></td>
+        <td><%= link_to 'Eliminar', company, method: :delete, data: { confirm: 'Estas seguro de Eliminar esta Empresa?' },class:'crud-links' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -70,4 +35,10 @@
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <%= link_to new_company_path,class:"btn-floating btn-large red" do  %>    
+    <i class="large material-icons">add</i>
+  <%end%>
+
+</div>

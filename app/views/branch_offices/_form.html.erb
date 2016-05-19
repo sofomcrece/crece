@@ -1,84 +1,93 @@
-<%= form_for(@branch_office) do |f| %>
-  <% if @branch_office.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@branch_office.errors.count, "error") %> prohibited this branch_office from being saved:</h2>
-
-      <ul>
-      <% @branch_office.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <%= form_for(@branch_office) do |f| %>
+    <% if @branch_office.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@branch_office.errors.count, "error,") %> llene los campos necesarios para poder crear/modificaar sucursales:</h2>
+  
+        <ul>
+        <% @branch_office.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= f.label :nombre %>
+      <%= f.text_field :nombre %>
+    </div>
+    <div class="field">
+      <%= f.label :calle %>
+      <%= f.text_field :calle %>
+    </div>
+    <div class="field">
+      <%= f.label :no_ext,"Numero exterior" %>
+      <%= f.number_field :no_ext %>
+    </div>
+    <div class="field">
+      <%= f.label :no_int,"Numero interior" %>
+      <%= f.number_field :no_int %>
+    </div>
+    <div class="field">
+      <%= f.label :colonia %>
+      <%= f.text_field :colonia %>
+    </div>
+    <div class="field">
+      <%= f.label :codigo_postal %>
+      <%= f.number_field :codigo_postal %>
+    </div>
+    <div class="field">
+      <%= f.label :municipio %>
+      <%= f.text_field :municipio %>
+    </div>
+    <div class="field">
+      <%= f.label :estado %>
+      <%= f.text_field :estado %>
+    </div>
+    <div class="field">
+      <%= f.label :telefono_oficina %>
+      <%= f.text_field :telefono_oficina %>
+    </div>
+    <div class="field">
+      <%= f.label :telefono_celular %>
+      <%= f.text_field :telefono_celular %>
+    </div>
+    <div class="field">
+      <%= f.label :correo1 %>
+      <%= f.text_field :correo1 %>
+    </div>
+    <div class="field">
+      <%= f.label :correo2 %>
+      <%= f.text_field :correo2 %>
+    </div>
+    <div class="field">
+      <%= f.label :comision_por_colocacion %>
+      <%= f.text_field :comision_por_colocacion %>
+    </div>
+    <div class="field">
+      <%= f.label :comision_por_cobranza %>
+      <%= f.text_field :comision_por_cobranza %>
+    </div>
+    <div class="field">
+      <%= f.label :monto_maximo_adeudo_sucursal %>
+      <%= f.text_field :monto_maximo_adeudo_sucursal %>
+    </div>
+    <div class="field-b">
+      <%= f.label :formato_impresion %>
+      <p>
+        <%= f.radio_button  :formato_impresion,1,checked:true%> <%= f.label "#{:formato_impresion}_1", "Hoja blanca" %>
+        <%= f.radio_button  :formato_impresion,2 %> <%= f.label "#{:formato_impresion}_2", "pre-impresion" %>
+      </p>
+    </div>
+    <div class="field">
+    <%= f.collection_select(:user_id, User.all, :id, :nom1, :prompt => 'Usuario:') %>
+    </div>
+    <div class="field">
+    <%= f.collection_select(:product_id, Product.all, :id, :nombre_del_producto, :prompt => 'Productos:') %>
+    </div>
+    
+</div>    
+    <div class="actions">
+      <%= f.submit "Guardar"%>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :calle %><br>
-    <%= f.text_field :calle %>
-  </div>
-  <div class="field">
-    <%= f.label :no_ext %><br>
-    <%= f.number_field :no_ext %>
-  </div>
-  <div class="field">
-    <%= f.label :no_int %><br>
-    <%= f.number_field :no_int %>
-  </div>
-  <div class="field">
-    <%= f.label :colonia %><br>
-    <%= f.text_field :colonia %>
-  </div>
-  <div class="field">
-    <%= f.label :codigo_postal %><br>
-    <%= f.number_field :codigo_postal %>
-  </div>
-  <div class="field">
-    <%= f.label :municipio %><br>
-    <%= f.text_field :municipio %>
-  </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono_oficina %><br>
-    <%= f.text_field :telefono_oficina %>
-  </div>
-  <div class="field">
-    <%= f.label :telefono_celular %><br>
-    <%= f.text_field :telefono_celular %>
-  </div>
-  <div class="field">
-    <%= f.label :correo1 %><br>
-    <%= f.text_field :correo1 %>
-  </div>
-  <div class="field">
-    <%= f.label :correo2 %><br>
-    <%= f.text_field :correo2 %>
-  </div>
-  <div class="field">
-    <%= f.label :comision_por_colocacion %><br>
-    <%= f.text_field :comision_por_colocacion %>
-  </div>
-  <div class="field">
-    <%= f.label :comision_por_cobranza %><br>
-    <%= f.text_field :comision_por_cobranza %>
-  </div>
-  <div class="field">
-    <%= f.label :monto_maximo_adeudo_sucursal %><br>
-    <%= f.text_field :monto_maximo_adeudo_sucursal %>
-  </div>
-  <div class="field">
-    <%= f.label :formato_impresion %><br>
-    <p>
-      <%= f.radio_button  :formato_impresion,1,checked:true%> <%= f.label "#{:formato_impresion}_1", "Hoja blanca" %>
-      <%= f.radio_button  :formato_impresion,2 %> <%= f.label "#{:formato_impresion}_2", "pre-impresion" %>
-    </p>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

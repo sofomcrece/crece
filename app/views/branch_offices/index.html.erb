@@ -1,57 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Branch Offices</h1>
+<h1>Lista de Sucursales</h1>
 
 <table>
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Calle</th>
-      <th>No ext</th>
-      <th>No int</th>
-      <th>Colonia</th>
-      <th>Codigo postal</th>
       <th>Municipio</th>
       <th>Estado</th>
       <th>Telefono oficina</th>
-      <th>Telefono celular</th>
-      <th>Correo1</th>
-      <th>Correo2</th>
-      <th>Comision por colocacion</th>
-      <th>Comision por cobranza</th>
-      <th>Monto maximo adeudo sucursal</th>
-      <th>Formato impresion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @branch_offices.each do |branch_office| %>
       <tr>
         <td><%= branch_office.nombre %></td>
-        <td><%= branch_office.calle %></td>
-        <td><%= branch_office.no_ext %></td>
-        <td><%= branch_office.no_int %></td>
-        <td><%= branch_office.colonia %></td>
-        <td><%= branch_office.codigo_postal %></td>
         <td><%= branch_office.municipio %></td>
         <td><%= branch_office.estado %></td>
         <td><%= branch_office.telefono_oficina %></td>
-        <td><%= branch_office.telefono_celular %></td>
-        <td><%= branch_office.correo1 %></td>
-        <td><%= branch_office.correo2 %></td>
-        <td><%= branch_office.comision_por_colocacion %></td>
-        <td><%= branch_office.comision_por_cobranza %></td>
-        <td><%= branch_office.monto_maximo_adeudo_sucursal %></td>
-        <td><%= branch_office.formato_impresion %></td>
-        <td><%= link_to 'Show', branch_office %></td>
-        <td><%= link_to 'Edit', edit_branch_office_path(branch_office) %></td>
-        <td><%= link_to 'Destroy', branch_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', branch_office,class:"crud-links" %></td>
+        <td><%= link_to 'Editar', edit_branch_office_path(branch_office),class:"crud-links" %></td>
+        <td><%= link_to 'Eliminar', branch_office,class:"crud-links", method: :delete, data: { confirm: 'Esta seguro que desea eliminar?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <%= link_to new_branch_office_path,class:"btn-floating btn-large red" do  %>    
+    <i class="large material-icons">add</i>
+  <%end%>
 
-<%= link_to 'New Branch office', new_branch_office_path %>
+</div>
+

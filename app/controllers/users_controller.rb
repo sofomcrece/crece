@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
   def perfil
     @user = current_user
+    redirect_to @user
   end
   def index
     @users = User.all
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def create
+  def create2
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -94,7 +95,6 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'El perfil fue actualizado' }
         format.json { render :show, status: :ok, location: @user }
       else
-        @notificacion="Error al ingresar datos"
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
