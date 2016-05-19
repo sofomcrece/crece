@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.boolean  "permitir_prestamo_multiple"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "branch_offices_id"
+    t.integer  "branch_office_id"
   end
 
-  add_index "agents", ["branch_offices_id"], name: "index_agents_on_branch_offices_id"
+  add_index "agents", ["branch_office_id"], name: "index_agents_on_branch_office_id"
 
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
@@ -139,13 +139,6 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "perros", force: :cascade do |t|
-    t.string   "color"
-    t.string   "edad"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "nombre_del_producto"
     t.string   "registro_del_contrado_de_adhesion"
@@ -154,11 +147,9 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.decimal  "taza_de_interes_ordinaria"
     t.decimal  "taza_de_interes_moratoria"
     t.decimal  "cat_sin_iva"
-    t.decimal  "numero_de_meses_de_sueldo_para_prestemo"
+    t.decimal  "numero_de_meses_de_sueldo_para_prestamo"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.integer  "tipo_de_prestamo"
-    t.integer  "forma_de_pago"
     t.integer  "loan_id"
     t.integer  "payout_id"
   end
