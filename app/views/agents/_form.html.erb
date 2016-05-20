@@ -17,7 +17,7 @@
       <%= f.text_field :clave %>
     </div>
     <div class="field">
-      <%=f.collection_select(:branch_offices_id,BranchOffice.all,:id,:nombre,:prompt => 'Sucursal:')%>
+      <%=f.collection_select(:branch_office_id,BranchOffice.all,:id,:nombre,:prompt => 'Sucursal:')%>
     </div>
     
     <div class="field">

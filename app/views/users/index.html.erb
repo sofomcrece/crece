@@ -20,9 +20,9 @@
       <tr>
         <td><%= user.nom1 %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostar', user,class:"crud-links" %></td>
+        <td><%= link_to 'Editar', edit_user_path(user),class:"crud-links" %></td>
+        <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Are you sure?' },class:"crud-links" %></td>
       </tr>
     <% end %>
   </tbody>

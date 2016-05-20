@@ -31,7 +31,7 @@ class Agent < ActiveRecord::Base
     :comision_por_colocacion,
     :monto_maximo_de_prestamo,
     :permitir_prestamo_multiple,
-    :branch_offices_id,
+    :branch_office_id,
     presence:true
      validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
      
