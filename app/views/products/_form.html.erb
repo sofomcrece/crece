@@ -42,15 +42,15 @@
     </div>
     <div class="field">
       <%= f.label :taza_de_interes_ordinaria %>
-      <%= f.number_field :taza_de_interes_ordinaria %>
+      <%= f.number_field :taza_de_interes_ordinaria, :step => 'any' %>
     </div>
     <div class="field">
       <%= f.label :taza_de_interes_moratoria %>
-      <%= f.number_field :taza_de_interes_moratoria %>
+      <%= f.number_field :taza_de_interes_moratoria, :step => 'any' %>
     </div>
     <div class="field">
       <%= f.label :cat_sin_iva %>
-      <%= f.number_field :cat_sin_iva %>
+      <%= f.number_field :cat_sin_iva, :step => 'any' %>
     </div>
     <div class="field">
       <%= f.label :numero_de_meses_de_sueldo_para_prestamo %>

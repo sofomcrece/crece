@@ -2,6 +2,7 @@ class BranchOffice < ActiveRecord::Base
     belongs_to :user
     belongs_to :product
     has_many :agents
+    has_many :companies
    
     validates :nombre,
     :calle,
@@ -21,5 +22,6 @@ class BranchOffice < ActiveRecord::Base
     :formato_impresion,
     :user_id,
     :product_id,
+    :clave,
     presence:true
 end

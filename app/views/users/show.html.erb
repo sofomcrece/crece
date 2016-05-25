@@ -1,38 +1,90 @@
-<h1>Informacion de usuario</h1>
+<p id="notice"><%= notice %></p>
+<div class="row card-panel deep-orange lighten-1">  
+  <h5 class="center-align ">
+    <strong>Informacion de usuario</strong>
+    <%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%>
+  </h5>
+</div>
+<div class="show row"> 
+    <p>
+        <%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%>
+    </p>
+    <p>
+        <%="correo: #{@user.email}"%>
+    </p>
+    <p>
+        <%="RFC: #{@user.RFC}"%>
+    </p>
+    <p>
+        <%="CURP: #{@user.CURP}"%>
+    </p>
+    <p>
+        <%="INE: #{@user.INE}"%>
+    </p>
+    <p>
+        <%="seguro social: #{@user.seguro}" %>
+    </p>
+    <p>
+        <%="Nacionalidad: #{@user.nacionalidad}"%>
+    </p>
+    <p>
+        <%="Fecha de nacimiento: #{@user.fecha_nacimiento}"%>
+    </p>
+    <p>
+        <%="Ciudad de nacimieto: #{@user.nac_ciudad}"%>
+    </p>
+    <p>
+        <%="Estado de nacimiento : #{@user.nac_estado}"%>
+    </p>
+    <p>
+        <%="Pais de nacimiento: #{@user.nac_pais}"%>
+    </p>
+    <p>
+        <%="sexo: #{ @user.sexo ? "Masculino" :"Femenino" }"%>
+    </p>
+    <p>
+        <%="tipo de usuario: #{
+            case @user.tipo
+                when 1
+                    nombre_tipo ="Administrador general"
+                when 2
+                    nombre_tipo ="Asistente Major"
+                when 3
+                    nombre_tipo ="Sucursal"
+                when 4
+                    nombre_tipo ="Consultas"
+            end
+            nombre_tipo
+        }"%>
+    </p>
+    <p>
+    <%="Telefono: #{@user.telefono_casa}"%>
+    </p>
+    <p>
+    <%="Celular: #{@user.telefono_celular}"%>
+    </p>
+    <p>
+    <%="correo1: #{@user.correo1}"%>
+    </p>
+    <p>
+    <%="correo2: #{@user.correo2}"%>
+    </p>
+    <p>
+    <%="calle:  #{@user.calle} No. ext:#{@user.numero_int} #{"No.int: #{@user.numero_int}" unless @user.numero_int.nil? } CP: #{@user.codigo_postal}"%>
+    </p>
+    <p>
+    <%="Colonia: #{@user.colonia}"%>
+    </p>
+    <p>
+    <%="Municipio: #{@user.municipio}"%>
+    </p>
+    <p>
+    <%="Estado: #{@user.estado}"%>
+    </p>
+    <p>
+    <%="Pais: #{@user.pais}"%>
+    </p>
 
-<%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%></br>
-<%="correo: #{@user.email}"%></br>
-<%="RFC: #{@user.RFC},  INE: #{@user.INE}, seguro social: #{@user.seguro}" %></br>
-<%="Nacionalidad: #{@user.nacionalidad}"%></br>
-<%="Fecha de nacimiento: #{@user.fecha_nacimiento}"%></br>
-<%="Ciudad de nacimieto: #{@user.nac_ciudad}"%></br>
-<%="Estado de nacimiento : #{@user.nac_estado}"%></br>
-<%="Pais de nacimiento: #{@user.nac_pais}"%></br>
-<%="sexo: #{ @user.sexo ? "Masculino" :"Femenino" }"%></br>
-<%="tipo de usuario: #{
-    case @user.tipo
-        when 1
-            nombre_tipo ="Administrador general"
-        when 2
-            nombre_tipo ="Asistente Major"
-        when 3
-            nombre_tipo ="Sucursal"
-        when 4
-            nombre_tipo ="Consultas"
-    end
-    nombre_tipo
-}"%></br>
-<%="Telefono: #{@user.telefono_casa}"%></br>
-<%="Celular: #{@user.telefono_celular}"%></br>
-<%="correo1: #{@user.correo1}"%></br>
-<%="correo2: #{@user.correo2}"%></br>
-<h5> Direccion:</h5>
-<%="calle:  #{@user.calle} No. ext:#{@user.numero_int} #{"No.int: #{@user.numero_int}" unless @user.numero_int.nil? } CP: #{@user.codigo_postal}"%></br>
-<%="Colonia: #{@user.colonia}"%></br>
-<%="Municipio: #{@user.municipio}"%></br>
-<%="Estado: #{@user.estado}"%></br>
-<%="Pais: #{@user.pais}"%></br>
 
-
-
+</div>
 <%=link_to "Editar", edit_user_path,class:"crud-links"%> | <%=link_to "Atras",users_path,class:"crud-links"%>

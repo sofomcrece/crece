@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515071410) do
+ActiveRecord::Schema.define(version: 20160525183221) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.integer  "product_id"
+    t.string   "clave"
   end
 
   add_index "branch_offices", ["product_id"], name: "index_branch_offices_on_product_id"
@@ -107,7 +108,10 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.boolean  "permitir_prestamo_multiple"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "BranchOffice_id"
   end
+
+  add_index "companies", ["BranchOffice_id"], name: "index_companies_on_BranchOffice_id"
 
   create_table "loans", force: :cascade do |t|
     t.string   "nombre"
@@ -197,6 +201,7 @@ ActiveRecord::Schema.define(version: 20160515071410) do
     t.string   "pais"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "Alias"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

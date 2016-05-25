@@ -10,7 +10,11 @@
 </head>
 <body id="top" class="scrollspy">
      <nav>
-      <div class="nav-wrapper deep-orange darken-2">
+      <%if current_user.nil? %>
+        <div class="nav-wrapper deep-orange darken-2">
+      <%else%>
+        <div class="nav-wrapper">
+      <%end%>
         <%=link_to "Marjo",root_path,class:"brand-logo"%>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
@@ -22,6 +26,12 @@
       </div>
     </nav>
   <div class="container">
+    <%unless current_user.nil?%>
+      <div class="card-panel">
+        <h6 class="center-align">Usuario: <%=current_user.email%></h6>
+      </div>
+    <%end%>
+  
     <%= yield %>
   </div>
   <footer id="contact" class="page-footer deep-orange scrollspy">
