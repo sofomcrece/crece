@@ -113,7 +113,7 @@ class UsersController < ApplicationController
     def user_params
     params.require(:user).permit(:email, :password,:tipo,:app,:apm,:nom1,:nom2,:RFC,:CURP,:seguro,:INE,:nacionalidad,:fecha_nacimiento,:nac_ciudad,:nac_estado,
           :nac_pais,:sexo,:telefono_casa,:telefono_celular,:correo1,:correo2,:calle,:numero_int,:numero_ext,
-          :colonia,:codigo_postal,:municipio,:estado,:pais,:Alias)
+          :colonia,:codigo_postal,:municipio,:estado,:pais,:alias)
     end
     
     def set_user

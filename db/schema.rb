@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160525183221) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
     t.string   "nombre_del_agente"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.integer  "branch_office_id"
   end
 
-  add_index "agents", ["branch_office_id"], name: "index_agents_on_branch_office_id"
+  add_index "agents", ["branch_office_id"], name: "index_agents_on_branch_office_id", using: :btree
 
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.string   "clave"
   end
 
-  add_index "branch_offices", ["product_id"], name: "index_branch_offices_on_product_id"
-  add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id"
+  add_index "branch_offices", ["product_id"], name: "index_branch_offices_on_product_id", using: :btree
+  add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "clave"
@@ -111,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.integer  "BranchOffice_id"
   end
 
-  add_index "companies", ["BranchOffice_id"], name: "index_companies_on_BranchOffice_id"
+  add_index "companies", ["BranchOffice_id"], name: "index_companies_on_BranchOffice_id", using: :btree
 
   create_table "loans", force: :cascade do |t|
     t.string   "nombre"
@@ -134,8 +137,8 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "models", ["email"], name: "index_models_on_email", unique: true
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
+  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
   create_table "payouts", force: :cascade do |t|
     t.string   "nombre"
@@ -158,8 +161,8 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.integer  "payout_id"
   end
 
-  add_index "products", ["loan_id"], name: "index_products_on_loan_id"
-  add_index "products", ["payout_id"], name: "index_products_on_payout_id"
+  add_index "products", ["loan_id"], name: "index_products_on_loan_id", using: :btree
+  add_index "products", ["payout_id"], name: "index_products_on_payout_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -201,10 +204,10 @@ ActiveRecord::Schema.define(version: 20160525183221) do
     t.string   "pais"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "Alias"
+    t.string   "alias"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
