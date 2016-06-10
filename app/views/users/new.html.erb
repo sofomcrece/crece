@@ -16,7 +16,10 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
-
+   <div class="field">
+    <%= f.label :Alias %><br />
+    <%= f.text_field :Alias, autocomplete: "off" %>
+  </div>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -99,7 +102,7 @@
   </div>
   
   <div class="field">
-    <%= f.label :nac_pais,"Pais natal *" %><br />
+    <%= f.label :nac_pais,"País natal *" %><br />
     <%= f.text_field :nac_pais, autocomplete: "off" %>
   </div>
   
@@ -112,12 +115,12 @@
   </div>
   
   <div class="field">
-    <%= f.label :telefono_casa,"Telefono de casa *" %><br />
+    <%= f.label :telefono_casa,"Teléfono de casa *" %><br />
     <%= f.text_field :telefono_casa, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :telefono_celular,"Telefono celular *" %><br />
+    <%= f.label :telefono_celular,"Teléfono celular *" %><br />
     <%= f.text_field :telefono_celular, autocomplete: "off" %>
   </div>
   
@@ -137,12 +140,12 @@
   </div>
   
   <div class="field">
-    <%= f.label :numero_ext,"Numero exterior *" %><br />
+    <%= f.label :numero_ext,"Número exterior *" %><br />
     <%= f.number_field :numero_ext, autocomplete: "off" %>
   </div>
   
   <div class="field">
-    <%= f.label :numero_int,"Numero interior *" %><br />
+    <%= f.label :numero_int,"Número interior *" %><br />
     <%= f.number_field :numero_int, autocomplete: "off" %>
   </div>
   
@@ -152,7 +155,7 @@
   </div>
   
   <div class="field">
-    <%= f.label :codigo_postal %><br />
+    <%= f.label :codigo_postal,'Código postal' %><br />
     <%= f.number_field :codigo_postal, autocomplete: "off" %>
   </div>
   
@@ -167,7 +170,7 @@
   </div>
   
   <div class="field">
-    <%= f.label :pais,"Pais *" %><br />
+    <%= f.label :pais,"País *" %><br />
     <%= f.text_field :pais, autocomplete: "off" %>
   </div>
 

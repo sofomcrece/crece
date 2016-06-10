@@ -24,11 +24,11 @@
       <%= f.text_field :calle %>
     </div>
     <div class="field">
-      <%= f.label :no_ext,"Numero exterior" %>
+      <%= f.label :no_ext,"Número exterior" %>
       <%= f.number_field :no_ext %>
     </div>
     <div class="field">
-      <%= f.label :no_int,"Numero interior" %>
+      <%= f.label :no_int,"Número interior" %>
       <%= f.number_field :no_int %>
     </div>
     <div class="field">
@@ -36,7 +36,7 @@
       <%= f.text_field :colonia %>
     </div>
     <div class="field">
-      <%= f.label :codigo_postal %>
+      <%= f.label :codigo_postal,"Código postal" %>
       <%= f.number_field :codigo_postal %>
     </div>
     <div class="field">
@@ -56,30 +56,30 @@
       <%= f.text_field :telefono_celular %>
     </div>
     <div class="field">
-      <%= f.label :correo1 %>
+      <%= f.label :correo1,"Correo electronico 1" %>
       <%= f.text_field :correo1 %>
     </div>
     <div class="field">
-      <%= f.label :correo2 %>
+      <%= f.label :correo2,"Correo electronico 2" %>
       <%= f.text_field :correo2 %>
     </div>
     <div class="field">
-      <%= f.label :comision_por_colocacion %>
+      <%= f.label :comision_por_colocacion,"Comisión por colocación" %>
       <%= f.text_field :comision_por_colocacion %>
     </div>
     <div class="field">
-      <%= f.label :comision_por_cobranza %>
+      <%= f.label :comision_por_cobranza,"Comisión por cobranza" %>
       <%= f.text_field :comision_por_cobranza %>
     </div>
     <div class="field">
-      <%= f.label :monto_maximo_adeudo_sucursal %>
+      <%= f.label :monto_maximo_adeudo_sucursal,"Monto maxímo de adeudo" %>
       <%= f.text_field :monto_maximo_adeudo_sucursal %>
     </div>
     <div class="field-b">
-      <%= f.label :formato_impresion %>
+      <%= f.label :formato_impresion, "pre-impresión" %>
       <p>
         <%= f.radio_button  :formato_impresion,1,checked:true%> <%= f.label "#{:formato_impresion}_1", "Hoja blanca" %>
-        <%= f.radio_button  :formato_impresion,2 %> <%= f.label "#{:formato_impresion}_2", "pre-impresion" %>
+        <%= f.radio_button  :formato_impresion,2 %> <%= f.label "#{:formato_impresion}_2", "pre-impresión" %>
       </p>
     </div>
     <div class="field">

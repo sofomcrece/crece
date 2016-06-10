@@ -23,7 +23,7 @@ $(document).ready(function(){
      $(".field-b").addClass("col s12 m4 l4");
      $(".actions").addClass("btn waves-effect waves-light");
      $(".crud-links").addClass("btn waves-effect red");
-     $(".field_with_errors").remove();
+    
      $(".show p").addClass("card deep-orange lighten-1 col s12 m4 l4");
      $("table").addClass("responsive-table");
      var options = [ {selector: '.staggered-test', offset: 50}, {selector: '.staggered-test', offset: 205 }, {selector: '.staggered-test', offset: 400, callback: function() { Materialize.showStaggeredList(".staggered-test"); } }]; Materialize.scrollFire(options);

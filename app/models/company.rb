@@ -16,8 +16,6 @@ class Company < ActiveRecord::Base
     :telefono_de_oficina,
     :telefono_celular,
     :correo_electronico_1,
-    :cuenta_bacaria,
-    :banco,
     :comicion_por_cobranza,
     :comicion_por_colocacion,
     :monto_maximo_de_prestamo,
