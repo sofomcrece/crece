@@ -1,5 +1,5 @@
-class AddBranchOfficeIdToCompany < ActiveRecord::Migration
+class AddBranchOfficeIdToCompanies < ActiveRecord::Migration
   def change
-    add_reference :company, :BranchOffice, index: true, foreign_key: true
+    add_reference :companies, :BranchOffice, index: true, foreign_key: true
   end
 end
