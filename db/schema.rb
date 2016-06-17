@@ -106,10 +106,10 @@ ActiveRecord::Schema.define(version: 20160617102954) do
     t.boolean  "permitir_prestamo_multiple"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "BranchOffice_id"
+    t.integer  "branch_office_id"
   end
 
-  add_index "companies", ["BranchOffice_id"], name: "index_companies_on_BranchOffice_id"
+  add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id"
 
   create_table "loans", force: :cascade do |t|
     t.string   "nombre"
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20160617102954) do
     t.string   "pais"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "Alias"
+    t.string   "alias"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
