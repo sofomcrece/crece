@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body id="top" class="scrollspy">
+    <div class="navbar-fixed"> 
      <nav>
       <%if current_user.nil? %>
         <div class="nav-wrapper deep-orange darken-2">
@@ -25,6 +26,7 @@
         </ul>
       </div>
     </nav>
+  </div>
   <div class="container">
     <%unless current_user.nil?%>
       <div class="card-panel">
