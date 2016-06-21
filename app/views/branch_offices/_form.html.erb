@@ -64,12 +64,22 @@
       <%= f.text_field :correo2 %>
     </div>
     <div class="field">
-      <%= f.label :comision_por_colocacion,"Comisión por colocación" %>
-      <%= f.text_field :comision_por_colocacion %>
+      <div class="col s11 m11 l11 ">
+        <%= f.label :comision_por_colocacion,"Comisión por colocación" %>
+        <%= f.text_field :comision_por_colocacion %>
+      </div>
+      <div class="col s1 m1 l1 valign-wrapper">
+        <h5 class="valign">%</h5>
+      </div>
     </div>
     <div class="field">
-      <%= f.label :comision_por_cobranza,"Comisión por cobranza" %>
-      <%= f.text_field :comision_por_cobranza %>
+      <div class="col s11 m11 l11 ">
+        <%= f.label :comision_por_cobranza,"Comisión por cobranza" %>
+        <%= f.text_field :comision_por_cobranza %>
+      </div>
+      <div class="col s1 m1 l1 valign-wrapper">
+        <h5 class="valign">%</h5>
+      </div>
     </div>
     <div class="field">
       <%= f.label :monto_maximo_adeudo_sucursal,"Monto maxímo de adeudo" %>

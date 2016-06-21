@@ -1,5 +1,5 @@
 class Agent < ActiveRecord::Base
-    belongs_to :branchOffice
+    belongs_to :branch_office
     validates :clave,
     :nombre_del_agente,
     :apellido_materno,
@@ -22,11 +22,8 @@ class Agent < ActiveRecord::Base
     :estado_de_nacimiento,
     :pais_de_nacimiento,
     :sexo,
-    :telefono_de_casa,
     :telefono_celular,
     :correo_electronico_1,
-    :cuenta_bancaria,
-    :banco,
     :comision_por_cobranza,
     :comision_por_colocacion,
     :monto_maximo_de_prestamo,
@@ -37,5 +34,10 @@ class Agent < ActiveRecord::Base
      
   def RFC=(val)
     write_attribute :RFC, val.upcase
+  end
+    validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
+     #BEML920313HCMLNS09.
+  def CURP=(val)
+    write_attribute :CURP, val.upcase
   end
 end

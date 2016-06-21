@@ -11,107 +11,135 @@
         </ul>
       </div>
     <% end %>
-  
-    <div class="field">
-      <%= f.label :clave %>
-      <%= f.text_field :clave %>
+     <div class="col s12">
+      <div class="card z-depth-3">
+        <div class="card-content">
+          <span class="card-title">Informacion del contacto</span>
+          <div class="row">
+            <div class="field">
+              <%= f.label :clave %>
+              <%= f.text_field :clave %>
+            </div>
+            <div class="field">
+              <%=f.collection_select(:branch_office_id,BranchOffice.all,:id,:nombre,:prompt => 'Sucursal:')%>
+              <%=f.label :branch_office_id, 'Sucursal:' %>
+            </div>
+            <div class="field">
+              <%= f.label :nombre_de_empresa %>
+              <%= f.text_field :nombre_de_empresa %>
+            </div>
+            <div class="field">
+              <%= f.label :razon_social %>
+              <%= f.text_field :razon_social %>
+            </div>
+            <div class="field">
+              <%= f.label :calle %>
+              <%= f.text_field :calle %>
+            </div>
+            <div class="field">
+              <%= f.label :numero_exterior,"Número exterior" %>
+              <%= f.number_field :numero_exterior %>
+            </div>
+            <div class="field">
+              <%= f.label :numero_interior,"Número interior" %>
+              <%= f.number_field :numero_interior %>
+            </div>
+            <div class="field">
+              <%= f.label :codigo_postal,"Código Postal"%>
+              <%= f.number_field :codigo_postal %>
+            </div>
+            <div class="field">
+              <%= f.label :colonia %>
+              <%= f.text_field :colonia %>
+            </div>
+            <div class="field">
+              <%= f.label :municipio %>
+              <%= f.text_field :municipio %>
+            </div>
+            <div class="field">
+              <%= f.label :estado %>
+              <%= f.text_field :estado %>
+            </div>
+          </div>  
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <%=f.collection_select(:BranchOffice_id,BranchOffice.all,:id,:nombre,:prompt => 'Sucursal:')%>
-      <%=f.label :BranchOffice_id, 'Sucursal:' %>
+    <div class="col s12">
+      <div class="card z-depth-3">
+        <div class="card-content">
+          <span class="card-title">Informacion del contacto</span>
+          <div class="row">
+            <div class="field">
+              <%= f.label :apellido_paterno %>
+              <%= f.text_field :apellido_paterno %>
+            </div>
+            <div class="field">
+              <%= f.label :apellido_materno %>
+              <%= f.text_field :apellido_materno %>
+            </div>
+            <div class="field">
+              <%= f.label :nombre_1 %>
+              <%= f.text_field :nombre_1 %>
+            </div>
+            <div class="field">
+              <%= f.label :nombre_2 %>
+              <%= f.text_field :nombre_2 %>
+            </div>
+            <div class="field">
+              <%= f.label :telefono_de_oficina,"Teléfono Oficina" %>
+              <%= f.text_field :telefono_de_oficina %>
+            </div>
+            <div class="field">
+              <%= f.label :telefono_celular,"Teléfono celular" %>
+              <%= f.text_field :telefono_celular %>
+            </div>
+            <div class="field">
+              <%= f.label :correo_electronico_1,"Correo electrónico 1"%>
+              <%= f.text_field :correo_electronico_1 %>
+            </div>
+            <div class="field">
+              <%= f.label :correo_electronico_2,"Correo electrónico 2" %>
+              <%= f.text_field :correo_electronico_2 %>
+            </div>
+            <div class="field">
+              <%= f.label :cuenta_bacaria %>
+              <%= f.text_field :cuenta_bacaria %>
+            </div>
+            <div class="field">
+              <%= f.label :banco %>
+              <%= f.text_field :banco %>
+            </div>
+            <div class="field">
+              <div class="col s11 m11 l11">
+                <%= f.label :comicion_por_cobranza,"Comisión por cobranza" %>
+                <%= f.text_field :comicion_por_cobranza %>
+              </div>
+              <div class="col s1 m1 l1 valign-wrapper">
+                <h5 class="valign">%</h5>
+              </div>
+            </div>
+            <div class="field">
+              <div class="col s11 m11 l11 ">
+              <%= f.label :comicion_por_colocacion,"Comisión por colocación" %>
+              <%= f.text_field :comicion_por_colocacion %>
+              </div>
+              <div class="col s1 m1 l1 valign-wrapper">
+                <h5 class="valign">%</h5>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :monto_maximo_de_prestamo,"Monto máximo de préstamo" %>
+              <%= f.text_field :monto_maximo_de_prestamo %>
+            </div>
+            <div class="field">
+              <%= f.check_box :permitir_prestamo_multiple %>
+              <%= f.label :permitir_prestamo_multiple,"Permitir préstamo múltiple" %>
+            </div>      
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :nombre_de_empresa %>
-      <%= f.text_field :nombre_de_empresa %>
-    </div>
-    <div class="field">
-      <%= f.label :razon_social %>
-      <%= f.text_field :razon_social %>
-    </div>
-    <div class="field">
-      <%= f.label :calle %>
-      <%= f.text_field :calle %>
-    </div>
-    <div class="field">
-      <%= f.label :numero_exterior,"Número exterior" %>
-      <%= f.number_field :numero_exterior %>
-    </div>
-    <div class="field">
-      <%= f.label :numero_interior,"Número interior" %>
-      <%= f.number_field :numero_interior %>
-    </div>
-    <div class="field">
-      <%= f.label :colonia %>
-      <%= f.text_field :colonia %>
-    </div>
-    <div class="field">
-      <%= f.label :codigo_postal,"Código Postal"%>
-      <%= f.number_field :codigo_postal %>
-    </div>
-    <div class="field">
-      <%= f.label :municipio %>
-      <%= f.text_field :municipio %>
-    </div>
-    <div class="field">
-      <%= f.label :estado %>
-      <%= f.text_field :estado %>
-    </div>
-    <div class="field">
-      <%= f.label :apellido_paterno %>
-      <%= f.text_field :apellido_paterno %>
-    </div>
-    <div class="field">
-      <%= f.label :apellido_materno %>
-      <%= f.text_field :apellido_materno %>
-    </div>
-    <div class="field">
-      <%= f.label :nombre_1 %>
-      <%= f.text_field :nombre_1 %>
-    </div>
-    <div class="field">
-      <%= f.label :nombre_2 %>
-      <%= f.text_field :nombre_2 %>
-    </div>
-    <div class="field">
-      <%= f.label :telefono_de_oficina,"Teléfono Oficina" %>
-      <%= f.text_field :telefono_de_oficina %>
-    </div>
-    <div class="field">
-      <%= f.label :telefono_celular,"Teléfono celular" %>
-      <%= f.text_field :telefono_celular %>
-    </div>
-    <div class="field">
-      <%= f.label :correo_electronico_1,"Correo electrónico 1"%>
-      <%= f.text_field :correo_electronico_1 %>
-    </div>
-    <div class="field">
-      <%= f.label :correo_electronico_2,"Correo electrónico 2" %>
-      <%= f.text_field :correo_electronico_2 %>
-    </div>
-    <div class="field">
-      <%= f.label :cuenta_bacaria %>
-      <%= f.text_field :cuenta_bacaria %>
-    </div>
-    <div class="field">
-      <%= f.label :banco %>
-      <%= f.text_field :banco %>
-    </div>
-    <div class="field">
-      <%= f.label :comicion_por_cobranza,"Comisión por cobranza" %>
-      <%= f.text_field :comicion_por_cobranza %>
-    </div>
-    <div class="field">
-      <%= f.label :comicion_por_colocacion,"Comisión por colocación" %>
-      <%= f.text_field :comicion_por_colocacion %>
-    </div>
-    <div class="field">
-      <%= f.label :monto_maximo_de_prestamo,"Monto máximo de préstamo" %>
-      <%= f.text_field :monto_maximo_de_prestamo %>
-    </div>
-    <div class="field">
-      <%= f.check_box :permitir_prestamo_multiple %>
-      <%= f.label :permitir_prestamo_multiple,"Permitir préstamo múltiple" %>
-    </div>
+    
     <br>
   </div>
     <div class="actions">

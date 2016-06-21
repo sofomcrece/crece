@@ -28,6 +28,10 @@
       <%= f.collection_select(:payout_id, Payout.all ,:id, :nombre, :prompt => 'Forma de pago:') %>
       <%=f.label :payout_id,"Forma de pago"%>
     </div>
+    <div class="field">
+      <%= f.label :numero_de_pagos_a_realizar,'Número de pagos a realizar' %>
+      <%= f.number_field :numero_de_pagos_a_realizar %>
+    </div>
      <div class="field">
       <%= f.select(:plazo_de_prestamo) do %>
         <% [['12 Q'], ['24 s'],['1Q'],['32s']].each do |c| -%>
@@ -37,20 +41,31 @@
       <%=f.label :plazo_de_prestamo, "Plazo de préstamo"%>
     </div>
     <div class="field">
-      <%= f.label :numero_de_pagos_a_realizar,'Número de pagos a realizar' %>
-      <%= f.number_field :numero_de_pagos_a_realizar %>
+      <div class="col s11 m11 l11 ">
+        <%= f.label :taza_de_interes_ordinaria,'Tasa de interés ordinaria' %>
+        <%= f.number_field :taza_de_interes_ordinaria, :step => 'any' %>
+      </div>
+      <div class="col s1 m1 l1 valign-wrapper">
+        <h5 class="valign">%</h5>
+      </div>
     </div>
     <div class="field">
-      <%= f.label :taza_de_interes_ordinaria,'Tasa de interés ordinaria' %>
-      <%= f.number_field :taza_de_interes_ordinaria, :step => 'any' %>
+      <div class="col s11 m11 l11 ">
+        <%= f.label :taza_de_interes_moratoria,'Tasa de interés moratoria' %>
+        <%= f.number_field :taza_de_interes_moratoria, :step => 'any' %>
+      </div>
+      <div class="col s1 m1 l1 valign-wrapper">
+        <h5 class="valign">%</h5>
+      </div>
     </div>
     <div class="field">
-      <%= f.label :taza_de_interes_moratoria,'Tasa de interés moratoria' %>
-      <%= f.number_field :taza_de_interes_moratoria, :step => 'any' %>
-    </div>
-    <div class="field">
-      <%= f.label :cat_sin_iva,'CAT sin iva' %>
-      <%= f.number_field :cat_sin_iva, :step => 'any' %>
+      <div class="col s11 m11 l11 ">
+        <%= f.label :cat_sin_iva,'CAT sin iva' %>
+        <%= f.number_field :cat_sin_iva, :step => 'any' %>
+      </div>
+      <div class="col s1 m1 l1 valign-wrapper">
+        <h5 class="valign">%</h5>
+      </div>
     </div>
     <div class="field">
       <%= f.label :numero_de_meses_de_sueldo_para_prestamo,'Número de meses de sueldo para préstamo' %>

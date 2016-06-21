@@ -21,7 +21,6 @@ class BranchOffice < ActiveRecord::Base
     :monto_maximo_adeudo_sucursal,
     :formato_impresion,
     :user_id,
-    :product_id,
     :clave,
     presence:true
 end

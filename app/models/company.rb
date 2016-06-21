@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  belongs_to :BranchOffice
+  belongs_to :branch_office
   validates :clave,
     :nombre_de_empresa,
     :razon_social,
@@ -20,7 +20,7 @@ class Company < ActiveRecord::Base
     :comicion_por_colocacion,
     :monto_maximo_de_prestamo,
     :permitir_prestamo_multiple,
-    :BranchOffice_id,
+    :branch_office_id,
   presence: true
   
 end
