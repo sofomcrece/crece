@@ -24,3 +24,4 @@ angular.module("codigo_postal",[])
 		});    
     }
 }]);
+alert("hola");
