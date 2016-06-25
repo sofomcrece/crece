@@ -21,7 +21,6 @@ class Agent < ActiveRecord::Base
     :ciudad_de_nacimiento,
     :estado_de_nacimiento,
     :pais_de_nacimiento,
-    :sexo,
     :telefono_celular,
     :correo_electronico_1,
     :comision_por_cobranza,
@@ -40,4 +39,8 @@ class Agent < ActiveRecord::Base
   def CURP=(val)
     write_attribute :CURP, val.upcase
   end
+  validates :sexo,
+    :inclusion => { :in => [true, false] }
+  validates :sexo,
+    :presence => { :if => 'sexo.nil?' }
 end

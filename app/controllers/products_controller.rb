@@ -69,6 +69,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:payout_id,:loan_id,:nombre_del_producto, :registro_del_contrado_de_adhesion, :plazo_de_prestamo, :numero_de_pagos_a_realizar, :taza_de_interes_ordinaria, :taza_de_interes_moratoria, :cat_sin_iva, :numero_de_meses_de_sueldo_para_prestamo)
+      params.require(:product).permit(:payout_id,:forma_de_pago_interes,:loan_id,:nombre_del_producto, :registro_del_contrado_de_adhesion, :plazo_de_prestamo, :numero_de_pagos_a_realizar,:plazo_de_prestamo_interes, :numero_de_pagos_a_realizar_interes, :taza_de_interes_ordinaria, :taza_de_interes_moratoria, :cat_sin_iva, :numero_de_meses_de_sueldo_para_prestamo)
     end
 end

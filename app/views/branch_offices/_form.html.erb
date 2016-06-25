@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-app="codigo_postal">
   <%= form_for(@branch_office) do |f| %>
     <% if @branch_office.errors.any? %>
       <div id="error_explanation">
@@ -31,21 +31,26 @@
       <%= f.label :no_int,"Número interior" %>
       <%= f.number_field :no_int %>
     </div>
-    <div class="field">
-      <%= f.label :colonia %>
-      <%= f.text_field :colonia %>
-    </div>
-    <div class="field">
-      <%= f.label :codigo_postal,"Código postal" %>
-      <%= f.number_field :codigo_postal %>
-    </div>
-    <div class="field">
-      <%= f.label :municipio %>
-      <%= f.text_field :municipio %>
-    </div>
-    <div class="field">
-      <%= f.label :estado %>
-      <%= f.text_field :estado %>
+    <div ng-controller="cp">
+      <div class="field">
+        <%= f.label :codigo_postal,"Código postal","ng-init":"codigo='#{:codigo_postal}'" %>
+        <%= f.number_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
+        
+      </div>
+        <div class="field">
+         <select id="branch_office_colonia" name="branch_office[colonia]"class="browser-default" ng-model="data.colonias.repeatSelect">
+             <option value="" disabled selected>Colonia</option>
+            <option ng-repeat="option in data.colonias" value="{{option}}">{{option}}</option>
+        </select>
+      </div>
+      <div class="field">
+        <%= f.label :municipio,class:"model" %>
+        <%= f.text_field :municipio,"ng-model":"data.municipio" %>
+      </div>
+      <div class="field">
+        <%= f.label :estado,class:"model" %>
+        <%= f.text_field :estado,"ng-model":"data.estado" %>
+      </div>
     </div>
     <div class="field">
       <%= f.label :telefono_oficina %>

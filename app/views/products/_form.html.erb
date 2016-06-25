@@ -26,10 +26,10 @@
     </div>
     <div class="field">
       <%= f.collection_select(:payout_id, Payout.all ,:id, :nombre, :prompt => 'Forma de pago:') %>
-      <%=f.label :payout_id,"Forma de pago"%>
+      <%=f.label :payout_id,"Forma de pago capital"%>
     </div>
     <div class="field">
-      <%= f.label :numero_de_pagos_a_realizar,'Número de pagos a realizar' %>
+      <%= f.label :numero_de_pagos_a_realizar,'Número de pagos a realizar capital' %>
       <%= f.number_field :numero_de_pagos_a_realizar %>
     </div>
      <div class="field">
@@ -38,8 +38,26 @@
           <%= content_tag(:option, c.first, value: c.first) %>
         <% end %>
       <% end %>
-      <%=f.label :plazo_de_prestamo, "Plazo de préstamo"%>
+      <%=f.label :plazo_de_prestamo, "Plazo de préstamo capital"%>
     </div>
+    
+    <div class="field">
+      <%= f.collection_select(:payout_id, Payout.all ,:id, :nombre, :prompt => 'Forma de pago:') %>
+      <%=f.label :forma_de_pago_interes,"Forma de pago interés"%>
+    </div>
+    <div class="field">
+      <%= f.label :numero_de_pagos_a_realizar_interes,'Número de pagos a realizar interés' %>
+      <%= f.number_field :numero_de_pagos_a_realizar_interes %>
+    </div>
+     <div class="field">
+      <%= f.select(:plazo_de_prestamo_interes) do %>
+        <% [['12 Q'], ['24 s'],['1Q'],['32s']].each do |c| -%>
+          <%= content_tag(:option, c.first, value: c.first) %>
+        <% end %>
+      <% end %>
+      <%=f.label :plazo_de_prestamo_interes, "Plazo de préstamo interés"%>
+    </div>
+    
     <div class="field">
       <div class="col s11 m11 l11 ">
         <%= f.label :taza_de_interes_ordinaria,'Tasa de interés ordinaria' %>

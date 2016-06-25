@@ -1,0 +1,341 @@
+<%= form_for(@credit) do |f| %>
+  <% if @credit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
+
+      <ul>
+      <% @credit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :agente_Empresa %><br>
+    <%= f.check_box :agente_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :referencia_AgenteEmpresa %><br>
+    <%= f.number_field :referencia_AgenteEmpresa %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha %>
+  </div>
+  <div class="field">
+    <%= f.label :es_Cliente %><br>
+    <%= f.check_box :es_Cliente %>
+  </div>
+  <div class="field">
+    <%= f.label :como_Se_Entero %><br>
+    <%= f.text_area :como_Se_Entero %>
+  </div>
+  <div class="field">
+    <%= f.label :familiar_Con_Prestamo %><br>
+    <%= f.check_box :familiar_Con_Prestamo %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Completo_Familiar_1 %><br>
+    <%= f.text_field :nombre_Completo_Familiar_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :parentesco_1 %><br>
+    <%= f.text_field :parentesco_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Completo_Familiar_1 %><br>
+    <%= f.text_field :nombre_Completo_Familiar_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :parentesco1 %><br>
+    <%= f.text_field :parentesco1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Completo_Familiar_1 %><br>
+    <%= f.text_field :nombre_Completo_Familiar_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :parentesco_1 %><br>
+    <%= f.text_field :parentesco_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_Paterno %><br>
+    <%= f.text_field :apellido_Paterno %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_Materno %><br>
+    <%= f.text_field :apellido_Materno %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_1 %><br>
+    <%= f.text_field :nombre_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_2 %><br>
+    <%= f.text_field :nombre_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :RFC %><br>
+    <%= f.text_field :RFC %>
+  </div>
+  <div class="field">
+    <%= f.label :CURP %><br>
+    <%= f.text_field :CURP %>
+  </div>
+  <div class="field">
+    <%= f.label :seguro %><br>
+    <%= f.text_field :seguro %>
+  </div>
+  <div class="field">
+    <%= f.label :INE %><br>
+    <%= f.text_field :INE %>
+  </div>
+  <div class="field">
+    <%= f.label :nacionalidad %><br>
+    <%= f.text_field :nacionalidad %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_De_Nacimiento %><br>
+    <%= f.date_select :fecha_De_Nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :ciudad_De_Nacimiento %><br>
+    <%= f.text_field :ciudad_De_Nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_De_Nacimiento %><br>
+    <%= f.text_field :estado_De_Nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :pais_De_Nacimiento %><br>
+    <%= f.text_field :pais_De_Nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :sexo %><br>
+    <%= f.check_box :sexo %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_De_Casa %><br>
+    <%= f.text_field :telefono_De_Casa %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular %><br>
+    <%= f.text_field :telefono_Celular %>
+  </div>
+  <div class="field">
+    <%= f.label :email_1 %><br>
+    <%= f.text_field :email_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :email_2 %><br>
+    <%= f.text_field :email_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :escolaridad %><br>
+    <%= f.number_field :escolaridad %>
+  </div>
+  <div class="field">
+    <%= f.label :actividad_Econimica %><br>
+    <%= f.number_field :actividad_Econimica %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_De_Dependientes_Economicos %><br>
+    <%= f.number_field :numero_De_Dependientes_Economicos %>
+  </div>
+  <div class="field">
+    <%= f.label :gasto_Promedio_Mensual %><br>
+    <%= f.text_field :gasto_Promedio_Mensual %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_Civil %><br>
+    <%= f.number_field :estado_Civil %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_Paterno_Del_Conyuge %><br>
+    <%= f.text_field :apellido_Paterno_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido_Materno_Del_Conyuge %><br>
+    <%= f.text_field :apellido_Materno_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_1_Del_Conyuge %><br>
+    <%= f.text_field :nombre_1_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_2_Del_Conyuge %><br>
+    <%= f.text_field :nombre_2_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular_Del_Conyuge %><br>
+    <%= f.text_field :telefono_Celular_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_De_Oficina_Del_Conyuge %><br>
+    <%= f.text_field :telefono_De_Oficina_Del_Conyuge %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_De_Nacimiento %><br>
+    <%= f.date_select :fecha_De_Nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :calle %><br>
+    <%= f.text_field :calle %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_Interior %><br>
+    <%= f.number_field :numero_Interior %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_Exterior %><br>
+    <%= f.number_field :numero_Exterior %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_De_Domicilio %><br>
+    <%= f.number_field :tipo_De_Domicilio %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo_Postal %><br>
+    <%= f.number_field :codigo_Postal %>
+  </div>
+  <div class="field">
+    <%= f.label :colonia %><br>
+    <%= f.text_field :colonia %>
+  </div>
+  <div class="field">
+    <%= f.label :localidad %><br>
+    <%= f.text_field :localidad %>
+  </div>
+  <div class="field">
+    <%= f.label :municipio %><br>
+    <%= f.text_field :municipio %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_Actual %><br>
+    <%= f.text_field :estado_Actual %>
+  </div>
+  <div class="field">
+    <%= f.label :antiguedad_En_El_Domicilio_Actual %><br>
+    <%= f.text_field :antiguedad_En_El_Domicilio_Actual %>
+  </div>
+  <div class="field">
+    <%= f.label :antiguedad_En_El_Domicilio_Anterior %><br>
+    <%= f.text_field :antiguedad_En_El_Domicilio_Anterior %>
+  </div>
+  <div class="field">
+    <%= f.label :empresa_Donde_Labora %><br>
+    <%= f.text_field :empresa_Donde_Labora %>
+  </div>
+  <div class="field">
+    <%= f.label :giro_De_La_Empresa %><br>
+    <%= f.text_field :giro_De_La_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :puesto %><br>
+    <%= f.text_field :puesto %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Empresa %><br>
+    <%= f.text_field :telefono_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :antiguedad_Laboral %><br>
+    <%= f.text_field :antiguedad_Laboral %>
+  </div>
+  <div class="field">
+    <%= f.label :sueldo_Mensual_Neto %><br>
+    <%= f.text_field :sueldo_Mensual_Neto %>
+  </div>
+  <div class="field">
+    <%= f.label :dirreccion_Empresa %><br>
+    <%= f.text_field :dirreccion_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :colonia_Empresa %><br>
+    <%= f.text_field :colonia_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :municipio_Empresa %><br>
+    <%= f.text_field :municipio_Empresa %>
+  </div>
+  <div class="field">
+    <%= f.label :monto_Solicitud %><br>
+    <%= f.text_field :monto_Solicitud %>
+  </div>
+  <div class="field">
+    <%= f.label :cada_Cuanto_Se_Realizara_El_Pago %><br>
+    <%= f.number_field :cada_Cuanto_Se_Realizara_El_Pago %>
+  </div>
+  <div class="field">
+    <%= f.label :lugar_Donde_Se_Realizara_El_Pago %><br>
+    <%= f.number_field :lugar_Donde_Se_Realizara_El_Pago %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Referencia_1 %><br>
+    <%= f.text_field :nombre_Referencia_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :domicilio_Referencia_1 %><br>
+    <%= f.text_field :domicilio_Referencia_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Fijo_Referencia_1 %><br>
+    <%= f.text_field :telefono_Fijo_Referencia_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular_Referencia_1 %><br>
+    <%= f.text_field :telefono_Celular_Referencia_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Referencia_2 %><br>
+    <%= f.text_field :nombre_Referencia_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :domicilio_Referencia_2 %><br>
+    <%= f.text_field :domicilio_Referencia_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Fijo_Referencia_2 %><br>
+    <%= f.text_field :telefono_Fijo_Referencia_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular_Referencia_2 %><br>
+    <%= f.text_field :telefono_Celular_Referencia_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Referencia_3 %><br>
+    <%= f.text_field :nombre_Referencia_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :domicilio_Referencia_3 %><br>
+    <%= f.text_field :domicilio_Referencia_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Fijo_Referencia_3 %><br>
+    <%= f.text_field :telefono_Fijo_Referencia_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular_Referencia_3 %><br>
+    <%= f.text_field :telefono_Celular_Referencia_3 %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre_Referencia_Familiar %><br>
+    <%= f.text_field :nombre_Referencia_Familiar %>
+  </div>
+  <div class="field">
+    <%= f.label :domicilio_Referencia_Familiar %><br>
+    <%= f.text_field :domicilio_Referencia_Familiar %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Fijo_Referencia_Familiar %><br>
+    <%= f.text_field :telefono_Fijo_Referencia_Familiar %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono_Celular_Referencia_Familiar %><br>
+    <%= f.text_field :telefono_Celular_Referencia_Familiar %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

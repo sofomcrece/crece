@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617102954) do
+ActiveRecord::Schema.define(version: 20160623032544) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -111,6 +111,88 @@ ActiveRecord::Schema.define(version: 20160617102954) do
 
   add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id"
 
+  create_table "credits", force: :cascade do |t|
+    t.boolean  "agente_Empresa"
+    t.integer  "referencia_AgenteEmpresa"
+    t.date     "fecha"
+    t.boolean  "es_Cliente"
+    t.text     "como_Se_Entero"
+    t.boolean  "familiar_Con_Prestamo"
+    t.string   "nombre_Completo_Familiar_1"
+    t.string   "parentesco_1"
+    t.string   "parentesco1"
+    t.string   "apellido_Paterno"
+    t.string   "apellido_Materno"
+    t.string   "nombre_1"
+    t.string   "nombre_2"
+    t.string   "RFC"
+    t.string   "CURP"
+    t.string   "seguro"
+    t.string   "INE"
+    t.string   "nacionalidad"
+    t.date     "fecha_De_Nacimiento"
+    t.string   "ciudad_De_Nacimiento"
+    t.string   "estado_De_Nacimiento"
+    t.string   "pais_De_Nacimiento"
+    t.boolean  "sexo"
+    t.string   "telefono_De_Casa"
+    t.string   "telefono_Celular"
+    t.string   "email_1"
+    t.string   "email_2"
+    t.integer  "escolaridad"
+    t.integer  "actividad_Econimica"
+    t.integer  "numero_De_Dependientes_Economicos"
+    t.decimal  "gasto_Promedio_Mensual"
+    t.integer  "estado_Civil"
+    t.string   "apellido_Paterno_Del_Conyuge"
+    t.string   "apellido_Materno_Del_Conyuge"
+    t.string   "nombre_1_Del_Conyuge"
+    t.string   "nombre_2_Del_Conyuge"
+    t.string   "telefono_Celular_Del_Conyuge"
+    t.string   "telefono_De_Oficina_Del_Conyuge"
+    t.string   "calle"
+    t.integer  "numero_Interior"
+    t.integer  "numero_Exterior"
+    t.integer  "tipo_De_Domicilio"
+    t.integer  "codigo_Postal"
+    t.string   "colonia"
+    t.string   "localidad"
+    t.string   "municipio"
+    t.string   "estado_Actual"
+    t.string   "antiguedad_En_El_Domicilio_Actual"
+    t.string   "antiguedad_En_El_Domicilio_Anterior"
+    t.string   "empresa_Donde_Labora"
+    t.string   "giro_De_La_Empresa"
+    t.string   "puesto"
+    t.string   "telefono_Empresa"
+    t.string   "antiguedad_Laboral"
+    t.string   "sueldo_Mensual_Neto"
+    t.string   "dirreccion_Empresa"
+    t.string   "colonia_Empresa"
+    t.string   "municipio_Empresa"
+    t.decimal  "monto_Solicitud"
+    t.integer  "cada_Cuanto_Se_Realizara_El_Pago"
+    t.integer  "lugar_Donde_Se_Realizara_El_Pago"
+    t.string   "nombre_Referencia_1"
+    t.string   "domicilio_Referencia_1"
+    t.string   "telefono_Fijo_Referencia_1"
+    t.string   "telefono_Celular_Referencia_1"
+    t.string   "nombre_Referencia_2"
+    t.string   "domicilio_Referencia_2"
+    t.string   "telefono_Fijo_Referencia_2"
+    t.string   "telefono_Celular_Referencia_2"
+    t.string   "nombre_Referencia_3"
+    t.string   "domicilio_Referencia_3"
+    t.string   "telefono_Fijo_Referencia_3"
+    t.string   "telefono_Celular_Referencia_3"
+    t.string   "nombre_Referencia_Familiar"
+    t.string   "domicilio_Referencia_Familiar"
+    t.string   "telefono_Fijo_Referencia_Familiar"
+    t.string   "telefono_Celular_Referencia_Familiar"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "loans", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -154,6 +236,9 @@ ActiveRecord::Schema.define(version: 20160617102954) do
     t.datetime "updated_at",                              null: false
     t.integer  "loan_id"
     t.integer  "payout_id"
+    t.integer  "forma_de_pago_interes"
+    t.integer  "plazo_de_prestamo_interes"
+    t.integer  "numero_de_pagos_a_realizar_interes"
   end
 
   add_index "products", ["loan_id"], name: "index_products_on_loan_id"
