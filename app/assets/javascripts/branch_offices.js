@@ -1,4 +1,4 @@
-angular.module("codigo_postal",['ngRoute'])
+angular.module("codigo_postal",[])
 .controller("cp",["$scope","$http",function($scope,$http){
     $scope.codigo;
     $scope.colonias=[];
