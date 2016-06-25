@@ -1,3 +1,4 @@
+alert("hola");
 angular.module("codigo_postal",[])
 .controller("cp",["$scope","$http",function($scope,$http){
     $scope.codigo;
@@ -24,4 +25,3 @@ angular.module("codigo_postal",[])
 		});    
     }
 }]);
-alert("hola");
