@@ -49,4 +49,5 @@ $(document).ready(function(){
     labelMonthSelect: 'Seleciona un mes',
     labelYearSelect: 'Seleciona un año',
      });
+     
 });
