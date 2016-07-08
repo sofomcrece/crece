@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623032544) do
+ActiveRecord::Schema.define(version: 20160708004659) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 20160623032544) do
 
   add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id"
 
+  create_table "countries", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "credits", force: :cascade do |t|
     t.boolean  "agente_Empresa"
     t.integer  "referencia_AgenteEmpresa"
@@ -191,12 +198,39 @@ ActiveRecord::Schema.define(version: 20160623032544) do
     t.string   "telefono_Celular_Referencia_Familiar"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "nombre_Completo_Familiar_2"
+    t.string   "parentesco_2"
+    t.string   "nombre_completo_1"
+    t.integer  "edad_1"
+    t.string   "parentesco_del_dependiente_1"
+    t.string   "nombre_completo_2"
+    t.integer  "edad_2"
+    t.string   "parentesco_del_dependiente_2"
+    t.string   "nombre_completo_3"
+    t.integer  "edad_3"
+    t.string   "parentesco_del_dependiente_3"
+    t.integer  "status"
+  end
+
+  create_table "economical_activities", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "loans", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "localidad_cnbvs", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.string   "entidad_federativa"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "models", force: :cascade do |t|
@@ -216,6 +250,13 @@ ActiveRecord::Schema.define(version: 20160623032544) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+
+  create_table "ocupations", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "payouts", force: :cascade do |t|
     t.string   "nombre"
@@ -243,6 +284,20 @@ ActiveRecord::Schema.define(version: 20160623032544) do
 
   add_index "products", ["loan_id"], name: "index_products_on_loan_id"
   add_index "products", ["payout_id"], name: "index_products_on_payout_id"
+
+  create_table "profecions", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.integer  "clave"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

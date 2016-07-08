@@ -6,86 +6,12 @@
   <thead>
     <tr>
       <th>Agente empresa</th>
-      <th>Referencia agenteempresa</th>
+      <th>Empresa</th>
       <th>Fecha</th>
-      <th>Es cliente</th>
-      <th>Como se entero</th>
-      <th>Familiar con prestamo</th>
-      <th>Nombre completo familiar 1</th>
-      <th>Parentesco 1</th>
-      <th>Nombre completo familiar 1</th>
-      <th>Parentesco1</th>
-      <th>Nombre completo familiar 1</th>
-      <th>Parentesco 1</th>
-      <th>Apellido paterno</th>
-      <th>Apellido materno</th>
-      <th>Nombre 1</th>
-      <th>Nombre 2</th>
+      <th>Nombre</th>
       <th>Rfc</th>
-      <th>Curp</th>
-      <th>Seguro</th>
-      <th>Ine</th>
-      <th>Nacionalidad</th>
-      <th>Fecha de nacimiento</th>
-      <th>Ciudad de nacimiento</th>
-      <th>Estado de nacimiento</th>
-      <th>Pais de nacimiento</th>
-      <th>Sexo</th>
-      <th>Telefono de casa</th>
-      <th>Telefono celular</th>
-      <th>Email 1</th>
-      <th>Email 2</th>
-      <th>Escolaridad</th>
-      <th>Actividad econimica</th>
-      <th>Numero de dependientes economicos</th>
-      <th>Gasto promedio mensual</th>
-      <th>Estado civil</th>
-      <th>Apellido paterno del conyuge</th>
-      <th>Apellido materno del conyuge</th>
-      <th>Nombre 1 del conyuge</th>
-      <th>Nombre 2 del conyuge</th>
-      <th>Telefono celular del conyuge</th>
-      <th>Telefono de oficina del conyuge</th>
-      <th>Fecha de nacimiento</th>
-      <th>Calle</th>
-      <th>Numero interior</th>
-      <th>Numero exterior</th>
-      <th>Tipo de domicilio</th>
-      <th>Codigo postal</th>
-      <th>Colonia</th>
-      <th>Localidad</th>
-      <th>Municipio</th>
-      <th>Estado actual</th>
-      <th>Antiguedad en el domicilio actual</th>
-      <th>Antiguedad en el domicilio anterior</th>
-      <th>Empresa donde labora</th>
-      <th>Giro de la empresa</th>
-      <th>Puesto</th>
-      <th>Telefono empresa</th>
-      <th>Antiguedad laboral</th>
-      <th>Sueldo mensual neto</th>
-      <th>Dirreccion empresa</th>
-      <th>Colonia empresa</th>
-      <th>Municipio empresa</th>
-      <th>Monto solicitud</th>
-      <th>Cada cuanto se realizara el pago</th>
-      <th>Lugar donde se realizara el pago</th>
-      <th>Nombre referencia 1</th>
-      <th>Domicilio referencia 1</th>
-      <th>Telefono fijo referencia 1</th>
-      <th>Telefono celular referencia 1</th>
-      <th>Nombre referencia 2</th>
-      <th>Domicilio referencia 2</th>
-      <th>Telefono fijo referencia 2</th>
-      <th>Telefono celular referencia 2</th>
-      <th>Nombre referencia 3</th>
-      <th>Domicilio referencia 3</th>
-      <th>Telefono fijo referencia 3</th>
-      <th>Telefono celular referencia 3</th>
-      <th>Nombre referencia familiar</th>
-      <th>Domicilio referencia familiar</th>
-      <th>Telefono fijo referencia familiar</th>
-      <th>Telefono celular referencia familiar</th>
+      <th>Monto</th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -96,92 +22,20 @@
         <td><%= credit.agente_Empresa %></td>
         <td><%= credit.referencia_AgenteEmpresa %></td>
         <td><%= credit.fecha %></td>
-        <td><%= credit.es_Cliente %></td>
-        <td><%= credit.como_Se_Entero %></td>
-        <td><%= credit.familiar_Con_Prestamo %></td>
-        <td><%= credit.nombre_Completo_Familiar_1 %></td>
-        <td><%= credit.parentesco_1 %></td>
-        <td><%= credit.nombre_Completo_Familiar_1 %></td>
-        <td><%= credit.parentesco1 %></td>
-        <td><%= credit.nombre_Completo_Familiar_1 %></td>
-        <td><%= credit.parentesco_1 %></td>
-        <td><%= credit.apellido_Paterno %></td>
-        <td><%= credit.apellido_Materno %></td>
-        <td><%= credit.nombre_1 %></td>
-        <td><%= credit.nombre_2 %></td>
+        <td><%= "#{credit.apellido_Paterno} #{credit.apellido_Materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
         <td><%= credit.RFC %></td>
-        <td><%= credit.CURP %></td>
-        <td><%= credit.seguro %></td>
-        <td><%= credit.INE %></td>
-        <td><%= credit.nacionalidad %></td>
-        <td><%= credit.fecha_De_Nacimiento %></td>
-        <td><%= credit.ciudad_De_Nacimiento %></td>
-        <td><%= credit.estado_De_Nacimiento %></td>
-        <td><%= credit.pais_De_Nacimiento %></td>
-        <td><%= credit.sexo %></td>
-        <td><%= credit.telefono_De_Casa %></td>
-        <td><%= credit.telefono_Celular %></td>
-        <td><%= credit.email_1 %></td>
-        <td><%= credit.email_2 %></td>
-        <td><%= credit.escolaridad %></td>
-        <td><%= credit.actividad_Econimica %></td>
-        <td><%= credit.numero_De_Dependientes_Economicos %></td>
-        <td><%= credit.gasto_Promedio_Mensual %></td>
-        <td><%= credit.estado_Civil %></td>
-        <td><%= credit.apellido_Paterno_Del_Conyuge %></td>
-        <td><%= credit.apellido_Materno_Del_Conyuge %></td>
-        <td><%= credit.nombre_1_Del_Conyuge %></td>
-        <td><%= credit.nombre_2_Del_Conyuge %></td>
-        <td><%= credit.telefono_Celular_Del_Conyuge %></td>
-        <td><%= credit.telefono_De_Oficina_Del_Conyuge %></td>
-        <td><%= credit.fecha_De_Nacimiento %></td>
-        <td><%= credit.calle %></td>
-        <td><%= credit.numero_Interior %></td>
-        <td><%= credit.numero_Exterior %></td>
-        <td><%= credit.tipo_De_Domicilio %></td>
-        <td><%= credit.codigo_Postal %></td>
-        <td><%= credit.colonia %></td>
-        <td><%= credit.localidad %></td>
-        <td><%= credit.municipio %></td>
-        <td><%= credit.estado_Actual %></td>
-        <td><%= credit.antiguedad_En_El_Domicilio_Actual %></td>
-        <td><%= credit.antiguedad_En_El_Domicilio_Anterior %></td>
-        <td><%= credit.empresa_Donde_Labora %></td>
-        <td><%= credit.giro_De_La_Empresa %></td>
-        <td><%= credit.puesto %></td>
-        <td><%= credit.telefono_Empresa %></td>
-        <td><%= credit.antiguedad_Laboral %></td>
-        <td><%= credit.sueldo_Mensual_Neto %></td>
-        <td><%= credit.dirreccion_Empresa %></td>
-        <td><%= credit.colonia_Empresa %></td>
-        <td><%= credit.municipio_Empresa %></td>
-        <td><%= credit.monto_Solicitud %></td>
-        <td><%= credit.cada_Cuanto_Se_Realizara_El_Pago %></td>
-        <td><%= credit.lugar_Donde_Se_Realizara_El_Pago %></td>
-        <td><%= credit.nombre_Referencia_1 %></td>
-        <td><%= credit.domicilio_Referencia_1 %></td>
-        <td><%= credit.telefono_Fijo_Referencia_1 %></td>
-        <td><%= credit.telefono_Celular_Referencia_1 %></td>
-        <td><%= credit.nombre_Referencia_2 %></td>
-        <td><%= credit.domicilio_Referencia_2 %></td>
-        <td><%= credit.telefono_Fijo_Referencia_2 %></td>
-        <td><%= credit.telefono_Celular_Referencia_2 %></td>
-        <td><%= credit.nombre_Referencia_3 %></td>
-        <td><%= credit.domicilio_Referencia_3 %></td>
-        <td><%= credit.telefono_Fijo_Referencia_3 %></td>
-        <td><%= credit.telefono_Celular_Referencia_3 %></td>
-        <td><%= credit.nombre_Referencia_Familiar %></td>
-        <td><%= credit.domicilio_Referencia_Familiar %></td>
-        <td><%= credit.telefono_Fijo_Referencia_Familiar %></td>
-        <td><%= credit.telefono_Celular_Referencia_Familiar %></td>
-        <td><%= link_to 'Show', credit %></td>
-        <td><%= link_to 'Edit', edit_credit_path(credit) %></td>
-        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td><%= credit.monto_Solicitud %></td>
+        <td><%= link_to 'Show', credit,class:'crud-links' %></td>
+        <td><%= link_to 'Edit', edit_credit_path(credit),class:'crud-links' %></td>
+        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' },class:'crud-links' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Credit', new_credit_path %>
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <%= link_to new_credit_path,class:"btn-floating btn-large red" do  %>    
+    <i class="large material-icons">add</i>
+  <%end%>
+</div>

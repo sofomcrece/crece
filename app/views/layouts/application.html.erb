@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app ="app_marjo">
 <head>
   <title>Workspace</title>
   
@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script>
-    angular.module("codigo_postal",[])
+    angular.module("app_marjo",[])
     .controller("cp",["$scope","$http",function($scope,$http){
         $scope.codigo;
         $scope.colonias=[];
@@ -35,7 +35,7 @@
     			console.log(data);
     		});    
         }
-    }]);
+    }]));
   </script>
 </head>
 <body id="top" class="scrollspy">
