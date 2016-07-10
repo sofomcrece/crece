@@ -122,17 +122,19 @@
       <%= f.label :fecha_De_Nacimiento %>
       <%= f.text_field :fecha_De_Nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
     </div>
-    <div class="input-field col s12 m3 l3 ">
+    <div class="input-field col s12 m2 l2 ">
       <%= f.label :ciudad_De_Nacimiento %>
       <%= f.text_field :ciudad_De_Nacimiento %>
     </div>
     <div class="input-field col s12 m3 l3 ">
-      <%= f.label :estado_De_Nacimiento %>
-      <%= f.text_field :estado_De_Nacimiento %>
+      <%=f.collection_select(:estado_De_Nacimiento,Country.all,:descripcion,:descripcion,:prompt => 'Estado de nacimiento:')%>
+      <%=f.label :estado_De_Nacimiento, "Estado de nacimiento:" %>
     </div>
-    <div class="input-field col s12 m2 l2 ">
-      <%= f.label :pais_De_Nacimiento %>
-      <%= f.text_field :pais_De_Nacimiento %>
+    <div class="input-field col s12 m3 l3 ">
+      <div class="">
+        <%=f.collection_select(:Country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
+        <%=f.label :Country_id, "Pais de nacimiento:" %>
+      </div>
     </div>
     <div class="input-field col s12 m2 l2 ">
       <%= f.label :sexo%>
@@ -177,9 +179,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="input-field col s12">
-      <%= f.label :actividad_Econimica %>
-      <%= f.number_field :actividad_Econimica %>
+    <div class="field">
+      <%=f.collection_select(:EconomicalActivity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
+      <%=f.label :EconomicalActivity_id, "Actividad economica:" %>
     </div>
   </div>
   <div class="row">
@@ -318,8 +320,8 @@
       <%= f.text_field :colonia %>
     </div>
     <div class="input-field col s12 m3 l3">
-      <%= f.label :localidad %><br>
-      <%= f.text_field :localidad %>
+      <%=f.collection_select(:LocalidadCnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
+      <%=f.label :LocalidadCnbv_id, "Localidad:" %>
     </div>
   </div>
   <div class="row">
@@ -328,8 +330,8 @@
       <%= f.text_field :municipio %>
     </div>
     <div class="input-field col s12 m3 l3">
-      <%= f.label :estado_Actual %><br>
-      <%= f.text_field :estado_Actual %>
+       <%=f.collection_select(:State_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
+      <%=f.label :State_id, "Estado:" %>
     </div>
     <div class="input-field col s12 m3 l3">
       <%= f.label :antiguedad_En_El_Domicilio_Actual %><br>
@@ -512,7 +514,7 @@
     </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar" %>
   </div>
 <% end %>
 

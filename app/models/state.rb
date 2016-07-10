@@ -1,4 +1,5 @@
 class State < ActiveRecord::Base
+    has_many :credits
      require 'json'
     def self.loadJson(val)
         return if val.nil?

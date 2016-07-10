@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708004659) do
+ActiveRecord::Schema.define(version: 20160709210355) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -140,14 +140,12 @@ ActiveRecord::Schema.define(version: 20160708004659) do
     t.date     "fecha_De_Nacimiento"
     t.string   "ciudad_De_Nacimiento"
     t.string   "estado_De_Nacimiento"
-    t.string   "pais_De_Nacimiento"
     t.boolean  "sexo"
     t.string   "telefono_De_Casa"
     t.string   "telefono_Celular"
     t.string   "email_1"
     t.string   "email_2"
     t.integer  "escolaridad"
-    t.integer  "actividad_Econimica"
     t.integer  "numero_De_Dependientes_Economicos"
     t.decimal  "gasto_Promedio_Mensual"
     t.integer  "estado_Civil"
@@ -163,9 +161,7 @@ ActiveRecord::Schema.define(version: 20160708004659) do
     t.integer  "tipo_De_Domicilio"
     t.integer  "codigo_Postal"
     t.string   "colonia"
-    t.string   "localidad"
     t.string   "municipio"
-    t.string   "estado_Actual"
     t.string   "antiguedad_En_El_Domicilio_Actual"
     t.string   "antiguedad_En_El_Domicilio_Anterior"
     t.string   "empresa_Donde_Labora"
@@ -210,7 +206,16 @@ ActiveRecord::Schema.define(version: 20160708004659) do
     t.integer  "edad_3"
     t.string   "parentesco_del_dependiente_3"
     t.integer  "status"
+    t.integer  "EconomicalActivity_id"
+    t.integer  "LocalidadCnbv_id"
+    t.integer  "State_id"
+    t.integer  "Country_id"
   end
+
+  add_index "credits", ["Country_id"], name: "index_credits_on_Country_id"
+  add_index "credits", ["EconomicalActivity_id"], name: "index_credits_on_EconomicalActivity_id"
+  add_index "credits", ["LocalidadCnbv_id"], name: "index_credits_on_LocalidadCnbv_id"
+  add_index "credits", ["State_id"], name: "index_credits_on_State_id"
 
   create_table "economical_activities", force: :cascade do |t|
     t.integer  "clave"

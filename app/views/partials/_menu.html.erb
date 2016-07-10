@@ -9,14 +9,16 @@
 <li><a href="#contact">Contacto</a></li>
     <li><%= link_to 'Iniciar sesión', new_user_session_path%></li>
 <%elsif current_user.tipo==1%>
+    <li><%= link_to 'Creditos', credits_path%></li>
     <li><%= link_to 'Sucursales', branch_offices_path%></li>
     <li><%= link_to 'Agentes', agents_path%></li>
     <li><%= link_to 'Empresas', companies_path%></li>
     <li><%= link_to 'Productos', products_path%></li>
     <li><%= link_to 'Usuarios', users_path%></li>
 <%elsif current_user.tipo==2%>
-    
+    <li><%= link_to 'Creditos', credit_path%></li>
 <%elsif current_user.tipo==3%>
+    <li><%= link_to 'Creditos', credits_path%></li>
     
 <%elsif current_user.tipo==4%>
     

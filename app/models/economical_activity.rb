@@ -1,4 +1,5 @@
 class EconomicalActivity < ActiveRecord::Base
+    has_many :credits
     def self.loadJson(val)
         puts "actividad"
         return if val.nil?

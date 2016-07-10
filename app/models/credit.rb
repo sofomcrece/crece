@@ -1,5 +1,9 @@
 class Credit < ActiveRecord::Base
-    has_many :dependents
+    belongs_to :EconomicalActivity
+    belongs_to :State
+    belongs_to :Country
+    belongs_to :LocalidadCnbv
+    
     validates :sexo,
     :inclusion => { :in => [true, false] }
     validates :sexo,
@@ -26,14 +30,14 @@ class Credit < ActiveRecord::Base
     :fecha_De_Nacimiento,
     :ciudad_De_Nacimiento,
     :estado_De_Nacimiento,
-    :pais_De_Nacimiento,
+    :Country_id,
     :sexo,
     :telefono_De_Casa,
     :telefono_Celular,
     :email_1,
     :email_2,
     :escolaridad,
-    :actividad_Econimica,
+    :EconomicalActivity_id,
     :numero_De_Dependientes_Economicos,
     :gasto_Promedio_Mensual,
     :estado_Civil,
@@ -49,9 +53,9 @@ class Credit < ActiveRecord::Base
     :tipo_De_Domicilio,
     :codigo_Postal,
     :colonia,
-    :localidad,
+    :LocalidadCnbv_id,
     :municipio,
-    :estado_Actual,
+    :State_id,
     :antiguedad_En_El_Domicilio_Actual,
     :antiguedad_En_El_Domicilio_Anterior,
     :empresa_Donde_Labora,
@@ -84,14 +88,5 @@ class Credit < ActiveRecord::Base
     :telefono_Celular_Referencia_Familiar,
     :nombre_Completo_Familiar_2,
     :parentesco_2,
-    :nombre_completo_1,
-    :edad_1,
-    :parentesco_del_dependiente_1,
-    :nombre_completo_2,
-    :edad_2,
-    :parentesco_del_dependiente_2,
-    :nombre_completo_3,
-    :edad_3,
-    :parentesco_del_dependiente_3,
     presence: true
 end

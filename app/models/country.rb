@@ -1,4 +1,5 @@
 class Country < ActiveRecord::Base
+    has_many :credits
      require 'json'
     def self.loadJson(val)
         puts "pais"
@@ -9,3 +10,4 @@ class Country < ActiveRecord::Base
         end
     end
 end
+ 
