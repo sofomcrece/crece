@@ -206,16 +206,16 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.integer  "edad_3"
     t.string   "parentesco_del_dependiente_3"
     t.integer  "status"
-    t.integer  "EconomicalActivity_id"
-    t.integer  "LocalidadCnbv_id"
-    t.integer  "State_id"
-    t.integer  "Country_id"
+    t.integer  "economical_activity_id"
+    t.integer  "localidad_cnbv_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
   end
 
-  add_index "credits", ["Country_id"], name: "index_credits_on_Country_id"
-  add_index "credits", ["EconomicalActivity_id"], name: "index_credits_on_EconomicalActivity_id"
-  add_index "credits", ["LocalidadCnbv_id"], name: "index_credits_on_LocalidadCnbv_id"
-  add_index "credits", ["State_id"], name: "index_credits_on_State_id"
+  add_index "credits", ["country_id"], name: "index_credits_on_country_id"
+  add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id"
+  add_index "credits", ["localidad_cnbv_id"], name: "index_credits_on_localidad_cnbv_id"
+  add_index "credits", ["state_id"], name: "index_credits_on_state_id"
 
   create_table "economical_activities", force: :cascade do |t|
     t.integer  "clave"

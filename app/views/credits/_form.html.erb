@@ -132,8 +132,8 @@
     </div>
     <div class="input-field col s12 m3 l3 ">
       <div class="">
-        <%=f.collection_select(:Country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
-        <%=f.label :Country_id, "Pais de nacimiento:" %>
+        <%=f.collection_select(:country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
+        <%=f.label :country_id, "Pais de nacimiento:" %>
       </div>
     </div>
     <div class="input-field col s12 m2 l2 ">
@@ -180,8 +180,8 @@
   </div>
   <div class="row">
     <div class="field">
-      <%=f.collection_select(:EconomicalActivity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
-      <%=f.label :EconomicalActivity_id, "Actividad economica:" %>
+      <%=f.collection_select(:economical_activity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
+      <%=f.label :economical_activity_id, "Actividad economica:" %>
     </div>
   </div>
   <div class="row">
@@ -320,8 +320,8 @@
       <%= f.text_field :colonia %>
     </div>
     <div class="input-field col s12 m3 l3">
-      <%=f.collection_select(:LocalidadCnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
-      <%=f.label :LocalidadCnbv_id, "Localidad:" %>
+      <%=f.collection_select(:localidad_cnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
+      <%=f.label :localidad_cnbv_id, "Localidad:" %>
     </div>
   </div>
   <div class="row">
@@ -330,8 +330,8 @@
       <%= f.text_field :municipio %>
     </div>
     <div class="input-field col s12 m3 l3">
-       <%=f.collection_select(:State_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
-      <%=f.label :State_id, "Estado:" %>
+       <%=f.collection_select(:state_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
+      <%=f.label :state_id, "Estado:" %>
     </div>
     <div class="input-field col s12 m3 l3">
       <%= f.label :antiguedad_En_El_Domicilio_Actual %><br>
