@@ -21,12 +21,22 @@
       <%= f.text_field :registro_del_contrado_de_adhesion %>
     </div>
     <div class="field">
-      <%= f.collection_select(:loan_id, Loan.all ,:id, :nombre, :prompt => 'Tipo de préstamo:') %>
-      <%=f.label :loan_id,"Tipo de prestamo"%>
+      <div class="col s12 m9 l9">
+        <%= f.collection_select(:loan_id, Loan.all ,:id, :nombre, :prompt => 'Tipo de préstamo:') %>
+        <%=f.label :loan_id,"Tipo de prestamo"%>
+      </div>
+      <div class="col s12 m3 l3">
+        <%=link_to "Agregar",new_loan_path, class:"btn-floating btn-large waves-effect waves-light red"%>
+      </div>
     </div>
     <div class="field">
-      <%= f.collection_select(:payout_id, Payout.all ,:id, :nombre, :prompt => 'Forma de pago:') %>
-      <%=f.label :payout_id,"Forma de pago capital"%>
+      <div class="col s12 m9 l9">
+        <%= f.collection_select(:payout_id, Payout.all ,:id, :nombre, :prompt => 'Forma de pago:') %>
+        <%=f.label :payout_id,"Forma de pago capital"%>
+      </div>
+      <div class="col s12 m3 l3">
+        <%=link_to "Agregar",new_payout_path, class:"btn-floating btn-large waves-effect waves-light red"%>
+      </div>
     </div>
     <div class="field">
       <%= f.label :numero_de_pagos_a_realizar,'Número de pagos a realizar capital' %>
