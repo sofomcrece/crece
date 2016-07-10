@@ -1,20 +1,20 @@
 class CreateCredits < ActiveRecord::Migration
   def change
     create_table :credits do |t|
-      t.boolean :agente_Empresa
-      t.integer :referencia_AgenteEmpresa
+      t.boolean :agente_empresa
+      t.integer :referencia_agenteEmpresa
       t.date :fecha
-      t.boolean :es_Cliente
-      t.text :como_Se_Entero
-      t.boolean :familiar_Con_Prestamo
-      t.string :nombre_Completo_Familiar_1
+      t.boolean :es_cliente
+      t.text :como_se_entero
+      t.boolean :familiar_con_prestamo
+      t.string :nombre_completo_familiar_1
       t.string :parentesco_1
-      t.string :nombre_Completo_Familiar_1
+      t.string :nombre_completo_familiar_1
       t.string :parentesco1
-      t.string :nombre_Completo_Familiar_1
+      t.string :nombre_completo_familiar_1
       t.string :parentesco_1
-      t.string :apellido_Paterno
-      t.string :apellido_Materno
+      t.string :apellido_paterno
+      t.string :apellido_materno
       t.string :nombre_1
       t.string :nombre_2
       t.string :RFC
@@ -22,66 +22,66 @@ class CreateCredits < ActiveRecord::Migration
       t.string :seguro
       t.string :INE
       t.string :nacionalidad
-      t.date :fecha_De_Nacimiento
-      t.string :ciudad_De_Nacimiento
-      t.string :estado_De_Nacimiento
-      t.string :pais_De_Nacimiento
+      t.date :fecha_de_nacimiento
+      t.string :ciudad_de_nacimiento
+      t.string :estado_de_nacimiento
+      t.string :pais_de_nacimiento
       t.boolean :sexo
-      t.string :telefono_De_Casa
-      t.string :telefono_Celular
+      t.string :telefono_de_casa
+      t.string :telefono_celular
       t.string :email_1
       t.string :email_2
       t.integer :escolaridad
-      t.integer :actividad_Econimica
-      t.integer :numero_De_Dependientes_Economicos
-      t.decimal :gasto_Promedio_Mensual
-      t.integer :estado_Civil
-      t.string :apellido_Paterno_Del_Conyuge
-      t.string :apellido_Materno_Del_Conyuge
-      t.string :nombre_1_Del_Conyuge
-      t.string :nombre_2_Del_Conyuge
-      t.string :telefono_Celular_Del_Conyuge
-      t.string :telefono_De_Oficina_Del_Conyuge
-      t.date :fecha_De_Nacimiento
+      t.integer :actividad_econimica
+      t.integer :numero_de_dependientes_economicos
+      t.decimal :gasto_promedio_mensual
+      t.integer :estado_civil
+      t.string :apellido_paterno_del_conyuge
+      t.string :apellido_materno_del_conyuge
+      t.string :nombre_1_del_conyuge
+      t.string :nombre_2_del_conyuge
+      t.string :telefono_celular_del_conyuge
+      t.string :telefono_de_oficina_del_conyuge
+      t.date :fecha_de_nacimiento
       t.string :calle
-      t.integer :numero_Interior
-      t.integer :numero_Exterior
-      t.integer :tipo_De_Domicilio
-      t.integer :codigo_Postal
+      t.integer :numero_interior
+      t.integer :numero_exterior
+      t.integer :tipo_de_domicilio
+      t.integer :codigo_postal
       t.string :colonia
       t.string :localidad
       t.string :municipio
-      t.string :estado_Actual
-      t.string :antiguedad_En_El_Domicilio_Actual
-      t.string :antiguedad_En_El_Domicilio_Anterior
-      t.string :empresa_Donde_Labora
-      t.string :giro_De_La_Empresa
+      t.string :estado_actual
+      t.string :antiguedad_en_el_domicilio_actual
+      t.string :antiguedad_en_el_domicilio_anterior
+      t.string :empresa_donde_labora
+      t.string :giro_de_la_empresa
       t.string :puesto
-      t.string :telefono_Empresa
-      t.string :antiguedad_Laboral
-      t.string :sueldo_Mensual_Neto
-      t.string :dirreccion_Empresa
-      t.string :colonia_Empresa
-      t.string :municipio_Empresa
-      t.decimal :monto_Solicitud
-      t.integer :cada_Cuanto_Se_Realizara_El_Pago
-      t.integer :lugar_Donde_Se_Realizara_El_Pago
-      t.string :nombre_Referencia_1
-      t.string :domicilio_Referencia_1
-      t.string :telefono_Fijo_Referencia_1
-      t.string :telefono_Celular_Referencia_1
-      t.string :nombre_Referencia_2
-      t.string :domicilio_Referencia_2
-      t.string :telefono_Fijo_Referencia_2
-      t.string :telefono_Celular_Referencia_2
-      t.string :nombre_Referencia_3
-      t.string :domicilio_Referencia_3
-      t.string :telefono_Fijo_Referencia_3
-      t.string :telefono_Celular_Referencia_3
-      t.string :nombre_Referencia_Familiar
-      t.string :domicilio_Referencia_Familiar
-      t.string :telefono_Fijo_Referencia_Familiar
-      t.string :telefono_Celular_Referencia_Familiar
+      t.string :telefono_empresa
+      t.string :antiguedad_laboral
+      t.string :sueldo_mensual_neto
+      t.string :dirreccion_empresa
+      t.string :colonia_empresa
+      t.string :municipio_empresa
+      t.decimal :monto_solicitud
+      t.integer :cada_cuanto_se_realizara_el_pago
+      t.integer :lugar_donde_se_realizara_el_pago
+      t.string :nombre_referencia_1
+      t.string :domicilio_referencia_1
+      t.string :telefono_fijo_referencia_1
+      t.string :telefono_celular_referencia_1
+      t.string :nombre_referencia_2
+      t.string :domicilio_referencia_2
+      t.string :telefono_fijo_referencia_2
+      t.string :telefono_celular_referencia_2
+      t.string :nombre_referencia_3
+      t.string :domicilio_referencia_3
+      t.string :telefono_fijo_referencia_3
+      t.string :telefono_celular_referencia_3
+      t.string :nombre_referencia_familiar
+      t.string :domicilio_referencia_familiar
+      t.string :telefono_fijo_referencia_familiar
+      t.string :telefono_celular_referencia_familiar
 
       t.timestamps null: false
     end
