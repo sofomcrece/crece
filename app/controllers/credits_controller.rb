@@ -1,5 +1,5 @@
 class CreditsController < ApplicationController
-  before_action :set_credit, only: [:show, :edit, :update, :destroy]
+  before_action :set_credit, only: [:show, :edit, :update, :destroy,:aprobar]
 
   # GET /credits
   # GET /credits.json
@@ -36,7 +36,9 @@ class CreditsController < ApplicationController
       end
     end
   end
-
+  def aprobar
+     @credit.update(status:1)
+  end
   # PATCH/PUT /credits/1
   # PATCH/PUT /credits/1.json
   def update

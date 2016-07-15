@@ -1,4 +1,4 @@
-<div class="row" ng-app="codigo_postal">
+<div class="row">
   <%= form_for(@agent) do |f| %>
     <% if @agent.errors.any? %>
       <div id="error_explanation">
@@ -25,12 +25,12 @@
       <%= f.text_field :nombre_del_agente %>
     </div>
     <div class="field">
-      <%= f.label :apellido_materno %>
-      <%= f.text_field :apellido_materno %>
-    </div>
-    <div class="field">
       <%= f.label :apellido_paterno %>
       <%= f.text_field :apellido_paterno %>
+    </div>
+     <div class="field">
+      <%= f.label :apellido_materno %>
+      <%= f.text_field :apellido_materno %>
     </div>
     <div class="field">
       <%= f.label :nombre_1 %>
@@ -135,26 +135,26 @@
       <%= f.text_field :banco %>
     </div>
     <div class="field">
-       <div class="col s11 m11 l11 ">
+       <div class="col s10 m10 l11 ">
         <%= f.label :comision_por_cobranza %>
-        <%= f.text_field :comision_por_cobranza %>
+        <%= f.number_field :comision_por_cobranza, :step => 'any' %>
       </div>
-      <div class="col s1 m1 l1 valign-wrapper">
+      <div class="col s2 m2 l1 valign-wrapper">
         <h5 class="valign">%</h5>
       </div>
     </div>
     <div class="field">
-      <div class="col s11 m11 l11 ">
+      <div class="col s10 m10 l11 ">
         <%= f.label :comision_por_colocacion %>
-        <%= f.text_field :comision_por_colocacion %>
+        <%= f.number_field :comision_por_colocacion, :step => 'any'  %>
       </div>
-      <div class="col s1 m1 l1 valign-wrapper">
+      <div class="col s2 m2 l1 valign-wrapper">
         <h5 class="valign">%</h5>
       </div>
     </div>
     <div class="field">
       <%= f.label :monto_maximo_de_prestamo %>
-      <%= f.text_field :monto_maximo_de_prestamo %>
+      <%= f.number_field :monto_maximo_de_prestamo %>
     </div>
     <div class="field-b">
       <p>

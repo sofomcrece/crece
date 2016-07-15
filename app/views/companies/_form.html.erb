@@ -50,6 +50,13 @@
               <%= f.number_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
             </div>
             <div class="field">
+              <p>Colonia</p>
+               <select id="company_colonia" name="company[colonia]"class="browser-default" ng-model="data.colonias.repeatSelect">
+                   <option value="" disabled selected>Colonia</option>
+                  <option ng-repeat="option in data.colonias" value="{{option}}">{{option}}</option>
+              </select>
+            </div>
+            <div class="field">
               <%= f.label :municipio,class:"model" %>
               <%= f.text_field :municipio,"ng-model":"data.municipio" %>
             </div>
@@ -57,12 +64,40 @@
               <%= f.label :estado,class:"model" %>
               <%= f.text_field :estado,"ng-model":"data.estado" %>
             </div>
-            <div class="field">
-               <select id="company_colonia" name="company[colonia]"class="browser-default" ng-model="data.colonias.repeatSelect">
-                   <option value="" disabled selected>Colonia</option>
-                  <option ng-repeat="option in data.colonias" value="{{option}}">{{option}}</option>
-              </select>
+             <div class="field">
+              <%= f.label :cuenta_bacaria %>
+              <%= f.text_field :cuenta_bacaria %>
             </div>
+            <div class="field">
+              <%= f.label :banco %>
+              <%= f.text_field :banco %>
+            </div>
+            <div class="field">
+              <div class="col s10 m10 l11">
+                <%= f.label :comicion_por_cobranza,"Comisión por cobranza" %>
+                <%= f.number_field :comicion_por_cobranza, :step => 'any' %>
+              </div>
+              <div class="col s2 m2 l1 valign-wrapper">
+                <h5 class="valign">%</h5>
+              </div>
+            </div>
+            <div class="field">
+              <div class="col s10 m10 l11 ">
+              <%= f.label :comicion_por_colocacion,"Comisión por colocación" %>
+              <%= f.number_field :comicion_por_colocacion, :step => 'any'  %>
+              </div>
+              <div class="col s2 m2 l1 valign-wrapper">
+                <h5 class="valign">%</h5>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :monto_maximo_de_prestamo,"Monto máximo de préstamo" %>
+              <%= f.text_field :monto_maximo_de_prestamo %>
+            </div>
+            <div class="field">
+              <%= f.check_box :permitir_prestamo_multiple %>
+              <%= f.label :permitir_prestamo_multiple,"Permitir préstamo múltiple" %>
+            </div>      
           </div>  
         </div>
       </div>
@@ -104,45 +139,11 @@
               <%= f.label :correo_electronico_2,"Correo electrónico 2" %>
               <%= f.text_field :correo_electronico_2 %>
             </div>
-            <div class="field">
-              <%= f.label :cuenta_bacaria %>
-              <%= f.text_field :cuenta_bacaria %>
-            </div>
-            <div class="field">
-              <%= f.label :banco %>
-              <%= f.text_field :banco %>
-            </div>
-            <div class="field">
-              <div class="col s11 m11 l11">
-                <%= f.label :comicion_por_cobranza,"Comisión por cobranza" %>
-                <%= f.text_field :comicion_por_cobranza %>
-              </div>
-              <div class="col s1 m1 l1 valign-wrapper">
-                <h5 class="valign">%</h5>
-              </div>
-            </div>
-            <div class="field">
-              <div class="col s11 m11 l11 ">
-              <%= f.label :comicion_por_colocacion,"Comisión por colocación" %>
-              <%= f.text_field :comicion_por_colocacion %>
-              </div>
-              <div class="col s1 m1 l1 valign-wrapper">
-                <h5 class="valign">%</h5>
-              </div>
-            </div>
-            <div class="field">
-              <%= f.label :monto_maximo_de_prestamo,"Monto máximo de préstamo" %>
-              <%= f.text_field :monto_maximo_de_prestamo %>
-            </div>
-            <div class="field">
-              <%= f.check_box :permitir_prestamo_multiple %>
-              <%= f.label :permitir_prestamo_multiple,"Permitir préstamo múltiple" %>
-            </div>      
           </div>
         </div>
       </div>
     </div>
-    
+  </div>
     <br>
   </div>
     <div class="actions">

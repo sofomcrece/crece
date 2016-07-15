@@ -93,10 +93,13 @@ class Credit < ActiveRecord::Base
     :nombre_completo_3,
     :edad_3,
     :parentesco_del_dependiente_3,
-    :status,
     :economical_activity_id,
     :localidad_cnbv_id,
     :state_id,
     :country_id,
     presence: true
+    before_save :default_values
+    def default_values
+      self.status ||= 0
+    end
 end

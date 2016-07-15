@@ -7,7 +7,6 @@ class Agent < ActiveRecord::Base
     :nombre_1,
     :RFC,
     :calle,
-    :numero_interior,
     :numero_exterior,
     :colonia,
     :codigo_postal,
@@ -26,7 +25,6 @@ class Agent < ActiveRecord::Base
     :comision_por_cobranza,
     :comision_por_colocacion,
     :monto_maximo_de_prestamo,
-    :permitir_prestamo_multiple,
     :branch_office_id,
     presence:true
      validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
