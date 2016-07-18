@@ -23,7 +23,10 @@ $(document).ready(function(){
      $(".field-b").addClass("col s12 m4 l4");
      $(".actions").addClass("btn waves-effect waves-light");
      $(".crud-links").addClass("btn waves-effect red");
-    
+     $(product_numero_de_pagos_a_realizar).val(parseInt($(product_plazo_de_prestamo).val()));
+     $(product_numero_de_pagos_a_realizar_interes).val(parseInt($(product_plazo_de_prestamo_interes).val()));
+     $(product_plazo_de_prestamo).change(function(){$(product_numero_de_pagos_a_realizar).val(parseInt($(product_plazo_de_prestamo).val()));});
+     $(product_plazo_de_prestamo_interes).change(function(){$(product_numero_de_pagos_a_realizar_interes).val(parseInt($(product_plazo_de_prestamo_interes).val()));});
      $(".show p").addClass("card deep-orange lighten-1 col s12 m4 l4");
      $("table").addClass("responsive-table");
      var options = [ {selector: '.staggered-test', offset: 50}, {selector: '.staggered-test', offset: 205 }, {selector: '.staggered-test', offset: 400, callback: function() { Materialize.showStaggeredList(".staggered-test"); } }]; Materialize.scrollFire(options);
