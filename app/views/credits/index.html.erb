@@ -25,9 +25,9 @@
         <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
         <td><%= credit.RFC %></td>
          <td><%= credit.monto_solicitud %></td>
-        <td><%= link_to 'Show', credit,class:'crud-links' %></td>
-        <td><%= link_to 'Edit', edit_credit_path(credit),class:'crud-links' %></td>
-        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' },class:'crud-links' %></td>
+        <td><%= link_to 'Mostrar', credit,class:'crud-links' %></td>
+        <td><%= link_to 'Editar', edit_credit_path(credit),class:'crud-links' %></td>
+        <td><%= link_to 'Eliminar', credit, method: :delete, data: { confirm: 'Are you sure?' },class:'crud-links' %></td>
       </tr>
     <% end %>
   </tbody>
