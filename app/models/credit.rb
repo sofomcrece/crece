@@ -17,7 +17,6 @@ class Credit < ActiveRecord::Base
     :familiar_con_prestamo,
     :nombre_completo_familiar_1,
     :parentesco_1,
-    :parentesco1,
     :apellido_paterno,
     :apellido_materno,
     :nombre_1,
