@@ -19,12 +19,12 @@
   <tbody>
     <% @credits.each do |credit| %>
       <tr>
-        <td><%= credit.agente_Empresa %></td>
-        <td><%= credit.referencia_AgenteEmpresa %></td>
+        <td><%= credit.agente_empresa %></td>
+        <td><%= credit.referencia_agenteEmpresa %></td>
         <td><%= credit.fecha %></td>
-        <td><%= "#{credit.apellido_Paterno} #{credit.apellido_Materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
+        <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
         <td><%= credit.RFC %></td>
-         <td><%= credit.monto_Solicitud %></td>
+         <td><%= credit.monto_solicitud %></td>
         <td><%= link_to 'Show', credit,class:'crud-links' %></td>
         <td><%= link_to 'Edit', edit_credit_path(credit),class:'crud-links' %></td>
         <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' },class:'crud-links' %></td>
