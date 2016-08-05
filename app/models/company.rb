@@ -19,8 +19,10 @@ class Company < ActiveRecord::Base
     :comicion_por_cobranza,
     :comicion_por_colocacion,
     :monto_maximo_de_prestamo,
-    :permitir_prestamo_multiple,
     :branch_office_id,
   presence: true
-  
+  validates :permitir_prestamo_multiple ,
+    :inclusion => { :in => [true, false] }
+  validates :permitir_prestamo_multiple ,
+    :presence => { :if => 'permitir_prestamo_multiple.nil?' }
 end
