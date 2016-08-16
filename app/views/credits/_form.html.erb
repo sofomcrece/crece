@@ -14,10 +14,10 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="col s12 m3 l3 offset-s0 offset-m9 offset-l9">
+      <div>
         <%= f.label :agente_empresa%>
         <p>
-          <%= f.radio_button  :agente_empresa,true,checked:true%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
+          <%= f.radio_button  :agente_empresa,true,checked:true,left:"400px",posi%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
           <%= f.radio_button  :agente_empresa,false %> <%= f.label "#{:agente_empresa}_false", "Empresa" %>
         </p>
       </div>
