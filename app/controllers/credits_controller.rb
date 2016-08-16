@@ -1,4 +1,5 @@
 class CreditsController < ApplicationController
+  layout "layouts/credito"
   before_action :set_credit, only: [:show, :edit, :update, :destroy,:aprobar]
 
   # GET /credits

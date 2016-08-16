@@ -1,520 +1,523 @@
-<%= form_for(@credit) do |f| %>
-  <% if @credit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
-
-      <ul>
-      <% @credit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div style='background-image: url("<%=image_path("creditoback")%>");  
+  background-size: 1200px 1800px; 
+  background-repeat: no-repeat;'>
+  <%= form_for(@credit) do |f| %>
+    <% if @credit.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
+  
+        <ul>
+        <% @credit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col s12 m3 l3 offset-s0 offset-m9 offset-l9">
+        <%= f.label :agente_empresa%>
+        <p>
+          <%= f.radio_button  :agente_empresa,true,checked:true%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
+          <%= f.radio_button  :agente_empresa,false %> <%= f.label "#{:agente_empresa}_false", "Empresa" %>
+        </p>
+      </div>
+    </div>
+    <div class ="row">
+      <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
+        <%= f.label :referencia_agenteEmpresa,"Referencia Agente o Empresa" %>
+        <%= f.number_field :referencia_agenteEmpresa %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
+        <%= f.label :fecha %>
+        <%= f.text_field :fecha, class:"datepicker",type:"date", autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m3 l3">
+        <%= f.label :es_cliente%>
+        <p>
+          <%= f.radio_button  :es_cliente,true,checked:true%> <%= f.label "#{:es_cliente}_true", "Si" %>
+          <%= f.radio_button  :es_cliente,false %> <%= f.label "#{:es_cliente}_false", "No" %>
+        </p>
+      </div>
+      <div class="input-field col s12 m9 l9">
+        <%= f.label :como_se_entero %>
+        <%= f.text_field :como_se_entero %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <%= f.label :familiar_con_prestamo,"¿Tiene algun familiar con prestamo?"%>
+        <p>
+          <%= f.radio_button  :familiar_con_prestamo,true,checked:true%> <%= f.label "#{:familiar_con_prestamo}_true", "Si" %>
+          <%= f.radio_button  :familiar_con_prestamo,false %> <%= f.label "#{:familiar_con_prestamo}_false", "No" %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :nombre_completo_familiar_1 %>
+        <%= f.text_field :nombre_completo_familiar_1 %>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :parentesco_1 %>
+        <%= f.text_field :parentesco_1 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :nombre_completo_familiar_2 %>
+        <%= f.text_field :nombre_completo_familiar_2 %>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :parentesco_2 %>
+        <%= f.text_field :parentesco_2 %>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>DATOS DEL SOLICITANTE (SIN ABREVIATURAS)</h5>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :apellido_paterno %>
+        <%= f.text_field :apellido_paterno %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :apellido_materno %>
+        <%= f.text_field :apellido_materno %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :nombre_1 %>
+        <%= f.text_field :nombre_1 %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :nombre_2 %>
+        <%= f.text_field :nombre_2 %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :RFC %>
+        <%= f.text_field :RFC %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :CURP %>
+        <%= f.text_field :CURP %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :seguro %>
+        <%= f.text_field :seguro %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :INE %>
+        <%= f.text_field :INE %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :nacionalidad %>
+        <%= f.text_field :nacionalidad %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m2 l2 ">
+        <%= f.label :fecha_de_nacimiento %>
+        <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
+      </div>
+      <div class="input-field col s12 m2 l2 ">
+        <%= f.label :ciudad_de_nacimiento %>
+        <%= f.text_field :ciudad_de_nacimiento %>
+      </div>
+      <div class="input-field col s12 m3 l3 ">
+        <%=f.collection_select(:estado_de_nacimiento,Country.all,:descripcion,:descripcion,:prompt => 'Estado de nacimiento:')%>
+        <%=f.label :estado_de_nacimiento, "Estado de nacimiento:" %>
+      </div>
+      <div class="input-field col s12 m3 l3 ">
+        <div class="">
+          <%=f.collection_select(:country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
+          <%=f.label :country_id, "Pais de nacimiento:" %>
+        </div>
+      </div>
+      <div class="input-field col s12 m2 l2 ">
+        <%= f.label :sexo%>
+        <p>
+          <%= f.radio_button  :sexo,true,checked:true%> <%= f.label "#{:sexo}_true", "Hombre" %>
+          <%= f.radio_button  :sexo,false %> <%= f.label "#{:sexo}_false", "Mujer" %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :telefono_de_casa %>
+        <%= f.text_field :telefono_de_casa %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :telefono_celular %>
+        <%= f.text_field :telefono_celular %>
+      </div>
+      <div class="row col s12 m8 l8">
+        <div class="input-field col s12">
+          <%= f.label :email_1 %>
+          <%= f.text_field :email_1 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :email_2 %>
+          <%= f.text_field :email_2 %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+         <%= f.label :escolaridad%>
+        <p>
+          <%= f.radio_button  :escolaridad,0%> <%= f.label "#{:escolaridad}_0", "Primaria" %>
+          <%= f.radio_button  :escolaridad,1%> <%= f.label "#{:escolaridad}_1", "Secundaria" %>
+          <%= f.radio_button  :escolaridad,2%> <%= f.label "#{:escolaridad}_2", "Preparatoria" %>
+          <%= f.radio_button  :escolaridad,3%> <%= f.label "#{:escolaridad}_3", "Técnico" %>
+          <%= f.radio_button  :escolaridad,4%> <%= f.label "#{:escolaridad}_4", "Licenciatura" %>
+          <%= f.radio_button  :escolaridad,5%> <%= f.label "#{:escolaridad}_5", "Posgrado" %>
+          <%= f.radio_button  :escolaridad,6%> <%= f.label "#{:escolaridad}_6", "Sin estudio" %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <%=f.collection_select(:economical_activity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
+        <%=f.label :economical_activity_id, "Actividad economica:" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :numero_de_dependientes_economicos %>
+        <%= f.number_field :numero_de_dependientes_economicos %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :gasto_promedio_mensual %>
+        <%= f.text_field :gasto_promedio_mensual %>
+      </div>
+      <div class="col s12 m6 l6">
+         <%= f.label :estado_civil%>
+        <p>
+          <%= f.radio_button  :estado_civil,0%> <%= f.label "#{:estado_civil}_0", "Soltero" %>
+          <%= f.radio_button  :estado_civil,1%> <%= f.label "#{:estado_civil}_1", "Casado" %>
+          <%= f.radio_button  :estado_civil,2%> <%= f.label "#{:estado_civil}_2", "Divorciado" %>
+          <%= f.radio_button  :estado_civil,3%> <%= f.label "#{:estado_civil}_3", "Union libre" %>
+          <%= f.radio_button  :estado_civil,4%> <%= f.label "#{:estado_civil}_4", "Viudo" %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :apellido_paterno_del_conyuge %>
+        <%= f.text_field :apellido_paterno_del_conyuge %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :apellido_materno_del_conyuge %>
+        <%= f.text_field :apellido_materno_del_conyuge %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :nombre_1_del_conyuge %>
+        <%= f.text_field :nombre_1_del_conyuge %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :nombre_2_del_conyuge %>
+        <%= f.text_field :nombre_2_del_conyuge %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :telefono_celular_del_conyuge %>
+        <%= f.text_field :telefono_celular_del_conyuge %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :telefono_de_oficina_del_conyuge %>
+        <%= f.text_field :telefono_de_oficina_del_conyuge %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <%= f.label :fecha_de_nacimiento %>
+        <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>DATOS DE LOS DEPENDIENTES ECONÓMICOS</h5>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :nombre_completo_1 %>
+        <%= f.text_field :nombre_completo_1 %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :edad_1 %>
+        <%= f.number_field :edad_1 %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :parentesco_del_dependiente_1 %>
+        <%= f.text_field :parentesco_del_dependiente_1 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :nombre_completo_2 %>
+        <%= f.text_field :nombre_completo_2 %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :edad_2 %>
+        <%= f.number_field :edad_2 %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :parentesco_del_dependiente_2 %>
+        <%= f.text_field :parentesco_del_dependiente_2 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.label :nombre_completo_3 %>
+        <%= f.text_field :nombre_completo_3 %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :edad_3 %>
+        <%= f.number_field :edad_3 %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :parentesco_del_dependiente_3 %>
+        <%= f.text_field :parentesco_del_dependiente_3 %>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>DOMICILIO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
+    </div>
+    
+    <div class="row">
+      <div class="input-field col s12 m8 l8">
+        <%= f.label :calle %>
+        <%= f.text_field :calle %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :numero_interior %>
+        <%= f.number_field :numero_interior %>
+      </div>
+      <div class="input-field col s12 m2 l2">
+        <%= f.label :numero_exterior %>
+        <%= f.number_field :numero_exterior %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m3 l3">
+         <%= f.label :tipo_de_domicilio%>
+        <p>
+          <%= f.radio_button  :tipo_de_domicilio,0%> <%= f.label "#{:tipo_de_domicilio}_0", "Propia" %>
+          <%= f.radio_button  :tipo_de_domicilio,1%> <%= f.label "#{:tipo_de_domicilio}_1", "Familiar" %>
+          <%= f.radio_button  :tipo_de_domicilio,2%> <%= f.label "#{:tipo_de_domicilio}_2", "Renta" %>
+          <%= f.radio_button  :tipo_de_domicilio,3%> <%= f.label "#{:tipo_de_domicilio}_3", "Hipoteca" %>
+        </p>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :codigo_postal %><br>
+        <%= f.number_field :codigo_postal %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :colonia %><br>
+        <%= f.text_field :colonia %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%=f.collection_select(:localidad_cnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
+        <%=f.label :localidad_cnbv_id, "Localidad:" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :municipio %><br>
+        <%= f.text_field :municipio %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+         <%=f.collection_select(:state_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
+        <%=f.label :state_id, "Estado:" %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :antiguedad_en_el_domicilio_actual %><br>
+        <%= f.text_field :antiguedad_en_el_domicilio_actual %>
+      </div>
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :antiguedad_en_el_domicilio_anterior %><br>
+        <%= f.text_field :antiguedad_en_el_domicilio_anterior %>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>TRABAJO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
+    </div>
+    
+    <div class="row">
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :empresa_donde_labora %><br>
+        <%= f.text_field :empresa_donde_labora %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :giro_de_la_empresa %><br>
+        <%= f.text_field :giro_de_la_empresa %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :puesto %><br>
+        <%= f.text_field :puesto %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :telefono_empresa %><br>
+        <%= f.text_field :telefono_empresa %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :antiguedad_laboral %><br>
+        <%= f.text_field :antiguedad_laboral %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :sueldo_mensual_neto %><br>
+        <%= f.text_field :sueldo_mensual_neto %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :dirreccion_empresa %><br>
+        <%= f.text_field :dirreccion_empresa %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :colonia_empresa %><br>
+        <%= f.text_field :colonia_empresa %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.label :municipio_empresa %><br>
+        <%= f.text_field :municipio_empresa %>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>SOLICITUD.</h5>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m3 l3">
+        <%= f.label :monto_solicitud %><br>
+        <%= f.text_field :monto_solicitud %>
+      </div>
+      <div class="col s12 m3 l3">
+         <%= f.label :cada_cuanto_se_realizara_el_pago%>
+        <p>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,0%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_0", "Quincenal" %>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,1%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_1", "Semanal" %>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,2%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_2", "Catorcenal" %>
+        </p>
+      </div>
+      <div class="col s12 m6 l6">
+        <%= f.label :lugar_donde_se_realizara_el_pago%>
+        <p>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,0%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_0", "Agente" %>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,1%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_1", "Banco" %>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,2%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_2", "Transparencia" %>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,3%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_3", "Trabajo" %>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,4%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_4", "Financiera Marjo" %>
+        </p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>REFERENCIAS PERSONALES (NO FAMILIARES)* (SI ABREVIATURAS).</h5>
+    </div>
+    <div class="row">
+      <div class="row col s12 m8 l8">
+        <div class="input-field col s12">
+          <%= f.label :nombre_referencia_1 %>
+          <%= f.text_field :nombre_referencia_1 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :domicilio_referencia_1 %>
+          <%= f.text_field :domicilio_referencia_1 %>
+        </div>
+      </div>
+      <div class="row col s12 m4 l4">
+        <div class="input-field col s12">
+          <%= f.label :telefono_fijo_referencia_1 %>
+          <%= f.text_field :telefono_fijo_referencia_1 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :telefono_celular_referencia_1 %>
+          <%= f.text_field :telefono_celular_referencia_1 %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row col s12 m8 l8">
+        <div class="input-field col s12">
+          <%= f.label :nombre_referencia_2 %>
+          <%= f.text_field :nombre_referencia_2 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :domicilio_referencia_2 %>
+          <%= f.text_field :domicilio_referencia_2 %>
+        </div>
+      </div>
+      <div class="row col s12 m4 l4">
+        <div class="input-field col s12">
+          <%= f.label :telefono_fijo_referencia_2 %>
+          <%= f.text_field :telefono_fijo_referencia_2 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :telefono_celular_referencia_2 %>
+          <%= f.text_field :telefono_celular_referencia_2 %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row col s12 m8 l8">
+        <div class="input-field col s12">
+          <%= f.label :nombre_referencia_3 %>
+          <%= f.text_field :nombre_referencia_3 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :domicilio_referencia_3 %>
+          <%= f.text_field :domicilio_referencia_3 %>
+        </div>
+      </div>
+      <div class="row col s12 m4 l4">
+        <div class="input-field col s12">
+          <%= f.label :telefono_fijo_referencia_3 %>
+          <%= f.text_field :telefono_fijo_referencia_3 %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :telefono_celular_referencia_3 %>
+          <%= f.text_field :telefono_celular_referencia_3 %>
+        </div>
+      </div>
+    </div>
+     <div class="divider"></div>
+    <div class="section">
+      <h5>REFERENCIA FAMILIAR (QUE NO VIVA CON USTED) (SIN ABREVIATURAS).</h5>
+    </div>
+     <div class="row">
+      <div class="row col s12 m8 l8">
+        <div class="input-field col s12">
+          <%= f.label :nombre_referencia_familiar %>
+          <%= f.text_field :nombre_referencia_familiar %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :domicilio_referencia_ramiliar %>
+          <%= f.text_field :domicilio_referencia_familiar %>
+        </div>
+      </div>
+      <div class="row col s12 m4 l4">
+        <div class="input-field col s12">
+          <%= f.label :telefono_fijo_referencia_familiar %>
+          <%= f.text_field :telefono_fijo_referencia_familiar %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.label :telefono_celular_referencia_familiar %>
+          <%= f.text_field :telefono_celular_referencia_familiar %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "Guardar" %>
     </div>
   <% end %>
-  <div class="row">
-    <div class="col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-      <%= f.label :agente_empresa%>
-      <p>
-        <%= f.radio_button  :agente_empresa,true,checked:true%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
-        <%= f.radio_button  :agente_empresa,false %> <%= f.label "#{:agente_empresa}_false", "Empresa" %>
-      </p>
-    </div>
-  </div>
-  <div class ="row">
-    <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-      <%= f.label :referencia_agenteEmpresa,"Referencia Agente o Empresa" %>
-      <%= f.number_field :referencia_agenteEmpresa %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-      <%= f.label :fecha %>
-      <%= f.text_field :fecha, class:"datepicker",type:"date", autocomplete: "off" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m3 l3">
-      <%= f.label :es_cliente%>
-      <p>
-        <%= f.radio_button  :es_cliente,true,checked:true%> <%= f.label "#{:es_cliente}_true", "Si" %>
-        <%= f.radio_button  :es_cliente,false %> <%= f.label "#{:es_cliente}_false", "No" %>
-      </p>
-    </div>
-    <div class="input-field col s12 m9 l9">
-      <%= f.label :como_se_entero %>
-      <%= f.text_field :como_se_entero %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m12 l12">
-      <%= f.label :familiar_con_prestamo,"¿Tiene algun familiar con prestamo?"%>
-      <p>
-        <%= f.radio_button  :familiar_con_prestamo,true,checked:true%> <%= f.label "#{:familiar_con_prestamo}_true", "Si" %>
-        <%= f.radio_button  :familiar_con_prestamo,false %> <%= f.label "#{:familiar_con_prestamo}_false", "No" %>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :nombre_completo_familiar_1 %>
-      <%= f.text_field :nombre_completo_familiar_1 %>
-    </div>
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :parentesco_1 %>
-      <%= f.text_field :parentesco_1 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :nombre_completo_familiar_2 %>
-      <%= f.text_field :nombre_completo_familiar_2 %>
-    </div>
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :parentesco_2 %>
-      <%= f.text_field :parentesco_2 %>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>DATOS DEL SOLICITANTE (SIN ABREVIATURAS)</h5>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :apellido_paterno %>
-      <%= f.text_field :apellido_paterno %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :apellido_materno %>
-      <%= f.text_field :apellido_materno %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :nombre_1 %>
-      <%= f.text_field :nombre_1 %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :nombre_2 %>
-      <%= f.text_field :nombre_2 %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :RFC %>
-      <%= f.text_field :RFC %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :CURP %>
-      <%= f.text_field :CURP %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :seguro %>
-      <%= f.text_field :seguro %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :INE %>
-      <%= f.text_field :INE %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :nacionalidad %>
-      <%= f.text_field :nacionalidad %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m2 l2 ">
-      <%= f.label :fecha_de_nacimiento %>
-      <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
-    </div>
-    <div class="input-field col s12 m2 l2 ">
-      <%= f.label :ciudad_de_nacimiento %>
-      <%= f.text_field :ciudad_de_nacimiento %>
-    </div>
-    <div class="input-field col s12 m3 l3 ">
-      <%=f.collection_select(:estado_de_nacimiento,Country.all,:descripcion,:descripcion,:prompt => 'Estado de nacimiento:')%>
-      <%=f.label :estado_de_nacimiento, "Estado de nacimiento:" %>
-    </div>
-    <div class="input-field col s12 m3 l3 ">
-      <div class="">
-        <%=f.collection_select(:country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
-        <%=f.label :country_id, "Pais de nacimiento:" %>
-      </div>
-    </div>
-    <div class="input-field col s12 m2 l2 ">
-      <%= f.label :sexo%>
-      <p>
-        <%= f.radio_button  :sexo,true,checked:true%> <%= f.label "#{:sexo}_true", "Hombre" %>
-        <%= f.radio_button  :sexo,false %> <%= f.label "#{:sexo}_false", "Mujer" %>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :telefono_de_casa %>
-      <%= f.text_field :telefono_de_casa %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :telefono_celular %>
-      <%= f.text_field :telefono_celular %>
-    </div>
-    <div class="row col s12 m8 l8">
-      <div class="input-field col s12">
-        <%= f.label :email_1 %>
-        <%= f.text_field :email_1 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :email_2 %>
-        <%= f.text_field :email_2 %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12">
-       <%= f.label :escolaridad%>
-      <p>
-        <%= f.radio_button  :escolaridad,0%> <%= f.label "#{:escolaridad}_0", "Primaria" %>
-        <%= f.radio_button  :escolaridad,1%> <%= f.label "#{:escolaridad}_1", "Secundaria" %>
-        <%= f.radio_button  :escolaridad,2%> <%= f.label "#{:escolaridad}_2", "Preparatoria" %>
-        <%= f.radio_button  :escolaridad,3%> <%= f.label "#{:escolaridad}_3", "Técnico" %>
-        <%= f.radio_button  :escolaridad,4%> <%= f.label "#{:escolaridad}_4", "Licenciatura" %>
-        <%= f.radio_button  :escolaridad,5%> <%= f.label "#{:escolaridad}_5", "Posgrado" %>
-        <%= f.radio_button  :escolaridad,6%> <%= f.label "#{:escolaridad}_6", "Sin estudio" %>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="field">
-      <%=f.collection_select(:economical_activity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
-      <%=f.label :economical_activity_id, "Actividad economica:" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :numero_de_dependientes_economicos %>
-      <%= f.number_field :numero_de_dependientes_economicos %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :gasto_promedio_mensual %>
-      <%= f.text_field :gasto_promedio_mensual %>
-    </div>
-    <div class="col s12 m6 l6">
-       <%= f.label :estado_civil%>
-      <p>
-        <%= f.radio_button  :estado_civil,0%> <%= f.label "#{:estado_civil}_0", "Soltero" %>
-        <%= f.radio_button  :estado_civil,1%> <%= f.label "#{:estado_civil}_1", "Casado" %>
-        <%= f.radio_button  :estado_civil,2%> <%= f.label "#{:estado_civil}_2", "Divorciado" %>
-        <%= f.radio_button  :estado_civil,3%> <%= f.label "#{:estado_civil}_3", "Union libre" %>
-        <%= f.radio_button  :estado_civil,4%> <%= f.label "#{:estado_civil}_4", "Viudo" %>
-      </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :apellido_paterno_del_conyuge %>
-      <%= f.text_field :apellido_paterno_del_conyuge %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :apellido_materno_del_conyuge %>
-      <%= f.text_field :apellido_materno_del_conyuge %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :nombre_1_del_conyuge %>
-      <%= f.text_field :nombre_1_del_conyuge %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :nombre_2_del_conyuge %>
-      <%= f.text_field :nombre_2_del_conyuge %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :telefono_celular_del_conyuge %>
-      <%= f.text_field :telefono_celular_del_conyuge %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :telefono_de_oficina_del_conyuge %>
-      <%= f.text_field :telefono_de_oficina_del_conyuge %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12">
-      <%= f.label :fecha_de_nacimiento %>
-      <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>DATOS DE LOS DEPENDIENTES ECONÓMICOS</h5>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :nombre_completo_1 %>
-      <%= f.text_field :nombre_completo_1 %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :edad_1 %>
-      <%= f.number_field :edad_1 %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :parentesco_del_dependiente_1 %>
-      <%= f.text_field :parentesco_del_dependiente_1 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :nombre_completo_2 %>
-      <%= f.text_field :nombre_completo_2 %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :edad_2 %>
-      <%= f.number_field :edad_2 %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :parentesco_del_dependiente_2 %>
-      <%= f.text_field :parentesco_del_dependiente_2 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m6 l6">
-      <%= f.label :nombre_completo_3 %>
-      <%= f.text_field :nombre_completo_3 %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :edad_3 %>
-      <%= f.number_field :edad_3 %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :parentesco_del_dependiente_3 %>
-      <%= f.text_field :parentesco_del_dependiente_3 %>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>DOMICILIO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
-  </div>
   
-  <div class="row">
-    <div class="input-field col s12 m8 l8">
-      <%= f.label :calle %>
-      <%= f.text_field :calle %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :numero_interior %>
-      <%= f.number_field :numero_interior %>
-    </div>
-    <div class="input-field col s12 m2 l2">
-      <%= f.label :numero_exterior %>
-      <%= f.number_field :numero_exterior %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12 m3 l3">
-       <%= f.label :tipo_de_domicilio%>
-      <p>
-        <%= f.radio_button  :tipo_de_domicilio,0%> <%= f.label "#{:tipo_de_domicilio}_0", "Propia" %>
-        <%= f.radio_button  :tipo_de_domicilio,1%> <%= f.label "#{:tipo_de_domicilio}_1", "Familiar" %>
-        <%= f.radio_button  :tipo_de_domicilio,2%> <%= f.label "#{:tipo_de_domicilio}_2", "Renta" %>
-        <%= f.radio_button  :tipo_de_domicilio,3%> <%= f.label "#{:tipo_de_domicilio}_3", "Hipoteca" %>
-      </p>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :codigo_postal %><br>
-      <%= f.number_field :codigo_postal %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :colonia %><br>
-      <%= f.text_field :colonia %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%=f.collection_select(:localidad_cnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
-      <%=f.label :localidad_cnbv_id, "Localidad:" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :municipio %><br>
-      <%= f.text_field :municipio %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-       <%=f.collection_select(:state_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
-      <%=f.label :state_id, "Estado:" %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :antiguedad_en_el_domicilio_actual %><br>
-      <%= f.text_field :antiguedad_en_el_domicilio_actual %>
-    </div>
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :antiguedad_en_el_domicilio_anterior %><br>
-      <%= f.text_field :antiguedad_en_el_domicilio_anterior %>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>TRABAJO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
-  </div>
-  
-  <div class="row">
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :empresa_donde_labora %><br>
-      <%= f.text_field :empresa_donde_labora %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :giro_de_la_empresa %><br>
-      <%= f.text_field :giro_de_la_empresa %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :puesto %><br>
-      <%= f.text_field :puesto %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :telefono_empresa %><br>
-      <%= f.text_field :telefono_empresa %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :antiguedad_laboral %><br>
-      <%= f.text_field :antiguedad_laboral %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :sueldo_mensual_neto %><br>
-      <%= f.text_field :sueldo_mensual_neto %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :dirreccion_empresa %><br>
-      <%= f.text_field :dirreccion_empresa %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :colonia_empresa %><br>
-      <%= f.text_field :colonia_empresa %>
-    </div>
-    <div class="input-field col s12 m4 l4">
-      <%= f.label :municipio_empresa %><br>
-      <%= f.text_field :municipio_empresa %>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>SOLICITUD.</h5>
-  </div>
-  <div class="row">
-    <div class="input-field col s12 m3 l3">
-      <%= f.label :monto_solicitud %><br>
-      <%= f.text_field :monto_solicitud %>
-    </div>
-    <div class="col s12 m3 l3">
-       <%= f.label :cada_cuanto_se_realizara_el_pago%>
-      <p>
-        <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,0%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_0", "Quincenal" %>
-        <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,1%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_1", "Semanal" %>
-        <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,2%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_2", "Catorcenal" %>
-      </p>
-    </div>
-    <div class="col s12 m6 l6">
-      <%= f.label :lugar_donde_se_realizara_el_pago%>
-      <p>
-        <%= f.radio_button  :lugar_donde_se_realizara_el_pago,0%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_0", "Agente" %>
-        <%= f.radio_button  :lugar_donde_se_realizara_el_pago,1%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_1", "Banco" %>
-        <%= f.radio_button  :lugar_donde_se_realizara_el_pago,2%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_2", "Transparencia" %>
-        <%= f.radio_button  :lugar_donde_se_realizara_el_pago,3%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_3", "Trabajo" %>
-        <%= f.radio_button  :lugar_donde_se_realizara_el_pago,4%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_4", "Financiera Marjo" %>
-      </p>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>REFERENCIAS PERSONALES (NO FAMILIARES)* (SI ABREVIATURAS).</h5>
-  </div>
-  <div class="row">
-    <div class="row col s12 m8 l8">
-      <div class="input-field col s12">
-        <%= f.label :nombre_referencia_1 %>
-        <%= f.text_field :nombre_referencia_1 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :domicilio_referencia_1 %>
-        <%= f.text_field :domicilio_referencia_1 %>
-      </div>
-    </div>
-    <div class="row col s12 m4 l4">
-      <div class="input-field col s12">
-        <%= f.label :telefono_fijo_referencia_1 %>
-        <%= f.text_field :telefono_fijo_referencia_1 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :telefono_celular_referencia_1 %>
-        <%= f.text_field :telefono_celular_referencia_1 %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="row col s12 m8 l8">
-      <div class="input-field col s12">
-        <%= f.label :nombre_referencia_2 %>
-        <%= f.text_field :nombre_referencia_2 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :domicilio_referencia_2 %>
-        <%= f.text_field :domicilio_referencia_2 %>
-      </div>
-    </div>
-    <div class="row col s12 m4 l4">
-      <div class="input-field col s12">
-        <%= f.label :telefono_fijo_referencia_2 %>
-        <%= f.text_field :telefono_fijo_referencia_2 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :telefono_celular_referencia_2 %>
-        <%= f.text_field :telefono_celular_referencia_2 %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="row col s12 m8 l8">
-      <div class="input-field col s12">
-        <%= f.label :nombre_referencia_3 %>
-        <%= f.text_field :nombre_referencia_3 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :domicilio_referencia_3 %>
-        <%= f.text_field :domicilio_referencia_3 %>
-      </div>
-    </div>
-    <div class="row col s12 m4 l4">
-      <div class="input-field col s12">
-        <%= f.label :telefono_fijo_referencia_3 %>
-        <%= f.text_field :telefono_fijo_referencia_3 %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :telefono_celular_referencia_3 %>
-        <%= f.text_field :telefono_celular_referencia_3 %>
-      </div>
-    </div>
-  </div>
-   <div class="divider"></div>
-  <div class="section">
-    <h5>REFERENCIA FAMILIAR (QUE NO VIVA CON USTED) (SIN ABREVIATURAS).</h5>
-  </div>
-   <div class="row">
-    <div class="row col s12 m8 l8">
-      <div class="input-field col s12">
-        <%= f.label :nombre_referencia_familiar %>
-        <%= f.text_field :nombre_referencia_familiar %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :domicilio_referencia_ramiliar %>
-        <%= f.text_field :domicilio_referencia_familiar %>
-      </div>
-    </div>
-    <div class="row col s12 m4 l4">
-      <div class="input-field col s12">
-        <%= f.label :telefono_fijo_referencia_familiar %>
-        <%= f.text_field :telefono_fijo_referencia_familiar %>
-      </div>
-      <div class="input-field col s12">
-        <%= f.label :telefono_celular_referencia_familiar %>
-        <%= f.text_field :telefono_celular_referencia_familiar %>
-      </div>
-    </div>
-  </div>
-  <div class="actions">
-    <%= f.submit "Guardar" %>
-  </div>
-<% end %>
-
