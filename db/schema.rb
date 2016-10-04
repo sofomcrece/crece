@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709210355) do
+ActiveRecord::Schema.define(version: 20161003100430) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.string   "seguro_social"
     t.string   "INE"
     t.string   "nacionalidad"
-    t.date     "fecha_de_nacimiento"
+    t.datetime "fecha_de_nacimiento"
     t.string   "ciudad_de_nacimiento"
     t.string   "estado_de_nacimiento"
     t.string   "pais_de_nacimiento"
@@ -118,16 +118,16 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "credits", force: :cascade do |t|
+# Could not dump table "credits" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+  create_table "customers", force: :cascade do |t|
     t.boolean  "agente_empresa"
     t.integer  "referencia_agenteEmpresa"
-    t.date     "fecha"
-    t.boolean  "es_cliente"
     t.text     "como_se_entero"
     t.boolean  "familiar_con_prestamo"
     t.string   "nombre_completo_familiar_1"
     t.string   "parentesco_1"
-    t.string   "parentesco1"
     t.string   "apellido_paterno"
     t.string   "apellido_materno"
     t.string   "nombre_1"
@@ -173,9 +173,6 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.string   "dirreccion_empresa"
     t.string   "colonia_empresa"
     t.string   "municipio_empresa"
-    t.decimal  "monto_solicitud"
-    t.integer  "cada_cuanto_se_realizara_el_pago"
-    t.integer  "lugar_donde_se_realizara_el_pago"
     t.string   "nombre_referencia_1"
     t.string   "domicilio_referencia_1"
     t.string   "telefono_fijo_referencia_1"
@@ -184,16 +181,10 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.string   "domicilio_referencia_2"
     t.string   "telefono_fijo_referencia_2"
     t.string   "telefono_celular_referencia_2"
-    t.string   "nombre_referencia_3"
-    t.string   "domicilio_referencia_3"
-    t.string   "telefono_fijo_referencia_3"
-    t.string   "telefono_celular_referencia_3"
     t.string   "nombre_referencia_familiar"
     t.string   "domicilio_referencia_familiar"
     t.string   "telefono_fijo_referencia_familiar"
     t.string   "telefono_celular_referencia_familiar"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
     t.string   "nombre_completo_familiar_2"
     t.string   "parentesco_2"
     t.string   "nombre_completo_1"
@@ -207,15 +198,24 @@ ActiveRecord::Schema.define(version: 20160709210355) do
     t.string   "parentesco_del_dependiente_3"
     t.integer  "status"
     t.integer  "economical_activity_id"
-    t.integer  "localidad_cnbv_id"
-    t.integer  "state_id"
+    t.string   "nombre_completo_familiar_3"
+    t.string   "parentesco_3"
+    t.string   "nombre_completo_familiar_4"
+    t.string   "parentesco_4"
+    t.string   "nombre_completo_4"
+    t.string   "edad_4"
+    t.string   "parentesco_del_dependiente_4"
+    t.string   "estado_actual"
+    t.string   "localidad"
+    t.text     "observaciones"
     t.integer  "country_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.date     "fecha_de_nacimiento_conyuge"
   end
 
-  add_index "credits", ["country_id"], name: "index_credits_on_country_id"
-  add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id"
-  add_index "credits", ["localidad_cnbv_id"], name: "index_credits_on_localidad_cnbv_id"
-  add_index "credits", ["state_id"], name: "index_credits_on_state_id"
+  add_index "customers", ["country_id"], name: "index_customers_on_country_id"
+  add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id"
 
   create_table "economical_activities", force: :cascade do |t|
     t.integer  "clave"

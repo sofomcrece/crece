@@ -1,0 +1,47 @@
+<div ng-controller="filtroClientes">
+  <p id="notice"><%= notice %></p>
+  
+  <h1>Lista de Clientes</h1>
+  <div class="row card-panel z-depth-4" >
+    <div class="col s12 m6 l6">
+      Nombre: <input type="text" ng-model="nombre" ng-change="getClientes()">
+      Paterno: <input type="text" ng-model="paterno" ng-change="getClientes()">
+      Materno: <input type="text" ng-model="materno" ng-change="getClientes()">
+    </div>
+    <div class="col s12 m6 l6">
+      Sucursal: <input type="text" ng-model="sucursal" ng-change="getClientes()">
+      Empresa: <input type="text" ng-model="Empresa" ng-change="getClientes()">
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <td>Apellido paterno</td>
+        <td>Apellido materno</td>
+        <td>Nombres</td>
+        <td>Sucursal o empresa</td>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+        <tr ng-repeat="cliente in clientes">
+          <td>{{cliente.apellido_paterno}}</td>
+          <td>{{cliente.apellido_materno}}</td>
+          <td>{{cliente.nombres}}</td>
+          <td>{{cliente.agente_empresa}}</td>
+          
+          <td><a href="{{cliente.url}}" class="crud-links">Ver</a></td>
+          <td><a href="{{cliente.edit}}" class="crud-links">Editar</a></td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <%= link_to new_customer_path,class:"btn-floating btn-large red" do  %>    
+      <i class="large material-icons">add</i>
+    <%end%>
+  </div>
+</div>

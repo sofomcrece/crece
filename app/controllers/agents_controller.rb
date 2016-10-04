@@ -25,7 +25,7 @@ class AgentsController < ApplicationController
   # POST /agents.json
   def create
     @agent = Agent.new(agent_params)
-
+    @agent.fecha_de_nacimiento=params[:fecha_de_nacimiento]
     respond_to do |format|
       if @agent.save
         format.html { redirect_to @agent, notice: 'Agent was successfully created.' }

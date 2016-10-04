@@ -1,5 +1,10 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row card-panel deep-orange lighten-1">  
+  <h5 class="center-align ">
+    <strong>Credito</strong>
+   
+  </h5>
+  </div>
+  <div class="show row">
 <p>
   <strong>Agente empresa:</strong>
   <%= @credit.agente_empresa %>
@@ -44,6 +49,8 @@
   <strong>Nombre completo familiar 1:</strong>
   <%= @credit.nombre_completo_familiar_1 %>
 </p>
+
+
 
 <p>
   <strong>Nombre completo familiar 1:</strong>
@@ -376,6 +383,7 @@
   <strong>Telefono celular referencia familiar:</strong>
   <%= @credit.telefono_celular_referencia_familiar %>
 </p>
+</div>
 
-<%= link_to 'Edit', edit_credit_path(@credit) %> |
-<%= link_to 'Back', credits_path %>
+<%= link_to 'Edit', edit_credit_path(@credit),class:"crud-links" %> |
+<%= link_to 'Back', view_credits_path,class:"crud-links" %>

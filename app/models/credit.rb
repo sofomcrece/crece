@@ -1,20 +1,12 @@
 class Credit < ActiveRecord::Base
     belongs_to :economical_activity
-    belongs_to :state
     belongs_to :country
-    belongs_to :localidad_cnbv
     
-    validates :sexo,
-    :inclusion => { :in => [true, false] }
-    validates :sexo,
-    :presence => { :if => 'sexo.nil?' }
-    
-    validates :agente_empresa,
-    :referencia_agenteEmpresa,
+    has_attached_file :croquis
+    validates_attachment_content_type :croquis, content_type: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
+    validates :referencia_agenteEmpresa,
     :fecha,
-    :es_cliente,
     :como_se_entero,
-    :familiar_con_prestamo,
     :nombre_completo_familiar_1,
     :parentesco_1,
     :apellido_paterno,
@@ -29,7 +21,6 @@ class Credit < ActiveRecord::Base
     :fecha_de_nacimiento,
     :ciudad_de_nacimiento,
     :estado_de_nacimiento,
-    :sexo,
     :telefono_de_casa,
     :telefono_celular,
     :email_1,
@@ -73,10 +64,7 @@ class Credit < ActiveRecord::Base
     :domicilio_referencia_2,
     :telefono_fijo_referencia_2,
     :telefono_celular_referencia_2,
-    :nombre_referencia_3,
-    :domicilio_referencia_3,
-    :telefono_fijo_referencia_3,
-    :telefono_celular_referencia_3,
+    
     :nombre_referencia_familiar,
     :domicilio_referencia_familiar,
     :telefono_fijo_referencia_familiar,
@@ -93,12 +81,32 @@ class Credit < ActiveRecord::Base
     :edad_3,
     :parentesco_del_dependiente_3,
     :economical_activity_id,
-    :localidad_cnbv_id,
-    :state_id,
     :country_id,
+    :estado_actual,
+    :localidad,
     presence: true
     before_save :default_values
     def default_values
       self.status ||= 0
     end
+    validates :sexo,
+    :inclusion => { :in => [nil,true, false] }
+    validates :sexo,
+    :presence => { :if => 'sexo.nil?' }
+    
+    validates :es_cliente,
+    :inclusion => { :in => [nil,true, false] }
+    validates :es_cliente,
+    :presence => { :if => 'es_cliente.nil?' }
+    
+    validates :familiar_con_prestamo,
+    :inclusion => { :in => [nil,true, false] }
+    validates :familiar_con_prestamo,
+    :presence => { :if => 'familiar_con_prestamo.nil?' }
+    
+    
+     validates :agente_empresa,
+    :inclusion => { :in => [nil,true, false] }
+    validates :agente_empresa,
+    :presence => { :if => 'agente_empresa.nil?' }
 end

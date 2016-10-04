@@ -1,7 +1,13 @@
-<div style='background-image: url("<%=image_path("creditoback")%>");  
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script>
+  
+</script>
+<div ng-app="solicitud">
+<div ng-controller="codigo">
+<div id="father" style='position:relative; background-image: url("<%=image_path("creditoback")%>");  
   background-size: 1200px 1800px; 
   background-repeat: no-repeat;'>
-  <%= form_for(@credit) do |f| %>
+  <%= form_for @credit,class:"father" do |f| %>
     <% if @credit.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
@@ -13,511 +19,417 @@
         </ul>
       </div>
     <% end %>
-    <div class="row">
-      <div>
-        <%= f.label :agente_empresa%>
+      <div style="top:0px;left:925px;position:absolute;">
         <p>
-          <%= f.radio_button  :agente_empresa,true,checked:true,left:"400px",posi%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
+          <%= f.radio_button  :agente_empresa,true,checked:true%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
           <%= f.radio_button  :agente_empresa,false %> <%= f.label "#{:agente_empresa}_false", "Empresa" %>
         </p>
       </div>
-    </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div class ="row">
       <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-        <%= f.label :referencia_agenteEmpresa,"Referencia Agente o Empresa" %>
-        <%= f.number_field :referencia_agenteEmpresa %>
+        <%= f.number_field :referencia_agenteEmpresa,:style=>"left:925px;top:57px;position:absolute;" %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-        <%= f.label :fecha %>
-        <%= f.text_field :fecha, class:"datepicker",type:"date", autocomplete: "off" %>
+        <%= f.text_field :fecha, class:"datepicker",type:"date", autocomplete: "off",:style=>"left:930px;top:110px;position:absolute;" %>
       </div>
     </div>
     <div class="row">
-      <div class="col s12 m3 l3">
-        <%= f.label :es_cliente%>
+      <div style="position:absolute;top:127px;left:357px;">
         <p>
-          <%= f.radio_button  :es_cliente,true,checked:true%> <%= f.label "#{:es_cliente}_true", "Si" %>
-          <%= f.radio_button  :es_cliente,false %> <%= f.label "#{:es_cliente}_false", "No" %>
+          <%= f.radio_button  :es_cliente,true,checked:true%> 
+          <%= f.radio_button  :es_cliente,false,:style=>"left:77px;top:16px;position:absolute;" %> 
         </p>
       </div>
-      <div class="input-field col s12 m9 l9">
-        <%= f.label :como_se_entero %>
-        <%= f.text_field :como_se_entero %>
+      <div>
+        <%= f.text_field :como_se_entero,:style=>"left:705px;top:138px;width:350px;position:absolute;"%>
       </div>
     </div>
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <%= f.label :familiar_con_prestamo,"¿Tiene algun familiar con prestamo?"%>
+      <div  style="position:absolute;top:156px;left:645px;">
         <p>
-          <%= f.radio_button  :familiar_con_prestamo,true,checked:true%> <%= f.label "#{:familiar_con_prestamo}_true", "Si" %>
-          <%= f.radio_button  :familiar_con_prestamo,false %> <%= f.label "#{:familiar_con_prestamo}_false", "No" %>
+          <%= f.radio_button  :familiar_con_prestamo,true,checked:true%> 
+          <%= f.radio_button  :familiar_con_prestamo,false,:style=>"position:absolute;top:17px;left:90px;" %> 
         </p>
       </div>
-    </div>
     <div class="row">
-      <div class="input-field col s12 m6 l6">
-        <%= f.label :nombre_completo_familiar_1 %>
-        <%= f.text_field :nombre_completo_familiar_1 %>
+      <div>
+        <%= f.text_field :nombre_completo_familiar_1,:style=>"position:absolute;top:222px;left:70px;width:700px;height:22px;" %>
       </div>
       <div class="input-field col s12 m6 l6">
-        <%= f.label :parentesco_1 %>
-        <%= f.text_field :parentesco_1 %>
+        <%= f.text_field :parentesco_1,:style=>"position:absolute;top:222px;left:815px;width:300px;height:22px;" %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m6 l6">
-        <%= f.label :nombre_completo_familiar_2 %>
-        <%= f.text_field :nombre_completo_familiar_2 %>
+        <%= f.text_field :nombre_completo_familiar_2,:style=>"position:absolute;top:252px;left:70px;width:700px;height:22px;"%>
       </div>
       <div class="input-field col s12 m6 l6">
-        <%= f.label :parentesco_2 %>
-        <%= f.text_field :parentesco_2 %>
+        <%= f.text_field :parentesco_2,:style=>"position:absolute;top:252px;left:815px;width:300px;height:22px;"%>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>DATOS DEL SOLICITANTE (SIN ABREVIATURAS)</h5>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.text_field :nombre_completo_familiar_3,:style=>"position:absolute;top:282px;left:70px;width:700px;height:22px;"%>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <%= f.text_field :parentesco_3,:style=>"position:absolute;top:282px;left:815px;width:300px;height:22px;"%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6 l6">
+        <%= f.text_field :nombre_completo_familiar_4,:style=>"position:absolute;top:310px;left:70px;width:700px;height:22px;"%>
+      </div>
+      <div class="input-field col s12 m6 l6">
+        <%= f.text_field :parentesco_4,:style=>"position:absolute;top:310px;left:815px;width:300px;height:22px;"%>
+      </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m2 l2">
-        <%= f.label :apellido_paterno %>
-        <%= f.text_field :apellido_paterno %>
+        <%= f.text_field :apellido_paterno,:style=>"position:absolute;top:393px;left:70px;width:150px;height:18px;" %>
       </div>
       <div class="input-field col s12 m2 l2">
-        <%= f.label :apellido_materno %>
-        <%= f.text_field :apellido_materno %>
+        <%= f.text_field :apellido_materno,:style=>"position:absolute;top:393px;left:250px;width:180px;height:18px;" %>
       </div>
       <div class="input-field col s12 m2 l2">
-        <%= f.label :nombre_1 %>
-        <%= f.text_field :nombre_1 %>
+        <%= f.text_field :nombre_1,:style=>"position:absolute;top:393px;left:465px;width:150px;height:18px;" %>
       </div>
       <div class="input-field col s12 m2 l2">
-        <%= f.label :nombre_2 %>
-        <%= f.text_field :nombre_2 %>
+        <%= f.text_field :nombre_2,:style=>"position:absolute;top:393px;left:650px;width:200px;height:18px;" %>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.label :RFC %>
-        <%= f.text_field :RFC %>
+        <%= f.text_field :RFC,:style=>"position:absolute;top:393px;left:870px;width:250px;height:18px;" %>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s12 m3 l3">
-        <%= f.label :CURP %>
-        <%= f.text_field :CURP %>
+      <div>
+        <%= f.text_field :CURP,:style=>"position:absolute;top:445px;left:70px;width:300px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m3 l3">
-        <%= f.label :seguro %>
-        <%= f.text_field :seguro %>
+      <div>
+        <%= f.text_field :seguro,:style=>"position:absolute;top:445px;left:400px;width:220px;height:18px;"%>
       </div>
-      <div class="input-field col s12 m3 l3">
-        <%= f.label :INE %>
-        <%= f.text_field :INE %>
+      <div>
+        <%= f.text_field :INE,:style=>"position:absolute;top:445px;left:650px;width:180px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m3 l3">
-        <%= f.label :nacionalidad %>
-        <%= f.text_field :nacionalidad %>
+      <div>
+        <%= f.text_field :nacionalidad,:style=>"position:absolute;top:445px;left:900px;width:180px;height:18px;" %>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s12 m2 l2 ">
-        <%= f.label :fecha_de_nacimiento %>
-        <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
+      <div>
+        <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off",:style=>"position:absolute;top:520px;left:70px;width:150px;height:22px;" %>
       </div>
-      <div class="input-field col s12 m2 l2 ">
-        <%= f.label :ciudad_de_nacimiento %>
-        <%= f.text_field :ciudad_de_nacimiento %>
-      </div>
-      <div class="input-field col s12 m3 l3 ">
-        <%=f.collection_select(:estado_de_nacimiento,Country.all,:descripcion,:descripcion,:prompt => 'Estado de nacimiento:')%>
-        <%=f.label :estado_de_nacimiento, "Estado de nacimiento:" %>
-      </div>
-      <div class="input-field col s12 m3 l3 ">
-        <div class="">
-          <%=f.collection_select(:country_id,Country.all,:id,:descripcion,:prompt => 'Pais de nacimiento:')%>
-          <%=f.label :country_id, "Pais de nacimiento:" %>
+      <div>
+        <label style="position:absolute;top:497px;left:250px;width:200px;height:22px;background-color: white;font-weight: bold;">PAIS DE NACIMIENTO*</label>
+        <div>
+          <%=f.text_field :country_id, :style=>"position:absolute;top:520px;left:250px;width:200px;height:22px;"%>
+          
         </div>
       </div>
-      <div class="input-field col s12 m2 l2 ">
-        <%= f.label :sexo%>
-        <p>
-          <%= f.radio_button  :sexo,true,checked:true%> <%= f.label "#{:sexo}_true", "Hombre" %>
-          <%= f.radio_button  :sexo,false %> <%= f.label "#{:sexo}_false", "Mujer" %>
-        </p>
+      <div>
+        <%=f.collection_select(:estado_de_nacimiento,Country.all,:descripcion,:descripcion,{:prompt => 'Estado de nacimiento:'},{:style=>"position:absolute;top:520px;left:470px;width:285px;height:22px;"})%>
+      </div>
+      <div>
+        <label style="position:absolute;top:497px;left:770px;width:150px;height:22px;background-color: white;font-weight: bold;">CIUDAD*</label>
+        <%= f.text_field :ciudad_de_nacimiento,:style=>"position:absolute;top:520px;left:770px;width:150px;height:22px;" %>
+      </div>
+      <div style="position:absolute;top:525px;left:950px;">
+          <%= f.radio_button  :sexo,false,checked:true%>
+          <%= f.radio_button  :sexo,true,:style=>"position:absolute;top:0px;left:100px;"%>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m2 l2">
-        <%= f.label :telefono_de_casa %>
-        <%= f.text_field :telefono_de_casa %>
+        <%= f.text_field :telefono_de_casa,:style=>"position:absolute;top:600px;left:70px;width:150px;height:18px;" %>
       </div>
       <div class="input-field col s12 m2 l2">
-        <%= f.label :telefono_celular %>
-        <%= f.text_field :telefono_celular %>
+        <%= f.text_field :telefono_celular, :style=>"position:absolute;top:600px;left:245px;width:200px;height:18px;" %>
       </div>
       <div class="row col s12 m8 l8">
         <div class="input-field col s12">
-          <%= f.label :email_1 %>
-          <%= f.text_field :email_1 %>
+          <%= f.text_field :email_1,:style=>"position:absolute;top:574px;left:500px;width:600px;height:18px;" %>
         </div>
         <div class="input-field col s12">
-          <%= f.label :email_2 %>
-          <%= f.text_field :email_2 %>
+          <%= f.text_field :email_2,:style=>"position:absolute;top:600px;left:500px;width:600px;height:18px;" %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col s12">
-         <%= f.label :escolaridad%>
         <p>
-          <%= f.radio_button  :escolaridad,0%> <%= f.label "#{:escolaridad}_0", "Primaria" %>
-          <%= f.radio_button  :escolaridad,1%> <%= f.label "#{:escolaridad}_1", "Secundaria" %>
-          <%= f.radio_button  :escolaridad,2%> <%= f.label "#{:escolaridad}_2", "Preparatoria" %>
-          <%= f.radio_button  :escolaridad,3%> <%= f.label "#{:escolaridad}_3", "Técnico" %>
-          <%= f.radio_button  :escolaridad,4%> <%= f.label "#{:escolaridad}_4", "Licenciatura" %>
-          <%= f.radio_button  :escolaridad,5%> <%= f.label "#{:escolaridad}_5", "Posgrado" %>
-          <%= f.radio_button  :escolaridad,6%> <%= f.label "#{:escolaridad}_6", "Sin estudio" %>
+          <%= f.radio_button  :escolaridad,0,:style=>"position:absolute;top:628px;left:220px;"%>
+          <%= f.radio_button  :escolaridad,1,:style=>"position:absolute;top:628px;left:344px;"%>
+          <%= f.radio_button  :escolaridad,2,:style=>"position:absolute;top:628px;left:462px;"%>
+          <%= f.radio_button  :escolaridad,3,:style=>"position:absolute;top:628px;left:588px;"%>
+          <%= f.radio_button  :escolaridad,4,:style=>"position:absolute;top:628px;left:720px;"%>
+          <%= f.radio_button  :escolaridad,5,:style=>"position:absolute;top:628px;left:853px;"%>
+          <%= f.radio_button  :escolaridad,6,:style=>"position:absolute;top:628px;left:976px;"%>
         </p>
       </div>
     </div>
     <div class="row">
       <div class="field">
-        <%=f.collection_select(:economical_activity_id,EconomicalActivity.all,:id,:descripcion,:prompt => 'Actividad economica:')%>
-        <%=f.label :economical_activity_id, "Actividad economica:" %>
+        <%=f.collection_select(:economical_activity_id,EconomicalActivity.all,:id,:descripcion,{:prompt => 'Actividad economica:'},{:style=>"position:absolute;top:655px;left:250px;width:800px;height:22px;"})%>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3">
-        <%= f.label :numero_de_dependientes_economicos %>
-        <%= f.number_field :numero_de_dependientes_economicos %>
+        <%= f.number_field :numero_de_dependientes_economicos,:style=>"position:absolute;top:710px;left:70px;width:200px;height:18px;"%>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%= f.label :gasto_promedio_mensual %>
-        <%= f.text_field :gasto_promedio_mensual %>
+        <%= f.text_field :gasto_promedio_mensual,:style=>"position:absolute;top:710px;left:300px;width:200px;height:18px;" %>
       </div>
       <div class="col s12 m6 l6">
-         <%= f.label :estado_civil%>
         <p>
-          <%= f.radio_button  :estado_civil,0%> <%= f.label "#{:estado_civil}_0", "Soltero" %>
-          <%= f.radio_button  :estado_civil,1%> <%= f.label "#{:estado_civil}_1", "Casado" %>
-          <%= f.radio_button  :estado_civil,2%> <%= f.label "#{:estado_civil}_2", "Divorciado" %>
-          <%= f.radio_button  :estado_civil,3%> <%= f.label "#{:estado_civil}_3", "Union libre" %>
-          <%= f.radio_button  :estado_civil,4%> <%= f.label "#{:estado_civil}_4", "Viudo" %>
+          <%= f.radio_button  :estado_civil,0,:style=>"position:absolute;top:713px;left:526px;"%>
+          <%= f.radio_button  :estado_civil,1,:style=>"position:absolute;top:713px;left:646px;"%>
+          <%= f.radio_button  :estado_civil,2,:style=>"position:absolute;top:713px;left:760px;"%>
+          <%= f.radio_button  :estado_civil,3,:style=>"position:absolute;top:713px;left:866px;"%>
+          <%= f.radio_button  :estado_civil,4,:style=>"position:absolute;top:713px;left:986px;"%>
         </p>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :apellido_paterno_del_conyuge %>
-        <%= f.text_field :apellido_paterno_del_conyuge %>
+      <div>
+        <%= f.text_field :apellido_paterno_del_conyuge,:style=>"position:absolute;top:787px;left:70px;width:150px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :apellido_materno_del_conyuge %>
-        <%= f.text_field :apellido_materno_del_conyuge %>
+      <div>
+        <%= f.text_field :apellido_materno_del_conyuge,:style=>"position:absolute;top:787px;left:250px;width:180px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :nombre_1_del_conyuge %>
-        <%= f.text_field :nombre_1_del_conyuge %>
+      <div>
+        <%= f.text_field :nombre_1_del_conyuge,:style=>"position:absolute;top:787px;left:460px;width:150px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :nombre_2_del_conyuge %>
-        <%= f.text_field :nombre_2_del_conyuge %>
+      <div>
+        <%= f.text_field :nombre_2_del_conyuge,:style=>"position:absolute;top:787px;left:610px;width:150px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :telefono_celular_del_conyuge %>
-        <%= f.text_field :telefono_celular_del_conyuge %>
+      <div>
+        <%= f.text_field :telefono_celular_del_conyuge, :style=>"position:absolute;top:787px;left:770px;width:150px;height:18px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :telefono_de_oficina_del_conyuge %>
-        <%= f.text_field :telefono_de_oficina_del_conyuge %>
+      <div>
+        <%= f.text_field :telefono_de_oficina_del_conyuge , :style=>"position:absolute;top:787px;left:940px;width:170px;height:18px;"%>
       </div>
     </div>
     <div class="row">
       <div class="col s12">
-        <%= f.label :fecha_de_nacimiento %>
-        <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off" %>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>DATOS DE LOS DEPENDIENTES ECONÓMICOS</h5>
-    </div>
-    <div class="row">
-      <div class="input-field col s12 m6 l6">
-        <%= f.label :nombre_completo_1 %>
-        <%= f.text_field :nombre_completo_1 %>
-      </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :edad_1 %>
-        <%= f.number_field :edad_1 %>
-      </div>
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :parentesco_del_dependiente_1 %>
-        <%= f.text_field :parentesco_del_dependiente_1 %>
+        <%= f.text_field :fecha_de_nacimiento_conyuge, class:"datepicker",type:"date", autocomplete: "off",:style=>"position:absolute;top:815px;left:235px;width:170px;height:22px;" %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m6 l6">
-        <%= f.label :nombre_completo_2 %>
-        <%= f.text_field :nombre_completo_2 %>
+        <%= f.text_field :nombre_completo_1, :style=>"position:absolute;top:898px;left:70px;width:700px;height:22px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :edad_2 %>
-        <%= f.number_field :edad_2 %>
+      <div>
+        <%= f.number_field :edad_1, :style=>"position:absolute;top:898px;left:810px;width:80px;height:22px;" %>
       </div>
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :parentesco_del_dependiente_2 %>
-        <%= f.text_field :parentesco_del_dependiente_2 %>
+      <div>
+        <%= f.text_field :parentesco_del_dependiente_1, :style=>"position:absolute;top:898px;left:940px;width:170px;height:22px;" %>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s12 m6 l6">
-        <%= f.label :nombre_completo_3 %>
-        <%= f.text_field :nombre_completo_3 %>
+      <div>
+        <%= f.text_field :nombre_completo_2, :style=>"position:absolute;top:927px;left:70px;width:700px;height:22px;" %>
       </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :edad_3 %>
-        <%= f.number_field :edad_3 %>
+      <div>
+        <%= f.number_field :edad_2, :style=>"position:absolute;top:927px;left:810px;width:80px;height:22px;" %>
       </div>
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :parentesco_del_dependiente_3 %>
-        <%= f.text_field :parentesco_del_dependiente_3 %>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>DOMICILIO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
-    </div>
-    
-    <div class="row">
-      <div class="input-field col s12 m8 l8">
-        <%= f.label :calle %>
-        <%= f.text_field :calle %>
-      </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :numero_interior %>
-        <%= f.number_field :numero_interior %>
-      </div>
-      <div class="input-field col s12 m2 l2">
-        <%= f.label :numero_exterior %>
-        <%= f.number_field :numero_exterior %>
+      <div>
+        <%= f.text_field :parentesco_del_dependiente_2, :style=>"position:absolute;top:927px;left:940px;width:170px;height:22px;" %>
       </div>
     </div>
     <div class="row">
-      <div class="col s12 m3 l3">
-         <%= f.label :tipo_de_domicilio%>
+      <div>
+        <%= f.text_field :nombre_completo_3, :style=>"position:absolute;top:957px;left:70px;width:700px;height:22px;" %>
+      </div>
+      <div>
+        <%= f.number_field :edad_3, :style=>"position:absolute;top:957px;left:810px;width:80px;height:22px;" %>
+      </div>
+      <div>
+        <%= f.text_field :parentesco_del_dependiente_3, :style=>"position:absolute;top:957px;left:940px;width:170px;height:22px;" %>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <%= f.text_field :nombre_completo_4, :style=>"position:absolute;top:987px;left:70px;width:700px;height:22px;" %>
+      </div>
+      <div>
+        <%= f.number_field :edad_4, :style=>"position:absolute;top:987px;left:810px;width:80px;height:22px;" %>
+      </div>
+      <div>
+        <%= f.text_field :parentesco_del_dependiente_4, :style=>"position:absolute;top:987px;left:940px;width:170px;height:22px;" %>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <%= f.text_field :calle, :style=>"position:absolute;top:1068px;left:80px;width:700px;height:18px;" %>
+      </div>
+      <div>
+        <%= f.number_field :numero_interior, :style=>"position:absolute;top:1068px;left:830px;width:140px;height:18px;" %>
+      </div>
+      <div>
+        <%= f.number_field :numero_exterior, :style=>"position:absolute;top:1068px;left:990px;width:140px;height:18px;" %>
+      </div>
+    </div>
+    <div class="row">
+      <div>
         <p>
-          <%= f.radio_button  :tipo_de_domicilio,0%> <%= f.label "#{:tipo_de_domicilio}_0", "Propia" %>
-          <%= f.radio_button  :tipo_de_domicilio,1%> <%= f.label "#{:tipo_de_domicilio}_1", "Familiar" %>
-          <%= f.radio_button  :tipo_de_domicilio,2%> <%= f.label "#{:tipo_de_domicilio}_2", "Renta" %>
-          <%= f.radio_button  :tipo_de_domicilio,3%> <%= f.label "#{:tipo_de_domicilio}_3", "Hipoteca" %>
+          <%= f.radio_button  :tipo_de_domicilio,0, :style=>"position:absolute;top:1125px;left:57px;"%>
+          <%= f.radio_button  :tipo_de_domicilio,1, :style=>"position:absolute;top:1125px;left:125px;"%>
+          <%= f.radio_button  :tipo_de_domicilio,2, :style=>"position:absolute;top:1125px;left:200px;"%>
+          <%= f.radio_button  :tipo_de_domicilio,3, :style=>"position:absolute;top:1125px;left:283px;"%>
         </p>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%= f.label :codigo_postal %><br>
-        <%= f.number_field :codigo_postal %>
+        <%= f.number_field :codigo_postal, :style=>"position:absolute;top:1120px;left:390px;width:70px;height:18px;","ng-model":"codigo", "ng-change":"type()" %>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%= f.label :colonia %><br>
-        <%= f.text_field :colonia %>
+        <select id="credit_colonia" name="credit[colonia]"class="browser-default" ng-model="colonias" style="position:absolute;top:1120px;left:500px;width:340px;height:18px;">
+            <option value="" disabled selected>Colonia</option>
+            <option ng-repeat="option in colonias" value="{{option}}">{{option}}</option>
+        </select>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%=f.collection_select(:localidad_cnbv_id,LocalidadCnbv.all,:id,:descripcion,:prompt => 'Localidad:')%>
-        <%=f.label :localidad_cnbv_id, "Localidad:" %>
+        <select id="credit_localidad" name="credit[localidad]"class="browser-default" ng-model="localidades" style="position:absolute;top:1120px;left:870px;width:250px;height:18px;">
+            <option value="" disabled selected>Colonia</option>
+            <option ng-repeat="option in localidades" value="{{option}}">{{option}}</option>
+        </select>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3">
-        <%= f.label :municipio %><br>
-        <%= f.text_field :municipio %>
+        <%= f.text_field :municipio,:style=>"position:absolute;top:1170px;left:70px;width:290px;height:18px;","ng-model":"municipio" %>
       </div>
       <div class="input-field col s12 m3 l3">
-         <%=f.collection_select(:state_id,State.all,:id,:descripcion,:prompt => 'Estado:')%>
-        <%=f.label :state_id, "Estado:" %>
+         <%=f.text_field :estado_actual, :style=>"position:absolute;top:1170px;left:390px;width:200px;height:18px;","ng-model":"estado"%>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%= f.label :antiguedad_en_el_domicilio_actual %><br>
-        <%= f.text_field :antiguedad_en_el_domicilio_actual %>
+        <%= f.text_field :antiguedad_en_el_domicilio_actual,:style=>"position:absolute;top:1170px;left:600px;width:250px;height:18px;" %>
       </div>
       <div class="input-field col s12 m3 l3">
-        <%= f.label :antiguedad_en_el_domicilio_anterior %><br>
-        <%= f.text_field :antiguedad_en_el_domicilio_anterior %>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>TRABAJO DEL SOLICITANTE (SIN ABREVIATURAS).</h5>
-    </div>
-    
-    <div class="row">
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :empresa_donde_labora %><br>
-        <%= f.text_field :empresa_donde_labora %>
-      </div>
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :giro_de_la_empresa %><br>
-        <%= f.text_field :giro_de_la_empresa %>
-      </div>
-      <div class="input-field col s12 m4 l4">
-        <%= f.label :puesto %><br>
-        <%= f.text_field :puesto %>
+        <%= f.text_field :antiguedad_en_el_domicilio_anterior,:style=>"position:absolute;top:1170px;left:870px;width:260px;height:18px;" %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m4 l4">
-        <%= f.label :telefono_empresa %><br>
-        <%= f.text_field :telefono_empresa %>
+        <%= f.text_field :empresa_donde_labora,:style=>"position:absolute;top:1252px;left:70px;width:370px;height:18px;" %>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.label :antiguedad_laboral %><br>
-        <%= f.text_field :antiguedad_laboral %>
+        <%= f.text_field :giro_de_la_empresa,:style=>"position:absolute;top:1252px;left:470px;width:300px;height:18px;" %>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.label :sueldo_mensual_neto %><br>
-        <%= f.text_field :sueldo_mensual_neto %>
+        <%= f.text_field :puesto,:style=>"position:absolute;top:1252px;left:810px;width:300px;height:18px;" %>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m4 l4">
-        <%= f.label :dirreccion_empresa %><br>
-        <%= f.text_field :dirreccion_empresa %>
+        <%= f.text_field :telefono_empresa,:style=>"position:absolute;top:1300px;left:70px;width:370px;height:18px;" %>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.label :colonia_empresa %><br>
-        <%= f.text_field :colonia_empresa %>
+        <%= f.text_field :antiguedad_laboral,:style=>"position:absolute;top:1300px;left:470px;width:300px;height:18px;" %>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.label :municipio_empresa %><br>
-        <%= f.text_field :municipio_empresa %>
+        <%= f.text_field :sueldo_mensual_neto,:style=>"position:absolute;top:1300px;left:810px;width:300px;height:18px;" %>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>SOLICITUD.</h5>
+    <div class="row">
+      <div class="input-field col s12 m4 l4">
+        <%= f.text_field :dirreccion_empresa,:style=>"position:absolute;top:1355px;left:70px;width:370px;height:18px;" %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.text_field :colonia_empresa,:style=>"position:absolute;top:1355px;left:470px;width:300px;height:18px;" %>
+      </div>
+      <div class="input-field col s12 m4 l4">
+        <%= f.text_field :municipio_empresa,:style=>"position:absolute;top:1355px;left:810px;width:300px;height:18px;" %>
+      </div>
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3">
-        <%= f.label :monto_solicitud %><br>
-        <%= f.text_field :monto_solicitud %>
+        <%= f.text_field :monto_solicitud,:style=>"position:absolute;top:1440px;left:100px;width:150px;height:25px;" %>
       </div>
       <div class="col s12 m3 l3">
-         <%= f.label :cada_cuanto_se_realizara_el_pago%>
         <p>
-          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,0%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_0", "Quincenal" %>
-          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,1%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_1", "Semanal" %>
-          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,2%> <%= f.label "#{:cada_cuanto_se_realizara_el_pago}_2", "Catorcenal" %>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,0,:style=>"position:absolute;top:1460px;left:280px;"%>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,1,:style=>"position:absolute;top:1460px;left:380px;"%>
+          <%= f.radio_button  :cada_cuanto_se_realizara_el_pago,2,:style=>"position:absolute;top:1460px;left:450px;"%>
         </p>
       </div>
       <div class="col s12 m6 l6">
-        <%= f.label :lugar_donde_se_realizara_el_pago%>
         <p>
-          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,0%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_0", "Agente" %>
-          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,1%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_1", "Banco" %>
-          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,2%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_2", "Transparencia" %>
-          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,3%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_3", "Trabajo" %>
-          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,4%> <%= f.label "#{:lugar_donde_se_realizara_el_pago}_4", "Financiera Marjo" %>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,0,:style=>"position:absolute;top:1460px;left:550px;"%>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,1,:style=>"position:absolute;top:1460px;left:640px;"%>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,2,:style=>"position:absolute;top:1460px;left:720px;"%>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,3,:style=>"position:absolute;top:1460px;left:870px;"%>
+          <%= f.radio_button  :lugar_donde_se_realizara_el_pago,4,:style=>"position:absolute;top:1460px;left:980px;"%>
         </p>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="section">
-      <h5>REFERENCIAS PERSONALES (NO FAMILIARES)* (SI ABREVIATURAS).</h5>
     </div>
     <div class="row">
       <div class="row col s12 m8 l8">
-        <div class="input-field col s12">
-          <%= f.label :nombre_referencia_1 %>
-          <%= f.text_field :nombre_referencia_1 %>
+        <div>
+          <%= f.text_field :nombre_referencia_1,:style=>"position:absolute;top:1630px;left:150px;width:600px;height:25px;" %>
         </div>
-        <div class="input-field col s12">
-          <%= f.label :domicilio_referencia_1 %>
-          <%= f.text_field :domicilio_referencia_1 %>
+        <div>
+          <%= f.text_field :domicilio_referencia_1,:style=>"position:absolute;top:1665px;left:150px;width:600px;height:25px;" %>
         </div>
       </div>
       <div class="row col s12 m4 l4">
-        <div class="input-field col s12">
-          <%= f.label :telefono_fijo_referencia_1 %>
-          <%= f.text_field :telefono_fijo_referencia_1 %>
+        <div>
+          <%= f.text_field :telefono_fijo_referencia_1,:style=>"position:absolute;top:1665px;left:835px;width:110px;height:22px;" %>
         </div>
-        <div class="input-field col s12">
-          <%= f.label :telefono_celular_referencia_1 %>
-          <%= f.text_field :telefono_celular_referencia_1 %>
+        <div>
+          <%= f.text_field :telefono_celular_referencia_1,:style=>"position:absolute;top:1665px;left:1000px;width:110px;height:22px;" %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="row col s12 m8 l8">
         <div class="input-field col s12">
-          <%= f.label :nombre_referencia_2 %>
-          <%= f.text_field :nombre_referencia_2 %>
+          <%= f.text_field :nombre_referencia_2,:style=>"position:absolute;top:1700px;left:150px;width:600px;height:25px;" %>
         </div>
         <div class="input-field col s12">
-          <%= f.label :domicilio_referencia_2 %>
-          <%= f.text_field :domicilio_referencia_2 %>
+          <%= f.text_field :domicilio_referencia_2,:style=>"position:absolute;top:1735px;left:150px;width:600px;height:25px;" %>
         </div>
       </div>
       <div class="row col s12 m4 l4">
         <div class="input-field col s12">
-          <%= f.label :telefono_fijo_referencia_2 %>
-          <%= f.text_field :telefono_fijo_referencia_2 %>
+          <%= f.text_field :telefono_fijo_referencia_2,:style=>"position:absolute;top:1735px;left:835px;width:110px;height:22px;" %>
         </div>
         <div class="input-field col s12">
-          <%= f.label :telefono_celular_referencia_2 %>
-          <%= f.text_field :telefono_celular_referencia_2 %>
+          <%= f.text_field :telefono_celular_referencia_2,:style=>"position:absolute;top:1735px;left:1000px;width:110px;height:22px;" %>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="row col s12 m8 l8">
-        <div class="input-field col s12">
-          <%= f.label :nombre_referencia_3 %>
-          <%= f.text_field :nombre_referencia_3 %>
-        </div>
-        <div class="input-field col s12">
-          <%= f.label :domicilio_referencia_3 %>
-          <%= f.text_field :domicilio_referencia_3 %>
-        </div>
-      </div>
-      <div class="row col s12 m4 l4">
-        <div class="input-field col s12">
-          <%= f.label :telefono_fijo_referencia_3 %>
-          <%= f.text_field :telefono_fijo_referencia_3 %>
-        </div>
-        <div class="input-field col s12">
-          <%= f.label :telefono_celular_referencia_3 %>
-          <%= f.text_field :telefono_celular_referencia_3 %>
-        </div>
-      </div>
-    </div>
-     <div class="divider"></div>
-    <div class="section">
-      <h5>REFERENCIA FAMILIAR (QUE NO VIVA CON USTED) (SIN ABREVIATURAS).</h5>
     </div>
      <div class="row">
       <div class="row col s12 m8 l8">
         <div class="input-field col s12">
-          <%= f.label :nombre_referencia_familiar %>
-          <%= f.text_field :nombre_referencia_familiar %>
+          <%= f.text_field :nombre_referencia_familiar,:style=>"position:absolute;top:1795px;left:150px;width:600px;height:25px;" %>
         </div>
         <div class="input-field col s12">
-          <%= f.label :domicilio_referencia_ramiliar %>
-          <%= f.text_field :domicilio_referencia_familiar %>
+          <%= f.text_field :domicilio_referencia_familiar,:style=>"position:absolute;top:1830px;left:150px;width:600px;height:25px;" %>
         </div>
       </div>
       <div class="row col s12 m4 l4">
         <div class="input-field col s12">
-          <%= f.label :telefono_fijo_referencia_familiar %>
-          <%= f.text_field :telefono_fijo_referencia_familiar %>
+          <%= f.text_field :telefono_fijo_referencia_familiar,:style=>"position:absolute;top:1830px;left:835px;width:110px;height:22px;" %>
         </div>
         <div class="input-field col s12">
-          <%= f.label :telefono_celular_referencia_familiar %>
-          <%= f.text_field :telefono_celular_referencia_familiar %>
+          <%= f.text_field :telefono_celular_referencia_familiar,:style=>"position:absolute;top:1830px;left:1000px;width:110px;height:22px;" %>
         </div>
+        <div class="input-field col s12">
+          <%=f.label :observaciones%>
+          <%= f.text_field :observaciones %>
+        </div>
+        <div class="input-field col s12">
+          <%= f.file_field  :croquis%>
+         </div>
       </div>
     </div>
     <div class="actions">
       <%= f.submit "Guardar" %>
     </div>
   <% end %>
-  
+
+</div>  
+</div>

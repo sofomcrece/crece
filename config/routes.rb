@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :customers
   resources :credits
   resources :payouts
   resources :loans
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   get 'perfil',to:'users#perfil',as:'perfil'
    post 'users/create2',to:'users#create2'
+   resources :view_credits
 #  get 'profile/show',to:'profile#show',as:'show_profile'
 #  get 'profile/new',to:'profile#new',as:'new_profile'
 #  post 'profile/create',to:'profile#create',as:'create_profile'

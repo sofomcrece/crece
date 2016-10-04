@@ -35,10 +35,40 @@
     			console.log(data);
     		});    
         }
-    }]);
+    }]).controller("filtroClientes",["$scope","$http",function($scope,$http){
+    $scope.clientes=[];
+    $scope.nombre="";
+    $scope.paterno="";
+    $scope.materno="";
+    $scope.getClientes=function(){
+        var url="";
+        if ($scope.nombre!="")
+            url=url+"nombre="+ $scope.nombre;
+        if ($scope.paterno!="")
+            url=url+"&paterno="+ $scope.paterno;
+        if ($scope.materno!="")
+            url=url+"&materno="+ $scope.materno;
+        $http.get("/customers.json?"+url)
+        .success(function(data){
+             $scope.clientes=data;
+             console.log(data);
+             console.log("/customers.json?"+url);
+        })
+        .error(function(data){
+            console.log(data);
+        });
+    }
+    $scope.getClientes();
+}]);
   </script>
 </head>
 <body id="top" class="scrollspy">
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">three</a></li>
+    </ul>
     <div class="navbar-fixed"> 
      <nav>
       <%if current_user.nil? %>
