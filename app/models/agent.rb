@@ -29,6 +29,7 @@ class Agent < ActiveRecord::Base
     presence:true
      validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
      
+     
   def RFC=(val)
     write_attribute :RFC, val.upcase
   end

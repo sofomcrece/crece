@@ -32,11 +32,41 @@
             console.log($scope.colonias);
       			console.log($scope.localidades);
     			}  
-    				
+    			 var ret = [];
+    			 var val = $scope.localidades;
+    			 var flag = false;
+    			 for (var x = 0;x < val.length;x++){
+             for (var y = 0;y < ret.length;y++){
+              if (!(val[x]===ret[y]))
+                flag = true;
+              }
+              if (!flag)
+                ret.push(val[x]);
+            }
+    			  $scope.localidades=[];
+    			  $scope.localidades.push(ret);
+    				console.log("imprecion de  localidades");
+    				console.log($scope.localidades);
     		})
     		.error(function(data){
     			console.log(data);
     		});    
+        }
+        function uniqValues(val){
+          var ret = [];
+          for (var x = 0;x < val.length;x++){
+            if (exist(ret,val[x]))
+              ret.push(val[x]);
+          }
+          return ret;
+        }
+        function exist(arg,val){
+          for (var x = 0;x < arg.length;x++){
+            if (arg[x]===val){
+              return true;
+            }
+            return false;
+          }
         }
     }]);
   </script>

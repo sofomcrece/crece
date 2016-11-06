@@ -42,7 +42,6 @@ class Credit < ActiveRecord::Base
     :codigo_postal,
     :colonia,
     :municipio,
-    :antiguedad_en_el_domicilio_actual,
     :antiguedad_en_el_domicilio_anterior,
     :empresa_donde_labora,
     :giro_de_la_empresa,
