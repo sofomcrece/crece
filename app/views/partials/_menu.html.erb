@@ -9,7 +9,6 @@
 <li><a href="#contact">Contacto</a></li>
     <li><%= link_to 'Iniciar sesión', new_user_session_path%></li>
 <%elsif current_user.tipo==1%>
-    <li><%= link_to 'Creditos', view_credits_path%></li>
     <li><%= link_to 'Clientes', customers_path%></li>
     <li><%= link_to 'Sucursales', branch_offices_path%></li>
     <li><%= link_to 'Agentes', agents_path%></li>

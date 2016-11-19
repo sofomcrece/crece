@@ -1,0 +1,28 @@
+<div class="row card">
+  <h3 class="center-align">
+    
+  </h3>
+</div>
+<div class="row">
+  <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/autorizacion?clave=#{@credit.id}"%>  target = "_blank"><h2 class="valign center-align">Autorizacion</h2></a>
+  </div>
+   <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/caratula?clave=#{@credit.id}"%> target = "_blank"><h2 class="valign center-align">Carátula</h2></a>
+  </div>
+   <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/corrida?clave=#{@credit.id}"%> target = "_blank"> <h2 class="valign center-align">Corrida</h2></a>
+  </div>
+   <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/contrato?clave=#{@credit.id}"%> target = "_blank"><h2 class="valign center-align">Contrato</h2></a>
+  </div>
+   <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/entrevista?clave=#{@credit.id}"%> target = "_blank"><h2 class="valign center-align">Entrevista</h2></a>
+  </div>
+   <div class="col s12 m6 l4 card-panel valign-wrapper">
+    <a href=<%="/view_credits/poliza?clave=#{@credit.id}"%> target = "_blank"><h2 class="valign center-align">Póliza</h2></a>
+  </div>
+  
+</div>
+
+<%= link_to 'Atras',view_credits_aceptadas_path , class:"crud-links" %>

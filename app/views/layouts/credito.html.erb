@@ -22,16 +22,14 @@
     		.success(function(data){
     		  $scope.municipio=data.zip_codes[0].d_mnpio;
     		  $scope.estado =data.zip_codes[0].d_estado;
+    		  
     		  $scope.colonias=[];
           $scope.localidades=[];
+          $scope.localidades.push(data.zip_codes[0].d_ciudad);
     			for (var x=0;data.zip_codes.length;x++){
       			$scope.colonias.push(data.zip_codes[x].d_asenta);
-      			console.log("asenta"+data.zip_codes[x].d_asenta);
-      			console.log("localidad"+data.zip_codes[x].d_ciudad);
-            $scope.localidades.push(data.zip_codes[x].d_ciudad);
-            console.log($scope.colonias);
-      			console.log($scope.localidades);
-    			}  
+    			} 
+    			/*
     			 var ret = [];
     			 var val = $scope.localidades;
     			 var flag = false;
@@ -45,8 +43,9 @@
             }
     			  $scope.localidades=[];
     			  $scope.localidades.push(ret);
-    				console.log("imprecion de  localidades");
-    				console.log($scope.localidades);
+    				alert("dfd");
+    				console.log(ret);
+    				*/
     		})
     		.error(function(data){
     			console.log(data);

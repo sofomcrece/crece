@@ -16,7 +16,7 @@ Loan.create([{nombre:'Arrendamiento financiero'},
             {nombre:'Credito refaccionario'},
             {nombre:'Credito simple'},
             {nombre:'Factoraje finaciero'},
-            {nombre:'Tarjeta de credito'}])
+            {nombre:'Tarjeta de credito'}]) if Loan.all.count==0
             
 Payout.create([{nombre:'Al vencimiento'},
                 {nombre:'Anual'},
@@ -26,7 +26,7 @@ Payout.create([{nombre:'Al vencimiento'},
                 {nombre:'Quincenal'},
                 {nombre:'Semanal'},
                 {nombre:'Semestral'},
-                {nombre:'Trimestral'}])
+                {nombre:'Trimestral'}])  if Payout.all.count==0
 
 User.create(
 email:'luisesh1x10@hotmail.com',
@@ -58,7 +58,7 @@ codigo_postal:45,
 municipio:'luis',
 estado:'luis',
 pais:'luis',
-alias:'luisesh1')
+alias:'luisesh1') if User.all.count==0
 
 
 EconomicalActivity.loadJson('[{"clave":100008,"descripcion":"AGRICULTURA"},
@@ -1320,7 +1320,7 @@ EconomicalActivity.loadJson('[{"clave":100008,"descripcion":"AGRICULTURA"},
 {"clave":9912016,"descripcion":"CONSULADO"},
 {"clave":9912024,"descripcion":"GOBIERNO EXTRANJERO"},
 {"clave":9919012,"descripcion":"SERVICIOS DE OFICINAS Y REPRESENTACIONES DE OTROS PAISES QUE GOZAN DE EXTRATERRITORIALIDAD"},
-{"clave":9999999,"descripcion":"NO CLASIFICADA (USO EXCLUSIVO CNBV)"}]')
+{"clave":9999999,"descripcion":"NO CLASIFICADA (USO EXCLUSIVO CNBV)"}]') if EconomicalActivity.all.count==0
 
 LocalidadCnbv.loadJson('[{"clave":101003,"descripcion":"AGUASCALIENTES MUNICIPIO DE, AGS                                                                                                                      ","entidad_federativa":"AGUASCALIENTES                                                                                                                                        "},
 {"clave":101027,"descripcion":"AGUASCALIENTES LOCALIDAD DE, AGS                                                                                                                      ","entidad_federativa":"AGUASCALIENTES                                                                                                                                        "},
@@ -2321,7 +2321,7 @@ LocalidadCnbv.loadJson('[{"clave":101003,"descripcion":"AGUASCALIENTES MUNICIPIO
 {"clave":1907008,"descripcion":"APORO, MICH                                                                                                                                           ","entidad_federativa":"MICHOACAN                                                                                                                                             "},
 {"clave":1908009,"descripcion":"AQUILA, MICH                                                                                                                                          ","entidad_federativa":"MICHOACAN                                                                                                                                             "},
 {"clave":1909004,"descripcion":"ARIO DE ROSALES, MICH                                                                                                                                 ","entidad_federativa":"MICHOACAN                                                                                                                                             "},
-{"clave":1910005,"descripcion":"ARTEAGA, MICH                                                                                                                                         ","entidad_federativa":"MICHOACAN                                                                                                                                             "}]')
+{"clave":1910005,"descripcion":"ARTEAGA, MICH                                                                                                                                         ","entidad_federativa":"MICHOACAN                                                                                                                                             "}]') if LocalidadCnbv.all.count==0
 
 
 State.loadJson('[{"clave":1,"descripcion":"Aguascalientes                                    "},
@@ -2355,7 +2355,7 @@ State.loadJson('[{"clave":1,"descripcion":"Aguascalientes                       
 {"clave":29,"descripcion":"Tlaxcala                                          "},
 {"clave":30,"descripcion":"Veracruz de Ignacio de la Llave                   "},
 {"clave":31,"descripcion":"Yucatán                                           "},
-{"clave":32,"descripcion":"Zacatecas                                         "}]')
+{"clave":32,"descripcion":"Zacatecas                                         "}]') if State.all.count==0
 
 Country.loadJson('[{"clave":1,"pais":"Andorra                                           "},
 {"clave":2,"pais":"Emiratos Árabes Unidos                            "},
@@ -2601,7 +2601,7 @@ Country.loadJson('[{"clave":1,"pais":"Andorra                                   
 {"clave":245,"pais":"Zaire                                             "},
 {"clave":246,"pais":"Zambia                                            "},
 {"clave":247,"pais":"Zimbabwe                                          "},
-{"clave":248,"pais":"Otro                                              "}]')
+{"clave":248,"pais":"Otro                                              "}]')  if Country.all.count==0
 
 Profecion.loadJson('[{"clave":10001,"descripcion":"ACTUARIA"},
 {"clave":10002,"descripcion":"ARQUITECTURA"},
@@ -2708,7 +2708,7 @@ Profecion.loadJson('[{"clave":10001,"descripcion":"ACTUARIA"},
 {"clave":50001,"descripcion":"NOMBRE DEL NIVEL"},
 {"clave":50002,"descripcion":"TECNICO"},
 {"clave":50003,"descripcion":"BACHILLERATO"},
-{"clave":50004,"descripcion":"INICIACION UNIVERSITARIA"}]')
+{"clave":50004,"descripcion":"INICIACION UNIVERSITARIA"}]')  if Profecion.all.count==0
 
 Ocupation.loadJson('[{"clave":100,"descripcion":"ADMINISTRACION DE PERSONAL"},
 {"clave":101100,"descripcion":" AUXILIAR DE PERSONAL"},
@@ -3545,4 +3545,4 @@ Ocupation.loadJson('[{"clave":100,"descripcion":"ADMINISTRACION DE PERSONAL"},
 {"clave":9000,"descripcion":"OTRAS OCUPACIONES"},
 {"clave":90009001,"descripcion":"JUBILADO"},
 {"clave":90009002,"descripcion":"PENSIONADO"},
-{"clave":90009999,"descripcion":"SIN OCUPACION"}]')
+{"clave":90009999,"descripcion":"SIN OCUPACION"}]')  if Ocupation.all.count==0

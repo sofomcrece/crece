@@ -42,7 +42,6 @@ class Credit < ActiveRecord::Base
     :codigo_postal,
     :colonia,
     :municipio,
-    :antiguedad_en_el_domicilio_anterior,
     :empresa_donde_labora,
     :giro_de_la_empresa,
     :puesto,
@@ -57,17 +56,14 @@ class Credit < ActiveRecord::Base
     :lugar_donde_se_realizara_el_pago,
     :nombre_referencia_1,
     :domicilio_referencia_1,
-    :telefono_fijo_referencia_1,
-    :telefono_celular_referencia_1,
+   
     :nombre_referencia_2,
     :domicilio_referencia_2,
-    :telefono_fijo_referencia_2,
-    :telefono_celular_referencia_2,
+   
     
     :nombre_referencia_familiar,
     :domicilio_referencia_familiar,
-    :telefono_fijo_referencia_familiar,
-    :telefono_celular_referencia_familiar,
+    
     :nombre_completo_familiar_2,
     :parentesco_2,
     :nombre_completo_1,
@@ -80,7 +76,6 @@ class Credit < ActiveRecord::Base
     :edad_3,
     :parentesco_del_dependiente_3,
     :economical_activity_id,
-    :country_id,
     :estado_actual,
     :localidad,
     presence: true
@@ -88,6 +83,11 @@ class Credit < ActiveRecord::Base
     def default_values
       self.status ||= 0
     end
+    validates :status, :inclusion => {:in => [nil,0,1,2,3]}
+    # 0 por aceptar
+    # 1 aceptado
+    # 2 rechazada
+    # 3 finalizada
     validates :sexo,
     :inclusion => { :in => [nil,true, false] }
     validates :sexo,

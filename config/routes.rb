@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  get 'test/t21'
+  get 'view_credits/documentos',to:'view_credits#documentos'
+  get 'view_credits/autorizacion',to:'view_credits#autorizacion'
+  get 'view_credits/caratula',to:'view_credits#caratula'
+  get 'view_credits/corrida',to:'view_credits#corrida'
+  get 'view_credits/contrato',to:'view_credits#contrato'
+  get 'view_credits/entrivista',to:'view_credits#entrivista'
+  get 'view_credits/poliza',to:'view_credits#poliza'
+  
+  get 'view_credits',to:'view_credits#index',as:'view_credits'
+  get 'view_credits/aceptadas',to:'view_credits#aceptadas',as:'view_credits_aceptadas'
+  get 'view_credits/rechazadas',to:'view_credits#rechazadas',as:'view_credits_rechazadas'
+  resources :view_credits
   resources :customers
   resources :credits
   resources :payouts
@@ -11,7 +24,6 @@ Rails.application.routes.draw do
   resources :users
   get 'perfil',to:'users#perfil',as:'perfil'
    post 'users/create2',to:'users#create2'
-   resources :view_credits
 #  get 'profile/show',to:'profile#show',as:'show_profile'
 #  get 'profile/new',to:'profile#new',as:'new_profile'
 #  post 'profile/create',to:'profile#create',as:'create_profile'

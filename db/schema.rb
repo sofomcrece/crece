@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006213949) do
+ActiveRecord::Schema.define(version: 20161108154802) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -162,8 +162,6 @@ ActiveRecord::Schema.define(version: 20161006213949) do
     t.integer  "codigo_postal"
     t.string   "colonia"
     t.string   "municipio"
-    t.string   "antiguedad_en_el_domicilio_actual"
-    t.string   "antiguedad_en_el_domicilio_anterior"
     t.string   "empresa_donde_labora"
     t.string   "giro_de_la_empresa"
     t.string   "puesto"
@@ -212,6 +210,8 @@ ActiveRecord::Schema.define(version: 20161006213949) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.date     "fecha_de_nacimiento_conyuge"
+    t.string   "antiguedad_en_el_domicilio_actual"
+    t.string   "antiguedad_en_el_domicilio_anterior"
   end
 
   add_index "customers", ["country_id"], name: "index_customers_on_country_id"
