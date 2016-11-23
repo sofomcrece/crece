@@ -1,6 +1,6 @@
 class Credit < ActiveRecord::Base
     belongs_to :economical_activity
-    belongs_to :country
+    belongs_to :customer
     
     has_attached_file :croquis
     validates_attachment_content_type :croquis, content_type: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
@@ -24,7 +24,6 @@ class Credit < ActiveRecord::Base
     :telefono_de_casa,
     :telefono_celular,
     :email_1,
-    :email_2,
     :escolaridad,
     :numero_de_dependientes_economicos,
     :gasto_promedio_mensual,
@@ -32,7 +31,6 @@ class Credit < ActiveRecord::Base
     :apellido_paterno_del_conyuge,
     :apellido_materno_del_conyuge,
     :nombre_1_del_conyuge,
-    :nombre_2_del_conyuge,
     :telefono_celular_del_conyuge,
     :telefono_de_oficina_del_conyuge,
     :calle,
@@ -66,18 +64,10 @@ class Credit < ActiveRecord::Base
     
     :nombre_completo_familiar_2,
     :parentesco_2,
-    :nombre_completo_1,
-    :edad_1,
-    :parentesco_del_dependiente_1,
-    :nombre_completo_2,
-    :edad_2,
-    :parentesco_del_dependiente_2,
-    :nombre_completo_3,
-    :edad_3,
-    :parentesco_del_dependiente_3,
     :economical_activity_id,
     :estado_actual,
     :localidad,
+    :product_id,
     presence: true
     before_save :default_values
     def default_values
@@ -89,23 +79,25 @@ class Credit < ActiveRecord::Base
     # 2 rechazada
     # 3 finalizada
     validates :sexo,
-    :inclusion => { :in => [nil,true, false] }
+    :inclusion => { :in => [nil,1, 0] }
     validates :sexo,
     :presence => { :if => 'sexo.nil?' }
     
     validates :es_cliente,
-    :inclusion => { :in => [nil,true, false] }
+    :inclusion => { :in => [nil,1, 0] }
     validates :es_cliente,
     :presence => { :if => 'es_cliente.nil?' }
     
     validates :familiar_con_prestamo,
-    :inclusion => { :in => [nil,true, false] }
+    :inclusion => { :in => [nil,1, 0] }
     validates :familiar_con_prestamo,
     :presence => { :if => 'familiar_con_prestamo.nil?' }
-    
-    
+    validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
+    #eee555555eee
+     validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
+     #BEML920313HCMLNS09.
      validates :agente_empresa,
-    :inclusion => { :in => [nil,true, false] }
+    :inclusion => { :in => [nil,1, 0] }
     validates :agente_empresa,
     :presence => { :if => 'agente_empresa.nil?' }
 end
