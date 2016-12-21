@@ -1,7 +1,5 @@
 
-<%unless current_user.nil?%>
-    <li><%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %></li> 
-<%end%>
+
 <%if current_user.nil?%>
     <li><%= link_to 'Quienes somos',"#quienes_somos"%></li>
     <li><a href="#row">Sucursales</a></li>
@@ -15,7 +13,9 @@
     
     <li><%= link_to 'Empresas', companies_path%></li>
     <li><%= link_to 'Productos', products_path%></li>
+    <li><%= link_to 'Pagos y recibos', receipts_path%></li>
     <li><%= link_to 'Usuarios', users_path%></li>
+    <li><%= link_to 'Configuraciones', Conf.last%></li>
 <%elsif current_user.tipo==2%>
     <li><%= link_to 'Creditos', credit_path%></li>
 <%elsif current_user.tipo==3%>
@@ -23,6 +23,9 @@
     
 <%elsif current_user.tipo==4%>
     
+<%end%>
+<%unless current_user.nil?%>
+    <li><%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %></li> 
 <%end%>
 <!--
  <li><%= link_to "Perfil", perfil_path %></li>

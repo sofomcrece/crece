@@ -30,24 +30,44 @@
       .error(function(data){
           console.log(data);
       });
+    }else if(($scope.url.split("/")[longitud-1]==="new")){
+      
+    }else{
+      console.log($scope.url.split("/",longitud-1).join("/")+".json");
+      $http.get($scope.url.split("/",longitud).join("/")+".json")
+      .success(function(data){
+          $scope.credito=data;
+          ajuste_credito();
+          console.log( $scope.credito);
+      })
+      .error(function(data){
+          console.log(data);
+      });
+      $scope.block =true;
     }
     function ajuste_credito(){
+      console.log("cambio"+$scope.credito.fecha_de_nacimiento_conyuge);
+      $scope.credito.fecha_de_nacimiento=$scope.credito.fecha_de_nacimiento+"";
+      $scope.credito.fecha_de_nacimiento_conyuge=$scope.credito.fecha_de_nacimiento_conyuge+"";
+      console.log("cambio"+$scope.credito.fecha_de_nacimiento_conyuge);
         $scope.credito.fecha_de_nacimiento = new Date($scope.credito.fecha_de_nacimiento.split("-")[0],$scope.credito.fecha_de_nacimiento.split("-")[1],$scope.credito.fecha_de_nacimiento.split("-")[2]);
           $scope.credito.fecha_de_nacimiento_conyuge = new Date($scope.credito.fecha_de_nacimiento_conyuge.split("-")[0],$scope.credito.fecha_de_nacimiento_conyuge.split("-")[1],$scope.credito.fecha_de_nacimiento_conyuge.split("-")[2]);
           $scope.credito.referencia_agenteEmpresa=$scope.credito.referencia_agenteEmpresa+"";
           $scope.credito.colonia=$scope.credito.colonia+"";
           $scope.credito.economical_activity_id=$scope.credito.economical_activity_id+"";
            $scope.credito.antiguedad_en_el_domicilio_actual_anos = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
-           $scope.credito.antiguedad_en_el_domicilio_actual_meses = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
-           $scope.credito.antiguedad_en_el_domicilio_anterior_anos = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
-           $scope.credito.antiguedad_en_el_domicilio_anterior_meses = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
+           $scope.credito.antiguedad_en_el_domicilio_actual_meses = $scope.credito.antiguedad_en_el_domicilio_actual_meses+"";
+           $scope.credito.antiguedad_en_el_domicilio_anterior_anos = $scope.credito.antiguedad_en_el_domicilio_anterior_anos+"";
+           $scope.credito.antiguedad_en_el_domicilio_anterior_meses = $scope.credito.antiguedad_en_el_domicilio_anterior_meses+"";
+           $scope.credito.antiguedad_laboral_anos = $scope.credito.antiguedad_laboral_anos+"";
+           $scope.credito.antiguedad_laboral_meses = $scope.credito.antiguedad_laboral_meses+"";
            $scope.agente_o_empresa();
           $scope.type();
     }
     $scope.rellenar=function(data){
       $('#autorelleno').hide();
       $scope.credito= data;
-      
+      ajuste_credito();
       console.log(data);
     }
     $scope.ocultar=function(){

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123134632) do
+ActiveRecord::Schema.define(version: 20161218040545) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20161123134632) do
     t.datetime "updated_at",                   null: false
     t.integer  "user_id"
     t.string   "clave"
+    t.string   "banco"
+    t.string   "cuenta"
   end
 
   add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id"
@@ -110,6 +112,14 @@ ActiveRecord::Schema.define(version: 20161123134632) do
   end
 
   add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id"
+
+  create_table "confs", force: :cascade do |t|
+    t.string   "telefono"
+    t.string   "domicilio"
+    t.string   "correo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "countries", force: :cascade do |t|
     t.integer  "clave"
@@ -167,7 +177,6 @@ ActiveRecord::Schema.define(version: 20161123134632) do
     t.string   "giro_de_la_empresa"
     t.string   "puesto"
     t.string   "telefono_empresa"
-    t.string   "antiguedad_laboral"
     t.string   "sueldo_mensual_neto"
     t.string   "dirreccion_empresa"
     t.string   "colonia_empresa"
@@ -224,6 +233,9 @@ ActiveRecord::Schema.define(version: 20161123134632) do
     t.integer  "antiguedad_en_el_domicilio_anterior_meses"
     t.string   "country"
     t.integer  "customer_id"
+    t.integer  "antiguedad_laboral_anos"
+    t.integer  "antiguedad_laboral_meses"
+    t.integer  "numero_de_cheque"
   end
 
   add_index "credits", ["customer_id"], name: "index_credits_on_customer_id"
@@ -275,7 +287,6 @@ ActiveRecord::Schema.define(version: 20161123134632) do
     t.string   "giro_de_la_empresa"
     t.string   "puesto"
     t.string   "telefono_empresa"
-    t.string   "antiguedad_laboral"
     t.string   "sueldo_mensual_neto"
     t.string   "dirreccion_empresa"
     t.string   "colonia_empresa"
@@ -401,6 +412,12 @@ ActiveRecord::Schema.define(version: 20161123134632) do
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer  "folio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "states", force: :cascade do |t|

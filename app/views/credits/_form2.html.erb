@@ -1,10 +1,9 @@
 
 <div ng-controller="solicitud">
-  
-<div id="father" style='position:relative; background-image: url("<%=image_path("creditoback")%>");  
-  background-size: 1200px 1800px; 
-  background-repeat: no-repeat;'>
-  <%= form_for @credit,class:"father" do |f| %>
+  <div id="errores" style="background-color:#f0f0ff;border-size:2px;border-style:solid;z-index:99;overflow-y: scroll;">
+    <div>
+      
+      <%= form_for @credit,class:"father" do |f| %>
     <% if @credit.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
@@ -16,6 +15,13 @@
         </ul>
       </div>
     <% end %>
+      <input type="button" onclick="$('#errores').hide()" value="Cerrar">
+    </div>
+  </div>
+<div id="father" style='position:relative; background-image: url("<%=image_path("creditoback")%>");  
+  background-size: 1200px 1800px; 
+  background-repeat: no-repeat;'>
+  
       <div style="top:0px;left:925px;position:absolute;">
         <p>
           <%= f.radio_button  :agente_empresa,1,checked:true,"value":true,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_true", "Agente" %>
@@ -124,16 +130,16 @@
         <%= f.text_field :fecha_de_nacimiento, class:"datepicker",type:"date", autocomplete: "off",:style=>"position:absolute;top:520px;left:70px;width:150px;height:22px;","ng-model":"credito.fecha_de_nacimiento" ,"ng-disabled":"block"%>
       </div>
       <div>
-        <label style="position:absolute;top:497px;left:250px;width:200px;height:22px;background-color: white;font-weight: bold;font-family:'Calibri';">PAIS DE NACIMIENTO*</label>
+        <label style="position:absolute;top:497px;left:250px;width:200px;height:22px;background-color: white;font-weight: bold;font-family:'Calibri';">PAIS DE NACIMIENTO<span style="color:red;">*</span></label>
         <div>
           <%=f.text_field :country, :style=>"position:absolute;top:520px;left:250px;width:200px;height:22px;","ng-model":"credito.country","ng-disabled":"block"%>
         </div>
       </div>
       <div>
-        <%=f.text_field :estado_de_nacimiento,:style=>"position:absolute;top:520px;left:470px;width:285px;height:22px;","ng-model":"credito.estado_de_nacimiento" ,"ng-disabled":"block"%>
+        <%=f.collection_select(:estado_de_nacimiento,State.all,:descripcion,:descripcion,{:prompt => 'Estado de nacimiento:'},{"ng-model":"credito.estado_de_nacimiento","ng-disabled":"block",:style=>"position:absolute;top:520px;left:470px;width:285px;height:22px;"})%>
       </div>
       <div>
-        <label style="position:absolute;top:497px;left:770px;width:150px;height:22px;background-color: white;font-weight: bold;font-family: 'Calibri';">CIUDAD*</label>
+        <label style="position:absolute;top:497px;left:770px;width:150px;height:22px;background-color: white;font-weight: bold;font-family: 'Calibri';">CIUDAD<span style="color:red;">*</span></label>
         <%= f.text_field :ciudad_de_nacimiento,:style=>"position:absolute;top:520px;left:770px;width:150px;height:22px;","ng-model":"credito.ciudad_de_nacimiento","ng-disabled":"block" %>
       </div>
       <div style="position:absolute;top:525px;left:950px;">
@@ -332,7 +338,8 @@
         <%= f.text_field :telefono_empresa,:style=>"position:absolute;top:1300px;left:70px;width:370px;height:18px;" ,"ng-model":"credito.telefono_empresa","ng-disabled":"block"%>
       </div>
       <div class="input-field col s12 m4 l4">
-        <%= f.text_field :antiguedad_laboral,:style=>"position:absolute;top:1300px;left:470px;width:300px;height:18px;","ng-model":"credito.antiguedad_laboral","ng-disabled":"block" %>
+        <%= f.select :antiguedad_laboral_anos, ((0..80).map {|i| ["#{i} años",i] }),{prompt:"años"},:style=>"position:absolute;top:1300px;left:470px;width:150px;height:18px;","ng-model":"credito.antiguedad_laboral_anos","ng-disabled":"block"  %>
+        <%= f.select :antiguedad_laboral_meses, ((0..11).map {|i| ["#{i} meses",i] }),{prompt:"meses"},:style=>"position:absolute;top:1300px;left:620px;width:150px;height:18px;","ng-model":"credito.antiguedad_laboral_meses","ng-disabled":"block"  %>
       </div>
       <div class="input-field col s12 m4 l4">
         <%= f.text_field :sueldo_mensual_neto,:style=>"position:absolute;top:1300px;left:810px;width:300px;height:18px;","ng-model":"credito.sueldo_mensual_neto","ng-disabled":"block" %>
@@ -351,7 +358,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3">
-        <%= f.text_field :monto_solicitud,:style=>"position:absolute;top:1440px;left:100px;width:150px;height:25px;","ng-model":"credito.monto_solicitud"%>
+        <%= f.text_field :monto_solicitud,:style=>"position:absolute;top:1440px;left:100px;width:150px;height:25px;","ng-model":"credito.monto_solicitud","ng-disabled":"block"%>
       </div>
       <div class="col s12 m3 l3">
         <p>
@@ -426,7 +433,7 @@
           <%=f.label :observaciones%>: <br>
           <%= f.text_field :observaciones,:style=>"width:600px;height:100px;","ng-model":"credito.observaciones"%>
         </div>
-        <%=f.collection_select(:product_id,Product.all,:id,:nombre_del_producto,{:prompt => 'Productos:'},{"ng-model":"credito.product_id","ng-disabled":"block"})%>
+        <%=f.collection_select(:product_id,Product.all,:id,:nombre_del_producto,{:prompt => 'Productos:'},{"ng-disabled":"block"})%>
         <div class="input-field col s12">
           <%= f.file_field  :croquis%>
          </div>

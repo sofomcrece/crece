@@ -102,7 +102,14 @@
     <%= f.collection_select(:user_id, User.all, :id, :nom1, :prompt => 'Usuario:') %>
     <%=f.label :user_id, "Usuario" %>
     </div>
-  
+    <div class="field">
+      <%= f.label :banco,"Banco" %>
+      <%= f.text_field :banco %>
+    </div>
+    <div class="field">
+      <%= f.label :cuenta%>
+      <%= f.text_field :cuenta %>
+    </div>
 </div>    
     <div class="actions">
       <%= f.submit "Guardar"%>

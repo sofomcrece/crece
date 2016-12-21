@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  get 'receipts/index', to: 'receipts#index', as: 'receipts'
+
+  get 'receipts/crear'
+
+  get 'receipts/baja'
+
+  resources :confs , except:[:new,:create,:index,:delete]
   get 'test/t21'
   get 'view_credits/documentos',to:'view_credits#documentos'
   get 'view_credits/autorizacion',to:'view_credits#autorizacion'
   get 'view_credits/caratula',to:'view_credits#caratula'
   get 'view_credits/corrida',to:'view_credits#corrida'
   get 'view_credits/contrato',to:'view_credits#contrato'
-  get 'view_credits/entrivista',to:'view_credits#entrivista'
+  get 'view_credits/entrevista',to:'view_credits#entrevista'
   get 'view_credits/poliza',to:'view_credits#poliza'
   
   get 'view_credits',to:'view_credits#index',as:'view_credits'

@@ -2,7 +2,6 @@
 <html ng-app ="app_marjo">
 <head>
   <title>Workspace</title>
-  
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +56,59 @@
         });
     }
     $scope.getClientes();
+}])
+.controller("numero_de_cheque_c",["$scope","$http","$location",function($scope,$http,$location){
+  $scope.numero=0;
+  var clave = $location.absUrl().split("=")[1];
+  var url="/credits/"+clave;
+  $scope.enviar=function(){
+   $.ajax({
+      type:'PUT',
+      url: '/credits/'+clave,
+      dataType: 'json',
+      data: { credit: { numero_de_cheque:$scope.numero}},
+      success: function(data){
+        console.log(data);
+                 },
+      error: function(data){
+        console.log(data);
+      }
+    });
+  };
+  
+}])
+.controller("recibos",["$scope","$http",function($scope,$http){
+  $scope.sucursales=[];
+  $scope.agente_empresa=1;
+  
+  $scope.hijos = [];
+  
+  $scope.cargarHijos = function(){
+    var url = "";
+    if ($scope.agente_empresa == 1)
+      url = "https://marjor-luisesh11.c9users.io/agents.json";
+    else
+      url = "https://marjor-luisesh11.c9users.io/companies.json"
+   
+    $http.get(url)
+    .success(function(data){
+      console.log(data);
+       $scope.hijos = data;
+    })
+    .error(function(data){
+      console.log(data);
+    });
+     $scope.tipo = ($scope.agente_empresa == 1)? "Agente": "Empresa";
+  }
+  $http.get("https://marjor-luisesh11.c9users.io/branch_offices.json")
+  .success(function(data){
+    console.log(data);
+    $scope.sucursales=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  
 }]);
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -80,7 +132,11 @@
         <%=link_to "Marjo",root_path,class:"brand-logo"%>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
+          <%unless current_user.nil?%>
+          <%if current_user.tipo==1%>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li> 
+          <%end%>
+          <%end%>
           <%=render "partials/menu"%>
         </ul>
         <ul class="side-nav" id="mobile-demo">

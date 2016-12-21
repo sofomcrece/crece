@@ -29,7 +29,7 @@
         <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
         <td><%= credit.RFC %></td>
         <td><%= credit.monto_solicitud %></td>
-        <td><%= link_to 'Mostrar',"/view_credits/#{credit.id}",class:'crud-links' %></td>
+        <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
       </tr>
       
     <% end %>

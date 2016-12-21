@@ -1,7 +1,8 @@
 class CorridaPdf < Prawn::Document
-  def initialize(credit)
-    super(:margin => [0,0,0,0])
+  def initialize(credit,arreglo)
+    super()
     @credit = credit 
+    @arreglo = arreglo
     text_content
   end
   
@@ -11,31 +12,11 @@ class CorridaPdf < Prawn::Document
   end
   
   def text_content
-    # The cursor for inserting content starts on the top left of the page. Here we move it down a little to create more space between the text and the image inserted above
-    y_position = cursor - 0
+    monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
+    image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
+    table([["FECHA DE PRESTAMO", @credit.fecha], ["MONTO PRESTAMO",@credit.monto_solicitud], ["MONTO A PAGAR", monto_a_pagar], ["PAGO FIJO", monto_a_pagar/@credit.product.numero_de_pagos_a_realizar], ["TASA INTERES","#{@credit.product.taza_de_interes_ordinaria}%"], ["PLAZO",@credit.product.plazo_de_prestamo], ["PERIODICIDAD", @credit.product.nombre_del_producto], ["CAT SIN IVA","#{@credit.product.cat_sin_iva}%"]],:cell_style => { size: 10 })
+    move_down 20
+    table(@arreglo,:cell_style => { size: 8 })
 
-    # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
-    
-      table_content
-  end
-
-  def table_content
-    table  product_rows,:cell_style => { size: 5,border_width:0} do
-      row(0).font_style = :bold
-      self.header = true
-    end
-  end
-
-  def product_rows
-    [['Peridodo', 'fecha de pago', 'Saldo inicial', 'Capital', 'Interes', 'IVA de interes', 'Pago Total', 'Saldo final' ]] +
-      total= @credit.monto_solicitud.to_f + @credit.monto_solicitud.to_f * 0.26
-      pago = total/12
-      interes =pago*0.26
-      capital = pago-interes
-      iva = interes*0.16
-      
-      [1..12].each do |n|
-      [n, @credit.fecha, total-((n-1)*pago),capital,interes,iva,pago,"hola" ]
-    end
   end
 end

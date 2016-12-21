@@ -11,6 +11,8 @@ class BranchOffice < ActiveRecord::Base
     :codigo_postal,
     :municipio,
     :estado,
+    :banco,
+    :cuenta,
     :telefono_oficina,
     :telefono_celular,
     :correo1,

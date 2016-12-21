@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @conf.telefono %>
+</p>
+
+<p>
+  <strong>Domicilio:</strong>
+  <%= @conf.domicilio %>
+</p>
+
+<p>
+  <strong>Correo:</strong>
+  <%= @conf.correo %>
+</p>
+
+<%= link_to 'Editar', edit_conf_path(@conf),class:"crud-links" %> |

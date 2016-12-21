@@ -25,4 +25,12 @@ class Company < ActiveRecord::Base
     :inclusion => { :in => [true, false] }
   validates :permitir_prestamo_multiple ,
     :presence => { :if => 'permitir_prestamo_multiple.nil?' }
+  def nombre_completo
+    nombre_de_empresa
+  end
+  def domicilio
+    cad = "calle #{calle}, no_ext:#{numero_exterior}, "
+    cad = cad + "no_int: #{numero_interior} " unless numero_interior.nil?
+    cad =cad +" colonia: #{colonia}, cp: #{codigo_postal}"
+  end
 end

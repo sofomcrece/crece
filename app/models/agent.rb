@@ -42,4 +42,12 @@ class Agent < ActiveRecord::Base
     :inclusion => { :in => [true, false] }
   validates :sexo,
     :presence => { :if => 'sexo.nil?' }
+  def nombre_completo
+    "#{apellido_materno} #{apellido_materno} #{nombre_1} #{nombre_2}"
+  end
+  def domicilio
+    cad = "calle #{calle}, no_ext:#{numero_exterior}, "
+    cad = cad + "no_int: #{numero_interior} " unless numero_interior.nil?
+    cad =cad +" colonia: #{colonia}, cp: #{codigo_postal}"
+  end
 end

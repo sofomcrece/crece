@@ -71,6 +71,6 @@ class BranchOfficesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def branch_office_params
-      params.require(:branch_office).permit(:clave,:user_id,:nombre, :calle, :no_ext, :no_int, :colonia, :codigo_postal, :municipio, :estado, :telefono_oficina, :telefono_celular, :correo1, :correo2, :comision_por_colocacion, :comision_por_cobranza, :monto_maximo_adeudo_sucursal, :formato_impresion)
+      params.require(:branch_office).permit(:banco,:cuenta,:clave,:user_id,:nombre, :calle, :no_ext, :no_int, :colonia, :codigo_postal, :municipio, :estado, :telefono_oficina, :telefono_celular, :correo1, :correo2, :comision_por_colocacion, :comision_por_cobranza, :monto_maximo_adeudo_sucursal, :formato_impresion)
     end
 end
