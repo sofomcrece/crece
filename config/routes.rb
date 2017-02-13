@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  get 'receipts/index', to: 'receipts#index', as: 'receipts'
+  resources :tickets
+  resources :destinations
+  resources :payments
+  resources :receipts
 
   get 'receipts/crear'
 
   get 'receipts/baja'
+  
+
+  
 
   resources :confs , except:[:new,:create,:index,:delete]
   get 'test/t21'

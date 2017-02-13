@@ -1,0 +1,39 @@
+<div ng-controller="payment">
+ <div class= "col s12 m12 12 "></div>
+             <table class="striped" >
+                <thead>
+                  <tr>
+                      <th data-field="Nombre">Folio</th>
+                      <th data-field="Monto">Fecha</th>
+                      <th data-field="price">Recibo</th>
+                      <th data-field="price">Estatus</th>
+                      <th data-field="price">Importe</th>
+                      <th data-field="price">Pago</th>
+                      <th data-field="price">Interes</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr ng-repeat = "ele in pagos">
+                    <td>{{ele.ultimo_recibo.id}}</td>
+                    <td>{{ele.fecha_de_pago}}</td>
+                    <td>{{ele.recibo}}</td>
+                    <td>{{ele.estatus}}</td>
+                    <td>{{ele.importe_con_pago}}</td>
+                    <td>
+                        <input type="decimal" class="validate" ng-model ="ele.pago" ng-change="actualizar_pagos(ele)"  ng-disabled=ele.active>
+                    </td>
+                    <td>{{ele.interes}}</td>
+                    <td>
+                      <div ng-if="ele.activo">
+                        <a class="waves-effect waves-light btn" ng-click="pagar(ele)"  ng-disabled=ena_botton id="ena_botton">Hacer Pagos</a>
+                      </div>
+                      <div >
+                        <a class="waves-effect waves-light btn" href = "{{ele.ultimo_recibo_url}}">ver recibo</a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>

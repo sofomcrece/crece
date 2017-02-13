@@ -14,9 +14,10 @@ class ViewCreditsController < ApplicationController
   # GET /credits/1.json
   def show
   end
+  
   def documentos
-    
   end
+  
   def autorizacion
     pdf = AutorizacionPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
@@ -30,6 +31,15 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   def contrato
+    if (@credit.fecha_de_contrato.nil?)
+      @credit.update(fecha_de_contrato:Time.now)
+      getArreglo()
+      n = 0
+      @datos.each do |d|
+        n += 1
+        Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0)
+      end
+    end
     pdf = ContratoPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
@@ -42,23 +52,77 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   def corrida
-    @total= @credit.monto_solicitud.to_f + @credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100)
-    @pago = @total/@credit.product.numero_de_pagos_a_realizar
-    @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
-    @interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
-    @iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
-    fecha = @credit.fecha
-    @arreglo = []
-    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
-    @credit.product.numero_de_pagos_a_realizar.times do |n|
-    @arreglo.push([ "#{n+1}","#{(n%2==1)? fecha=fecha+15.day : fecha=fecha.end_of_month}","$#{(@total-((n)*@pago)).round(2)}","$#{@capital.round(2)}","$#{@interes.round(2)}","$#{@iva.round(2)}","$#{@pago.round(2)}","$#{((@total-((n)*@pago))-@pago).round(2)}"])
-  end
+    getArreglo()
     pdf = CorridaPdf.new(@credit,@arreglo)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
     
     
   end
-  
+   def inferior(val,array)
+      array.sort!
+      array.reverse!
+      array.each do |n|                                                                                                                                                                                                                   
+        return n.to_i if val.to_i > n.to_i
+      end
+      return val.to_i
+   end
+  def getArreglo
+     if (@credit.fecha_de_contrato.nil?)
+      fecha = Time.now.to_date
+    else
+      fecha = "20/02/2017".to_datetime
+    end
+    cantidad= @credit.product.payout.getDays.length
+    fin_mes= @credit.product.payout.getDays.include? "-1"
+    dias=  @credit.product.payout.getDays - ["-1"]
+    dias_int =[]
+    dias.each do |i|
+      dias_int.push(i.to_i)
+    end
+    dias_int.sort!
+    dias.push("-1") if fin_mes
+    cortes =  @credit.product.payout.getFlow.sort!
+    dia_inicial = nil;
+      
+      cont = 0
+      dias.each do |dia|
+         dia= fecha.end_of_month.day if dia=="-1"
+         if fecha.day<dia.to_i
+           if fecha.day <inferior(dia,cortes)
+            dia_inicial=cont
+            puts "dia #{dia}"
+            break
+           end
+         end
+         cont +=1
+      end
+        
+        if dia_inicial==nil
+          dia_inicial = 0
+        end
+        puts "dia inicial #{dia_inicial}"
+        puts dias
+    @total= @credit.monto_solicitud.to_f + @credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100)
+    @pago = @total/@credit.product.numero_de_pagos_a_realizar
+    @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
+    @interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
+    @iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
+    @datos = []
+    @arreglo = []
+    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
+    @credit.product.numero_de_pagos_a_realizar.times do |n|
+      @datos.push([n+1,fecha= getFecha(dias,dia_inicial,n,fecha),(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago)])
+      @arreglo.push([ "#{n+1}",fecha,"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+    end
+  end
+  def getFecha(dias,inicio,contador,fecha)
+    contador = contador + inicio
+    index =(contador)%dias.length
+    avance = 0
+    avance = contador%dias.length==0?1.month : 0.month unless contador==0
+    return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
+  end
+    
  def set_credit
       @credit = Credit.find(params[:clave])
  end

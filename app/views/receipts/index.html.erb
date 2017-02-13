@@ -1,7 +1,9 @@
 
 <div ng-controller="recibos">
      <div class = "row">
+       <h1 align="center">Generar Recibos</h1>
          <div class = "col s12 m6 l4">
+           
     
              <select class="browser-default" ng-model="data.sucursales.repeatSelect" ng-change="cargarHijos()">
                  <option value="" selected>Sucursales</option>
@@ -17,41 +19,61 @@
                       <input name="group1" type="radio" id="test2"  value =2  ng-model= "agente_empresa" ng-change="cargarHijos()"/>
                       <label for="test2">Empresa</label>
                     </p>
-                 <select  class="browser-default" ng-model="data.hijos.repeatSelect">
+                 <select  class="browser-default" ng-model="select_op.repeatSelect">
                     <option value="" selected>{{tipo}}</option>
                     <option ng-repeat="option in hijos" value="{{option.id}}">{{option.clave}}</option>
                 </select>
                   </br>
-                 <a class="waves-effect waves-light btn" ng-click="agregar()">Agregar</a>
+                <select  class="browser-default" ng-model="product_select">
+                  <option value="" selected>Productos</option>
+                  <option ng-repeat="option in productos" value="{{option.id}}">{{option.nombre_del_producto}}</option>
+                </select>
+                </br>
+                <input type="date" class="datepicker" ng-model="fecha"  ng-change="cambioDeFecha()">
+                 <a class="waves-effect waves-light btn" ng-click="agregar(select_op.repeatSelect)">Agregar</a>
          </div>
         <div class= "col s12 m6 l6 "></div>
              <table class="striped" >
                 <thead>
                   <tr>
-                      <th data-field="Tipo">Sucursal o Empresa</th>
-                      <th data-field="name">id</th>
-                      <th data-field="price">Nombre</th>
+                      <th data-field="Tipo">Agente o Empresa</th>
+                      <th data-field="price">Clave</th>
+                      <th data-field="price"></th>
                   </tr>
                 </thead>
         
                 <tbody>
-                  <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
-                  </tr>
-                  <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                  </tr>
-                  <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
+                  <tr ng-repeat = "ele in seleccionados">
+                    <td>{{ele.tipo==1 ?"Agente":"Empresa"}}</td>
+                    <td>{{ele.padre.clave}}</td>
+                    <td><a class="waves-effect waves-light btn" ng-click="eliminar($index)">Eliminar</a></td>
                   </tr>
                 </tbody>
               </table>
         </div>
      <a class="waves-effect waves-light btn" ng-click="generar()">Generar</a>
+     
+     
+      <div class= "col s12 m6 l6 " id="fake">
+             <table class="striped" >
+                <thead>
+                  <tr>
+                      <th>Empresa</th>
+                      <th>Fecha Pago</th>
+                      <th>Nombre Cliente</th>
+                      <th>Cantidad a pagar</th>
+                      <th>Fecha de credito</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>7687 6878 687678 687</td>
+                    <td>10000.0</td>
+                     <td>sauceda</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a class="waves-effect waves-light btn" href="https://marjor-luisesh11.c9users.io/view_credits/poliza?clave=6" target="_blank">Imprimir</a>
+            </div>
+        </div>
 </div>

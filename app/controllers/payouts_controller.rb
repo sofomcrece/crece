@@ -1,4 +1,5 @@
 class PayoutsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :create
   before_action :set_payout, only: [:show, :edit, :update, :destroy]
 
   # GET /payouts
@@ -69,6 +70,6 @@ class PayoutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payout_params
-      params.require(:payout).permit(:nombre)
+      params.require(:payout).permit(:nombre,:flow,:days,:type,:periocidad)
     end
 end

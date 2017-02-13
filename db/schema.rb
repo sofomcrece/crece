@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218040545) do
+ActiveRecord::Schema.define(version: 20170208190023) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.string   "RFC"
     t.string   "calle"
     t.integer  "numero_interior"
-    t.integer  "numero_exterior"
+    t.string   "numero_exterior"
     t.string   "colonia"
     t.integer  "codigo_postal"
     t.string   "municipio"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20161218040545) do
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
     t.string   "calle"
-    t.integer  "no_ext"
+    t.string   "no_ext"
     t.integer  "no_int"
     t.string   "colonia"
     t.integer  "codigo_postal"
@@ -81,12 +81,24 @@ ActiveRecord::Schema.define(version: 20161218040545) do
 
   add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id"
 
+  create_table "cities", force: :cascade do |t|
+    t.string   "cve_estado"
+    t.string   "dc_estado"
+    t.string   "cve_localidad_inegi"
+    t.string   "dc_localidad_inegi"
+    t.string   "cve_municipio_siti_codigo_postal"
+    t.string   "dc_municipio_siti"
+    t.string   "cve_colonia_siti_colonia"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string   "clave"
     t.string   "nombre_de_empresa"
     t.string   "razon_social"
     t.string   "calle"
-    t.integer  "numero_exterior"
+    t.string   "numero_exterior"
     t.integer  "numero_interior"
     t.string   "colonia"
     t.integer  "codigo_postal"
@@ -117,8 +129,9 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.string   "telefono"
     t.string   "domicilio"
     t.string   "correo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "representante_legal"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -236,9 +249,12 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.integer  "antiguedad_laboral_anos"
     t.integer  "antiguedad_laboral_meses"
     t.integer  "numero_de_cheque"
+    t.date     "fecha_de_contrato"
+    t.integer  "destination_id"
   end
 
   add_index "credits", ["customer_id"], name: "index_credits_on_customer_id"
+  add_index "credits", ["destination_id"], name: "index_credits_on_destination_id"
   add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id"
   add_index "credits", ["product_id"], name: "index_credits_on_product_id"
 
@@ -334,6 +350,12 @@ ActiveRecord::Schema.define(version: 20161218040545) do
 
   add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id"
 
+  create_table "destinations", force: :cascade do |t|
+    t.string   "descricion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "economical_activities", force: :cascade do |t|
     t.integer  "clave"
     t.string   "descripcion"
@@ -380,10 +402,31 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string   "folio"
+    t.date     "fecha_de_pago"
+    t.string   "recibo"
+    t.integer  "estatus"
+    t.decimal  "importe"
+    t.decimal  "pago"
+    t.decimal  "interes"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "credit_id"
+    t.boolean  "activado"
+  end
+
+  add_index "payments", ["credit_id"], name: "index_payments_on_credit_id"
+
   create_table "payouts", force: :cascade do |t|
     t.string   "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "days"
+    t.string   "flow"
+    t.integer  "type_payout"
+    t.string   "vista"
+    t.string   "periocidad"
   end
 
   create_table "products", force: :cascade do |t|
@@ -416,9 +459,19 @@ ActiveRecord::Schema.define(version: 20161218040545) do
 
   create_table "receipts", force: :cascade do |t|
     t.integer  "folio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "payment_id"
+    t.date     "fecha_de_cargo"
+    t.boolean  "agente_empresa"
+    t.integer  "padre_referencia"
+    t.string   "nombre"
+    t.decimal  "cantidad"
+    t.string   "concepto"
+    t.decimal  "atraso"
   end
+
+  add_index "receipts", ["payment_id"], name: "index_receipts_on_payment_id"
 
   create_table "states", force: :cascade do |t|
     t.integer  "clave"
@@ -426,6 +479,15 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string   "cantidad"
+    t.integer  "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tickets", ["payment_id"], name: "index_tickets_on_payment_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -458,7 +520,7 @@ ActiveRecord::Schema.define(version: 20161218040545) do
     t.string   "correo1"
     t.string   "correo2"
     t.string   "calle"
-    t.integer  "numero_ext"
+    t.string   "numero_ext"
     t.integer  "numero_int"
     t.string   "colonia"
     t.integer  "codigo_postal"

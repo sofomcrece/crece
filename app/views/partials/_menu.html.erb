@@ -1,5 +1,22 @@
 
-
+  <ul id="dropdown1" class="dropdown-content">
+      <li><%= link_to 'Levantar credito', '/credits/new'%></li>
+      <li><%= link_to 'Por aceptar', view_credits_path%></li>
+      <li><%= link_to 'Aceptados', view_credits_aceptadas_path%></li>
+      <li><%= link_to 'Rechazado', view_credits_rechazadas_path%></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
+      <li><%= link_to 'Configuraciones', Conf.last%></li>
+      <li><%= link_to 'Productos', products_path%></li>
+      <li><%= link_to 'Usuarios', users_path%></li>
+      <li><%= link_to 'Sucursales', branch_offices_path%></li>
+      <li><%= link_to 'Empresas', companies_path%></li>
+      <li><%= link_to 'Agentes', agents_path%></li>
+    </ul>
+    <ul id="dropdown3" class="dropdown-content">
+      <li><%= link_to 'Recibos', receipts_path%></li>
+      <li><%= link_to 'Pagos', payments_path%></li>
+    </ul>
 <%if current_user.nil?%>
     <li><%= link_to 'Quienes somos',"#quienes_somos"%></li>
     <li><a href="#row">Sucursales</a></li>
@@ -7,15 +24,12 @@
 <li><a href="#contact">Contacto</a></li>
     <li><%= link_to 'Iniciar sesión', new_user_session_path%></li>
 <%elsif current_user.tipo==1%>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Administracion<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><%= link_to 'Clientes', customers_path%></li>
-    <li><%= link_to 'Sucursales', branch_offices_path%></li>
-    <li><%= link_to 'Agentes', agents_path%></li>
+   
     
-    <li><%= link_to 'Empresas', companies_path%></li>
-    <li><%= link_to 'Productos', products_path%></li>
-    <li><%= link_to 'Pagos y recibos', receipts_path%></li>
-    <li><%= link_to 'Usuarios', users_path%></li>
-    <li><%= link_to 'Configuraciones', Conf.last%></li>
 <%elsif current_user.tipo==2%>
     <li><%= link_to 'Creditos', credit_path%></li>
 <%elsif current_user.tipo==3%>
@@ -27,13 +41,7 @@
 <%unless current_user.nil?%>
     <li><%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %></li> 
 <%end%>
-<!--
- <li><%= link_to "Perfil", perfil_path %></li>
-    <li><%= link_to "Change your password", edit_user_registration_path %></li>
-    <li><%= link_to 'Login', new_user_session_path%></li>
-    <li><%= link_to 'Register', new_user_path%></li>
-    
--->
+
 
 
     

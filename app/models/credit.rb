@@ -2,6 +2,7 @@ class Credit < ActiveRecord::Base
     belongs_to :economical_activity
     belongs_to :customer
     belongs_to :product
+    has_many :payments
     has_attached_file :croquis
     validates_attachment_content_type :croquis, content_type: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
     validates :referencia_agenteEmpresa,

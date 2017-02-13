@@ -80,15 +80,36 @@
 .controller("recibos",["$scope","$http",function($scope,$http){
   $scope.sucursales=[];
   $scope.agente_empresa=1;
-  
+  $scope.seleccionados = [];
+  $scope.porductos = [];
   $scope.hijos = [];
-  
+  $scope.fecha="";
+  $("#fake").hide();
+  $scope.generar = function(){
+    if ($scope.seleccionados.length != 0){
+      $("#fake").show();    
+    }
+  }
+  $scope.cambioDeFecha=function(){
+    console.log("fdsf");
+  }
+  $scope.agregar = function(data){
+    if ($scope.hijos[data-1]==undefined)
+      return;
+    console.log($.inArray( $scope.hijos[data-1], $scope.seleccionados));
+    console.log($scope.hijos[data]);
+    $scope.seleccionados.push( {padre:$scope.hijos[data-1],tipo:$scope.agente_empresa});
+    $.unique($scope.seleccionados);
+  }
+  $scope.eliminar=function(data){
+    $scope.seleccionados.splice(data,1);
+  }
   $scope.cargarHijos = function(){
     var url = "";
     if ($scope.agente_empresa == 1)
-      url = "https://marjor-luisesh11.c9users.io/agents.json";
+      url = "/agents.json";
     else
-      url = "https://marjor-luisesh11.c9users.io/companies.json"
+      url = "/companies.json"
    
     $http.get(url)
     .success(function(data){
@@ -100,7 +121,7 @@
     });
      $scope.tipo = ($scope.agente_empresa == 1)? "Agente": "Empresa";
   }
-  $http.get("https://marjor-luisesh11.c9users.io/branch_offices.json")
+  $http.get("/branch_offices.json")
   .success(function(data){
     console.log(data);
     $scope.sucursales=data;
@@ -108,7 +129,232 @@
   .error(function(data){
     console.log(data);
   });
+  $http.get("/products.json")
+  .success(function(data){
+    console.log(data);
+    $scope.productos=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+}])
+.controller("payment",["$scope","$http","$location",function($scope,$http,$location){
+  $scope.creditos = [];
+  $scope.ena_botton=true;
+  $scope.actualizar_pagos = function(){
+    
+  }
+  $scope.cargarHijos = function(){
+    var url = "";
+    if ($scope.agente_empresa == 1)
+      url = "/agents.json";
+    else
+      url = "/companies.json"
+   
+    $http.get(url)
+    .success(function(data){
+      console.log(data);
+       $scope.hijos = data;
+    })
+    .error(function(data){
+      console.log(data);
+    });
+     $scope.tipo = ($scope.agente_empresa == 1)? "Agente": "Empresa";
+  }
+  $http.get("/branch_offices.json")
+  .success(function(data){
+    console.log(data);
+    $scope.sucursales=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  $http.get("/products.json")
+  .success(function(data){
+    console.log(data);
+    $scope.productos=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  $http.get("/credits.json")
+  .success(function(data){
+    console.log(data);
+    $scope.creditos=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  function cargar_payments(){
+       url = window.location+"";
+      url = url.split("?")
+      console.log(url[0]+".json?"+url[1]);
+      $http.get(url[0]+".json?"+url[1])
+      .success(function(data){
+        console.log(data);
+        $scope.pagos=data;
+      })
+      .error(function(data){
+        console.log(data);
+      });
+  }
+  $scope.pagar = function (val){
+    if (parseFloat(val.pago)==0){
+      alert("Ingrese la cantidad a pagar");
+      return  null;
+    }
+     $("#ena_botton").hide();
+    
+    $http.post('/tickets.json',{ticket:{cantidad:parseFloat(val.pago),payment_id:val.id}})
+    .success(function(data){
+      console.log(data);
+      cargar_payments();
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.actualizar_pagos = function(val){
+    if (parseFloat(val.pago)>parseFloat(val.importe_con_pago)){
+      val.pago = parseFloat(val.importe_con_pago);
+      alert("No se puede pagar una catidad mayor al adeudo");
+    }
+  }
+  cargar_payments();
+}])
+
+
+.controller("payouts",["$scope","$http",function($scope,$http){
+  $scope.tipo = '0' ;
+  $scope.nombre = "";
+  $scope.dias = [];
+  $scope.flow  =0;
+  $scope.periocidad = "";
+  $scope.mes  = new Array(28);
+  $scope.semana =new Array(7);
+  $scope.ano =new Array(12);
+  $scope.seleccionados =[];
+  $scope.corte_flag=false;
+  $scope.fin_de_mes = null;
+  var rojo = "red darken-4";
+  var gris = "grey darken-2";
+  $scope.guardar = function(){
+     var res = obtenerDias();
+    console.log("dias: "+ res[0].toString());
+    console.log("corte:"+ res[1].toString());
+    $http.post('/payouts',{payout:{nombre:$scope.nombre,days:res[0].toString(),flow:res[1].toString(),type_payout: parseInt($scope.tipo),periocidad:$scope.periocidad}})
+    .success(function(data){
+      console.log(data);
+      window.location.href = "/payouts";
+    })
+    .error(function(data){console.log(data)});
+  }
+
+  function obtenerDias(){
+    switch($scope.tipo){
+      case '0':
+        console.log("semana");
+        return convertir($scope.semana);
+      break;
+      case '1':
+        console.log("mes");
+        var res= convertir($scope.mes);
+        if ($scope.fin_de_mes==null)
+         return res;
+         $scope.fin_de_mes.es_de_corte?res[1].push(-1):res[0].push(-1);
+        return res;
+        
+      break;
+      case '2':
+        console.log("año");
+        return convertir($scope.ano);
+      break;
+      default: return null;
+    }
+  }
+  function convertir(val){
+    var obj=[];
+    var nodo1= [];
+    var nodo2= [];
+    for (var x=0;x<val.length;x++){
+      if (val[x]==null)
+        continue;
+      val[x].es_de_corte?nodo2.push(x+1):nodo1.push(x+1);
+    }
+    obj.push(nodo1);
+    obj.push(nodo2);
+    return obj;
+  } 
+  $scope.finDeMes=function(){
+      if ($scope.fin_de_mes==null){
+       if ($scope.corte_flag)
+         $scope.fin_de_mes = {value:true,es_de_corte:$scope.corte_flag, color:gris};  
+       else
+         $scope.fin_de_mes = {value:true,es_de_corte:$scope.corte_flag, color:rojo}; 
+      return;
+    }
+    $scope.fin_de_mes= null;
+  }
+  $scope.getColorFinDeMes= function(){
+    return $scope.fin_de_mes==null?"":$scope.fin_de_mes.color;
+  }
+  $scope.getColor= function(arr,n){
+    if (arr[n]==null)
+      return;
+    return arr[n].color;
+  }
+  $scope.cambiosAno = function(v){
+    if ($scope.ano[v]==null){
+       if ($scope.corte_flag)
+         $scope.ano[v] = {value:true,es_de_corte:$scope.corte_flag, color:gris};  
+       else
+         $scope.ano[v] = {value:true,es_de_corte:$scope.corte_flag, color:rojo}; 
+      return;
+    }
+    $scope.ano[v]= null;
+  }
+  $scope.cambiosSemana = function(v){
+     if ($scope.semana[v]==null){
+       if ($scope.corte_flag)
+         $scope.semana[v] = {value:true,es_de_corte:$scope.corte_flag, color:gris};  
+       else
+         $scope.semana[v] = {value:true,es_de_corte:$scope.corte_flag, color:rojo}; 
+      return;
+    }
+    $scope.semana[v]= null;
+  }
+  $scope.cambiosMes = function(v){
+     if ($scope.mes[v]==null){
+       if ($scope.corte_flag)
+         $scope.mes[v] = {value:true,es_de_corte:$scope.corte_flag, color:gris};  
+       else
+         $scope.mes[v] = {value:true,es_de_corte:$scope.corte_flag, color:rojo}; 
+      return;
+    }
+    $scope.mes[v]= null;
+    console.log($scope.mes);
+  }
   
+  $scope.cambio_de_tipo = function(){
+    console.log($scope.tipo);
+    console.log($scope.mes);
+    console.log($scope.semana);
+    $("table").hide();
+    
+    switch($scope.tipo){
+      case '0':
+        $("#semana").show();
+      break;
+      case '1':
+        $("#mes").show();
+      break;
+      case '2':
+        $("#ano").show();
+      break;
+      
+    }
+  }
+  $scope.cambio_de_tipo();
 }]);
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -116,12 +362,6 @@
   
 </head>
 <body id="top" class="scrollspy">
-  <ul id="dropdown1" class="dropdown-content">
-  <li><%= link_to 'Levantar credito', '/credits/new'%></li>
-  <li><%= link_to 'Por aceptar', view_credits_path%></li>
-  <li><%= link_to 'Aceptados', view_credits_aceptadas_path%></li>
-  <li><%= link_to 'Rechazado', view_credits_rechazadas_path%></li>
-</ul>
     <div class="navbar-fixed"> 
      <nav>
       <%if current_user.nil? %>
@@ -132,16 +372,11 @@
         <%=link_to "Marjo",root_path,class:"brand-logo"%>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <%unless current_user.nil?%>
-          <%if current_user.tipo==1%>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li> 
-          <%end%>
-          <%end%>
           <%=render "partials/menu"%>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          
-          <%=render "partials/menu"%>
+          <%=render "partials/menu2"%>
+  
         </ul>
       </div>
     </nav>

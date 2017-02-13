@@ -52,13 +52,13 @@ class AutorizacionPdf < Prawn::Document
     text "Nombre del solicitante (Persona Física o Denominación / Razón Social de la Persona Moral):
                  #{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2} "
     text "Para el caso de persona Moral, nombre del Representante Legal:
-______________#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}________________________________________________________
- R.F.C. _______#{@credit.RFC}___________________________________________________________________________
- Calle y Número ____________#{@credit.calle}, ##{@credit.numero_exterior}____________________
- Colonia _______#{@credit.colonia}___________________________________________________________________________________________
- Ciudad _________#{@credit.localidad}_______________ Estado _____#{@credit.estado_actual}__________________ Codigo Postal _________________________
- Lugar y Fecha en que se firma la autorización _______#{@credit.fecha.strftime("%d-%m-%Y")}______________________________________________________
- Nombre del funcionario que recaba la autorización ____________________________________________________________________
+#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}
+ R.F.C. #{@credit.RFC}
+ Calle y Número #{@credit.calle}, ##{@credit.numero_exterior}
+ Colonia #{@credit.colonia}
+ Ciudad #{@credit.localidad}  Estado #{@credit.estado_actual}  Codigo Postal 
+ Lugar y Fecha en que se firma la autorización  #{@credit.fecha.strftime("%d-%m-%Y")}
+ Nombre del funcionario que recaba la autorización 
 "
     text " "
     text  "Estoy consciente y acepto que este documento quede bajo custodia de Financiera Marjo, S.A. de C.V., SOFOM, ENR y/o
@@ -71,15 +71,15 @@ Usuario, cuando éste cuente con la autorización expresa del Cliente mediante s
 Nombre y Firma de PF, PFAE o Representante Legal de la empresa
  "
   text " "
-  text "____________________________________________________________________________________________________________
+  text "___________________________________________________________________________________________________________
 Para uso exclusivo de Financiera Marjo, S.A. de C.V., SOFOM, ENR
-Clave de usuario: _______________________________________________________
-Fecha de la consulta (dd-mm-aaaa): ________________________________________
-Folio de consulta (Obligatorio): _____________________________________________
+Clave de usuario: 
+Fecha de la consulta (dd-mm-aaaa): 
+Folio de consulta (Obligatorio):
 Firma: ________________________________________________________________
 IMPORTANTE: Este formato debe ser llenado individualmente, para una sola persona física ó para una sola empresa. En caso de
 requerir el Historial crediticio del representante legal, favor de llenar un formato adicional.
-____________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 #{Conf.last.domicilio} TEL. #{Conf.last.telefono}
 CULIACÁN DE ROSALES, SINALOA #{Conf.last.correo}"
   

@@ -429,11 +429,13 @@
         <div class="input-field col s12">
           <%= f.text_field :telefono_celular_referencia_familiar,:style=>"position:absolute;top:1710px;left:1000px;width:110px;height:22px;","ng-model":"credito.telefono_celular_referencia_familiar","ng-disabled":"block"%>
         </div>
+        
         <div class="input-field col s12">
           <%=f.label :observaciones%>: <br>
           <%= f.text_field :observaciones,:style=>"width:600px;height:100px;","ng-model":"credito.observaciones"%>
         </div>
         <%=f.collection_select(:product_id,Product.all,:id,:nombre_del_producto,{:prompt => 'Productos:'},{"ng-disabled":"block"})%>
+         <%=f.collection_select(:destination_id,Destination.all,:id,:descricion,{:prompt => 'Destino del credito:'},{"ng-disabled":"block"})%>
         <div class="input-field col s12">
           <%= f.file_field  :croquis%>
          </div>
