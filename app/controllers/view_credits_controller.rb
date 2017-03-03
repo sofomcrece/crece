@@ -37,7 +37,7 @@ class ViewCreditsController < ApplicationController
       n = 0
       @datos.each do |d|
         n += 1
-        Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0)
+        Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0,fecha_de_corte:d[8],fecha_de_impresion:d[9])
       end
     end
     pdf = ContratoPdf.new(@credit)
@@ -55,9 +55,9 @@ class ViewCreditsController < ApplicationController
     getArreglo()
     pdf = CorridaPdf.new(@credit,@arreglo)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
-    
-    
   end
+  
+  
    def inferior(val,array)
       array.sort!
       array.reverse!
@@ -66,6 +66,8 @@ class ViewCreditsController < ApplicationController
       end
       return val.to_i
    end
+   
+   
   def getArreglo
      if (@credit.fecha_de_contrato.nil?)
       fecha = Time.now.to_date
@@ -75,20 +77,24 @@ class ViewCreditsController < ApplicationController
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
     dias=  @credit.product.payout.getDays - ["-1"]
+    cortes =  @credit.product.payout.getFlow.sort!
     dias_int =[]
+    cortes_int = []
     dias.each do |i|
       dias_int.push(i.to_i)
     end
     dias_int.sort!
     dias.push("-1") if fin_mes
-    cortes =  @credit.product.payout.getFlow.sort!
     dia_inicial = nil;
-      
+    cortes.each do |i |
+      cortes_int.push(i.to_i)
+    end
+    cortes_int.sort!
       cont = 0
       dias.each do |dia|
          dia= fecha.end_of_month.day if dia=="-1"
          if fecha.day<dia.to_i
-           if fecha.day <inferior(dia,cortes)
+           if fecha.day <inferior(dia,cortes_int)
             dia_inicial=cont
             puts "dia #{dia}"
             break
@@ -102,19 +108,34 @@ class ViewCreditsController < ApplicationController
         end
         puts "dia inicial #{dia_inicial}"
         puts dias
-    @total= @credit.monto_solicitud.to_f + @credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100)
+    @total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))
     @pago = @total/@credit.product.numero_de_pagos_a_realizar
     @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
-    @interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
-    @iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
+    #@interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
+    @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
+    #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
+    @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
     @datos = []
     @arreglo = []
     @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
+    puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
-      @datos.push([n+1,fecha= getFecha(dias,dia_inicial,n,fecha),(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago)])
-      @arreglo.push([ "#{n+1}",fecha,"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+      fecha= getFecha(dias,dia_inicial,n,fecha)
+      fecha_de_corte = fecha.beginning_of_month+inferior(fecha.day,cortes_int).days-1.days
+      fecha_de_impresion = fecha_de_corte - (@credit.product.payout.desplazamiento).to_i.days
+      puts fecha
+      puts fecha_de_corte
+      puts fecha_de_impresion  
+      #              1      2                  3         4       5     6      7                         8                9                 10
+      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
     end
+    puts "=========================================================================================================================================="
   end
+  
+  
+  
+  
   def getFecha(dias,inicio,contador,fecha)
     contador = contador + inicio
     index =(contador)%dias.length

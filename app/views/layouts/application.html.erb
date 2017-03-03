@@ -83,23 +83,23 @@
   $scope.seleccionados = [];
   $scope.porductos = [];
   $scope.hijos = [];
-  $scope.fecha="";
+  $scope.fecha=[];
   $("#fake").hide();
   $scope.generar = function(){
-    if ($scope.seleccionados.length != 0){
-      $("#fake").show();    
-    }
   }
   $scope.cambioDeFecha=function(){
     console.log("fdsf");
   }
   $scope.agregar = function(data){
-    if ($scope.hijos[data-1]==undefined)
+    data = JSON.parse(data);
+    if (data==undefined)
       return;
-    console.log($.inArray( $scope.hijos[data-1], $scope.seleccionados));
-    console.log($scope.hijos[data]);
-    $scope.seleccionados.push( {padre:$scope.hijos[data-1],tipo:$scope.agente_empresa});
-    $.unique($scope.seleccionados);
+    for (var i = 0; i<$scope.seleccionados.length;i++)
+      if($scope.seleccionados[i].padre.id ==  data.id)
+        return;
+    $scope.seleccionados.push( {padre:data,tipo:$scope.agente_empresa});
+    
+    console.log($scope.seleccionados);
   }
   $scope.eliminar=function(data){
     $scope.seleccionados.splice(data,1);
@@ -110,7 +110,7 @@
       url = "/agents.json";
     else
       url = "/companies.json"
-   
+    url = url + "?sucursal="+ $scope.sucursales.selected
     $http.get(url)
     .success(function(data){
       console.log(data);
@@ -137,6 +137,16 @@
   .error(function(data){
     console.log(data);
   });
+  $scope.obtenerFechas = function(){
+    $http.get("/products/"+$scope.productos.selected+".json")
+    .success(function (data){
+      console.log(data);
+      $scope.fechas = data.fechas_activas
+    })
+    .error(function (data){
+      console.log(data);
+    });
+  }
 }])
 .controller("payment",["$scope","$http","$location",function($scope,$http,$location){
   $scope.creditos = [];
@@ -227,6 +237,7 @@
 .controller("payouts",["$scope","$http",function($scope,$http){
   $scope.tipo = '0' ;
   $scope.nombre = "";
+  $scope.desplazamiento = 0;
   $scope.dias = [];
   $scope.flow  =0;
   $scope.periocidad = "";
@@ -242,7 +253,7 @@
      var res = obtenerDias();
     console.log("dias: "+ res[0].toString());
     console.log("corte:"+ res[1].toString());
-    $http.post('/payouts',{payout:{nombre:$scope.nombre,days:res[0].toString(),flow:res[1].toString(),type_payout: parseInt($scope.tipo),periocidad:$scope.periocidad}})
+    $http.post('/payouts',{payout:{nombre:$scope.nombre,days:res[0].toString(),flow:res[1].toString(),type_payout: parseInt($scope.tipo),periocidad:$scope.periocidad,desplazamiento:parseInt($scope.desplazamiento)}})
     .success(function(data){
       console.log(data);
       window.location.href = "/payouts";

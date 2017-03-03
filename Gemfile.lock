@@ -201,6 +201,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  json
   materialize-sass
   money
   numbers_and_words

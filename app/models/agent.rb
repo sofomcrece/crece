@@ -43,7 +43,7 @@ class Agent < ActiveRecord::Base
   validates :sexo,
     :presence => { :if => 'sexo.nil?' }
   def nombre_completo
-    "#{apellido_materno} #{apellido_materno} #{nombre_1} #{nombre_2}"
+    nombre_del_agente
   end
   def domicilio
     cad = "calle #{calle}, no_ext:#{numero_exterior}, "

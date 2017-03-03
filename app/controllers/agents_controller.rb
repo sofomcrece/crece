@@ -4,7 +4,10 @@ class AgentsController < ApplicationController
   # GET /agents
   # GET /agents.json
   def index
+    suc = params[:sucursal].to_i
     @agents = Agent.all
+    @agents = @agents.where(branch_office_id:suc) unless params[:sucursal].nil? or params[:sucursal] == ""
+    
   end
 
   # GET /agents/1

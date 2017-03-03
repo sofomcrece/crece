@@ -3,6 +3,7 @@ class Credit < ActiveRecord::Base
     belongs_to :customer
     belongs_to :product
     has_many :payments
+    belongs_to :destination
     has_attached_file :croquis
     validates_attachment_content_type :croquis, content_type: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
     validates :referencia_agenteEmpresa,
@@ -57,6 +58,7 @@ class Credit < ActiveRecord::Base
     :estado_actual,
     :localidad,
     :product_id,
+    :destination_id,
     presence: true
     before_save :default_values
     def default_values
@@ -87,11 +89,37 @@ class Credit < ActiveRecord::Base
      #BEML920313HCMLNS09.
      validates :agente_empresa,
     :inclusion => { :in => [nil,1, 0] }
+    
+    # 0 company 
+    # 1 agent
     validates :agente_empresa,
     :presence => { :if => 'agente_empresa.nil?' }
+    #   estado civil 
+    # 0  ---  soltero   
+    # 1 ----- casado
+    # 2...... divorciado
+    # 3-.-.-.-union libre
+    # 4,-,--,-,viudo
+    def estado_civil_cadena
+        return case self.estado_civil
+            when 0 
+                "Soltero"
+            when 1
+                "Casado"
+            when 2
+                "Divorciado"
+            when 3
+                "Union libre"
+            else
+                "Viudo"
+                
+        end
+                
+    end
     def fecha_en_español
-        cad ="#{Time.now.day} de "
-        case Time.now.month  
+        fecha_aux = fecha_de_contrato
+        cad ="#{fecha_aux.day} de "
+        case fecha_aux.month  
         when 1
             cad = cad + "Enero"
         when 2
@@ -119,7 +147,7 @@ class Credit < ActiveRecord::Base
         else
             cad = cad + "mes invalido"
         end
-        cad = cad + " del #{Time.now.year}"
+        cad = cad + " del #{fecha_aux.year}"
     end
     
     def padre 

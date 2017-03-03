@@ -16,7 +16,6 @@ class BranchOffice < ActiveRecord::Base
     :telefono_oficina,
     :telefono_celular,
     :correo1,
-    :correo2,
     :comision_por_colocacion,
     :comision_por_cobranza,
     :monto_maximo_adeudo_sucursal,

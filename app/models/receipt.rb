@@ -6,8 +6,4 @@ class Receipt < ActiveRecord::Base
             self.folio=0
         end
   end
-   def recibo
-    pdf = ReciboPdf.new(@credit)
-    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
-  end
 end

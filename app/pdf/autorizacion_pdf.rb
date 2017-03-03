@@ -39,10 +39,14 @@ class AutorizacionPdf < Prawn::Document
      text "Persona Física (PF) [ X ] 	 Persona Física con Actividad Empresarial (PFAE) [ ]       Persona Moral (PM) [ ] "
      
      text "Por este conducto autorizo expresamente a Financiera Marjo, S.A. de C.V., SOFOM, ENR, para que por conducto de sus
-            funcionarios facultados lleve a cabo Investigaciones, sobre mi comportamiento Crediticio o el de la Empresa que represento en las
+            funcionarios facultados lleve a cabo investigaciones sobre mi comportamiento crediticio o el de la empresa que represento en las
             Sociedades de Información Crediticia que estime conveniente."
      text " "
-     text "Así mismo, declaro que conozco la naturaleza y alcance de las sociedades de información crediticia y de la información contenida en los reportes de crédito y reporte de crédito especial, declaro que conozco la naturaleza y alcance de la información que se solicitará, del uso que Financiera Marjo, S.A. de C.V., SOFOM, ENR hará de tal información y de que ésta podrá realizar consultas periódicas de mi historial crediticio o el de la empresa que represento, consintiendo que esta autorización se encuentre vigente por un período de 3 años contados a partir de la fecha de su expedición y en todo caso durante el tiempo que mantengamos relación jurídica"
+     text "Así mismo, declaro que conozco la naturaleza y alcance de las sociedades de información crediticia y de la información contenida
+          en los reportes de crédito y reporte de crédito especial, declaro que conozco la naturaleza y alcance de la información que se 
+          solicitará, del uso que Financiera Marjo, S.A. de C.V., SOFOM, ENR hará de tal información y de que ésta podrá realizar consultas 
+          periódicas de mi historial crediticio o el de la empresa que represento, consintiendo que esta autorización se encuentre vigente 
+          por un período de 3 años contados a partir de la fecha de su expedición y en todo caso durante el tiempo que mantengamos relación jurídica"
      text " "
      text "En caso de que la solicitante sea una Persona Moral, declaro bajo protesta de decir verdad Ser Representante Legal de la empresa
           mencionada en esta autorización; manifestando que a la fecha de firma de la presente autorización los poderes no me han sido
@@ -57,8 +61,8 @@ class AutorizacionPdf < Prawn::Document
  Calle y Número #{@credit.calle}, ##{@credit.numero_exterior}
  Colonia #{@credit.colonia}
  Ciudad #{@credit.localidad}  Estado #{@credit.estado_actual}  Codigo Postal 
- Lugar y Fecha en que se firma la autorización  #{@credit.fecha.strftime("%d-%m-%Y")}
- Nombre del funcionario que recaba la autorización 
+ Lugar y Fecha en que se firma la autorización: #{@credit.fecha.strftime("%d-%m-%Y")}
+ Nombre del funcionario que recaba la autorización: ___________________________
 "
     text " "
     text  "Estoy consciente y acepto que este documento quede bajo custodia de Financiera Marjo, S.A. de C.V., SOFOM, ENR y/o
@@ -73,9 +77,9 @@ Nombre y Firma de PF, PFAE o Representante Legal de la empresa
   text " "
   text "___________________________________________________________________________________________________________
 Para uso exclusivo de Financiera Marjo, S.A. de C.V., SOFOM, ENR
-Clave de usuario: 
-Fecha de la consulta (dd-mm-aaaa): 
-Folio de consulta (Obligatorio):
+Clave de usuario:_______________________________________
+Fecha de la consulta (dd-mm-aaaa):______________________
+Folio de consulta (Obligatorio):________________________
 Firma: ________________________________________________________________
 IMPORTANTE: Este formato debe ser llenado individualmente, para una sola persona física ó para una sola empresa. En caso de
 requerir el Historial crediticio del representante legal, favor de llenar un formato adicional.

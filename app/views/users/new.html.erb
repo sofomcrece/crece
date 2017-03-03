@@ -141,12 +141,12 @@
   
   <div class="field">
     <%= f.label :numero_ext,"Número exterior *" %><br />
-    <%= f.text_field :numero_ext, autocomplete: "off" %>
+    <%= f.number_field :numero_ext, autocomplete: "off" %>
   </div>
   
   <div class="field">
     <%= f.label :numero_int,"Número interior *" %><br />
-    <%= f.number_field :numero_int, autocomplete: "off" %>
+    <%= f.text_field :numero_int, autocomplete: "off" %>
   </div>
   
   <div ng-controller="cp">

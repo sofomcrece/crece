@@ -34,9 +34,11 @@ class ContratoPdf < Prawn::Document
     text" QUINTA: 'El Deudor' o las peronas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artuculos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de #{@credit.padre.municipio}, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
     text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
-    text"  ______________________________________________________________________________",:size =>10,:align => :justify 
-    text" 'EL ACREEDOR' 'EL DEUDOR'
-    * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
+    text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
+    text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
+    text"
+    "
+   text" * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
@@ -46,8 +48,7 @@ class ContratoPdf < Prawn::Document
     
     
     
-    
-    ",:size =>10,:align => :justify 
+    ",:size =>8,:align => :justify  
     
     
     
@@ -81,9 +82,11 @@ class ContratoPdf < Prawn::Document
     text" QUINTA: 'El Deudor' o las peronas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artuculos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de #{@credit.padre.municipio}, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
     text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
-    text"  ______________________________________________________________________________",:size =>10,:align => :justify 
-    text" 'EL ACREEDOR' 'EL DEUDOR'
-    * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
+   text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
+    text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
+    text"
+    "
+   text" * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
@@ -93,8 +96,7 @@ class ContratoPdf < Prawn::Document
     
     
     
-    
-    ",:size =>10,:align => :justify 
+    ",:size =>8,:align => :justify  
   
     
     
@@ -127,9 +129,11 @@ class ContratoPdf < Prawn::Document
     text" QUINTA: 'El Deudor' o las peronas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artuculos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de #{@credit.padre.municipio}, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
     text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
-    text"  ______________________________________________________________________________",:size =>10,:align => :justify 
-    text" 'EL ACREEDOR' 'EL DEUDOR'
-    * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
+    text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
+    text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
+    text"
+    "
+   text" * CAT (Costo Anual Total) %#{@credit.product.cat_sin_iva} sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
@@ -137,7 +141,10 @@ class ContratoPdf < Prawn::Document
     
     
     
-    ",:size =>10,:align => :justify 
+    
+    
+    
+    ",:size =>8,:align => :justify  
    
     
 text "PAGARÉ                                                                                                     No._______ BUENO POR $ ________________",:size =>10
@@ -148,9 +155,13 @@ text "Valor recibido a mi(nuestra) entera satisfacción. Este pagaré está suje
 
 ",:size =>10,:align => :justify 
 text "Nombre y datos de 'EL DEUDOR'                          Nombre y datos de 'EL AVAL'",:size =>10,:align => :center 
+text" "
 text "Nombre: _______________________________________     Nombre: _______________________________________",:size =>10,:align => :justify 
+text"   "
 text "Domicilio:__________________________Tel._________       Domicilio:__________________________Tel._________",:size =>10,:align => :justify 
-text "Acepto(amos)                                                   Acepto(amos)",:size =>10,:align => :center 
+text "Acepto(amos)                                                                           Acepto(amos)",:size =>10,:align => :left 
+text" 
+"
 text "Firma(s)________________________________________      Firma(s)________________________________________",:size =>10,:align => :justify 
   end
 end

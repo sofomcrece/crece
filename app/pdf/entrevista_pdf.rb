@@ -24,7 +24,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "COLONIA: #{@credit.colonia}    NUM. EXTERIOR: #{@credit.numero_exterior} NUM. INTERIOR: #{@credit.numero_interior}
       ",:size => 10
-      text "CODIGO POSTAL : #{@credit.codigo_postal} ANTIGUEDAD DEL DOMICILIO : 
+      text "CODIGO POSTAL : #{@credit.codigo_postal} ANTIGUEDAD DEL DOMICILIO : #{@credit.antiguedad_en_el_domicilio_actual_meses } meses con #{@credit.antiguedad_en_el_domicilio_actual_anos} años
       ",:size => 10
       text "TEL PARTICULAR : #{@credit.telefono_de_casa}  TEL OFICINA :  #{@credit.telefono_empresa}
       ",:size => 10
@@ -32,7 +32,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "SEXO : #{@credit.sexo==1?"Hombre":"Mujer"}    NO. DE DEPENDIENTES : #{@credit.numero_de_dependientes_economicos}
       ",:size => 10
-      text "GASTO PROMEDIO :  #{@credit.gasto_promedio_mensual}  ESTADO CIVIL : #{@credit.estado_civil}
+      text "GASTO PROMEDIO :  #{@credit.gasto_promedio_mensual}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
       ",:size => 10
       text "NOMBRE COMPLETO CONYUGUE : #{@credit.apellido_paterno_del_conyuge}  #{@credit.apellido_materno_del_conyuge}  #{@credit.nombre_1_del_conyuge} #{@credit.nombre_2_del_conyuge}
       ",:size => 10
@@ -84,15 +84,15 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "ANTIGUEDAD DE LA EMPRESA : #{@credit.antiguedad_laboral_anos} años con #{@credit.antiguedad_laboral_meses} meses
       ",:size => 10
-      text "ACTIVIDAD ECONOMICA : #{@credit.economical_activity.descripcion}
+      text "ACTIVIDAD ECONOMICA : #{@credit.puesto} 
+      ",:size => 10 
+      text "PROFESION : #{@credit.escolaridad} 
       ",:size => 10
-      text "PROFESION : ?
+      text "OCUPACION: #{@credit.economical_activity.descripcion}
       ",:size => 10
-      text "OCUPACION: ?
+      text "SUELDO MENSUAL: #{@credit.sueldo_mensual_neto}   NSS: #{@credit.seguro} 
       ",:size => 10
-      text "SUELDO MENSUAL: #{@credit.sueldo_mensual_neto}   NSS: #{@credit.seguro}  FIEL : ? 
-      ",:size => 10
-      text "PARA QUE NECESITA EL CREDITO : ?
+      text "PARA QUE NECESITA EL CREDITO : #{@credit.destination.descricion}
       ",:size => 10
       text "NOMBRE REFERENCIA 1 : #{@credit.nombre_referencia_1}
       ",:size => 10

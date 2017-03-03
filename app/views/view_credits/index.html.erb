@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1 align="center">Solicitudes de creditos por aceptar</h1>
+<h1 align="center">Solicitudes de credito por aceptar</h1>
 
 <table>
   <thead>
@@ -12,7 +12,7 @@
       <th>Rfc</th>
       <th>Monto</th>
       
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -33,6 +33,7 @@
         <td><%= link_to 'Editar', edit_credit_path(credit),class:'crud-links' %></td>
         <td><%=link_to  'Aceptar', credit_path(credit,:credit=>{status:1}), :method=> :put,class:"waves-effect waves-light btn-large"%></td>
         <td><%=link_to  'Rechazar', credit_path(credit,:credit=>{status:2}), :method=> :put,class:"waves-effect waves-light btn-large"%></td>
+        <td><%=link_to  'ver PDFS',credit.croquis.url, class:"waves-effect waves-light btn-large"%></td>
       </tr>
       
     <% end %>

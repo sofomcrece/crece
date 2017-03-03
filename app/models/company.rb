@@ -5,7 +5,6 @@ class Company < ActiveRecord::Base
     :razon_social,
     :calle,
     :numero_exterior,
-    :numero_interior,
     :colonia,
     :codigo_postal,
     :municipio,

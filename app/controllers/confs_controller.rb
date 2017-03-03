@@ -69,6 +69,6 @@ class ConfsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conf_params
-      params.require(:conf).permit(:telefono, :domicilio, :correo,:representante_legal)
+      params.require(:conf).permit(:telefono, :domicilio, :correo,:representante_legal,:RFC)
     end
 end

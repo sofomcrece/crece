@@ -4,7 +4,9 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
+    suc = params[:sucursal].to_i
     @companies = Company.all
+    @companies = @companies.where(branch_office_id:suc) unless params[:sucursal].nil? or params[:sucursal] == ""
   end
 
   # GET /companies/1

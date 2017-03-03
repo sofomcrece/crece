@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208190023) do
+ActiveRecord::Schema.define(version: 20170223225652) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20170208190023) do
     t.string   "nombre_2"
     t.string   "RFC"
     t.string   "calle"
-    t.integer  "numero_interior"
-    t.string   "numero_exterior"
+    t.string   "numero_interior"
+    t.integer  "numero_exterior"
     t.string   "colonia"
     t.integer  "codigo_postal"
     t.string   "municipio"
@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20170208190023) do
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
     t.string   "calle"
-    t.string   "no_ext"
-    t.integer  "no_int"
+    t.integer  "no_ext"
+    t.string   "no_int"
     t.string   "colonia"
     t.integer  "codigo_postal"
     t.string   "municipio"
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20170208190023) do
     t.string   "nombre_de_empresa"
     t.string   "razon_social"
     t.string   "calle"
-    t.string   "numero_exterior"
-    t.integer  "numero_interior"
+    t.integer  "numero_exterior"
+    t.string   "numero_interior"
     t.string   "colonia"
     t.integer  "codigo_postal"
     t.string   "municipio"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 20170208190023) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "representante_legal"
+    t.string   "RFC"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -410,23 +411,25 @@ ActiveRecord::Schema.define(version: 20170208190023) do
     t.decimal  "importe"
     t.decimal  "pago"
     t.decimal  "interes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "credit_id"
     t.boolean  "activado"
+    t.date     "fecha_de_corte"
+    t.date     "fecha_de_impresion"
   end
 
   add_index "payments", ["credit_id"], name: "index_payments_on_credit_id"
 
   create_table "payouts", force: :cascade do |t|
     t.string   "nombre"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "days"
     t.string   "flow"
     t.integer  "type_payout"
-    t.string   "vista"
     t.string   "periocidad"
+    t.integer  "desplazamiento"
   end
 
   create_table "products", force: :cascade do |t|
@@ -520,8 +523,8 @@ ActiveRecord::Schema.define(version: 20170208190023) do
     t.string   "correo1"
     t.string   "correo2"
     t.string   "calle"
-    t.string   "numero_ext"
-    t.integer  "numero_int"
+    t.integer  "numero_ext"
+    t.string   "numero_int"
     t.string   "colonia"
     t.integer  "codigo_postal"
     t.string   "municipio"
