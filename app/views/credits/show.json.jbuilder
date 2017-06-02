@@ -104,4 +104,13 @@ json.extract! @credit, :id, :agente_empresa,
     :customer_id,
     :antiguedad_laboral_meses,
     :antiguedad_laboral_anos,
-    :numero_de_cheque
+    :numero_de_cheque,
+    :ocupacion_del_conyuge, 
+    :empresa_donde_labora_el_conyuge, 
+    :ocupation_id,
+    :casa_color,
+    :cancel_o_porton,
+    :color_de_cancel,
+    :caracteristicas_especiales,
+    :profecion_id
+    json.pdfs @credit.croquis.url

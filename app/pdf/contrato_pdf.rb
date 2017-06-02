@@ -8,7 +8,7 @@ class ContratoPdf < Prawn::Document
   def text_content
    text "CONTRATO DE APERTURA DE CRÉDITO Y GARANTÍA      Original
    " , :align  => :center, :style=> :bold
-      text "En la ciudad de #{@credit.padre.municipio}, a #{@credit.fecha_en_español} comparecieron para celebrar el presente contrato de credito y garantía, por una parte el(la) (#{@credit.tipo_padre}) #{@credit.padre.nombre_completo}, representante legal de FINANCIERA MARJO,S.A. de C.V.SOFOM, E.N.R., con domicilio en: #{@credit.padre.domicilio} de la ciudad de  #{@credit.padre.municipio}  a quien en lo sucesivo se le denominará 'El Acreedor', y por otra parte el Sr(a) #{@credit.nombre_completo_deudor} con domicilio en #{@credit.domicilio } a quien en lo sucesivo se le denominará 'El Deudor', al tenor de las siguientes:
+      text "En la ciudad de #{@credit.padre.municipio}, a #{@credit.fecha_en_español} comparecieron para celebrar el presente contrato de credito y garantía, por una parte el(la) #{Conf.last.representante_legal}, representante legal de FINANCIERA MARJO,S.A. de C.V.SOFOM, E.N.R., con domicilio en: #{@credit.padre.domicilio} de la ciudad de  #{@credit.padre.municipio}  a quien en lo sucesivo se le denominará 'El Acreedor', y por otra parte el Sr(a) #{@credit.nombre_completo_deudor} con domicilio en #{@credit.domicilio } a quien en lo sucesivo se le denominará 'El Deudor', al tenor de las siguientes:
 ",:size =>10,:align => :justify 
     text "CLAUSULAS" , :align  => :center, :style=> :bold
     text "PRIMERA: 'El Acreedor' ha convenido en otorgar una línea de crédito a 'El Deudor' y este dá en garantia un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 

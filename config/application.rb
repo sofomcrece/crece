@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Workspace
   class Application < Rails::Application
+    config.active_job.queue_adapter = :delayed_job
+
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       html_tag
     }
@@ -24,6 +26,7 @@ module Workspace
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+
     config.time_zone = 'Mazatlan'
     config.active_record.default_timezone = :local
     config.active_record.raise_in_transactional_callbacks = true

@@ -1,4 +1,7 @@
 class Ocupation < ActiveRecord::Base
+    has_many:credits
+    has_many:customers
+    
     require 'json'
     def self.loadJson(val)
         puts "ocupacion"

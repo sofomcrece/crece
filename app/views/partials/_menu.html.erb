@@ -17,6 +17,12 @@
       <li><%= link_to 'Recibos', receipts_path%></li>
       <li><%= link_to 'Pagos', payments_path%></li>
     </ul>
+    <ul id="dropdown4" class="dropdown-content">
+      <li><%= link_to 'Seguimiento de cobranza', "/reports/seguimiento"%></li>
+      <li><%= link_to 'Seguimiento quincenal', "/reports/seguimiento"%></li>
+      <li><%= link_to 'Pronostico de cobranza', "/reports/pronostico_de_cobranza"%></li>
+      <li><%= link_to 'clientes', "/reports/clientes"%></li>
+    </ul>
 <%if current_user.nil?%>
     <li><%= link_to 'Quienes somos',"#quienes_somos"%></li>
     <li><a href="#row">Sucursales</a></li>
@@ -27,6 +33,7 @@
     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
     <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Administracion<i class="material-icons right">arrow_drop_down</i></a></li> 
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Reportes<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><%= link_to 'Clientes', customers_path%></li>
    
     
@@ -41,6 +48,9 @@
 <%unless current_user.nil?%>
     <li><%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %></li> 
 <%end%>
+
+
+
 
 
 

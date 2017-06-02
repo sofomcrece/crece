@@ -113,7 +113,11 @@
   
   <p>
     <strong>Sexo:</strong>
-    <%= @agent.sexo %>
+    <% if @agent.sexo %>
+      Masculino
+    <% else%>
+      Femenino
+    <%end%>
   </p>
   
   <p>
@@ -148,22 +152,26 @@
   
   <p>
     <strong>Comision por cobranza:</strong>
-    <%= @agent.comision_por_cobranza %>
+    <%= @agent.comision_por_cobranza %>%
   </p>
   
   <p>
     <strong>Comision por colocacion:</strong>
-    <%= @agent.comision_por_colocacion %>
+    <%= @agent.comision_por_colocacion %> %
   </p>
   
   <p>
     <strong>Monto maximo de prestamo:</strong>
-    <%= @agent.monto_maximo_de_prestamo %>
+    <%= Dinero.to_money(@agent.monto_maximo_de_prestamo) %>
   </p>
   
   <p>
     <strong>Permitir prestamo multiple:</strong>
     <%= @agent.permitir_prestamo_multiple %>
+  </p>
+  <p>
+    <strong>Sucursal:</strong>
+    <%= @agent.branch_office.nombre%>
   </p>
 </div>
 <%= link_to 'Editar', edit_agent_path(@agent),class:'crud-links' %> |

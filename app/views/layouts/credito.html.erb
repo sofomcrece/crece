@@ -5,7 +5,12 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  
+  <script>
+    $(document).ready(function(){
+    $("input").keyup(function(){
+        this.value = this.value.toUpperCase();
+    });
+  </script>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,6 +22,8 @@
     $scope.credito="";
     $scope.block=false;
     $scope.url = window.location.href;
+    $("#solo_en_new").hide();
+    $("#errores").hide();
     var longitud = $scope.url.split("/").length
     $('#autorelleno').hide();
     if (($scope.url.split("/")[longitud-1]==="edit")){
@@ -30,8 +37,13 @@
       .error(function(data){
           console.log(data);
       });
-    }else if(($scope.url.split("/")[longitud-1]==="new")){
-      
+      $("#solo_en_new").show();
+    }else if($scope.url.split("/")[longitud-1]==="new"){
+      $("#solo_en_new").show();
+      $("#pdfs").hide();
+    }else if($scope.url.split("/")[longitud-1]==="credits"){
+      $("#solo_en_new").show();
+      $("#errores").show();
     }else{
       console.log($scope.url.split("/",longitud-1).join("/")+".json");
       $http.get($scope.url.split("/",longitud).join("/")+".json")
@@ -55,6 +67,8 @@
           $scope.credito.referencia_agenteEmpresa=$scope.credito.referencia_agenteEmpresa+"";
           $scope.credito.colonia=$scope.credito.colonia+"";
           $scope.credito.economical_activity_id=$scope.credito.economical_activity_id+"";
+          $scope.credito.profecion_id=$scope.credito.profecion_id+"";
+          $scope.credito.ocupation_id=$scope.credito.ocupation_id+"";
            $scope.credito.antiguedad_en_el_domicilio_actual_anos = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
            $scope.credito.antiguedad_en_el_domicilio_actual_meses = $scope.credito.antiguedad_en_el_domicilio_actual_meses+"";
            $scope.credito.antiguedad_en_el_domicilio_anterior_anos = $scope.credito.antiguedad_en_el_domicilio_anterior_anos+"";
@@ -158,6 +172,8 @@
     			console.log(data);
     		});    
         }
+        $(document).ready($scope.ocultar());
+        $scope.ocultar();
    /* var fecha_part=$scope.fecha_de_nacimiento.split("-");
      $scope.fecha_de_nacimiento =new  Date(fecha_part[0],fecha_part[1],fecha_part[2]);
      */
@@ -222,7 +238,29 @@
         }
        */
 }]);
+  $(document).ready(function(){
+    $("input[type='text']").focusout(function(){$('input[type=text]').val (function () {
+        return this.value.toUpperCase();
+    })});
+  });
   </script>
+  <style>
+    input[type="text"] { 
+      text-transform: uppercase;
+      }
+      ::-webkit-input-placeholder { /* WebKit browsers */
+          text-transform: none;
+      }
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          text-transform: none;
+      }
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          text-transform: none;
+      }
+      :-ms-input-placeholder { /* Internet Explorer 10+ */
+          text-transform: none;
+      }
+  </style>
 </head>
 <body id="top" class="scrollspy">
   

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'reports/seguimiento'
+  get 'reports/clientes'
+  get 'reports/seguimiento_quincenal'
+  get 'reports/tablero'
+  get 'reports/pronostico_de_cobranza'
+  get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   resources :tickets
   resources :destinations
   resources :payments
@@ -7,9 +13,6 @@ Rails.application.routes.draw do
   get 'receipts/crear'
 
   get 'receipts/baja'
-  
-
-  
 
   resources :confs , except:[:new,:create,:index,:delete]
   get 'test/t21'

@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
   belongs_to :economical_activity
+  belongs_to :ocupation
   has_many :credits
   validates :RFC, uniqueness: true
   validates :CURP, uniqueness: true

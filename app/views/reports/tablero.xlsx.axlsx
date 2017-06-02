@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Products") do |sheet|
+  sheet.add_row ["","","",@resp["nombre_empresa"]]
+  sheet.add_row ["ABONO A PRESTAMO",@resp["fecha"]]
+  sheet.add_row ["","","Agente"]
+
+  sheet.add_row ['']
+  
+
+end

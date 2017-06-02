@@ -2,6 +2,7 @@ class Credit < ActiveRecord::Base
     belongs_to :economical_activity
     belongs_to :customer
     belongs_to :product
+    belongs_to :ocupation
     has_many :payments
     belongs_to :destination
     has_attached_file :croquis
@@ -35,7 +36,6 @@ class Credit < ActiveRecord::Base
     :municipio,
     :empresa_donde_labora,
     :giro_de_la_empresa,
-    :puesto,
     :telefono_empresa,
     :sueldo_mensual_neto,
     :dirreccion_empresa,
@@ -160,10 +160,12 @@ class Credit < ActiveRecord::Base
     def tipo_padre
         if agente_empresa==1
             "Agente"
-        else
+        elsif agente_empresa == 0
             "Empresa"
         end
     end 
+    # agente   === 1
+    # empresa === 0
     def nombre_completo_deudor
         "#{apellido_paterno} #{apellido_materno} #{nombre_1} #{nombre_2}"
     end

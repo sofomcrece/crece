@@ -220,7 +220,20 @@
       <strong>Puesto:</strong>
       <%= @customer.puesto %>
     </p>
-    
+    <p>
+      <strong>Ocupacion del conyuge:</strong>
+      <%= @customer.ocupacion_del_conyuge %>
+    </p>
+    <p>
+      <strong>Empresa donde labora el conyuge:</strong>
+      <%= @customer.empresa_donde_labora_el_conyuge %>
+    </p>
+    <%unless @customer.ocupation.nil?%>
+    <p>
+      <strong>Puesto:</strong>
+      <%= @customer.ocupation.descripcion %>
+    </p>
+    <%end%>
     <p>
       <strong>Telefono empresa:</strong>
       <%= @customer.telefono_empresa %>

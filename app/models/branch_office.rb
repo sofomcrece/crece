@@ -23,4 +23,5 @@ class BranchOffice < ActiveRecord::Base
     :user_id,
     :clave,
     presence:true
+    
 end

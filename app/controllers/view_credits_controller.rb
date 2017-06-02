@@ -72,7 +72,7 @@ class ViewCreditsController < ApplicationController
      if (@credit.fecha_de_contrato.nil?)
       fecha = Time.now.to_date
     else
-      fecha = "20/02/2017".to_datetime
+      fecha = Time.now.to_date
     end
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"

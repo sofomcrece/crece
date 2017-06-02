@@ -70,6 +70,6 @@ class PayoutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payout_params
-      params.require(:payout).permit(:nombre,:flow,:days,:type,:periocidad,:desplazamiento,:type_payout)
+      params.require(:payout).permit(:nombre,:flow,:days,:type,:periocidad,:desplazamiento,:type_payout,:scope_data)
     end
 end

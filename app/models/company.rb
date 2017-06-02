@@ -32,4 +32,7 @@ class Company < ActiveRecord::Base
     cad = cad + "no_int: #{numero_interior} " unless numero_interior.nil?
     cad =cad +" colonia: #{colonia}, cp: #{codigo_postal}"
   end
+  def credits 
+    Credit.all.where("credits.agente_empresa =  ? and credits.referencia_agenteEmpresa = ?", 0 , self.id)
+  end
 end

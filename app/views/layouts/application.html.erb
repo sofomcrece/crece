@@ -84,9 +84,55 @@
   $scope.porductos = [];
   $scope.hijos = [];
   $scope.fecha=[];
-  $("#fake").hide();
-  $scope.generar = function(){
+  $scope.fechas_de_pago = [];
+  $scope.pagos = [];
+  $scope.seguimiento_datos = [];
+  $scope.seguimiento
+  $scope.descargar_excel = function(){
+     var url ="/reports/seguimiento.xlsx?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    url = url + "&tipo="+$scope.agente_empresa;
+    url = url + "&producto="+$scope.productos.selected;
+    
+     window.location.href = url
   }
+  $scope.get_seguimiento = function(){
+    var url ="/reports/seguimiento.json?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    url = url + "&tipo="+$scope.agente_empresa;
+    url = url + "&producto="+$scope.productos.selected;
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.seguimiento = data;
+      $scope.seguimiento_datos = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.obtenerPayments = function(){
+    var url = "/payments.json?"
+    url = url + "padres="+ JSON.stringify($scope.seleccionados)
+    url = url + "&&fecha="+ $scope.fechas.selected
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.pagos = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  
   $scope.cambioDeFecha=function(){
     console.log("fdsf");
   }
@@ -95,9 +141,9 @@
     if (data==undefined)
       return;
     for (var i = 0; i<$scope.seleccionados.length;i++)
-      if($scope.seleccionados[i].padre.id ==  data.id)
+      if($scope.seleccionados[i].padre ==  data.id&& $scope.seleccionados[i].tipo==$scope.agente_empresa) 
         return;
-    $scope.seleccionados.push( {padre:data,tipo:$scope.agente_empresa});
+    $scope.seleccionados.push( {padre:data.id,tipo:$scope.agente_empresa,clave:data.clave});
     
     console.log($scope.seleccionados);
   }
@@ -141,7 +187,8 @@
     $http.get("/products/"+$scope.productos.selected+".json")
     .success(function (data){
       console.log(data);
-      $scope.fechas = data.fechas_activas
+      $scope.fechas = data.fechas_activas_con_formato
+      $scope.fechas_de_pago = data.fechas_de_pago_con_formato
     })
     .error(function (data){
       console.log(data);
@@ -232,6 +279,20 @@
   }
   cargar_payments();
 }])
+.controller("productos",["$http","$scope",function($http,$scope){
+  $scope.payouts=[];
+  $scope.obtenerPayouts = function(){
+    $http.get("/payouts.json")
+    .success(function(data){
+      $scope.payouts = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.obtenerPayouts();
+}])
 
 
 .controller("payouts",["$scope","$http",function($scope,$http){
@@ -253,14 +314,21 @@
      var res = obtenerDias();
     console.log("dias: "+ res[0].toString());
     console.log("corte:"+ res[1].toString());
-    $http.post('/payouts',{payout:{nombre:$scope.nombre,days:res[0].toString(),flow:res[1].toString(),type_payout: parseInt($scope.tipo),periocidad:$scope.periocidad,desplazamiento:parseInt($scope.desplazamiento)}})
+    var control = {"ano":$scope.ano,"semana":$scope.semana,"mes":$scope.mes};
+    $http.post('/payouts',{payout:{nombre:$scope.nombre,days:res[0].toString(),
+                            flow:res[1].toString(),
+                            type_payout: parseInt($scope.tipo),
+                            periocidad:$scope.periocidad,
+                            desplazamiento:parseInt($scope.desplazamiento),
+                            scope_data:JSON.stringify(control)}})
     .success(function(data){
       console.log(data);
+      
       window.location.href = "/payouts";
     })
     .error(function(data){console.log(data)});
   }
-
+  
   function obtenerDias(){
     switch($scope.tipo){
       case '0':
@@ -296,6 +364,29 @@
     obj.push(nodo2);
     return obj;
   } 
+  $scope.cargar_datos = function (){
+    var url = window.location.href;
+    if (!(url.split("/")[url.split("/").length-1]=="edit"))
+      return;
+    console.log(url.split("edit")[0]);
+    $http.get(url.split("edit")[0].slice(0, -1)+".json")
+    .success(function(data){
+      console.log(data);
+      $scope.periocidad = data.periocidad;
+      $scope.desplazamiento = data.desplazamiento;
+      $scope.nombre = data.nombre;
+      $scope.tipo = data.type_payout;
+      var obj = JSON.parse(data.scope_data);
+      $scope.ano = obj.ano;
+      $scope.semana = obj.semana;
+      $scope.mes = obj.mes;
+      
+      
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
   $scope.finDeMes=function(){
       if ($scope.fin_de_mes==null){
        if ($scope.corte_flag)
@@ -366,11 +457,29 @@
     }
   }
   $scope.cambio_de_tipo();
+  $scope.cargar_datos();
+  
 }]);
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+<style>
+  input[type="text"] { 
+    text-transform: uppercase;
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        text-transform: none;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        text-transform: none;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        text-transform: none;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        text-transform: none;
+    }
+</style>
 </head>
 <body id="top" class="scrollspy">
     <div class="navbar-fixed"> 

@@ -63,17 +63,17 @@
   
   <p>
     <strong>Comision por colocacion:</strong>
-    <%= @branch_office.comision_por_colocacion %>
+    <%= @branch_office.comision_por_colocacion %> %
   </p>
   
   <p>
     <strong>Comision por cobranza:</strong>
-    <%= @branch_office.comision_por_cobranza %>
+    <%= @branch_office.comision_por_cobranza %> %
   </p>
   
   <p>
     <strong>Monto maximo adeudo sucursal:</strong>
-    <%= @branch_office.monto_maximo_adeudo_sucursal %>
+    <%=Dinero.to_money( @branch_office.monto_maximo_adeudo_sucursal) %>
   </p>
   
   <p>

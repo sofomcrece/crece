@@ -103,21 +103,21 @@
   
   <p>
     <strong>Comicion por cobranza:</strong>
-    <%= @company.comicion_por_cobranza %>
+    <%= @company.comicion_por_cobranza %> %
   </p>
   
   <p>
     <strong>Comicion por colocacion:</strong>
-    <%= @company.comicion_por_colocacion %>
+    <%= @company.comicion_por_colocacion %>%
   </p>
   
   <p>
     <strong>Monto maximo de prestamo:</strong>
-    <%= @company.monto_maximo_de_prestamo %>
+    <%= Dinero.to_money(@company.monto_maximo_de_prestamo) %>
   </p>
   <p>
     <strong>Sucursal:</strong>
-    <%= @company.nombre_de_empresa %>
+    <%= @company.branch_office.nombre%>
   </p>
   <p>
     <strong>Permitir prestamo multiple:</strong>

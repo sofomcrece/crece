@@ -7,11 +7,24 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all
   end
-
+  def multiprint
+    
+    require 'json'
+    elementos = JSON.parse(params[:payments])
+    @tickets = []
+    elementos.each do |elemento|
+      pay = Payment.find(elemento["id"].to_i)
+      @tickets  << Ticket.create(cantidad:pay.importe,payment_id:pay.id,status:1)
+    end
+    pdf = ReciboPdf.new(@tickets)
+    send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"
+  end
   # GET /tickets/1
   # GET /tickets/1.json
   def show
-     pdf = ReciboPdf.new(@ticket)
+    @tickets = []
+    @tickets << @ticket
+     pdf = ReciboPdf.new(@tickets)
     send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"
   end
 
@@ -27,15 +40,25 @@ class TicketsController < ApplicationController
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
-
+    flag = false 
+    cant = ticket_params[:cantidad]
+    pay = ticket_params[:payment_id]
+      if !(Payment.find(pay).tickets.count ==0)
+          if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe== cant
+            @ticket= Payment.find(pay).tickets.last
+            Payment.find(pay).tickets.last.update(status:0)
+            flag = true
+          end
+      end
+      @ticket=Ticket.create(cantidad:cant,payment_id:pay)
+      flag =  @ticket.save and flag
     respond_to do |format|
-      if @ticket.save
+      if flag
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
         format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        format.json { render :show}
       end
     end
   end

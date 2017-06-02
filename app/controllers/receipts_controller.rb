@@ -11,7 +11,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts/1.json
   def show
     pdf = ReciboPdf.new(@receipt)
-    send_data pdf.render, filename: 'Recib.pdf', type: 'application/pdf', disposition: "inline"
+    send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"
   end
 
   # GET /receipts/new

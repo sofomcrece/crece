@@ -1,4 +1,10 @@
 class Payout < ActiveRecord::Base
+    validates :nombre,
+    :days,
+    :periocidad, 
+    :scope_data,
+    presence:true
+    
     has_many :products
     def getDays
         self.days.split(',')
@@ -16,7 +22,6 @@ class Payout < ActiveRecord::Base
             val=val.join(", ").to_s + " y #{dat}"  
         end
         return val
-        
     end
     def inferior(val,array)
       array.sort!

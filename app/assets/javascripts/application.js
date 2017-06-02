@@ -17,6 +17,9 @@
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
 $(document).ready(function(){
+    $("input[type='text']").focusout(function(){$('input[type=text]').val (function () {
+        return this.value.toUpperCase();
+    })});
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 80, // Creates a dropdown of 15 years to control year

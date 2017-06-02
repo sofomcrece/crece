@@ -39,6 +39,8 @@ gem "pdf-reader"
 gem 'money'
 gem 'numbers_and_words'
 gem 'json'
+gem 'axlsx_rails'
+gem 'delayed_job_active_record'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

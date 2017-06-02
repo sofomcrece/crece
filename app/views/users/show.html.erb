@@ -7,7 +7,7 @@
 </div>
 <div class="show row"> 
     <p>
-        <%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%>
+        <%="Nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%>
     </p>
     <p>
         <%="correo: #{@user.email}"%>
@@ -70,7 +70,7 @@
     <%="correo2: #{@user.correo2}"%>
     </p>
     <p>
-    <%="calle:  #{@user.calle} No. ext:#{@user.numero_int} #{"No.int: #{@user.numero_int}" unless @user.numero_int.nil? } CP: #{@user.codigo_postal}"%>
+    <%="calle:  #{@user.calle} No. ext:#{@user.numero_ext} #{"No.int: #{@user.numero_int}" unless @user.numero_int.nil? } CP: #{@user.codigo_postal}"%>
     </p>
     <p>
     <%="Colonia: #{@user.colonia}"%>

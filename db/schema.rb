@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223225652) do
+ActiveRecord::Schema.define(version: 20170511172036) do
 
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
@@ -252,12 +252,22 @@ ActiveRecord::Schema.define(version: 20170223225652) do
     t.integer  "numero_de_cheque"
     t.date     "fecha_de_contrato"
     t.integer  "destination_id"
+    t.string   "casa_color"
+    t.integer  "cancel_o_porton"
+    t.string   "color_de_cancel"
+    t.text     "caracteristicas_especiales"
+    t.integer  "ocupation_id"
+    t.string   "ocupacion_del_conyuge"
+    t.string   "empresa_donde_labora_el_conyuge"
+    t.integer  "profecion_id"
   end
 
   add_index "credits", ["customer_id"], name: "index_credits_on_customer_id"
   add_index "credits", ["destination_id"], name: "index_credits_on_destination_id"
   add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id"
+  add_index "credits", ["ocupation_id"], name: "index_credits_on_ocupation_id"
   add_index "credits", ["product_id"], name: "index_credits_on_product_id"
+  add_index "credits", ["profecion_id"], name: "index_credits_on_profecion_id"
 
   create_table "customers", force: :cascade do |t|
     t.boolean  "agente_empresa"
@@ -347,9 +357,31 @@ ActiveRecord::Schema.define(version: 20170223225652) do
     t.datetime "updated_at",                           null: false
     t.date     "fecha_de_nacimiento_conyuge"
     t.string   "country"
+    t.integer  "ocupation_id"
+    t.string   "ocupacion_del_conyuge"
+    t.string   "empresa_donde_labora_el_conyuge"
+    t.integer  "profecion_id"
   end
 
   add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id"
+  add_index "customers", ["ocupation_id"], name: "index_customers_on_ocupation_id"
+  add_index "customers", ["profecion_id"], name: "index_customers_on_profecion_id"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "destinations", force: :cascade do |t|
     t.string   "descricion"
@@ -430,6 +462,7 @@ ActiveRecord::Schema.define(version: 20170223225652) do
     t.integer  "type_payout"
     t.string   "periocidad"
     t.integer  "desplazamiento"
+    t.text     "scope_data"
   end
 
   create_table "products", force: :cascade do |t|
@@ -472,6 +505,7 @@ ActiveRecord::Schema.define(version: 20170223225652) do
     t.decimal  "cantidad"
     t.string   "concepto"
     t.decimal  "atraso"
+    t.integer  "status"
   end
 
   add_index "receipts", ["payment_id"], name: "index_receipts_on_payment_id"
@@ -484,10 +518,12 @@ ActiveRecord::Schema.define(version: 20170223225652) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string   "cantidad"
+    t.decimal  "cantidad"
     t.integer  "payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "type"
+    t.integer  "status"
   end
 
   add_index "tickets", ["payment_id"], name: "index_tickets_on_payment_id"

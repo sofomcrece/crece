@@ -11,7 +11,7 @@ class Payment < ActiveRecord::Base
         end
     end
     def total_pagado
-        Ticket.where(payment_id:self.id).sum(:cantidad)
+        Ticket.where(payment_id:self.id).where(status:0).sum(:cantidad)
     end
     def activo
         self.credit.payments.each do |tk|
