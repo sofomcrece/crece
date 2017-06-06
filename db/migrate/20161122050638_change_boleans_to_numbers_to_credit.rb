@@ -1,9 +1,9 @@
 class ChangeBoleansToNumbersToCredit < ActiveRecord::Migration
   def up
-    change_column :credits, :es_cliente, :integer
-    change_column :credits, :agente_empresa, :integer
-    change_column :credits, :familiar_con_prestamo, :integer
-    change_column :credits, :sexo, :integer
+    remove_column :credits, :es_cliente
+    remove_column :credits, :agente_empresa
+    remove_column :credits, :familiar_con_prestamo
+    remove_column :credits, :sexo
   end
 
   def down

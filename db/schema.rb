@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170511172036) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "agents", force: :cascade do |t|
     t.string   "clave"
     t.string   "nombre_del_agente"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "branch_office_id"
   end
 
-  add_index "agents", ["branch_office_id"], name: "index_agents_on_branch_office_id"
+  add_index "agents", ["branch_office_id"], name: "index_agents_on_branch_office_id", using: :btree
 
   create_table "branch_offices", force: :cascade do |t|
     t.string   "nombre"
@@ -79,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.string   "cuenta"
   end
 
-  add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id"
+  add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "cve_estado"
@@ -123,7 +126,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "branch_office_id"
   end
 
-  add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id"
+  add_index "companies", ["branch_office_id"], name: "index_companies_on_branch_office_id", using: :btree
 
   create_table "confs", force: :cascade do |t|
     t.string   "telefono"
@@ -143,12 +146,9 @@ ActiveRecord::Schema.define(version: 20170511172036) do
   end
 
   create_table "credits", force: :cascade do |t|
-    t.integer  "agente_empresa"
     t.integer  "referencia_agenteEmpresa"
     t.date     "fecha"
-    t.integer  "es_cliente"
     t.text     "como_se_entero"
-    t.integer  "familiar_con_prestamo"
     t.string   "nombre_completo_familiar_1"
     t.string   "parentesco_1"
     t.string   "apellido_paterno"
@@ -163,7 +163,6 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.date     "fecha_de_nacimiento"
     t.string   "ciudad_de_nacimiento"
     t.string   "estado_de_nacimiento"
-    t.integer  "sexo"
     t.string   "telefono_de_casa"
     t.string   "telefono_celular"
     t.string   "email_1"
@@ -247,6 +246,10 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "antiguedad_en_el_domicilio_anterior_meses"
     t.string   "country"
     t.integer  "customer_id"
+    t.integer  "es_cliente"
+    t.integer  "agente_empresa"
+    t.integer  "familiar_con_prestamo"
+    t.integer  "sexo"
     t.integer  "antiguedad_laboral_anos"
     t.integer  "antiguedad_laboral_meses"
     t.integer  "numero_de_cheque"
@@ -262,12 +265,12 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "profecion_id"
   end
 
-  add_index "credits", ["customer_id"], name: "index_credits_on_customer_id"
-  add_index "credits", ["destination_id"], name: "index_credits_on_destination_id"
-  add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id"
-  add_index "credits", ["ocupation_id"], name: "index_credits_on_ocupation_id"
-  add_index "credits", ["product_id"], name: "index_credits_on_product_id"
-  add_index "credits", ["profecion_id"], name: "index_credits_on_profecion_id"
+  add_index "credits", ["customer_id"], name: "index_credits_on_customer_id", using: :btree
+  add_index "credits", ["destination_id"], name: "index_credits_on_destination_id", using: :btree
+  add_index "credits", ["economical_activity_id"], name: "index_credits_on_economical_activity_id", using: :btree
+  add_index "credits", ["ocupation_id"], name: "index_credits_on_ocupation_id", using: :btree
+  add_index "credits", ["product_id"], name: "index_credits_on_product_id", using: :btree
+  add_index "credits", ["profecion_id"], name: "index_credits_on_profecion_id", using: :btree
 
   create_table "customers", force: :cascade do |t|
     t.boolean  "agente_empresa"
@@ -363,9 +366,9 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "profecion_id"
   end
 
-  add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id"
-  add_index "customers", ["ocupation_id"], name: "index_customers_on_ocupation_id"
-  add_index "customers", ["profecion_id"], name: "index_customers_on_profecion_id"
+  add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id", using: :btree
+  add_index "customers", ["ocupation_id"], name: "index_customers_on_ocupation_id", using: :btree
+  add_index "customers", ["profecion_id"], name: "index_customers_on_profecion_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -381,7 +384,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "destinations", force: :cascade do |t|
     t.string   "descricion"
@@ -425,8 +428,8 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "models", ["email"], name: "index_models_on_email", unique: true
-  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
+  add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
+  add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
   create_table "ocupations", force: :cascade do |t|
     t.integer  "clave"
@@ -451,7 +454,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.date     "fecha_de_impresion"
   end
 
-  add_index "payments", ["credit_id"], name: "index_payments_on_credit_id"
+  add_index "payments", ["credit_id"], name: "index_payments_on_credit_id", using: :btree
 
   create_table "payouts", force: :cascade do |t|
     t.string   "nombre"
@@ -483,8 +486,8 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "numero_de_pagos_a_realizar_interes"
   end
 
-  add_index "products", ["loan_id"], name: "index_products_on_loan_id"
-  add_index "products", ["payout_id"], name: "index_products_on_payout_id"
+  add_index "products", ["loan_id"], name: "index_products_on_loan_id", using: :btree
+  add_index "products", ["payout_id"], name: "index_products_on_payout_id", using: :btree
 
   create_table "profecions", force: :cascade do |t|
     t.integer  "clave"
@@ -508,7 +511,7 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.integer  "status"
   end
 
-  add_index "receipts", ["payment_id"], name: "index_receipts_on_payment_id"
+  add_index "receipts", ["payment_id"], name: "index_receipts_on_payment_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.integer  "clave"
@@ -518,15 +521,15 @@ ActiveRecord::Schema.define(version: 20170511172036) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.decimal  "cantidad"
     t.integer  "payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "type"
     t.integer  "status"
+    t.decimal  "cantidad"
   end
 
-  add_index "tickets", ["payment_id"], name: "index_tickets_on_payment_id"
+  add_index "tickets", ["payment_id"], name: "index_tickets_on_payment_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -571,7 +574,24 @@ ActiveRecord::Schema.define(version: 20170511172036) do
     t.string   "alias"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "agents", "branch_offices"
+  add_foreign_key "branch_offices", "users"
+  add_foreign_key "companies", "branch_offices"
+  add_foreign_key "credits", "customers"
+  add_foreign_key "credits", "destinations"
+  add_foreign_key "credits", "economical_activities"
+  add_foreign_key "credits", "ocupations"
+  add_foreign_key "credits", "products"
+  add_foreign_key "credits", "profecions"
+  add_foreign_key "customers", "economical_activities"
+  add_foreign_key "customers", "ocupations"
+  add_foreign_key "customers", "profecions"
+  add_foreign_key "payments", "credits"
+  add_foreign_key "products", "loans"
+  add_foreign_key "products", "payouts"
+  add_foreign_key "receipts", "payments"
+  add_foreign_key "tickets", "payments"
 end

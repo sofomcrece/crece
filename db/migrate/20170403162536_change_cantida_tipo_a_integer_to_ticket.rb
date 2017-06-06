@@ -1,6 +1,6 @@
 class ChangeCantidaTipoAIntegerToTicket < ActiveRecord::Migration
   def up
-    change_column :tickets, :cantidad, :decimal
+    remove_column :tickets, :cantidad
   end
   def down
     change_column :tickets, :cantidad, :string
