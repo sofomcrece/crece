@@ -21,6 +21,9 @@
     .controller("solicitud",["$scope","$http","$location",function($scope,$http,$location){
     $scope.credito="";
     $scope.block=false;
+    $scope.paices = [];
+    $scope.estados =[];
+    $scope.cuidades = [];
     $scope.url = window.location.href;
     $("#solo_en_new").hide();
     $("#errores").hide();
@@ -77,6 +80,49 @@
            $scope.credito.antiguedad_laboral_meses = $scope.credito.antiguedad_laboral_meses+"";
            $scope.agente_o_empresa();
           $scope.type();
+    }
+    $scope.getPaices = function(){
+      $http.get("/combos/pais.json")
+      .success(function(data){
+        $scope.paices = data;
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+      })
+    }
+    $scope.getEstados = function(){
+      $scope.paices.text = JSON.parse($scope.paices.selected).nombre;
+      url = "/combos/estado.json";
+      id = JSON.parse($scope.paices.selected).id;
+      if(JSON.parse($scope.paices.selected).id != null)
+        url = url + "?id_country="+id;
+      $http.get(url)
+      .success(function(data){
+        $scope.estados = data;
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+      })
+    }
+    $scope.getCiudades = function(){
+      $scope.estados.text = JSON.parse($scope.estados.selected).nombre;
+      url = "/combos/ciudad.json";
+      id = JSON.parse($scope.estados.selected).id;
+      if(JSON.parse($scope.estados.selected).id != null)
+        url = url + "?id_state="+id;
+      $http.get(url)
+      .success(function(data){
+        $scope.ciudades = data;
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+      })
+    }
+    $scope.ciudadesChange =function(){
+      $scope.ciudades.text = JSON.parse($scope.ciudades.selected).nombre;
     }
     $scope.rellenar=function(data){
       $('#autorelleno').hide();
@@ -174,6 +220,7 @@
         }
         $(document).ready($scope.ocultar());
         $scope.ocultar();
+         $scope.getPaices();
    /* var fecha_part=$scope.fecha_de_nacimiento.split("-");
      $scope.fecha_de_nacimiento =new  Date(fecha_part[0],fecha_part[1],fecha_part[2]);
      */

@@ -142,15 +142,30 @@
       <div>
         <label style="position:absolute;top:532px;left:250px;width:200px;height:22px;background-color: white;font-weight: bold;font-family:'Calibri';">PAIS DE NACIMIENTO<span style="color:red;">*</span></label>
         <div>
-          <%=f.text_field :country, :style=>"position:absolute;top:550px;left:250px;width:200px;height:22px;","ng-model":"credito.country","ng-disabled":"block"%>
+          <select  name="credit[country]"class="browser-default" ng-model="paices.selected" ng-change="getEstados()" style="position:absolute;top:550px;left:250px;width:200px;height:22px;",ng-disabled="block">
+            <option value="" disabled selected>Pais</option>
+            <option ng-repeat="option in paices" value="{{option}}">{{option.nombre}}</option>
+        </select>
+        <input type="hidden" name="credit[country]" ng-model="paices.text" display="hidden">
         </div>
       </div>
       <div>
-        <%=f.collection_select(:estado_de_nacimiento,State.all,:descripcion,:descripcion,{:prompt => 'Estado de nacimiento:'},{"ng-model":"credito.estado_de_nacimiento","ng-disabled":"block",:style=>"position:absolute;top:550px;left:470px;width:285px;height:22px;"})%>
+        <div>
+          <select name="credit[estado_de_nacimiento]"class="browser-default" ng-model="estados.selected" ng-change="getCiudades()" style="position:absolute;top:550px;left:470px;width:285px;height:22px;;",ng-disabled="block">
+            <option value="" disabled selected>Estado</option>
+            <option ng-repeat="option in estados" value="{{option}}">{{option.nombre}}</option>
+        </select>
+        <input type="hidden" name="credit[estado_de_nacimiento]" ng-model="estados.text" display="hidden">
+        </div>
       </div>
       <div>
         <label style="position:absolute;top:532px;left:792px;width:135px;height:22px;background-color: white;font-weight: bold;font-family: 'Calibri';">CIUDAD<span style="color:red;">*</span></label>
-        <%= f.text_field :ciudad_de_nacimiento,:style=>"position:absolute;top:550px;left:777px;width:150px;height:22px;","ng-model":"credito.ciudad_de_nacimiento","ng-disabled":"block" %>
+        
+        <select  name="credit[ciudad_de_nacimiento]"class="browser-default" ng-model="ciudades.selected" ng-change="ciudadesChange()" style="position:absolute;top:550px;left:777px;width:150px;height:22px;",ng-disabled="block">
+            <option value="" disabled selected>Ciudad</option>
+            <option ng-repeat="option in ciudades" value="{{option}}">{{option.nombre}}</option>
+        </select>
+        <input id ="try" type="hidden" name="credit[ciudad_de_nacimiento]" ng-model="ciudades.text" display="hidden">
       </div>
       <div style="position:absolute;top:525px;left:950px;">
           <%= f.radio_button  :sexo,0,checked:true,:style=>"position:absolute;top:30px;left:0px;","ng-model":"credito.sexo" ,"ng-disabled":"block"%>
@@ -159,10 +174,10 @@
     </div>
     <div class="row">
       <div class="input-field col s12 m2 l2">
-        <%= f.text_field :telefono_de_casa,:style=>"position:absolute;top:603px;left:70px;width:150px;height:18px;","ng-model":"credito.telefono_de_casa" ,"ng-disabled":"block"%>
+        <%= f.text_field :telefono_de_casa,:style=>"position:absolute;top:630px;left:70px;width:150px;height:18px;","ng-model":"credito.telefono_de_casa" ,"ng-disabled":"block"%>
       </div>
       <div class="input-field col s12 m2 l2">
-        <%= f.text_field :telefono_celular, :style=>"position:absolute;top:603px;left:245px;width:200px;height:18px;","ng-model":"credito.telefono_celular","ng-disabled":"block"%>
+        <%= f.text_field :telefono_celular, :style=>"position:absolute;top:630px;left:245px;width:200px;height:18px;","ng-model":"credito.telefono_celular","ng-disabled":"block"%>
       </div>
       <div class="row col s12 m8 l8">
         <div class="input-field col s12">

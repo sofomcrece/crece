@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'combos/pais'
+
+  get 'combos/estado'
+
+  get 'combos/ciudad'
+
   get 'reports/seguimiento'
   get 'reports/clientes'
   get 'reports/seguimiento_quincenal'

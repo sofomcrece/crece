@@ -35,3 +35,26 @@ tabla =  Credit.joins(:payments=>:tickets).
  tabla2.each do |a|
   puts "#{a["nombre_completo"]}  ----  #{a["monto_solicitud"]} --- #{a["monto_a_pagar"]}  --- #{a["adeudo"]} --- #{a["pagar"]}  --- #{a["atrasado"]} --- #{a["interes_moratorio"]} --- #{a["total_a_cobrar"]} --- #{a["cobrado"]} ---#{a["diferencia"]}--- #{a["adelantado"]} ---#{a["empresa"]}---#{a["numero_de_pago"]}--- #{a["numero_de_creditos"]}"
  end
+ 
+ 
+ 
+ 
+ open('combos.rb', 'w') do |f|
+    f.puts "if (CCountry.count == 0)"
+    CCountry.all.each do |cc|
+        f.puts "CCountry.create(nombre:'#{cc.nombre}',clave:'#{cc.clave}')"
+    end
+    f.puts "end"
+    f.puts "if (CState.count == 0)"
+    CState.all.each do |cc|
+        f.puts "CState.create(nombre:'#{cc.nombre}',clave:'#{cc.clave}',c_country_id:#{cc.c_country_id})"
+    end
+    f.puts "end"
+    f.puts "if (CCountry.count == 0)"
+    CMunicipality.all.each do |cc|
+        f.puts "CMunicipality.create(nombre:'#{cc.nombre}',clave:'#{cc.clave}',c_state_id:#{cc.c_state_id})"
+    end
+    f.puts "end"
+end
+
+

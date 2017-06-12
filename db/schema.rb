@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511172036) do
+ActiveRecord::Schema.define(version: 20170612065158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,51 @@ ActiveRecord::Schema.define(version: 20170511172036) do
   end
 
   add_index "branch_offices", ["user_id"], name: "index_branch_offices_on_user_id", using: :btree
+
+  create_table "c_counties", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "clave"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "c_countries", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "clave"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "c_locations", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "clave"
+    t.integer  "c_municipality_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "codigo_postal"
+  end
+
+  add_index "c_locations", ["c_municipality_id"], name: "index_c_locations_on_c_municipality_id", using: :btree
+
+  create_table "c_municipalities", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "clave"
+    t.integer  "c_state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "c_municipalities", ["c_state_id"], name: "index_c_municipalities_on_c_state_id", using: :btree
+
+  create_table "c_states", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "clave"
+    t.integer  "c_country_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "c_states", ["c_country_id"], name: "index_c_states_on_c_country_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string   "cve_estado"
@@ -579,6 +624,9 @@ ActiveRecord::Schema.define(version: 20170511172036) do
 
   add_foreign_key "agents", "branch_offices"
   add_foreign_key "branch_offices", "users"
+  add_foreign_key "c_locations", "c_municipalities"
+  add_foreign_key "c_municipalities", "c_states"
+  add_foreign_key "c_states", "c_countries"
   add_foreign_key "companies", "branch_offices"
   add_foreign_key "credits", "customers"
   add_foreign_key "credits", "destinations"
