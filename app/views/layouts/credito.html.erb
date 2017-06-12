@@ -47,6 +47,7 @@
     }else if($scope.url.split("/")[longitud-1]==="credits"){
       $("#solo_en_new").show();
       $("#errores").show();
+      $("#pdfs").hide();
     }else{
       console.log($scope.url.split("/",longitud-1).join("/")+".json");
       $http.get($scope.url.split("/",longitud).join("/")+".json")

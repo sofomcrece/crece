@@ -142,30 +142,30 @@
       <div>
         <label style="position:absolute;top:532px;left:250px;width:200px;height:22px;background-color: white;font-weight: bold;font-family:'Calibri';">PAIS DE NACIMIENTO<span style="color:red;">*</span></label>
         <div>
-          <select  name="credit[country]"class="browser-default" ng-model="paices.selected" ng-change="getEstados()" style="position:absolute;top:550px;left:250px;width:200px;height:22px;",ng-disabled="block">
+          <select  class="browser-default" ng-model="paices.selected" ng-change="getEstados()" style="position:absolute;top:550px;left:250px;width:200px;height:22px;",ng-disabled="block">
             <option value="" disabled selected>Pais</option>
             <option ng-repeat="option in paices" value="{{option}}">{{option.nombre}}</option>
         </select>
-        <input type="hidden" name="credit[country]" ng-model="paices.text" display="hidden">
+        <input type="text" name="credit[country]" ng-model="paices.text"style="visibility: hidden;">
         </div>
       </div>
       <div>
         <div>
-          <select name="credit[estado_de_nacimiento]"class="browser-default" ng-model="estados.selected" ng-change="getCiudades()" style="position:absolute;top:550px;left:470px;width:285px;height:22px;;",ng-disabled="block">
+          <select class="browser-default" ng-model="estados.selected" ng-change="getCiudades()" style="position:absolute;top:550px;left:470px;width:285px;height:22px;;",ng-disabled="block">
             <option value="" disabled selected>Estado</option>
             <option ng-repeat="option in estados" value="{{option}}">{{option.nombre}}</option>
         </select>
-        <input type="hidden" name="credit[estado_de_nacimiento]" ng-model="estados.text" display="hidden">
+        <input type="text" name="credit[estado_de_nacimiento]" ng-model="estados.text" style="visibility: hidden;">
         </div>
       </div>
       <div>
         <label style="position:absolute;top:532px;left:792px;width:135px;height:22px;background-color: white;font-weight: bold;font-family: 'Calibri';">CIUDAD<span style="color:red;">*</span></label>
         
-        <select  name="credit[ciudad_de_nacimiento]"class="browser-default" ng-model="ciudades.selected" ng-change="ciudadesChange()" style="position:absolute;top:550px;left:777px;width:150px;height:22px;",ng-disabled="block">
+        <select  class="browser-default" ng-model="ciudades.selected" ng-change="ciudadesChange()" style="position:absolute;top:550px;left:777px;width:150px;height:22px;",ng-disabled="block">
             <option value="" disabled selected>Ciudad</option>
             <option ng-repeat="option in ciudades" value="{{option}}">{{option.nombre}}</option>
         </select>
-        <input id ="try" type="hidden" name="credit[ciudad_de_nacimiento]" ng-model="ciudades.text" display="hidden">
+        <input id ="try" type="text" name="credit[ciudad_de_nacimiento]" ng-model="ciudades.text" style="visibility: hidden;">
       </div>
       <div style="position:absolute;top:525px;left:950px;">
           <%= f.radio_button  :sexo,0,checked:true,:style=>"position:absolute;top:30px;left:0px;","ng-model":"credito.sexo" ,"ng-disabled":"block"%>
