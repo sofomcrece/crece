@@ -3596,7 +3596,7 @@ CState.create(nombre:'Oaxaca',clave:'20',c_country_id:1)
 CState.create(nombre:'Queretaro',clave:'22',c_country_id:1)
 CState.create(nombre:'Puebla',clave:'21',c_country_id:1)
 end
-if (CCountry.count == 0)
+if (CMunicipality.count == 0)
 CMunicipality.create(nombre:'Valle De Zaragoza',clave:'484080670001',c_state_id:1)
 CMunicipality.create(nombre:'San Lucas Ojitlan',clave:'484202320001',c_state_id:30)
 CMunicipality.create(nombre:'Villa De Etla',clave:'484203380001',c_state_id:30)
