@@ -37,7 +37,8 @@ class ViewCreditsController < ApplicationController
       n = 0
       @datos.each do |d|
         n += 1
-        Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0,fecha_de_corte:d[8],fecha_de_impresion:d[9])
+        payment_v = Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0,fecha_de_corte:d[8],fecha_de_impresion:d[9])
+        payment_v.delay(run_at:d[8]).cargar_interes
       end
     end
     pdf = ContratoPdf.new(@credit)

@@ -21,12 +21,12 @@
                     <td>{{ele.estatus==0?"Al corriente":ele.estatus==1?"Vencido":"Pagado"}}</td>
                     <td>{{ele.importe_con_pago_formato}}</td>
                     <td>
-                        <input type="decimal" class="validate" ng-model ="ele.pago" ng-change="actualizar_pagos(ele)"  ng-disabled=ele.active>
+                        <input type="number" class="validate" ng-model ="ele.pago" ng-change="actualizar_pagos(ele)"  ng-disabled={ele.active}>
                     </td>
                     <td>{{ele.interes_formato}}</td>
                     <td>
                       <div ng-if="ele.activo">
-                        <a class="waves-effect waves-light btn" ng-click="pagar(ele)"  ng-disabled=ena_botton id="ena_botton">Hacer Pago</a>
+                        <a class="waves-effect waves-light btn" ng-click="pagar(ele)"  id="ena_botton">Hacer Pago</a>
                       </div>
                     </td>
                   </tr>
