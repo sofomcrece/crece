@@ -265,6 +265,31 @@
       alert("Ingrese la cantidad a pagar");
       return  null;
     }
+    if(val.interes>0){
+      var r = confirm("Desea condonar interes moratorios? ");
+      if(r){
+        $.ajax({
+            url: '/payments/'+val.id,
+            dataType: "json",
+            type: "PUT",
+            contentType: 'application/json; charset=utf-8',
+            data: {payment:{interes_flag:true}},
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+      }else{
+        
+      }
+      
+    }
+    
      $("#ena_botton").hide();
     
     $http.post('/tickets.json',{ticket:{cantidad:parseFloat(val.pago),payment_id:val.id}})

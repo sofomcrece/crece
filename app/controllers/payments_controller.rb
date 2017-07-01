@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
     unless padres.nil?
       padres.each do |padre|
         cad = cad + " OR " unless i==0
-        cad = cad + "credits.referencia_agenteEmpresa = #{padre["padre"].to_i} and  credits.agente_empresa = #{padre["tipo"].to_i}"  unless  params[:padres].nil? or params[:padres]==""
+        cad = cad + "credits.referencia_agente_empresa = #{padre["padre"].to_i} and  credits.agente_empresa = #{padre["tipo"].to_i}"  unless  params[:padres].nil? or params[:padres]==""
         i=i+1
       end
     end

@@ -61,7 +61,7 @@ wb.add_worksheet(name: "pronostico_de_cobranza") do |sheet|
  #  ]
     sheet.add_row [
     "agente_empresa",
-    "referencia_agenteEmpresa",
+    "referencia_agente_empresa",
     "como_se_entero",
     "familiar_con_prestamo",
     "nombre_completo_familiar_1",
@@ -154,7 +154,7 @@ wb.add_worksheet(name: "pronostico_de_cobranza") do |sheet|
     Customer.all.each do |c|
         sheet.add_row [
             c.agente_empresa,
-            c.referencia_agenteEmpresa,
+            c.referencia_agente_empresa,
             c.como_se_entero,
             c.familiar_con_prestamo,
             c.nombre_completo_familiar_1,

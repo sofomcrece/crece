@@ -41,7 +41,7 @@
       <br><br><br><br><br>
     <div class ="row">
       <div class="input-field col s12 m3 l3">
-        <select id="credit_referencia_agenteEmpresa" name="credit[referencia_agenteEmpresa]"class="browser-default" ng-model="credito.referencia_agenteEmpresa" ng-disabled="block" style="left:1000px;top:63px;position:absolute;",ng-disabled="block">
+        <select id="credit_referencia_agente_empresa" name="credit[referencia_agente_empresa]"class="browser-default" ng-model="credito.referencia_agente_empresa" ng-disabled="block" style="left:1000px;top:63px;position:absolute;",ng-disabled="block">
             <option value="" disabled selected>{{tipo}}</option>
             <option ng-repeat="option in agentEmp" value="{{option.id}}">{{option.nombre}}</option>
         </select>
@@ -521,10 +521,34 @@
     
     <div class="actions" id="solo_en_new">
       <div class="input-field col s12">
-          <%= f.file_field  :croquis%>
-          <br>
+         <div class="field">
+            <%= f.label :pdf64,"cargar PDF" %><br>
+            <input type="file" id="filePicker" onchange="previewFile()" accept=".pdf" max-size=20480>
+            <input id="base64textarea" type='hidden' name="credit[pdf64]" cols="50" rows="15">
+          </div>
+          <script>
+            var cacas = "";
+             function previewFile() {
+             $("#submitid").prop('disabled', true);
+            var preview = $('#base64textarea');
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+            
+            reader.onloadend = function () {
+              $("#submitid").prop('disabled', true);
+              preview.val(reader.result);
+              $("#submitid").prop('disabled', false);
+            }
+          
+            if (file) {
+              reader.readAsDataURL(file);
+            } else {
+              preview.src = "";
+            }
+          }
+        </script>
       </div>
-      <%= f.submit "Guardar" %>
+      <%= f.submit "Guardar",id:"submitid" %>
     </div>
   <% end %>
   <div id="autorelleno" style="background-color:#f0f0ff;width:700px;position:fixed;top:100px;left:100px;border-size:2px;border-style:solid">

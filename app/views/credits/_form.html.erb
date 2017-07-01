@@ -26,7 +26,7 @@
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div class ="row">
       <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9" style="left:925px;top:57px;position:absolute;">
-        <%= f.collection_select(:referencia_agenteEmpresa, Agent.all, :id, :nombre_del_agente, :prompt => 'Agentes:') %>
+        <%= f.collection_select(:referencia_agente_empresa, Agent.all, :id, :nombre_del_agente, :prompt => 'Agentes:') %>
       </div>
     </div>
     <div class="row">

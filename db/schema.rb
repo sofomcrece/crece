@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620100917) do
+ActiveRecord::Schema.define(version: 20170701100104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(version: 20170620100917) do
   end
 
   create_table "credits", force: :cascade do |t|
-    t.integer  "referencia_agenteEmpresa"
     t.date     "fecha"
     t.text     "como_se_entero"
     t.string   "nombre_completo_familiar_1"
@@ -279,10 +278,6 @@ ActiveRecord::Schema.define(version: 20170620100917) do
     t.string   "estado_actual"
     t.string   "localidad"
     t.text     "observaciones"
-    t.string   "croquis_file_name"
-    t.string   "croquis_content_type"
-    t.integer  "croquis_file_size"
-    t.datetime "croquis_updated_at"
     t.date     "fecha_de_nacimiento_conyuge"
     t.integer  "antiguedad_en_el_domicilio_actual_meses"
     t.integer  "antiguedad_en_el_domicilio_actual_anos"
@@ -308,6 +303,8 @@ ActiveRecord::Schema.define(version: 20170620100917) do
     t.string   "ocupacion_del_conyuge"
     t.string   "empresa_donde_labora_el_conyuge"
     t.integer  "profecion_id"
+    t.integer  "referencia_agente_empresa"
+    t.text     "pdf64"
   end
 
   add_index "credits", ["customer_id"], name: "index_credits_on_customer_id", using: :btree
@@ -497,6 +494,7 @@ ActiveRecord::Schema.define(version: 20170620100917) do
     t.boolean  "activado"
     t.date     "fecha_de_corte"
     t.date     "fecha_de_impresion"
+    t.boolean  "interes_flag"
   end
 
   add_index "payments", ["credit_id"], name: "index_payments_on_credit_id", using: :btree

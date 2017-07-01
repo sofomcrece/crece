@@ -5,9 +5,8 @@ class Credit < ActiveRecord::Base
     belongs_to :ocupation
     has_many :payments
     belongs_to :destination
-    has_attached_file :croquis
-    validates_attachment_content_type :croquis, content_type: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf']
-    validates :referencia_agenteEmpresa,
+   
+    validates :referencia_agente_empresa,
     :fecha,
     :apellido_paterno,
     :apellido_materno,
@@ -152,9 +151,9 @@ class Credit < ActiveRecord::Base
     
     def padre 
         if agente_empresa==1
-          return  Agent.find(self.referencia_agenteEmpresa)
+          return  Agent.find(self.referencia_agente_empresa)
         else
-          return  Company.find(self.referencia_agenteEmpresa)
+          return  Company.find(self.referencia_agente_empresa)
         end
     end
     def tipo_padre

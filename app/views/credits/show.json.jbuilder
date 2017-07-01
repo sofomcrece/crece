@@ -1,5 +1,5 @@
 json.extract! @credit, :id, :agente_empresa,
-    :referencia_agenteEmpresa,
+    :referencia_agente_empresa,
     :fecha,
     :es_cliente,
     :como_se_entero,
@@ -113,4 +113,4 @@ json.extract! @credit, :id, :agente_empresa,
     :color_de_cancel,
     :caracteristicas_especiales,
     :profecion_id
-    json.pdfs @credit.croquis.url
+    json.pdfs @credit.pdf64

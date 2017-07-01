@@ -51,6 +51,6 @@ class Agent < ActiveRecord::Base
     cad =cad +" colonia: #{colonia}, cp: #{codigo_postal}"
   end
   def credits 
-    Credit.all.where("credits.agente_empresa =  ? and credits.referencia_agenteEmpresa = ?", 1 , self.id)
+    Credit.all.where("credits.agente_empresa =  ? and credits.referencia_agente_empresa = ?", 1 , self.id)
   end
 end
