@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701100104) do
+ActiveRecord::Schema.define(version: 20170703180408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -316,7 +316,6 @@ ActiveRecord::Schema.define(version: 20170701100104) do
 
   create_table "customers", force: :cascade do |t|
     t.boolean  "agente_empresa"
-    t.integer  "referencia_agenteEmpresa"
     t.text     "como_se_entero"
     t.boolean  "familiar_con_prestamo"
     t.string   "nombre_completo_familiar_1"
@@ -406,6 +405,7 @@ ActiveRecord::Schema.define(version: 20170701100104) do
     t.string   "ocupacion_del_conyuge"
     t.string   "empresa_donde_labora_el_conyuge"
     t.integer  "profecion_id"
+    t.integer  "referencia_agente_empresa"
   end
 
   add_index "customers", ["economical_activity_id"], name: "index_customers_on_economical_activity_id", using: :btree
