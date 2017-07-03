@@ -6,8 +6,11 @@ class ContratoPdf < Prawn::Document
     text_content
   end
   def text_content
-   text "CONTRATO DE APERTURA DE CRÉDITO Y GARANTÍA      Original
+        text "Original",:size =>8,:align  => :right
+   text "CONTRATO DE APERTURA DE CRÉDITO Y GARANTÍA      
    " , :align  => :center, :style=> :bold
+ 
+  
       text "En la ciudad de #{@credit.padre.municipio}, a #{@credit.fecha_en_español} comparecieron para celebrar el presente contrato de credito y garantía, por una parte el(la) #{Conf.last.representante_legal}, representante legal de FINANCIERA MARJO,S.A. de C.V.SOFOM, E.N.R., con domicilio en: #{@credit.padre.domicilio} de la ciudad de  #{@credit.padre.municipio}  a quien en lo sucesivo se le denominará 'El Acreedor', y por otra parte el Sr(a) #{@credit.nombre_completo_deudor} con domicilio en #{@credit.domicilio } a quien en lo sucesivo se le denominará 'El Deudor', al tenor de las siguientes:
 ",:size =>10,:align => :justify 
     text "CLAUSULAS" , :align  => :center, :style=> :bold
@@ -148,9 +151,17 @@ class ContratoPdf < Prawn::Document
    
     
 text "PAGARÉ                                                                                                     No._______ BUENO POR $ ________________",:size =>10
-text "En ___________________________ a ____ de _____________ de 20___ ",:size =>10,:align => :right 
+text" 
+"
+text "En ___________________________ a ____ de _____________ de 20___ ",:size =>10,:align => :right
+text" 
+"
 text "Debo(emos) y pagaré(mos) incondicionalmente por este pagaré a la orden de __________________________________",:size =>10,:align => :justify 
+text" 
+"
 text "______________________________________________________ el ________________________________________",:size =>10,:align => :justify 
+text" 
+"
 text "Valor recibido a mi(nuestra) entera satisfacción. Este pagaré está sujeto a las condiciones de que al no pagarse a su vencimiento, será exigible desde la fecha de su vencimiento de este documento hasta el dia de su total liquidación, causando intereses moratorios al tipo de _____% mensual pagadero en esta ciudad juntamente con el principal.
 
 ",:size =>10,:align => :justify 
