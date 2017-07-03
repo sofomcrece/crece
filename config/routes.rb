@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'receipts/crear'
 
   get 'receipts/baja'
-
+  get '/pdf/:id', to: 'credits#pdf', as: 'pdf'
   resources :confs , except:[:new,:create,:index,:delete]
   get 'test/t21'
   get 'view_credits/documentos',to:'view_credits#documentos'

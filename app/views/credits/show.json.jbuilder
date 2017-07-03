@@ -90,10 +90,6 @@ json.extract! @credit, :id, :agente_empresa,
     :estado_actual,
     :localidad,
     :observaciones,
-    :croquis_file_name,
-    :croquis_content_type,
-    :croquis_file_size,
-    :croquis_updated_at,
     :fecha_de_nacimiento_conyuge,
     :antiguedad_en_el_domicilio_actual_meses,
     :antiguedad_en_el_domicilio_actual_anos,
@@ -113,4 +109,4 @@ json.extract! @credit, :id, :agente_empresa,
     :color_de_cancel,
     :caracteristicas_especiales,
     :profecion_id
-    json.pdfs @credit.pdf64
+    json.pdfs pdf_path(@credit)

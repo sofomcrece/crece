@@ -33,7 +33,7 @@
         <td><%= link_to 'Editar', edit_credit_path(credit),class:'crud-links' %></td>
         <td><%=link_to  'Aceptar', credit_path(credit,:credit=>{status:1}), :method=> :put,class:"waves-effect waves-light btn-large"%></td>
         <td><%=link_to  'Rechazar', credit_path(credit,:credit=>{status:2}), :method=> :put,class:"waves-effect waves-light btn-large"%></td>
-        <td><%=link_to  'ver PDFS',credit.croquis.url, class:"waves-effect waves-light btn-large"%></td>
+        <td><%=link_to  'ver PDFS',pdf_path(credit),target:"_blank", class:"waves-effect waves-light btn-large"%></td>
       </tr>
       
     <% end %>
