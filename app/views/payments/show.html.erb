@@ -10,6 +10,8 @@
                       <th data-field="price">Importe</th>
                       <th data-field="price">Pago</th>
                       <th data-field="price">Interes</th>
+                      <th></th>
+                      <th></th>
                   </tr>
                 </thead>
         
@@ -28,6 +30,9 @@
                       <div ng-if="ele.activo">
                         <a class="waves-effect waves-light btn" ng-click="pagar(ele)"  id="ena_botton">Hacer Pago</a>
                       </div>
+                    </td>
+                    <td>
+                      <a class="waves-effect waves-light btn" href="/tickets?clave={{ele.id}}">Historial</a>
                     </td>
                   </tr>
                 </tbody>

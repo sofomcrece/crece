@@ -5,6 +5,7 @@ class Credit < ActiveRecord::Base
     belongs_to :ocupation
     has_many :payments
     belongs_to :destination
+    belongs_to :profecion
    
     validates :referencia_agente_empresa,
     :fecha,
@@ -169,9 +170,9 @@ class Credit < ActiveRecord::Base
         "#{apellido_paterno} #{apellido_materno} #{nombre_1} #{nombre_2}"
     end
     def domicilio
-    cad = "calle #{calle}, no_ext:#{numero_exterior}, "
-    cad = cad + "no_int: #{numero_interior} " unless numero_interior.nil?
-    cad =cad +" colonia: #{colonia}, cp: #{codigo_postal}"
+    cad = "#{calle}, #{numero_exterior}, "
+    cad = cad + " #{numero_interior} " unless numero_interior.nil?
+    cad =cad +"#{colonia}, #{codigo_postal}"
   end
   def getCorrida 
         total= self.monto_solicitud.to_f + self.monto_solicitud.to_f * (self.product.taza_de_interes_ordinaria/100)

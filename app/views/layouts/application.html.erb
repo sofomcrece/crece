@@ -294,7 +294,9 @@
     
     $http.post('/tickets.json',{ticket:{cantidad:parseFloat(val.pago),payment_id:val.id}})
     .success(function(data){
+      window.open('/tickets/'+data.id);
       console.log(data);
+      
       cargar_payments();
     })
     .error(function(data){

@@ -6,6 +6,7 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     @tickets = Ticket.all
+    @tickets = @tickets.joins(:payment).where("payments.id = ?",params[:clave]) unless params[:clave]=="" or params[:clave].nil?
   end
   def multiprint
     

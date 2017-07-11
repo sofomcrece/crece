@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Tickets</h1>
+<h1>Historial de Tickets</h1>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.cantidad %></td>
-        <td><%= ticket.payment %></td>
+        <td><%= ticket.payment.id %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>

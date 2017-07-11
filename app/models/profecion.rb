@@ -1,4 +1,5 @@
 class Profecion < ActiveRecord::Base
+    has_many :profecions
      require 'json'
     def self.loadJson(val)
         puts "profecion"

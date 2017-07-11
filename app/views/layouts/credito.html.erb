@@ -9,7 +9,7 @@
     $(document).ready(function(){
     $("input").keyup(function(){
         this.value = this.value.toUpperCase();
-    });
+    });});
   </script>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,6 +81,11 @@
            $scope.credito.antiguedad_laboral_meses = $scope.credito.antiguedad_laboral_meses+"";
            $scope.agente_o_empresa();
           $scope.type();
+    }
+    $scope.setCredito = function(data){
+      if($scope.credito!=null)
+        return;
+       $scope.credito = data;
     }
     $scope.getPaices = function(){
       $http.get("/combos/pais.json")

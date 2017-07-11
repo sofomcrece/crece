@@ -24,7 +24,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "COLONIA: #{@credit.colonia}    NUM. EXTERIOR: #{@credit.numero_exterior} NUM. INTERIOR: #{@credit.numero_interior}
       ",:size => 10
-      text "CODIGO POSTAL : #{@credit.codigo_postal} ANTIGUEDAD DEL DOMICILIO : #{@credit.antiguedad_en_el_domicilio_actual_meses } meses con #{@credit.antiguedad_en_el_domicilio_actual_anos} años
+      text "CODIGO POSTAL : #{@credit.codigo_postal} ANTIGUEDAD DEL DOMICILIO : #{@credit.antiguedad_en_el_domicilio_actual_meses } MESES CON #{@credit.antiguedad_en_el_domicilio_actual_anos} AÑOS
       ",:size => 10
       text "TEL PARTICULAR : #{@credit.telefono_de_casa}  TEL OFICINA :  #{@credit.telefono_empresa}
       ",:size => 10
@@ -82,11 +82,11 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "MUNICIPIO EMP : #{@credit.municipio_empresa}
       ",:size => 10
-      text "ANTIGUEDAD DE LA EMPRESA : #{@credit.antiguedad_laboral_anos} años con #{@credit.antiguedad_laboral_meses} meses
+      text "ANTIGUEDAD DE LA EMPRESA : #{@credit.antiguedad_laboral_anos} AÑOS CON #{@credit.antiguedad_laboral_meses} MESES
       ",:size => 10
-      text "ACTIVIDAD ECONOMICA : #{@credit.puesto} 
+      text "ACTIVIDAD ECONOMICA : #{@credit.economical_activity.descripcion} 
       ",:size => 10 
-      text "PROFESION : #{@credit.escolaridad} 
+      text "PROFESION : #{@credit.profecion.descripcion} 
       ",:size => 10
       text "OCUPACION: #{@credit.economical_activity.descripcion}
       ",:size => 10

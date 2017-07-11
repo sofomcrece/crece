@@ -4,6 +4,7 @@
     <div>
       
       <%= form_for @credit,class:"father" do |f| %>
+      
     <% if @credit.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@credit.errors.count, "error") %> prohibited this credit from being saved:</h2>
@@ -23,6 +24,9 @@
   background-repeat: no-repeat;
   margin-left: 0px;
   '>
+  
+  <input type="hidden" value = "<%= @credit.to_json%>" ng-model="credito" ng-init="credito  = <%= @credit.to_json%>">
+      
 <div style = "position:relative; margin-left:45px; margin-top:0px; ">
       <div style="top:0px;left:925px;position:absolute;">
         <p>
