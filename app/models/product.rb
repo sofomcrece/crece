@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
      :taza_de_interes_ordinaria,
      :taza_de_interes_moratoria,
      :cat_sin_iva,
+     :plazo,
      :numero_de_meses_de_sueldo_para_prestamo,
      :loan_id,
      :payout_id,

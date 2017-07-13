@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703180408) do
+ActiveRecord::Schema.define(version: 20170713183419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -527,6 +527,7 @@ ActiveRecord::Schema.define(version: 20170703180408) do
     t.integer  "forma_de_pago_interes"
     t.integer  "plazo_de_prestamo_interes"
     t.integer  "numero_de_pagos_a_realizar_interes"
+    t.string   "plazo"
   end
 
   add_index "products", ["loan_id"], name: "index_products_on_loan_id", using: :btree
