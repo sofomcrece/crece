@@ -20,18 +20,18 @@ class ContratoPdf < Prawn::Document
     text "
                  PRÉSTAMO       ABONO (quincenal)" , :align  => :center,:size =>10       
     text "_________         __________ "  , :align  => :center,:size =>10          
-    text " 1,000.00          105.00 " , :align  => :center,:size =>10                            
+    text " 1,000.00          #{Dinero.to_money((1000*(@credit.product.taza_de_interes_ordinaria)))} " , :align  => :center,:size =>10                            
     text " 2,000.00          210.00 " , :align  => :center,:size =>10                             
     text " 3,000.00          315.00 " , :align  => :center,:size =>10                            
     text " 4,000.00          420.00 " , :align  => :center,:size =>10
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $ 105.00 #{@credit.product.payout.nombre}. La tasa de interes del préstamo es del #{@credit.product.taza_de_interes_ordinaria} %.",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $ 105.00 #{@credit.product.payout.nombre}. La tasa de interes del préstamo es del #{@credit.product.taza_de_interes_ordinaria}0 %. #{@credit.product.plazo_de_prestamo}",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
     text" La línea de crédito otorgada jamás podrá exceder a la cantidad que resulte de 2 meses de sueldo que el cliente demuestre para la apertura del presente contrato de apertura de crédito.",:size =>10,:align => :justify 
     text" CUARTA: A falta de pago puntual de cualquier recibo emitido por 'El Acreedor' de conformidad con las segunda y tercera, se dará por vencido este contrato, y en consecuencia se suspenderá la linea de crédito, debiendo 'El Acreedor' exigir a 'El Deudor'",:size =>10,:align => :justify 
-    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria} por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
+    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria}% por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
     text" B. Pago inmediato de la cantidad que como saldo total este adeudándole.",:size =>10,:align => :justify 
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
@@ -79,7 +79,7 @@ class ContratoPdf < Prawn::Document
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
     text" La línea de crédito otorgada jamás podrá exceder a la cantidad que resulte de 2 meses de sueldo que el cliente demuestre para la apertura del presente contrato de apertura de crédito.",:size =>10,:align => :justify 
     text" CUARTA: A falta de pago puntual de cualquier recibo emitido por 'El Acreedor' de conformidad con las segunda y tercera, se dará por vencido este contrato, y en consecuencia se suspenderá la linea de crédito, debiendo 'El Acreedor' exigir a 'El Deudor'",:size =>10,:align => :justify 
-    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria} por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
+    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria}% por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
     text" B. Pago inmediato de la cantidad que como saldo total este adeudándole.",:size =>10,:align => :justify 
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
@@ -126,7 +126,7 @@ class ContratoPdf < Prawn::Document
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
     text" La línea de crédito otorgada jamás podrá exceder a la cantidad que resulte de 2 meses de sueldo que el cliente demuestre para la apertura del presente contrato de apertura de crédito.",:size =>10,:align => :justify 
     text" CUARTA: A falta de pago puntual de cualquier recibo emitido por 'El Acreedor' de conformidad con las segunda y tercera, se dará por vencido este contrato, y en consecuencia se suspenderá la linea de crédito, debiendo 'El Acreedor' exigir a 'El Deudor'",:size =>10,:align => :justify 
-    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria} por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
+    text" A. Interes moratorios de #{@credit.product.taza_de_interes_moratoria}% por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
     text" B. Pago inmediato de la cantidad que como saldo total este adeudándole.",:size =>10,:align => :justify 
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 

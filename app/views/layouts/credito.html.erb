@@ -115,13 +115,14 @@
     $scope.getCiudades = function(){
       $scope.estados.text = JSON.parse($scope.estados.selected).nombre;
       url = "/combos/ciudad.json";
-      id = JSON.parse($scope.estados.selected).id;
+      id = JSON.parse($scope.estados.selected).clave;
       if(JSON.parse($scope.estados.selected).id != null)
         url = url + "?id_state="+id;
       $http.get(url)
       .success(function(data){
         $scope.ciudades = data;
         console.log(data);
+        console.log(url);
       })
       .error(function(data){
         console.log(data);
