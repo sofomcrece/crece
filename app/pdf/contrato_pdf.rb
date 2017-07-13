@@ -25,7 +25,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
@@ -36,7 +36,7 @@ class ContratoPdf < Prawn::Document
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
-    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
+    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado}  el día de #{Time.now.day} de #{Dinero.mes(Time.now.month)} de #{Time.now.year}.",:size =>10,:align => :justify 
     text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
@@ -75,7 +75,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
@@ -86,7 +86,7 @@ class ContratoPdf < Prawn::Document
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
-    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
+    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado} el día de #{Time.now.day} de #{Dinero.mes(Time.now.month)} de #{Time.now.year}.",:size =>10,:align => :justify 
     text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
@@ -124,7 +124,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de   #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
@@ -135,7 +135,7 @@ class ContratoPdf < Prawn::Document
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
     text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
-    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio} el día de #{Time.now.day} de #{Time.now.month} de #{Time.now.year}.",:size =>10,:align => :justify 
+    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado} el día de #{Time.now.day} de #{Dinero.mes(Time.now.month)} de #{Time.now.year}.",:size =>10,:align => :justify 
     text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
