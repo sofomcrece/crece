@@ -215,9 +215,12 @@
           $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
     		.success(function(data){
     			console.log(data);
+    			Array.prototype.unique=function(a){
+            return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+          });
     			$scope.credito.estado_actual=data.estado;
     			$scope.credito.municipio=data.municipio;
-    			$scope.colonias=data.colonias;
+    			$scope.colonias=data.colonias.unique();
     			$scope.localidades.push(data.municipio);
     				
     		})
