@@ -16,7 +16,7 @@ class ContratoPdf < Prawn::Document
     text "CLAUSULAS" , :align  => :center, :style=> :bold
     text "PRIMERA: 'El Acreedor' ha convenido en otorgar una línea de crédito a 'El Deudor' y este dá en garantia un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
     text "SEGUNDA: El importe que acepta y se obliga a pagar 'El Deudor', será el estipulado en RECIBO expedido por 'EL Acreedor' y las fechas de pago, serán las estipuladas en este contrato, dicho recibo será firmado por 'El Deudor' o por las personas por él autorizadas.",:size =>10,:align => :justify 
-    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $ 105.00 por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
+    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
     text "
                  PRÉSTAMO       ABONO (quincenal)" , :align  => :center,:size =>10       
     text "_________         __________ "  , :align  => :center,:size =>10          
@@ -25,7 +25,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $ 105.00 #{@credit.product.payout.nombre}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} %. #{@credit.product.plazo}",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
@@ -66,7 +66,7 @@ class ContratoPdf < Prawn::Document
     text "CLAUSULAS" , :align  => :center, :style=> :bold
     text "PRIMERA: 'El Acreedor' ha convenido en otorgar una línea de crédito a 'El Deudor' y este dá en garantia un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
     text "SEGUNDA: El importe que acepta y se obliga a pagar 'El Deudor', será el estipulado en RECIBO expedido por 'EL Acreedor' y las fechas de pago, serán las estipuladas en este contrato, dicho recibo será firmado por 'El Deudor' o por las personas por él autorizadas.",:size =>10,:align => :justify 
-    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $ 105.00 por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
+    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
     text "
                  PRÉSTAMO       ABONO (quincenal)" , :align  => :center,:size =>10       
     text "_________         __________ "  , :align  => :center,:size =>10          
@@ -75,7 +75,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $ 105.00 #{@credit.product.payout.nombre}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} %. #{@credit.product.plazo}",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
@@ -115,7 +115,7 @@ class ContratoPdf < Prawn::Document
     text "CLAUSULAS" , :align  => :center, :style=> :bold
     text "PRIMERA: 'El Acreedor' ha convenido en otorgar una línea de crédito a 'El Deudor' y este dá en garantia un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
     text "SEGUNDA: El importe que acepta y se obliga a pagar 'El Deudor', será el estipulado en RECIBO expedido por 'EL Acreedor' y las fechas de pago, serán las estipuladas en este contrato, dicho recibo será firmado por 'El Deudor' o por las personas por él autorizadas.",:size =>10,:align => :justify 
-    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $ 105.00 por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
+    text "TERCERA: Cada recibo emitido por 'El Acreedor' deberá pagarse en un plazo no mayor a #{@credit.product.numero_de_pagos_a_realizar/2} meses a partir de la fecha de su expedición, cuyo pago se efectuará mediante abonos #{@credit.product.payout.periocidad} por la cantidad de $ #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} por cada $1,000.00 que sea el préstamo, dando como ejemplo el siguiente tabulador." ,:size =>10 ,:align => :justify
     text "
                  PRÉSTAMO       ABONO (quincenal)" , :align  => :center,:size =>10       
     text "_________         __________ "  , :align  => :center,:size =>10          
@@ -124,7 +124,7 @@ class ContratoPdf < Prawn::Document
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
     text " 4,000.00          #{Dinero.to_money((4000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} " , :align  => :center,:size =>10                            
      text "
-    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $ 105.00 #{@credit.product.payout.nombre}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} %. #{@credit.product.plazo}",:size =>10,:align => :justify 
+    * El tabulador que se despliega en el presente punto hace referencia a que el abono está condicionado a que por cada $1,000.00 de préstamo al cliente, deberá darse un abono por la cantidad de $  #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/12)} #{@credit.product.payout.periocidad}. La tasa de interes del préstamo es del #{'%.2f' % @credit.product.taza_de_interes_ordinaria} % #{@credit.product.plazo}.",:size =>10,:align => :justify 
     text" Los recibos surtidos a 'El Acreedor' no deberán rebasar la línea de crédito establecida que es de $ 10,000.00.",:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando algún recibo se encuentre con más de 1 días, independientemente de su adeudo será menor de $ 10,000.00 " ,:size =>10,:align => :justify 
     text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ 10,000.00, independientemente de su vencimiento.",:size =>10,:align => :justify 
