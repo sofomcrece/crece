@@ -88,7 +88,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10 
       text "PROFESION : #{@credit.profecion.descripcion} 
       ",:size => 10
-      text "OCUPACION: #{@credit.economical_activity.descripcion}
+      text "OCUPACION: #{@credit.ocupation.descripcion}
       ",:size => 10
       text "SUELDO MENSUAL: #{@credit.sueldo_mensual_neto}   NSS: #{@credit.seguro} 
       ",:size => 10

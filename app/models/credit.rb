@@ -6,6 +6,7 @@ class Credit < ActiveRecord::Base
     has_many :payments
     belongs_to :destination
     belongs_to :profecion
+    belongs_to :ocupation
    
     validates :referencia_agente_empresa,
     :fecha,
