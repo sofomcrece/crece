@@ -15,7 +15,7 @@ class CorridaPdf < Prawn::Document
     monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
     text "#{@credit.nombre_completo_deudor}"
-    table([["FECHA DE PRESTAMO", @credit.fecha], 
+    table([["FECHA DE PRESTAMO", @credit.fecha_de_contrato], 
           ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
           ["MONTO A PAGAR", Dinero.to_money(monto_a_pagar)], 
           ["PAGO FIJO", Dinero.to_money(monto_a_pagar/@credit.product.numero_de_pagos_a_realizar)], 

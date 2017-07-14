@@ -18,8 +18,8 @@ class CaratulaPdf < Prawn::Document
       draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
       draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [100,232]
       draw_text  "#{Conf.last.telefono}",:size=>9, :at => [100,215]
-      draw_text  "www.financieramarjo.com.mx",:size=>9, :at => [140,203]
-      draw_text  "#{Conf.last.correo}",:size=>9, :at => [390,217]
+      draw_text  "#{Conf.last.pagina}",:size=>9, :at => [140,203]
+      draw_text  "#{Conf.last.correo}",:size=>8, :at => [390,217]
       
       draw_text  "#{@credit.product.registro_del_contrado_de_adhesion}",:size=>9, :at => [240,123]
   end

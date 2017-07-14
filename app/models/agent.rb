@@ -53,4 +53,5 @@ class Agent < ActiveRecord::Base
   def credits 
     Credit.all.where("credits.agente_empresa =  ? and credits.referencia_agente_empresa = ?", 1 , self.id)
   end
+
 end
