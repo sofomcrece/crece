@@ -8,7 +8,7 @@ class PolizaPdf < Prawn::Document
     rectangle [50,750], 500, 250
     des = 0
     draw_text  "FINANCIERA MARJO S.A DE C.V. SOFOM ENR",:size=>9, :at => [70,720+des]
-    draw_text  "RIO  NAZASA 1240 LOS PINOS",:size=>9, :at => [70,710+des]
+    draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [70,710+des]
     draw_text  "CULIACAN DE ROSALES, SINALOA CP: 80128",:size=>9, :at => [70,700+des]
     draw_text  "#{Conf.last.RFC}",:size=>9, :at => [70,690+des]
     draw_text  "SUCURSAL: #{@credit.padre.branch_office.nombre}",:size=>9, :at => [70,680+des]
@@ -43,7 +43,7 @@ class PolizaPdf < Prawn::Document
     des = -400 
     
     draw_text  "FINANCIERA MARJO S.A DE C.V. SOFOM ENR",:size=>9, :at => [70,720+des]
-    draw_text  "RIO  NAZASA 1240 LOS PINOS",:size=>9, :at => [70,710+des]
+    draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [70,710+des]
     draw_text  "CULIACAN DE ROSALES, SINALOA CP: 80128",:size=>9, :at => [70,700+des]
     draw_text  "#{Conf.last.RFC}",:size=>9, :at => [70,690+des]
     draw_text  "SUCURSAL: #{@credit.padre.branch_office.nombre}",:size=>9, :at => [70,680+des]
