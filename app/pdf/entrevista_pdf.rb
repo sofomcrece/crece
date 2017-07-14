@@ -16,7 +16,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "NOMBRE COMPLETO : #{@credit.nombre_completo_deudor}
       ",:size => 10
-      text "DOMICILIO: #{@credit.domicilio}
+      text "DOMICILIO: #{@credit.calle}
       ",:size => 10
       text "PAIS DOMICILIO : #{@credit.country}  ESTADO DOMICILIO : #{@credit.estado_actual}
       ",:size => 10
@@ -34,19 +34,19 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "GASTO PROMEDIO :  #{@credit.gasto_promedio_mensual}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
       ",:size => 10
-      text "NOMBRE COMPLETO CONYUGUE : #{@credit.apellido_paterno_del_conyuge}  #{@credit.apellido_materno_del_conyuge}  #{@credit.nombre_1_del_conyuge} #{@credit.nombre_2_del_conyuge}
+      text "NOMBRE COMPLETO CÓNYUGE : #{@credit.apellido_paterno_del_conyuge}  #{@credit.apellido_materno_del_conyuge}  #{@credit.nombre_1_del_conyuge} #{@credit.nombre_2_del_conyuge}
       ",:size => 10
-      text "CEL CONYUGUE : #{@credit.telefono_celular_del_conyuge}   TEL OFICINA CONYUGUE: #{@credit.telefono_de_oficina_del_conyuge}
+      text "CEL CÓNYUGE : #{@credit.telefono_celular_del_conyuge}   TEL OFICINA CÓNYUGE: #{@credit.telefono_de_oficina_del_conyuge}
       ",:size => 10
       text "NOMBRE DEPENDIENTE 1 : #{@credit.nombre_completo_1}
       ",:size => 10
-      text "EDAD DEPENDIENTE 1 :  #{@credit.edad_1}
+      text "EDAD DEPENDIENTE 1 :  #{@credit.edad_1} AÑOS
       ",:size => 10
       text "PARENTESCO DEPENDIENTE 1: #{@credit.parentesco_del_dependiente_1}
       ",:size => 10
       text "NOMBRE DEPENDIENTE 2:  #{@credit.nombre_completo_2}
       ",:size => 10
-      text "EDAD DEPENDIENTE 2: #{@credit.edad_2}
+      text "EDAD DEPENDIENTE 2: #{@credit.edad_2} AÑOS
       ",:size => 10
       text "PARENTESCO DEPENDIENTE 2: #{@credit.parentesco_del_dependiente_2}
       ",:size => 10
