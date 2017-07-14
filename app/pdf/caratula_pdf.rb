@@ -9,7 +9,7 @@ class CaratulaPdf < Prawn::Document
       image open("#{Rails.root}/app/pdf/caratulacredito_en_blanco.jpg"), position: :center , :width=>560, :height=>790
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
       draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,672]
-      draw_text  "#{@credit.product.taza_de_interes_ordinaria}%",:size=>9, :at => [200,610]
+      draw_text  "#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%",:size=>9, :at => [200,610]
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))))}",:size=>9, :at => [440,610]
       draw_text  "12 quincenas",:size=>9, :at => [100,570]
@@ -18,7 +18,9 @@ class CaratulaPdf < Prawn::Document
       draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
       draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [100,232]
       draw_text  "#{Conf.last.telefono}",:size=>9, :at => [100,215]
+      draw_text  "www.financieramarjo.com.mx",:size=>9, :at => [140,203]
       draw_text  "#{Conf.last.correo}",:size=>9, :at => [390,217]
+      
       draw_text  "#{@credit.product.registro_del_contrado_de_adhesion}",:size=>9, :at => [240,123]
   end
 end
