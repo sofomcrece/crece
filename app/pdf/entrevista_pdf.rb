@@ -98,13 +98,13 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "DOMICILIO REFERENCIA 1 : #{@credit.domicilio_referencia_1}
       ",:size => 10
-      text "TELEFONO REFERENCIA 1: #{@credit.telefono_fijo_referencia_1}
+      text "TELEFONO REFERENCIA 1: fijo: #{@credit.telefono_fijo_referencia_1} cel: #{@credit.telefono_celular_referencia_1}
       ",:size => 10
       text "NOMBRE REFERENCIA 2 :  #{@credit.nombre_referencia_2}
       ",:size => 10
       text "DOMICILIO REFERENCIA 2 :  #{@credit.domicilio_referencia_2}
       ",:size => 10
-      text "TELEFONO REFERENCIA 2:  #{@credit.telefono_fijo_referencia_2}
+      text "TELEFONO REFERENCIA 2: fijo: #{@credit.telefono_fijo_referencia_2} cel: #{@credit.telefono_celular_referencia_2}
       ",:size => 10
       text "NOMBRE FAMILIAR: #{@credit.nombre_referencia_familiar}
       ",:size => 10
