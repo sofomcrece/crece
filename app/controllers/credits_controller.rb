@@ -1,11 +1,14 @@
 class CreditsController < ApplicationController
   layout "layouts/credito"
-  before_action :set_credit, only: [:show, :edit, :update, :destroy,:aprobar,:pdf]
+  before_action :set_credit, only: [:show, :edit, :update, :destroy,:aprobar,:pdf,:text]
 
   # GET /credits
   # GET /credits.json
   def pdf
     send_data Base64.decode64(@credit.pdf64[28..@credit.pdf64.length]), :type => 'application/pdf', :filename => "documentos.pdf", :disposition => "inline"
+  end
+  def text
+    render text:@credit.pdf64
   end
   def index
     @credits = Credit.all
