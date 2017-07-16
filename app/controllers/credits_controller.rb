@@ -5,7 +5,7 @@ class CreditsController < ApplicationController
   # GET /credits
   # GET /credits.json
   def pdf
-    send_data Base64.decode64(Credit.last.pdf64[28..Credit.last.pdf64.length]), :type => 'application/pdf', :filename => "documentos.pdf", :disposition => "inline"
+    send_data Base64.decode64(@credit.pdf64[28..@credit.pdf64.length]), :type => 'application/pdf', :filename => "documentos.pdf", :disposition => "inline"
   end
   def index
     @credits = Credit.all
