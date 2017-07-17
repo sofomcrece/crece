@@ -51,7 +51,7 @@ class Credit < ActiveRecord::Base
     :antiguedad_laboral_meses,
     :nombre_referencia_2,
     :domicilio_referencia_2,
-   
+    :pdf64,
     :country,
     :nombre_referencia_familiar,
     :domicilio_referencia_familiar,
