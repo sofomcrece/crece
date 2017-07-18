@@ -87,6 +87,7 @@ class Credit < ActiveRecord::Base
     #eee555555eee
      validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
      #BEML920313HCMLNS09.
+     validates :referencia_agente_empresa, numericality: { other_than: 0 }
      validates :agente_empresa,
     :inclusion => { :in => [nil,1, 0] }
     
