@@ -16,7 +16,6 @@ class Credit < ActiveRecord::Base
     :nombre_2,
     :RFC,
     :CURP,
-    :seguro,
     :INE,
     :nacionalidad,
     :fecha_de_nacimiento,
@@ -84,7 +83,7 @@ class Credit < ActiveRecord::Base
     :inclusion => { :in => [nil,1, 0] }
     validates :familiar_con_prestamo,
     :presence => { :if => 'familiar_con_prestamo.nil?' }
-    validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
+    validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d(\w\w\w|)/
     #eee555555eee
      validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
      #BEML920313HCMLNS09.

@@ -1,35 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1 align="center">Solicitudes rechazadas</h1>
+<h1 align="center">SOLICITUDES RECHAZADAS</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Agente/Empresa</th>
-      <th>Empresa</th>
-      <th>Fecha</th>
-      <th>Nombre</th>
-      <th>Rfc</th>
-      <th>Monto</th>
+      <th>AGENTE/EMPRESA</th>
+
+      <th>FECHA</th>
+      <th>NOMBRE</th>
+      <th>RFC</th>
+      <th>MONTO</th>
       
       <th colspan="1"></th>
-    </tr>
+    </trs
   </thead>
 
   <tbody>
     <% @credits.each do |credit| %>
       <tr>
         <%if credit.agente_empresa %>
-          <td>Agente</td>
+          <td><h10>Agente</h10></td>
         <%else%>
-          <td>Empresa</td>
+          <td><h10>Empresa</h10></td>
         <%end%>
-        <td><%= credit.referencia_agente_empresa %></td>
-        <td><%= credit.fecha %></td>
-        <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
-        <td><%= credit.RFC %></td>
-        <td><%= credit.monto_solicitud %></td>
-        <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
+        <td><h10><%= credit.fecha %></h10></td>
+        <td><h10><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></h10></td>
+        <td><h10><%= credit.RFC %></h10></td>
+        <td><h10><%= credit.monto_solicitud %></h10></td>
+        <td><h10><%= link_to 'Mostrar',credit,class:'crud-links' %></h10></td>
       </tr>
       
     <% end %>
