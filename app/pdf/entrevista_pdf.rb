@@ -72,7 +72,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "MUNICIPIO DE NAC : #{@credit.ciudad_de_nacimiento}     NACIONALIDAD : #{@credit.nacionalidad}
       ",:size => 10
-      text "FEC NACIMIENTO : #{@credit.fecha_de_nacimiento}    FEC INGRESO TRABAJO : #{@credit.fecha - @credit.antiguedad_laboral_anos.year - @credit.antiguedad_laboral_meses.month}
+      text "FEC NACIMIENTO : #{@credit.fecha_de_nacimiento.strftime("%d/%m/%Y")}    FEC INGRESO TRABAJO : #{@credit.fecha - @credit.antiguedad_laboral_anos.year - @credit.antiguedad_laboral_meses.month}
       ",:size => 10
       text "NOMBRE DE LA EMPRESA : #{@credit.empresa_donde_labora}
       ",:size => 10
