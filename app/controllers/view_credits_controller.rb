@@ -3,12 +3,21 @@ class ViewCreditsController < ApplicationController
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
   def index
     @credits = Credit.all.where(status:0)
+    if current_user.tipo==3
+      @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
+    end
   end
   def aceptadas
     @credits = Credit.all.where(status:1)
+    if current_user.tipo==3
+       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
+    end
   end
   def rechazadas
     @credits = Credit.all.where(status:2)
+    if current_user.tipo==3
+       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
+    end
   end
   # GET /credits/1
   # GET /credits/1.json

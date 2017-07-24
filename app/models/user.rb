@@ -31,8 +31,9 @@ class User < ActiveRecord::Base
             :colonia,:codigo_postal,:municipio,:estado,:pais,:alias,presence: true
   validates :tipo,
     :inclusion => { :in => [1,2,3,4] }
-    validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
-     
+     validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d(\w\w\w|)/
+    #eee555555eee
+     validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
   def RFC=(val)
     write_attribute :RFC, val.upcase
   end

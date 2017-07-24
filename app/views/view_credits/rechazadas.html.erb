@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h1 align="center">SOLICITUDES RECHAZADAS</h1>
-
-<table>
+<style>
+  td{
+    padding:5px 5px; 
+  }
+  </style>
+<table style="font-size:12px;">
   <thead>
     <tr>
       <th>AGENTE/EMPRESA</th>
@@ -13,7 +17,7 @@
       <th>MONTO</th>
       
       <th colspan="1"></th>
-    </trs
+    </tr>
   </thead>
 
   <tbody>
@@ -24,7 +28,7 @@
         <%else%>
           <td><h10>Empresa</h10></td>
         <%end%>
-        <td><h10><%= credit.fecha %></h10></td>
+        <td><%= credit.fecha.strftime("%d/%m/%Y") %></td>
         <td><h10><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></h10></td>
         <td><h10><%= credit.RFC %></h10></td>
         <td><h10><%= credit.monto_solicitud %></h10></td>

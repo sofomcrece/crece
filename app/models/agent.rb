@@ -27,14 +27,15 @@ class Agent < ActiveRecord::Base
     :monto_maximo_de_prestamo,
     :branch_office_id,
     presence:true
-     validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d\w\w\w/
-     
+     validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d(\w\w\w|)/
+    #eee555555eee
+     validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
+    
      
   def RFC=(val)
     write_attribute :RFC, val.upcase
   end
-    validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
-     #BEML920313HCMLNS09.
+   
   def CURP=(val)
     write_attribute :CURP, val.upcase
   end

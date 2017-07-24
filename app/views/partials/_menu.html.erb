@@ -38,9 +38,14 @@
    
     
 <%elsif current_user.tipo==2%>
-    <li><%= link_to 'Creditos', credit_path%></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
+
+    <li><%= link_to 'Clientes', customers_path%></li>
 <%elsif current_user.tipo==3%>
-    <li><%= link_to 'Creditos', credits_path%></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><%= link_to 'Clientes', customers_path%></li>
     
 <%elsif current_user.tipo==4%>
     
