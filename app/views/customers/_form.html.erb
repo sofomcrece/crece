@@ -117,6 +117,7 @@
   </div>
   <div class="field">
     <%= f.label :escolaridad %><br>
+    <!--<%=f.collection_select(:escolaridad,@escolaridad.all.order(:descripcion),:id,:descripcion,{:prompt => 'Escolaridad:'})%>-->
     <%= f.number_field :escolaridad %>
   </div>
   <div class="field">

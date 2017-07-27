@@ -32,7 +32,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "SEXO : #{@credit.sexo==1?"Hombre":"Mujer"}    NO. DE DEPENDIENTES : #{@credit.numero_de_dependientes_economicos}
       ",:size => 10
-      text "GASTO PROMEDIO :  #{@credit.gasto_promedio_mensual}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
+      text "GASTO PROMEDIO :  #{Dinero.to_money(@credit.gasto_promedio_mensual)}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
       ",:size => 10
       text "NOMBRE COMPLETO CÓNYUGE : #{@credit.apellido_paterno_del_conyuge}  #{@credit.apellido_materno_del_conyuge}  #{@credit.nombre_1_del_conyuge} #{@credit.nombre_2_del_conyuge}
       ",:size => 10
@@ -90,7 +90,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "OCUPACION: #{@credit.ocupation.descripcion}
       ",:size => 10
-      text "SUELDO MENSUAL: #{@credit.sueldo_mensual_neto}   NSS: #{@credit.seguro} 
+      text "SUELDO MENSUAL: #{Dinero.to_money(@credit.sueldo_mensual_neto)}   NSS: #{@credit.seguro} 
       ",:size => 10
       text "PARA QUE NECESITA EL CREDITO : #{@credit.destination.descricion}
       ",:size => 10
@@ -98,19 +98,19 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "DOMICILIO REFERENCIA 1 : #{@credit.domicilio_referencia_1}
       ",:size => 10
-      text "TELEFONO REFERENCIA 1: fijo: #{@credit.telefono_fijo_referencia_1} cel: #{@credit.telefono_celular_referencia_1}
+      text "TELEFONO REFERENCIA 1: FIJO: #{@credit.telefono_fijo_referencia_1} CEL: #{@credit.telefono_celular_referencia_1}
       ",:size => 10
       text "NOMBRE REFERENCIA 2 :  #{@credit.nombre_referencia_2}
       ",:size => 10
       text "DOMICILIO REFERENCIA 2 :  #{@credit.domicilio_referencia_2}
       ",:size => 10
-      text "TELEFONO REFERENCIA 2: fijo: #{@credit.telefono_fijo_referencia_2} cel: #{@credit.telefono_celular_referencia_2}
+      text "TELEFONO REFERENCIA 2: FIJO: #{@credit.telefono_fijo_referencia_2} CEL: #{@credit.telefono_celular_referencia_2}
       ",:size => 10
       text "NOMBRE FAMILIAR: #{@credit.nombre_referencia_familiar}
       ",:size => 10
       text "DOMICILIO FAMILIAR : #{@credit.domicilio_referencia_familiar}
       ",:size => 10
-      text "TELEFONO FAMILIAR: #{@credit.telefono_fijo_referencia_familiar}
+      text "TELEFONO FAMILIAR: #{@credit.telefono_fijo_referencia_familiar} CEL: #{@credit.telefono_celular_referencia_familiar}
       ",:size => 10
       text "OBSERVACIONES: #{@credit.observaciones}
       ",:size => 10
