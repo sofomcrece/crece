@@ -51,6 +51,10 @@
     <strong>Plazo de prestamo:</strong>
     <%= @product.plazo %>
   </p>
+  <p>
+    <strong>Interes moratorio aplicable:</strong>
+    <%= @product.interes_moratorio_aplicable %>%
+  </p>
 </div>
 <%= link_to 'Editar', edit_product_path(@product),class:"crud-links" %> |
 <%= link_to 'Atras', products_path,class:"crud-links" %>

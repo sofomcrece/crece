@@ -104,6 +104,15 @@
         <%= f.label :plazo,'Plazo de prestamo' %>
         <%= f.text_field :plazo %>
       </div>
+      <div class="field">
+        <div class="col s11 m11 l11 ">
+          <%= f.label :interes_moratorio_aplicable,'Interes moratorio aplicable' %>
+          <%= f.number_field :interes_moratorio_aplicable, :step => 'any' %>
+        </div>
+        <div class="col s1 m1 l1 valign-wrapper">
+          <h5 class="valign">%</h5>
+        </div>
+      </div>
   </div>
       <div class="actions">
         <%= f.submit 'Guardar' %>

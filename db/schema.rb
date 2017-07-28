@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714165454) do
+ActiveRecord::Schema.define(version: 20170728180124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -486,11 +486,11 @@ ActiveRecord::Schema.define(version: 20170714165454) do
     t.date     "fecha_de_pago"
     t.string   "recibo"
     t.integer  "estatus"
-    t.decimal  "importe"
-    t.decimal  "pago"
-    t.decimal  "interes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.decimal  "importe",            precision: 10, scale: 2
+    t.decimal  "pago",               precision: 10, scale: 2
+    t.decimal  "interes",            precision: 10, scale: 2
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "credit_id"
     t.boolean  "activado"
     t.date     "fecha_de_corte"
@@ -521,14 +521,15 @@ ActiveRecord::Schema.define(version: 20170714165454) do
     t.decimal  "taza_de_interes_moratoria"
     t.decimal  "cat_sin_iva"
     t.decimal  "numero_de_meses_de_sueldo_para_prestamo"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.integer  "loan_id"
     t.integer  "payout_id"
     t.integer  "forma_de_pago_interes"
     t.integer  "plazo_de_prestamo_interes"
     t.integer  "numero_de_pagos_a_realizar_interes"
     t.string   "plazo"
+    t.decimal  "interes_moratorio_aplicable",             precision: 10, scale: 2
   end
 
   add_index "products", ["loan_id"], name: "index_products_on_loan_id", using: :btree
