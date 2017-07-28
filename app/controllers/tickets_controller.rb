@@ -15,7 +15,12 @@ class TicketsController < ApplicationController
     @tickets = []
     elementos.each do |elemento|
       pay = Payment.find(elemento["id"].to_i)
-      @tickets  << Ticket.create(cantidad:pay.importe,payment_id:pay.id,status:1)
+      ticket = Ticket.new(cantidad:pay.importe,payment_id:pay.id,status:1)
+      if ticket.save
+        @tickets  << ticket
+      else 
+        @tickets << pay.get_last_generated
+      end
     end
     pdf = ReciboPdf.new(@tickets)
     send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"

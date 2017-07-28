@@ -33,7 +33,9 @@ class Payment < ActiveRecord::Base
         end
         
     end
-    
+    def get_last_generated
+        return self.tickets.where(status:1).last
+    end
     # 0 ------ al corriente
     # 1 ------ Vencido
     # 2 ------ pagado
