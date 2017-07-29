@@ -62,6 +62,15 @@ class ReportsController < ApplicationController
     tabla = []
     credits = padre.credits.where(product:producto.to_i)
    credits.each do |credit|
+    payment  = Payment.all.where("credit_id = ? and fecha_de_pago = ?", credit.id, fecha)[0]
+    activar = false
+    if(payment.nil?)
+        activar = false
+    elsif payment.estatus==2
+        activar= true
+    else
+        activar= false
+    end
     fila = Hash.new()
     fila["nombre_completo"] = "#{credit.nombre_1} #{credit.nombre_2} #{credit.apellido_paterno} #{credit.apellido_materno}"
     fila["fecha"] = credit.fecha
@@ -69,12 +78,12 @@ class ReportsController < ApplicationController
     fila["monto_a_pagar"] = credit.payments.sum(:importe)
     fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
     fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
-    fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_pago = ?", credit.id, fecha).sum(:importe).to_s.to_d
+    fila["pagar"] = (activar)? "0" :  Payment.all.where("credit_id = ? and fecha_de_pago = ?", credit.id, fecha).sum(:importe).to_s.to_d
     pagos = Payment.all.where("credit_id = ? and fecha_de_pago < ?", credit.id, fecha)
     fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
     fila["interes_moratorio"] = pagos.sum(:interes).to_s.to_d
-    fila["total_a_cobrar"] = fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
-    fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_pago = ? and tickets.status = 0", credit.id, fecha).sum(:cantidad)
+    fila["total_a_cobrar"] = (activar)? "0" : fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
+    fila["cobrado"] =(activar)? "0" : Payment.joins(:tickets).where("credit_id = ? and fecha_de_pago = ? and tickets.status = 0", credit.id, fecha).sum(:cantidad)
     fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
     fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_pago > ? and tickets.status = ?",credit.id, fecha,0).sum(:cantidad)
     fila["empresa"] = credit.padre.nombre_completo

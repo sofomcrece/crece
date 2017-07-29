@@ -14,7 +14,7 @@ class Payment < ActiveRecord::Base
         Ticket.where(payment_id:self.id).where(status:0).sum(:cantidad)
     end
     def activo
-        self.credit.payments.each do |tk|
+        self.credit.payments.order(:fecha_de_pago).each do |tk|
             puts tk.id
             unless tk.pagado
                 if tk.id == self.id
@@ -29,7 +29,7 @@ class Payment < ActiveRecord::Base
     def cargar_interes
         unless self.estatus==2
             inter =  self.importe * (self.credit.product.interes_moratorio_aplicable.to_f/100)
-            self.update(interes:inter,status:1)
+            self.update(interes:inter,estatus:1)
         end
         
     end
