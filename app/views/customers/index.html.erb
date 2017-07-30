@@ -20,6 +20,7 @@
         <td>APELLIDO MATERNO</td>
         <td>NOMBRES</td>
         <td>SUCURSAL O EMPRESA</td>
+        <td># CREDITOS</td>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -29,8 +30,8 @@
           <td>{{cliente.apellido_paterno}}</td>
           <td>{{cliente.apellido_materno}}</td>
           <td>{{cliente.nombres}}</td>
-          <td>{{cliente.agente_empresa}}</td>
-          
+          <td>{{cliente.agente_empresa_nombre}}</td>
+          <td>{{cliente.numero_de_creditos}}</td>
           <td><a href="{{cliente.url}}" class="crud-links">Ver</a></td>
           <td><a href="{{cliente.edit}}" class="crud-links">Editar</a></td>
         </tr>
