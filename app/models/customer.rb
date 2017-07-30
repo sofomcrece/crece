@@ -14,13 +14,12 @@ class Customer < ActiveRecord::Base
      #BEML920313HCMLNS09.
     
     def padre 
-        if self.referencia_agente_empresa == nil
+        if self.referencia_agente_empresa.nil?
             return nil
-        end
-        if agente_empresa==1
-          return  Agent.find(self.referencia_agente_empresa)
+        elsif self.agente_empresa
+          return  Agent.where(id:self.referencia_agente_empresa)[0]
         else
-          return  Company.find(self.referencia_agente_empresa)
+          return  Company.where(id:self.referencia_agente_empresa)[0]
         end
     end
     def self.create_customer_from_credit(val)
