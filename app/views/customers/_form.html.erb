@@ -117,8 +117,15 @@
   </div>
   <div class="field">
     <%= f.label :escolaridad %><br>
-    <!--<%=f.collection_select(:escolaridad,@escolaridad.all.order(:descripcion),:id,:descripcion,{:prompt => 'Escolaridad:'})%>-->
-    <%= f.number_field :escolaridad %>
+    <select id="escplaridad" name="customer[escolaridad]">
+      <option value="0">Primaria</option>
+      <option value="1">Secundaria</option>
+      <option value="2">Preparatoria</option>
+      <option value="3">Tecnico</option>
+      <option value="4">Licenciatura</option>
+      <option value="5">Posgrado</option>
+      <option value="6">Sin estudios</option>
+    </select>
   </div>
   <div class="field">
     <%= f.label :numero_de_dependientes_economicos %><br>
@@ -130,7 +137,13 @@
   </div>
   <div class="field">
     <%= f.label :estado_civil %><br>
-    <%= f.number_field :estado_civil %>
+     <select id="estado_civil" name="customer[estado_civil]">
+      <option value="0">Soltero</option>
+      <option value="1">Casado</option>
+      <option value="2">Divorciado</option>
+      <option value="3">Union libre</option>
+      <option value="4">Viudo</option>
+    </select>
   </div>
   <div class="field">
     <%= f.label :apellido_paterno_del_conyuge %><br>
@@ -170,7 +183,12 @@
   </div>
   <div class="field">
     <%= f.label :tipo_de_domicilio %><br>
-    <%= f.number_field :tipo_de_domicilio %>
+     <select id="tipo_de_domicilio" name="customer[tipo_de_domicilio]">
+      <option value="0">Propia</option>
+      <option value="1">Familiar</option>
+      <option value="2">Rentada</option>
+      <option value="3">Hipoteca</option>
+    </select>
   </div>
   <div class="field">
     <%= f.label :codigo_postal %><br>
@@ -316,7 +334,7 @@
   </div>
   <div class="field">
     <%= f.label :economical_activity_id %><br>
-    <%= f.text_field :economical_activity_id %>
+    <%=f.collection_select(:economical_activity_id,EconomicalActivity.all.order(:descripcion),:id,:descripcion,{:prompt => 'Actividad economica:'})%>
   </div>
   <div class="field">
     <%= f.label :nombre_completo_familiar_3 %><br>
