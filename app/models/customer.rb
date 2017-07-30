@@ -14,6 +14,9 @@ class Customer < ActiveRecord::Base
      #BEML920313HCMLNS09.
     
     def padre 
+        if self.referencia_agente_empresa == nil
+            return nil
+        end
         if agente_empresa==1
           return  Agent.find(self.referencia_agente_empresa)
         else
