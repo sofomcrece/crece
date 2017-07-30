@@ -12,4 +12,12 @@ class Customer < ActiveRecord::Base
     #eee555555eee
      validates_format_of :CURP, :with => /[A-Z][A-Z][A-Z][A-Z]\d\d\d\d\d\d\w\w\w\w\w\w\d\d/
      #BEML920313HCMLNS09.
+    
+    def padre 
+        if agente_empresa==1
+          return  Agent.find(self.referencia_agente_empresa)
+        else
+          return  Company.find(self.referencia_agente_empresa)
+        end
+    end
 end
