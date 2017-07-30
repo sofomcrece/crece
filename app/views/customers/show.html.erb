@@ -123,7 +123,7 @@
     
     <p>
       <strong>Escolaridad:</strong>
-      <%= @customer.escolaridad %>
+      <%= Auxiliar.escolaridad_nombre @customer.escolaridad %>
     </p>
     
     <p>
@@ -138,7 +138,7 @@
     
     <p>
       <strong>Estado civil:</strong>
-      <%= @customer.estado_civil %>
+      <%= Auxiliar.estado_civil_nombre @customer.estado_civil %>
     </p>
     
     <p>
@@ -188,7 +188,7 @@
     
     <p>
       <strong>Tipo de domicilio:</strong>
-      <%= @customer.tipo_de_domicilio %>
+      <%= Auxiliar.casa_nombre(@customer.tipo_de_domicilio) %>
     </p>
     
     <p>
@@ -375,13 +375,8 @@
     </p>
     
     <p>
-      <strong>Status:</strong>
-      <%= @customer.status %>
-    </p>
-    
-    <p>
       <strong>Economical activity:</strong>
-      <%= @customer.economical_activity %>
+      <%= @customer.economical_activity.descripcion %>
     </p>
     
     <p>

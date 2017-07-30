@@ -11,17 +11,6 @@
       </ul>
     </div>
   <% end %>
-  <div class="field-b">
-      <%= f.label :agente_empresa, "Agente o Empresa" %>
-      <p>
-        <%= f.radio_button  :agente_empresa,true,checked:true%> <%= f.label "#{:agente_empresa}_1", "Agente" %>
-        <%= f.radio_button  :agente_empresa,false %> <%= f.label "#{:agente_empresa}_2", "Empresa" %>
-      </p>
-    </div>
-  <div class="field">
-    <%= f.label :referencia_agente_empresa %><br>
-    <%= f.number_field :referencia_agente_empresa %>
-  </div>
   <div class="field">
     <%= f.label :como_se_entero %><br>
     <%= f.text_area :como_se_entero %>
@@ -91,9 +80,7 @@
     <%= f.text_field :estado_de_nacimiento %>
   </div>
   <div class="field-b">
-    <br>
-    <br>
-      <%= f.label :sexo, "Familiar con prestamo" %>
+      <%= f.label :sexo %>
     <p>
       <%= f.radio_button  :sexo,true,checked:true%> <%= f.label "#{:sexo}_1", "Masculino" %>
       <%= f.radio_button  :sexo,false %> <%= f.label "#{:sexo}_2", "Femenino" %>
@@ -117,15 +104,7 @@
   </div>
   <div class="field">
     <%= f.label :escolaridad %><br>
-    <select id="escplaridad" name="customer[escolaridad]">
-      <option value="0">Primaria</option>
-      <option value="1">Secundaria</option>
-      <option value="2">Preparatoria</option>
-      <option value="3">Tecnico</option>
-      <option value="4">Licenciatura</option>
-      <option value="5">Posgrado</option>
-      <option value="6">Sin estudios</option>
-    </select>
+    <%= f.select :escolaridad, options_for_select([["Primaria", "0"], ["Secundaria", "1"], ["Preparatoria","2"], ["Tecnico","3"], ["Licenciatura","4"],["Posgrado","5"],["Sin estudios","6"]], :selected => f.object.escolaridad)%>
   </div>
   <div class="field">
     <%= f.label :numero_de_dependientes_economicos %><br>
@@ -137,13 +116,7 @@
   </div>
   <div class="field">
     <%= f.label :estado_civil %><br>
-     <select id="estado_civil" name="customer[estado_civil]">
-      <option value="0">Soltero</option>
-      <option value="1">Casado</option>
-      <option value="2">Divorciado</option>
-      <option value="3">Union libre</option>
-      <option value="4">Viudo</option>
-    </select>
+    <%= f.select :estado_civil, options_for_select([["Soltero", "0"], ["Casado", "1"], ["Divorciado","2"], ["Union libre","3"], ["Viudo","4"]], :selected => f.object.estado_civil)%>
   </div>
   <div class="field">
     <%= f.label :apellido_paterno_del_conyuge %><br>
@@ -183,12 +156,8 @@
   </div>
   <div class="field">
     <%= f.label :tipo_de_domicilio %><br>
-     <select id="tipo_de_domicilio" name="customer[tipo_de_domicilio]">
-      <option value="0">Propia</option>
-      <option value="1">Familiar</option>
-      <option value="2">Rentada</option>
-      <option value="3">Hipoteca</option>
-    </select>
+    <%=  f.select :tipo_de_domicilio, options_for_select([["Propia", "0"], ["Familiar", "1"], ["Rentada","2"], ["Hipoteca","3"]], :selected => f.object.tipo_de_domicilio)%>
+    
   </div>
   <div class="field">
     <%= f.label :codigo_postal %><br>
