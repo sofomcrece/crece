@@ -7,13 +7,8 @@
  </div>
  <div class="show row">  
     <p>
-      <strong>Agente empresa:</strong>
-      <%= @customer.agente_empresa %>
-    </p>
-    
-    <p>
-      <strong>Referencia agenteempresa:</strong>
-      <%= @customer.referencia_agente_empresa %>
+      <strong>Agente o Empresa:</strong>
+      <%= @customer.padre.nombre_completo %>
     </p>
     
     <p>
@@ -375,7 +370,7 @@
     </p>
     
     <p>
-      <strong>Economical activity:</strong>
+      <strong>Actividad economica:</strong>
       <%= @customer.economical_activity.descripcion %>
     </p>
     
@@ -430,7 +425,7 @@
     </p>
     
     <p>
-      <strong>Country:</strong>
+      <strong>Pais:</strong>
       <%= @customer.country %>
     </p>
   </div>
