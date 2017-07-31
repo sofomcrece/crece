@@ -11,7 +11,7 @@ class CreditsController < ApplicationController
     render text:@credit.pdf64
   end
   def index
-    @credits = Credit.all
+    @credits = Credit.all.where(status:1)
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
