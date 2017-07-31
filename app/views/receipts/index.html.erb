@@ -1,10 +1,10 @@
 
 <div ng-controller="recibos">
      <div class = "row">
-       <h1 align="center">Generar Recibos</h1>
+       <h2 align="center">GENERAR RECIBOS</h2>
          <div class = "col s12 m6 l4">
               <label>
-                Sucursales
+                SUCURSALES
               </label>
              <select class="browser-default" ng-model="sucursales.selected" ng-change="cargarHijos()">
                  <option value="" selected>Sucursales</option>
@@ -24,7 +24,7 @@
                     </p>
                  
                  <label>
-                   Empresa o agente
+                   EMPRESA O AGENTE
                  </label>
                  <select  class="browser-default" ng-model="hijos.selected">
                     <option value="" selected>{{tipo}}</option>
@@ -32,7 +32,7 @@
                 </select>
                   </br>
                   <label>
-                    Productos
+                    PRODUCTOS
                   </label>
                 <select  class="browser-default" ng-model="productos.selected" ng-change = "obtenerFechas()" >
                   <option value="" selected>Productos</option>
@@ -40,7 +40,7 @@
                 </select>
                 </br>
                 <label>
-                  Fechas de impresion
+                  FECHAS DE IMPRESION
                 </label>
                 <select  class="browser-default" ng-model="fechas.selected">
                   <option value="" selected>Fechas</option>
@@ -55,8 +55,8 @@
              <table class="striped" >
                 <thead>
                   <tr>
-                      <th data-field="Tipo">Agente o Empresa</th>
-                      <th data-field="price">Clave</th>
+                      <th data-field="Tipo">AGENTE O EMPRESA</th>
+                      <th data-field="price">CLAVE</th>
                       <th data-field="price"></th>
                   </tr>
                 </thead>
@@ -77,11 +77,11 @@
              <table class="striped" >
                 <thead>
                   <tr>
-                      <th>Empresa</th>
-                      <th>Fecha Pago</th>
-                      <th>Nombre Cliente</th>
-                      <th>Cantidad a pagar</th>
-                      <th>Fecha de credito</th>
+                      <th>EMPRESA</th>
+                      <th>FECHA PAGO</th>
+                      <th>NOMBRE CLIENTE</th>
+                      <th>CANTIDAD A PAGAR</th>
+                      <th>FECHA DE CREDITO</th>
                   </tr>
                 </thead>
                 <tbody>

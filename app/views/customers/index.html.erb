@@ -1,19 +1,23 @@
 <div ng-controller="filtroClientes">
   <p id="notice"><%= notice %></p>
-  
-  <h1 align="center">LISTA DE CLIENTES</h1>
-  <div class="row card-panel z-depth-4" >
+  <style>
+  td{
+    padding:5px 5px; 
+  }
+</style>
+  <h2 align="center">LISTA DE CLIENTES</h2>
+  <div class="row card-panel z-depth-4" style="font-size:12px;">
     <div class="col s12 m6 l6">
-      Nombre: <input type="text" ng-model="nombre1" ng-change="getClientes()">
-      Paterno: <input type="text" ng-model="paterno" ng-change="getClientes()">
-      Materno: <input type="text" ng-model="materno" ng-change="getClientes()">
+      NOMBRE: <input type="text" placeholder="INGRESE EL NOMBRE"ng-model="nombre1" ng-change="getClientes()">
+      PATERNO: <input type="text" placeholder="APELLIDO PATERNO"ng-model="paterno" ng-change="getClientes()">
+      MATERNO: <input type="text" placeholder="APELLIDO MATERNO"ng-model="materno" ng-change="getClientes()">
     </div>
     <div class="col s12 m6 l6">
-      Sucursal: <input type="text" ng-model="sucursal" ng-change="getClientes()">
-      Empresa: <input type="text" ng-model="Empresa" ng-change="getClientes()">
+      SUCURSAL: <input type="text" placeholder="INGRESE SUCURSAL"ng-model="sucursal" ng-change="getClientes()">
+      EMPRESA: <input type="text" placeholder="INGRESE EMPRESA"ng-model="Empresa" ng-change="getClientes()">
     </div>
   </div>
-  <table>
+  <table style="font-size:12px;">
     <thead>
       <tr>
         <td>APELLIDO PATERNO</td>
@@ -32,8 +36,8 @@
           <td>{{cliente.nombres}}</td>
           <td>{{cliente.agente_empresa_nombre}}</td>
           <td>{{cliente.numero_de_creditos}}</td>
-          <td><a href="{{cliente.url}}" class="crud-links">Ver</a></td>
-          <td><a href="{{cliente.edit}}" class="crud-links">Editar</a></td>
+          <td><a href="{{cliente.url}}" class="waves-effect waves-light btn">Ver</a></td>
+          <td><a href="{{cliente.edit}}" class="waves-effect waves-light btn">Editar</a></td>
         </tr>
     </tbody>
   </table>
