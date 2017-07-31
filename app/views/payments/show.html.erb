@@ -17,7 +17,7 @@
         
                 <tbody>
                   <tr ng-repeat = "ele in pagos">
-                    <td>{{ele.ultimo_recibo.id}}</td>
+                    <td>{{ele.folio}}</td>
                     <td>{{ele.fecha_de_pago_formato}}</td>
                     <td>{{ele.recibo}}</td>
                     <td>{{ele.estatus==0?"Al corriente":ele.estatus==1?"Vencido":"Pagado"}}</td>
