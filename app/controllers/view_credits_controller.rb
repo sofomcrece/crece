@@ -82,7 +82,7 @@ class ViewCreditsController < ApplicationController
      if (@credit.fecha_de_contrato.nil?)
       fecha = Time.now.to_date
     else
-      fecha = Time.now.to_date
+      fecha = @credit.fecha_de_contrato.to_date
     end
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
@@ -151,7 +151,7 @@ class ViewCreditsController < ApplicationController
     index =(contador)%dias.length
     avance = 0
     avance = contador%dias.length==0?1.month : 0.month unless contador==0
-    avance = 1.mouth if dia_inicial >= cortes.max 
+    avance = 1.mouth if inicio >= cortes.max 
     return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
   end
     
