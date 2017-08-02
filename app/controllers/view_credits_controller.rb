@@ -130,7 +130,7 @@ class ViewCreditsController < ApplicationController
     @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
-      fecha= getFecha(dias,dia_inicial,n,fecha)
+      fecha= getFecha(dias,dia_inicial,n,fecha,cortes_int)
       fecha_de_corte = fecha.beginning_of_month+inferior(fecha.day,cortes_int).days-1.days
       fecha_de_impresion = fecha_de_corte - (@credit.product.payout.desplazamiento).to_i.days
       puts fecha
@@ -146,11 +146,12 @@ class ViewCreditsController < ApplicationController
   
   
   
-  def getFecha(dias,inicio,contador,fecha)
+  def getFecha(dias,inicio,contador,fecha,cortes)
     contador = contador + inicio
     index =(contador)%dias.length
     avance = 0
     avance = contador%dias.length==0?1.month : 0.month unless contador==0
+    avance = 1.mouth if dia_inicial >= cortes.max 
     return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
   end
     
