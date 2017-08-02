@@ -151,7 +151,7 @@ class ViewCreditsController < ApplicationController
     index =(contador)%dias.length
     avance = 0
     avance = contador%dias.length==0?1.month : 0.month unless contador==0
-    avance = 1.mouth if inicio >= cortes.max 
+    avance = 1.mouth if fecha.to_date.day.to_int >= cortes.max 
     return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
   end
     
