@@ -1,5 +1,5 @@
 class ViewCreditsController < ApplicationController
-   before_action :set_credit, only: [:autorizacion,:caratula,:contrato,:entrevista,:poliza,:corrida,:documentos]
+   before_action :set_credit, only: [:autorizacion,:caratula,:contrato,:entrevista,:poliza,:corrida,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
   def index
     @credits = Credit.all.where(status:0)
@@ -151,7 +151,7 @@ class ViewCreditsController < ApplicationController
     index =(contador)%dias.length
     avance = 0
     avance = contador%dias.length==0?1.month : 0.month unless contador==0
-    avance = 1.mouth if fecha.to_date.day.to_int >= cortes.max 
+    avance = 1.mouth if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max
     return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
   end
     
