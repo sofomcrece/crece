@@ -80,9 +80,9 @@ class ViewCreditsController < ApplicationController
    
   def getArreglo
      if (@credit.fecha_de_contrato.nil?)
-      fecha = "18/07/2017".to_date
+      fecha = Time.now.to_date
     else
-      fecha = "18/07/2017".to_date
+      fecha = @credit.fecha_de_contrato.to_date
     end
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
@@ -151,7 +151,7 @@ class ViewCreditsController < ApplicationController
     index =(contador)%dias.length
     avance = 0
     avance = contador%dias.length==0?1.month : 0.month unless contador==0
-    avance = 1.month if "18/07/2017".to_date.day.to_int >= cortes.max && contador==0
+    avance = 1.month if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
     return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
   end
     
