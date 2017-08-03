@@ -80,9 +80,9 @@ class ViewCreditsController < ApplicationController
    
   def getArreglo
      if (@credit.fecha_de_contrato.nil?)
-      fecha = Time.now.to_date
+      fecha = "18/07/2017".to_date
     else
-      fecha = @credit.fecha_de_contrato.to_date
+      fecha = "18/07/2017".to_date
     end
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
