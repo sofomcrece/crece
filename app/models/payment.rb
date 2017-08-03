@@ -4,7 +4,7 @@ class Payment < ActiveRecord::Base
     has_many :tickets
     def pagado
         if self.total_pagado.to_f >= self.importe.to_f
-             self.update_attributes(:estatus => 2)
+             self.update(:estatus => 2)
              return true
          else
             return false
