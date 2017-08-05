@@ -42,6 +42,8 @@ class ViewCreditsController < ApplicationController
   def contrato
     if (@credit.fecha_de_contrato.nil?)
       @credit.update(fecha_de_contrato:Time.now)
+    end
+    if @credit.payments.count==0
       getArreglo()
       n = 0
       @datos.each do |d|
@@ -84,6 +86,7 @@ class ViewCreditsController < ApplicationController
     else
       fecha = @credit.fecha_de_contrato.to_date
     end
+    
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
     dias=  @credit.product.payout.getDays - ["-1"]
@@ -130,9 +133,12 @@ class ViewCreditsController < ApplicationController
     @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
-      fecha= getFecha(dias,dia_inicial,n,fecha,cortes_int)
-      fecha_de_corte = fecha.beginning_of_month+inferior(fecha.day,cortes_int).days-1.days
-      fecha_de_impresion = fecha_de_corte - (@credit.product.payout.desplazamiento).to_i.days
+        
+        aux= getFecha(dias,dia_inicial,n,fecha,cortes_int)
+        fecha = aux["pago"]
+        fecha_de_corte = aux["corte"]
+        fecha_de_impresion = aux["impresion"]
+     
       puts fecha
       puts fecha_de_corte
       puts fecha_de_impresion  
@@ -147,14 +153,27 @@ class ViewCreditsController < ApplicationController
   
   
   def getFecha(dias,inicio,contador,fecha,cortes)
+    fechas = Hash.new
     contador = contador + inicio
     index =(contador)%dias.length
     avance = 0
-    avance = contador%dias.length==0?1.month : 0.month unless contador==0
-    avance = 1.month if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
-    return (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
+    case @credit.product.payout.type_payout
+    when 0
+      avance = contador%dias.length==0?1.week : 0.week unless contador==0
+      avance = 1.week if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
+      fechas["pago"] = fecha.beginning_of_week+(dias[index].to_i-1).day+avance
+      fechas["corte"] = fechas["pago"].beginning_of_week+inferior(fechas["pago"].day,cortes).days-1.days
+      fechas["impresion"] = fechas["corte"] - (@credit.product.payout.desplazamiento).to_i.days
+      
+    when 1
+      avance = contador%dias.length==0?1.month : 0.month unless contador==0
+      avance = 1.month if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
+      fechas["pago"] = (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
+      fechas["corte"] = fechas["pago"].beginning_of_month+inferior(fecha.day,cortes).days-1.days
+      fechas["impresion"] = fechas["corte"] - (@credit.product.payout.desplazamiento).to_i.days
+    end
+    return fechas
   end
-    
  def set_credit
       @credit = Credit.find(params[:clave])
  end
