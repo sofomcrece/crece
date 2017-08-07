@@ -25,4 +25,7 @@ class Customer < ActiveRecord::Base
     def self.create_customer_from_credit(val)
         Customer.create(val.attributes.except(:pdf64,:destination_id,:casa_color,:cancel_o_porton,:color_de_cancel,:caracteristicas_especiales,:antiguedad_laboral_meses,:antiguedad_laboral_anos,:product_id,:antiguedad_en_el_domicilio_anterior_anos,:antiguedad_en_el_domicilio_anterior_meses,:antiguedad_en_el_domicilio_actual_meses,:antiguedad_en_el_domicilio_actual_anos,:fecha,:es_cliente,:monto_solicitud,:cada_cuanto_se_realizara_el_pago,:lugar_donde_se_realizara_el_pago))
     end
+    def nombre_completo_deudor
+        "#{apellido_paterno} #{apellido_materno} #{nombre_1} #{nombre_2}"
+    end
 end

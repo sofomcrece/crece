@@ -160,7 +160,7 @@ class ViewCreditsController < ApplicationController
     case @credit.product.payout.type_payout
     when 0
       avance = contador%dias.length==0?1.week : 0.week unless contador==0
-      avance = 1.week if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
+      avance = 1.week if (@credit.fecha_de_contrato.to_date.wday.to_int-1) >= cortes.max && contador==0
       fechas["pago"] = fecha.beginning_of_week+(dias[index].to_i-1).day+avance
       fechas["corte"] = fechas["pago"].beginning_of_week+inferior(fechas["pago"].day,cortes).days-1.days
       fechas["impresion"] = fechas["corte"] - (@credit.product.payout.desplazamiento).to_i.days

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="editar_clientes">
 <%= form_for(@customer) do |f| %>
   <% if @customer.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +11,18 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+     <p>
+        <%= f.radio_button  :agente_empresa,1,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_1", "Agente" %>
+        <%= f.radio_button  :agente_empresa,0,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_0", "Empresa" %>
+     </p>
+  </div>
+  <div class="field">
+     <select id="credit_referencia_agente_empresa" name="customer[referencia_agente_empresa]"class="browser-default" ng-model="credito.referencia_agente_empresa">
+          <option value="" disabled selected>{{tipo}}</option>
+          <option ng-repeat="option in agentEmp" value="{{option.id}}">{{option.nombre}}</option>
+      </select>
+  </div>
   <div class="field">
     <%= f.label :como_se_entero %><br>
     <%= f.text_area :como_se_entero %>

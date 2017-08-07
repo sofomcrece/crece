@@ -491,6 +491,37 @@
   $scope.cambio_de_tipo();
   $scope.cargar_datos();
   
+}]).controller("editar_clientes",["$scope","$http",function($scope,$http){
+  $scope.credito = "";
+  $scope.credito.agente_empresa ="";
+  $scope.agente_o_empresa = function(){
+      $scope.tipo="";
+      $scope.agentEmp=[];
+      if($scope.credito.agente_empresa==1)
+      {
+        $scope.tipo="Agente";
+        $http.get("/agents.json")
+        .success(function(data){
+          for (var x=0;x<data.length;x++)
+            $scope.agentEmp.push({id:data[x].id,nombre:data[x].nombre_del_agente});
+          console.log($scope.agentEmp);
+        })
+        .error(function(data){
+          console.log(data);
+        });
+      }else if ($scope.credito.agente_empresa==0){
+        $scope.tipo="Empresa";
+        $http.get("/companies.json")
+        .success(function(data){
+          for (var x=0;x<data.length;x++)
+            $scope.agentEmp.push({id:data[x].id,nombre:data[x].nombre_de_empresa});
+          console.log(data);
+        })
+        .error(function(data){
+          console.log(data);
+      });
+      }
+    }
 }]);
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
