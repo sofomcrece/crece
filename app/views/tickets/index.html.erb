@@ -20,7 +20,7 @@
         <td><%= ticket.status==1?"No aplicable":"aplicable"%></td>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Cancelar', ticket_path(ticket,ticket:{:status => 1}), target: "_blank", :method=> :put  %></td>
+        <td><%= link_to 'Cancelar', ticket_path(ticket,ticket:{:status => 1}), target: "_blank", :method=> :put, :confirm => "Are you sure?"  %></td>
       </tr>
     <% end %>
   </tbody>
