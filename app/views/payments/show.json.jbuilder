@@ -1,6 +1,7 @@
 json.array!(@credit.payments.order(:fecha_de_pago)) do |payment|
   json.extract! payment, :id, :folio,:fecha_de_pago,:recibo,:estatus,:importe,:pago,:interes
   json.activo payment.activo
+  json.nombre_deudor payment.credit.nombre_completo_deudor
   json.importe_formato Dinero.to_money payment.importe
   json.importe_con_pago payment.importe.to_f - payment.total_pagado.to_f 
   json.fecha_de_pago_formato payment.fecha_de_pago.strftime("%d/%m/%Y")

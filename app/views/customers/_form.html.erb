@@ -11,17 +11,25 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-     <p>
-        <%= f.radio_button  :agente_empresa,1,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_1", "Agente" %>
-        <%= f.radio_button  :agente_empresa,0,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_0", "Empresa" %>
-     </p>
+  <div id="cambiar_sucursal">
+    <div class="field">
+       <p>
+          <%= f.radio_button  :agente_empresa,1,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_1", "Agente" %>
+          <%= f.radio_button  :agente_empresa,0,"ng-model":"credito.agente_empresa","ng-disabled":"block","ng-change":"agente_o_empresa()"%> <%= f.label "#{:agente_empresa}_0", "Empresa" %>
+       </p>
+    </div>
+    <div class="field">
+       <select id="customer_referencia_agente_empresa" name="customer[referencia_agente_empresa]"class="browser-default" ng-model="credito.referencia_agente_empresa" ng-disabled="block">
+            <option value="" disabled selected>{{tipo}}</option>
+            <option ng-repeat="option in agentEmp" value="{{option.id}}">{{option.nombre}}</option>
+        </select>
+    </div>
+     <div class="field">
+       <a class="waves-effect red lighten-1 btn" ng-click="ocultar()">Ocultar</a>
+    </div>
   </div>
   <div class="field">
-     <select id="credit_referencia_agente_empresa" name="customer[referencia_agente_empresa]"class="browser-default" ng-model="credito.referencia_agente_empresa">
-          <option value="" disabled selected>{{tipo}}</option>
-          <option ng-repeat="option in agentEmp" value="{{option.id}}">{{option.nombre}}</option>
-      </select>
+    <a id="btn_mostrar"  class="waves-effect waves-light btn" ng-click="mostrar()">Cambiar sucursal</a>
   </div>
   <div class="field">
     <%= f.label :como_se_entero %><br>

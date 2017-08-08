@@ -1,23 +1,20 @@
 class ViewCreditsController < ApplicationController
    before_action :set_credit, only: [:autorizacion,:caratula,:contrato,:entrevista,:poliza,:corrida,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
-  def index
-    @credits = Credit.all.where(status:0)
+  def ajustes_en_creditos(val)
+     @credits = Credit.all.where(status:val).order(:created_at)
     if current_user.tipo==3
-      @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
+      @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0]).order(:created_at)
     end
+  end
+  def index
+   ajustes_en_creditos(0)
   end
   def aceptadas
-    @credits = Credit.all.where(status:1)
-    if current_user.tipo==3
-       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
-    end
+    ajustes_en_creditos(1)
   end
   def rechazadas
-    @credits = Credit.all.where(status:2)
-    if current_user.tipo==3
-       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
-    end
+    ajustes_en_creditos(2)
   end
   # GET /credits/1
   # GET /credits/1.json
