@@ -4,6 +4,7 @@ class Customer < ActiveRecord::Base
   has_many :credits
   validates :RFC, uniqueness: true
   validates :CURP, uniqueness: true
+  validates :referencia_agente_empresa, presence:true
   def nombres 
     self.nombre_1 + " " + self.nombre_2
   end

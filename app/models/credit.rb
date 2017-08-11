@@ -191,7 +191,7 @@ class Credit < ActiveRecord::Base
     end
      def self.get_by_branch_office(datos,suc_id)
         array = []
-        datos.all.each { |credit| array << credit if credit.padre.branch_office.id==suc_id }
+        datos.all.each { |credit| array << credit if credit.padre.branch_office.id==suc_id.id }
         return array
     end
 end
