@@ -15,6 +15,10 @@ class CustomersController < ApplicationController
      @customers =@customers.where("lower(nombre_2) like '#{nom2.downcase}%'") unless  params[:nombre2].nil? or  params[:nombre2]==""
      @customers =@customers.where("lower(apellido_paterno) like '#{pat.downcase}%'") unless  params[:paterno].nil? or  params[:paterno]==""
      @customers =@customers.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
+     
+     if current_user.tipo==3
+       @customers= Credit.get_by_branch_office(@customers,current_user.branchOffices[0])
+    end
   end
 
   # GET /customers/1

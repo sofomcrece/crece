@@ -29,4 +29,9 @@ class Customer < ActiveRecord::Base
     def nombre_completo_deudor
         "#{apellido_paterno} #{apellido_materno} #{nombre_1} #{nombre_2}"
     end
+    def self.get_by_branch_office(datos,suc_id)
+        array = []
+        datos.all.each { |customer| array << customer if customer.padre.branch_office.id==suc_id.id }
+        return array
+    end
 end
