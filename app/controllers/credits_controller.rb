@@ -20,12 +20,19 @@ class CreditsController < ApplicationController
     suc = params[:sucursal]
     tipo_padre = params[:tpadre]
     padre_id = params[:padre]
+    product_id = params[:product_id]
     
      @credits =@credits.where("lower(CURP) = '#{curp.downcase}'") unless  params[:curp].nil? or  params[:curp]==""
      @credits =@credits.where("lower(nombre_1) like '#{nom1.downcase}%'") unless  params[:nombre1].nil? or  params[:nombre1]==""
      @credits =@credits.where("lower(nombre_2) like '#{nom2.downcase}%'") unless  params[:nombre2].nil? or  params[:nombre2]==""
      @credits =@credits.where("lower(apellido_paterno) like '#{pat.downcase}%'") unless  params[:paterno].nil? or  params[:paterno]==""
      @credits =@credits.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
+     
+     @credits =@credits.where("agente_empresa = ? and referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
+     @credits =@credits.where("agente_empresa = ? and referencia_agente_empresa = ? ",tpadre,padre)  unless  params[:product_id].nil? or  params[:product_id]==""
+     
+     
+     
      
   end
 

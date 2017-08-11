@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'combos/estado'
 
   get 'combos/ciudad'
-
+  get 'customers/:id/historial',to:'customers#historial',as:'customer_historial'
   get 'reports/seguimiento'
   get 'reports/clientes'
   get 'reports/seguimiento_quincenal'

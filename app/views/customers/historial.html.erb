@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col s12 ">
+        <h4>Historial de creditos </h4>
+    </div>
+    <style>
+      td{
+        padding:5px 5px; 
+      }
+    </style >
+    <div class="col s12">
+        <table style="font-size:12px;">
+              <thead>
+                <tr>
+                  <th>AGENTE/EMPRESA</th>
+                  <th>FECHA</th>
+                  <th>NOMBRE</th>
+                  <th>RFC</th>
+                  <th>MONTO</th>
+                  <th>ESTADO</th>
+                  <th>CALIFICACION</th>
+                  <th></th>
+                </tr>
+              </thead>
+            <tbody>
+            <% @credits.each do |credit| %>
+              <tr>
+                <td><%= credit.padre.nombre_completo unless credit.padre.nil? %></td>
+                <td><%= credit.fecha.strftime("%d/%m/%Y") %></td>
+                <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
+                <td><%= credit.RFC %></td>
+                <td><%= Dinero.to_money(credit.monto_solicitud) %></td>
+                <td><%= credit.status==1?"ACTIVO":"FINALIZADO"%></td>
+                <td>?</td>
+                <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>

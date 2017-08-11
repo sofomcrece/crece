@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy,:historial]
 
   # GET /customers
   # GET /customers.json
@@ -20,6 +20,10 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+  end
+  
+  def historial 
+    @credits = @customer.credits.where("credits.status = ? or credits.status = ? ", 1,3).order(:status)
   end
 
   # GET /customers/new

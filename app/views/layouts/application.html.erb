@@ -309,6 +309,18 @@
       alert("No se puede pagar una catidad mayor al adeudo");
     }
   }
+  $scope.filtrar_pagos = function(){
+    url="/credits.json";
+    console.log("/credits.json");
+    $http.get(url)
+    .success(function(data){
+      
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
   cargar_payments();
 }])
 .controller("productos",["$http","$scope",function($http,$scope){
