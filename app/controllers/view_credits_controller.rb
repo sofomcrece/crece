@@ -2,7 +2,7 @@ class ViewCreditsController < ApplicationController
    before_action :set_credit, only: [:autorizacion,:caratula,:contrato,:entrevista,:poliza,:corrida,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
   def ajustes_en_creditos(val)
-     @credits = Credit.all.where(status:val).order(:created_at).reverse
+     @credits = Credit.all.where(status:val).order(:created_at)
     if current_user.tipo==3
       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
     end
