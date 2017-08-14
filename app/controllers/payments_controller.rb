@@ -8,9 +8,6 @@ class PaymentsController < ApplicationController
     fecha = params[:fecha].to_date unless params[:fecha].nil? 
     prod = params[:producto].to_i
     @credits = Credit.all.where(status:1)
-    if current_user.tipo==3
-       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
-    end
     @payments=  Payment.joins(:credit).where("credits.status = ? ",1)
     @payments = @payments.where(fecha_de_impresion:fecha) unless params[:fecha].nil? or params[:fecha] == ""
     @payments = @payments.where("credits.product_id = ? ",prod) unless params[:producto].nil? or params[producto] == ""
@@ -24,6 +21,21 @@ class PaymentsController < ApplicationController
       end
     end
     @payments = @payments.where(cad) unless  cad==""
+     if current_user.tipo==3
+       vec = []
+      @payments.each do |credit|
+        credit = credit.credit
+        vec <<  credit.id if  credit.padre.branch_office.id == current_user.branch_office.id
+      end
+      cad= ""
+      i =0
+      vec.uniq.each do |num|
+        cad = cad + " OR " unless i==0
+        cad = cad + "credits.id = #{num} "
+      end
+      @payments = @payments.where(cad) unless  cad==""
+    end
+     
   end
   def dates
   end

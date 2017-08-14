@@ -11,4 +11,5 @@ json.array!(@payments) do |payment|
   json.credit_nombre payment.credit.nombre_completo_deudor
   json.fecha_de_contrato payment.credit.fecha_de_contrato
   json.credit_id payment.credit.id
+  json.padre payment.credit.padre.nombre_completo
 end

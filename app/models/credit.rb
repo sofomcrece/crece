@@ -190,8 +190,15 @@ class Credit < ActiveRecord::Base
     arreglo
     end
      def self.get_by_branch_office(datos,suc_id)
-        array = []
-        datos.all.each { |credit| array << credit if credit.padre.branch_office.id==suc_id.id }
-        return array
+        cad = ""
+        co = 0
+        datos.all.each do |credit| 
+            if credit.padre.branch_office.id==suc_id
+              cad = cad + " OR " unless co==0
+              cad = cad + "credits.id = #{credit.id}"
+              co=co+1
+            end
+        end
+        return  (cad == "")? nil : Credit.where(cad) 
     end
 end
