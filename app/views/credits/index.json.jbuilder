@@ -3,4 +3,9 @@ json.array!(@credits) do |credit|
   json.monto_solicitud_formato Dinero.to_money credit.monto_solicitud
   json.nombre_completo_deudor credit.nombre_completo_deudor
   json.url credit_url(credit, format: :json)
+  json.nombre_padre (credit.padre.nil?)? "Desconocido":credit.padre.nombre_completo
+  json.fecha_formato credit.fecha.strftime("%d/%m/%Y")
+  json.cancelar credit_path(credit,:credit=>{status:2})
+  json.imprimir "/view_credits/documentos?clave=#{credit.id}"
+  json.tipo current_user.tipo
 end

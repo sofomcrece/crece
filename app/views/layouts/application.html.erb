@@ -316,10 +316,12 @@
       var p = ($scope.agente_empresa==1)?1:0;
       url=url+ "tpadre="+p+"&";
     }
+    if($scope.select_op!=null)
     if (!($scope.select_op.repeatSelect == "" ||$scope.select_op.repeatSelect ==undefined))
       url=url+ "padre="+$scope.select_op.repeatSelect+"&";
     if (!($scope.product_select == "" ||$scope.product_select ==undefined))
       url=url+ "product_id="+$scope.product_select+"&";
+    if($scope.data!=null)
     if (!($scope.data.sucursales.repeatSelect == "" ||$scope.data.sucursales.repeatSelect ==undefined))
       url=url+ "sucursal_id="+$scope.data.sucursales.repeatSelect+"&";
     console.log(url);
