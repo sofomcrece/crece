@@ -91,6 +91,7 @@
   $scope.fecha=[];
   $scope.fechas_de_pago = [];
   $scope.pagos = [];
+
   $scope.seguimiento_datos = [];
   $scope.seguimiento
   $scope.descargar_excel = function(){
@@ -309,6 +310,28 @@
       alert("No se puede pagar una catidad mayor al adeudo");
     }
   }
+  
+  $scope.exportar_excel = function(){
+     url="/credits.xlsx?";
+    
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
+      var p = ($scope.agente_empresa==1)?1:0;
+      url=url+ "tpadre="+p+"&";
+    }
+    if($scope.select_op!=null)
+    if (!($scope.select_op.repeatSelect == "" ||$scope.select_op.repeatSelect ==undefined))
+      url=url+ "padre="+$scope.select_op.repeatSelect+"&";
+    if (!($scope.product_select == "" ||$scope.product_select ==undefined))
+      url=url+ "product_id="+$scope.product_select+"&";
+    if($scope.data!=null)
+    if (!($scope.data.sucursales.repeatSelect == "" ||$scope.data.sucursales.repeatSelect ==undefined))
+      url=url+ "sucursal_id="+$scope.data.sucursales.repeatSelect+"&";
+    if (!($scope.fecha1 == "" ||$scope.fecha1 ==undefined))
+      url=url+ "fecha1="+$scope.fecha1+"&";
+    if (!($scope.fecha2 == "" ||$scope.fecha2 ==undefined))
+      url=url+ "fecha2="+$scope.fecha2+"&";
+    window.open(url, '_blank');
+  }
   $scope.filtrar_pagos = function(){
     url="/credits.json?";
     
@@ -324,6 +347,10 @@
     if($scope.data!=null)
     if (!($scope.data.sucursales.repeatSelect == "" ||$scope.data.sucursales.repeatSelect ==undefined))
       url=url+ "sucursal_id="+$scope.data.sucursales.repeatSelect+"&";
+    if (!($scope.fecha1 == "" ||$scope.fecha1 ==undefined))
+      url=url+ "fecha1="+$scope.fecha1+"&";
+    if (!($scope.fecha2 == "" ||$scope.fecha2 ==undefined))
+      url=url+ "fecha2="+$scope.fecha2+"&";
     console.log(url);
     $http.get(url)
     .success(function(data){

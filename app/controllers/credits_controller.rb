@@ -21,6 +21,8 @@ class CreditsController < ApplicationController
     padre_id = params[:padre]
     product_id = params[:product_id]
     branch_office_id = params[:sucursal_id]
+    fecha1 = params[:fecha1]
+    fecha2 = params[:fecha2]
     
      @credits =@credits.where("lower(CURP) = '#{curp.downcase}'") unless  params[:curp].nil? or  params[:curp]==""
      @credits =@credits.where("lower(nombre_1) like '#{nom1.downcase}%'") unless  params[:nombre1].nil? or  params[:nombre1]==""
@@ -28,6 +30,7 @@ class CreditsController < ApplicationController
      @credits =@credits.where("lower(apellido_paterno) like '#{pat.downcase}%'") unless  params[:paterno].nil? or  params[:paterno]==""
      @credits =@credits.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
      
+     @credits =@credits.where(:fecha_de_contrato => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
      @credits =@credits.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
      @credits =@credits.where("credits.product_id = ?  ",product_id)  unless  params[:product_id].nil? or  params[:product_id]==""
      @credits = Credit.get_by_branch_office(@credits,branch_office_id.to_i) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""

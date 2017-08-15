@@ -201,4 +201,9 @@ class Credit < ActiveRecord::Base
         end
         return  (cad == "")? nil : Credit.where(cad) 
     end
+    def fecha_de_contrato_formato
+        aux= nil
+        aux = self.fecha_de_contrato.strftime("%d/%m/%Y") unless self.fecha_de_contrato.nil?
+        return aux
+    end
 end
