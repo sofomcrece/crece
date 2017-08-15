@@ -21,20 +21,7 @@ class PaymentsController < ApplicationController
       end
     end
     @payments = @payments.where(cad) unless  cad==""
-     if current_user.tipo==3
-       vec = []
-      @payments.each do |credit|
-        credit = credit.credit
-        vec <<  credit.id if  credit.padre.branch_office.id == current_user.branch_office.id
-      end
-      cad= ""
-      i =0
-      vec.uniq.each do |num|
-        cad = cad + " OR " unless i==0
-        cad = cad + "credits.id = #{num} "
-      end
-      @payments = @payments.where(cad) unless  cad==""
-    end
+   
      
   end
   def dates

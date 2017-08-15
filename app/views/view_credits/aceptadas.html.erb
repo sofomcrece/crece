@@ -66,8 +66,8 @@
                     <td>{{ele.nombre_completo_deudor}}</td>
                     <td>{{ele.RFC}}</td>
                     <td>{{ele.monto_solicitud_formato}}</td>
-                    <td><a class="waves-effect waves-light btn" rel="nofollow" data-method="put" href="{{ele.cancelar}}">Cancelar</a></td>
-                    <td><a class="crud-links btn waves-effect red" href="{{ele.imprimir}}">Imprimir docs</a></td>
+                    <td><a ng-if="ele.tipo==1" class="waves-effect waves-light btn" rel="nofollow" data-method="put" href="{{ele.cancelar}}">Cancelar</a></td>
+                    <td><a ng-if="(ele.fecha_de_contrato == null || ele.tipo==1)" class="crud-links btn waves-effect red" href="{{ele.imprimir}}">Imprimir docs</a></td>
                   </tr>
                 </tbody>
               </table>
