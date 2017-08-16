@@ -8,4 +8,6 @@ json.array!(@credits) do |credit|
   json.cancelar credit_path(credit,:credit=>{status:2})
   json.imprimir "/view_credits/documentos?clave=#{credit.id}"
   json.tipo current_user.tipo
+  json.sucursal credit.padre.branch_office.nombre
+  json.nombre_agente credit.padre.nombre_completo
 end

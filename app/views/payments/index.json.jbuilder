@@ -14,5 +14,4 @@ json.array!(@payments) do |payment|
   json.padre payment.credit.padre.nombre_completo
   json.sucursal payment.credit.padre.branch_office.nombre
   json.nombre_agente payment.credit.padre.nombre_completo
-  json.fecha_de_contrato payment.credit.fecha_de_contrato.strftime("%d/%m/%Y")
 end
