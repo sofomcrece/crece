@@ -23,11 +23,7 @@
   <tbody>
     <% @credits.each do |credit| %>
       <tr>
-        <%if credit.agente_empresa %>
-          <td><h10>Agente</h10></td>
-        <%else%>
-          <td><h10>Empresa</h10></td>
-        <%end%>
+        <td><%= credit.padre.nombre_completo %></td>
         <td><%= credit.fecha.strftime("%d/%m/%Y") %></td>
         <td><h10><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></h10></td>
         <td><h10><%= credit.RFC %></h10></td>
