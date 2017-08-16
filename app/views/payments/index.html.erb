@@ -20,7 +20,7 @@
                     </p>
                  <select  class="browser-default" ng-model="select_op.repeatSelect">
                     <option value="" selected>{{tipo}}</option>
-                    <option ng-repeat="option in hijos" value="{{option.id}}">{{option.clave}}</option>
+                    <option ng-repeat="option in hijos" value="{{option.id}}">{{option.nombre_completo}}</option>
                 </select>
                   </br>
                 <select  class="browser-default" ng-model="product_select">
@@ -34,15 +34,22 @@
              <table class="striped" >
                 <thead>
                   <tr>
+                      <th data-field="Monto">SUCURSAL</th>
+                      <th data-field="Monto">AGENTE/EMPRESA</th>
                       <th data-field="Nombre">NOMBRE</th>
+                      <th data-field="Monto">FECHA</th>
                       <th data-field="Monto">MONTO</th>
+                      
                       <th data-field="price"></th>
                   </tr>
                 </thead>
         
                 <tbody>
                   <tr ng-repeat = "ele in creditos">
+                    <td>{{ele.sucursal}}</td>
+                    <td>{{ele.nombre_agente}}</td>
                     <td>{{ele.nombre_completo_deudor}}</td>
+                    <td>{{ele.fecha_de_contrato}}</td>
                     <td>{{ele.monto_solicitud_formato}}</td>
                     <td><a class="waves-effect waves-light btn" ng-click="" href= "/payments/show?clave={{ele.id}}" >Ver</a></td>
                   </tr>

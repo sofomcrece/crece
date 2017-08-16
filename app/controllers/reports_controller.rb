@@ -60,7 +60,7 @@ class ReportsController < ApplicationController
   end
   def get_seguimiento_de_cobranza(padre,fecha,producto)
     tabla = []
-    credits = padre.credits.where(product:producto.to_i)
+    credits = padre.credits.where(product:producto.to_i).where(status:1)
    credits.each do |credit|
     payment  = Payment.all.where("credit_id = ? and fecha_de_pago = ?", credit.id, fecha)[0]
     activar = false
