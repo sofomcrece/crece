@@ -2,7 +2,7 @@ class Payment < ActiveRecord::Base
     belongs_to :credit
     has_many :receipts
     has_many :tickets
-    after_initialize :defaults
+    before_save :iniciar_vencimientos
     def pagado
         if self.total_pagado.to_f >= self.importe.to_f
              self.update(:estatus => 2)
@@ -43,7 +43,7 @@ class Payment < ActiveRecord::Base
     def get_last_generated
         return self.tickets.where(status:1).last
     end
-    def defaults
+    def iniciar_vencimientos
       self.vencimientos  ||= 0
     end
     # 0 ------ al corriente
