@@ -17,10 +17,10 @@
       <tr>
         <td><%= ticket.cantidad %></td>
         <td><%= ticket.payment.id %></td>
-        <td><%= ticket.status==1?"No aplicable":"aplicable"%></td>
+        <td><%= ticket.status==0?"aplicable":"No aplicable"%></td>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Cancelar', ticket_path(ticket,ticket:{:status => 1}), target: "_blank", :method=> :put, :confirm => "Are you sure?"  %></td>
+        <td><%= link_to 'Cancelar', ticket_path(ticket,ticket:{:status => 3}), target: "_blank", :method=> :put, :confirm => "Are you sure?"  %></td>
       </tr>
     <% end %>
   </tbody>

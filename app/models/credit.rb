@@ -90,7 +90,6 @@ class Credit < ActiveRecord::Base
      validates :referencia_agente_empresa, numericality: { other_than: 0 }
      validates :agente_empresa,
     :inclusion => { :in => [nil,1, 0] }
-    
     # 0 company 
     # 1 agent
     validates :agente_empresa,
@@ -205,5 +204,22 @@ class Credit < ActiveRecord::Base
         aux= nil
         aux = self.fecha_de_contrato.strftime("%d/%m/%Y") unless self.fecha_de_contrato.nil?
         return aux
+    end
+    def calificacion
+        count = 0
+        self.payments.each do |payment|
+            count = count + payment.vencimientos
+        end
+        if (count == 0)
+            "A"
+        elsif (count == 1 or count ==2)
+            "B"
+        elsif (count ==3 or count ==4)
+            "C"
+        elsif (count ==5 or count ==6)
+            "D"
+        elsif (count > 7)
+            "E"
+        end
     end
 end

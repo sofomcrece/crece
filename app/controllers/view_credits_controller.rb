@@ -170,7 +170,7 @@ class ViewCreditsController < ApplicationController
       avance = contador%dias.length==0?1.month : 0.month unless contador==0
       avance = 1.month if @credit.fecha_de_contrato.to_date.day.to_int >= cortes.max && contador==0
       fechas["pago"] = (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
-      fechas["corte"] = fechas["pago"].beginning_of_month+inferior(fecha.day,cortes).days-1.days
+      fechas["corte"] = fechas["pago"].beginning_of_month+inferior(fechas["pago"].day,cortes).days-1.days
       fechas["impresion"] = fechas["corte"] - (@credit.product.payout.desplazamiento).to_i.days
     end
     return fechas

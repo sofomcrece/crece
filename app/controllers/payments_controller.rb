@@ -26,6 +26,11 @@ class PaymentsController < ApplicationController
   end
   def dates
   end
+  def vencer 
+    pa=Payment.find(params[:id])
+    pa.cargar_interes
+    redirect_to "/payments/show?clave=#{pa.credit.id}"
+  end
   def show
     @credit = Credit.find(params[:clave]) unless params[:clave].nil? || params[:clave]==""
   end

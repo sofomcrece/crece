@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :tickets
   resources :destinations
   resources :payments
+  get 'payments/:id/vencer', to:'payments#vencer' 
   resources :receipts
 
   get 'receipts/crear'

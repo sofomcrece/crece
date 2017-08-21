@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728180124) do
+ActiveRecord::Schema.define(version: 20170821074337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,12 @@ ActiveRecord::Schema.define(version: 20170728180124) do
     t.string   "cve_colonia_siti_colonia"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "comen", force: :cascade do |t|
+    t.string   "c"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -496,6 +502,7 @@ ActiveRecord::Schema.define(version: 20170728180124) do
     t.date     "fecha_de_corte"
     t.date     "fecha_de_impresion"
     t.boolean  "interes_flag"
+    t.integer  "vencimientos"
   end
 
   add_index "payments", ["credit_id"], name: "index_payments_on_credit_id", using: :btree

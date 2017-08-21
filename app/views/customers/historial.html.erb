@@ -30,7 +30,7 @@
                 <td><%= credit.RFC %></td>
                 <td><%= Dinero.to_money(credit.monto_solicitud) %></td>
                 <td><%= credit.status==1?"ACTIVO":"FINALIZADO"%></td>
-                <td>A</td>
+                <td><%= credit.calificacion%></td>
                 <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
               </tr>
             <% end %>

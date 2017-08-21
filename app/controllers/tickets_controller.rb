@@ -49,6 +49,8 @@ class TicketsController < ApplicationController
     flag = false 
     cant = ticket_params[:cantidad]
     pay = ticket_params[:payment_id]
+    @ticket 
+      
       if !(Payment.find(pay).tickets.count ==0)
           if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe== cant
             @ticket= Payment.find(pay).tickets.last
@@ -56,8 +58,11 @@ class TicketsController < ApplicationController
             flag = true
           end
       end
-      @ticket=Ticket.create(cantidad:cant,payment_id:pay)
-      flag =  @ticket.save and flag
+      t=Ticket.new(cantidad:cant,payment_id:pay)
+      if t.save
+        @ticket = t
+      end
+      flag =  @ticket or flag
     respond_to do |format|
       if flag
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }

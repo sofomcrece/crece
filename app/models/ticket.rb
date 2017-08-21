@@ -10,13 +10,18 @@ class Ticket < ActiveRecord::Base
             false
         end
     end
+     after_validation(on: :create) do
+       # self.payment.update(status:2) if 
+        Coman.create(c:"se ejecuto #{self.payment.deuda_sin_interes}   #{self.cantidad} ")
+        true
+    end
 end
 
 
 #status
-# 0 ----- aplicable
+# 0 ------ aplicable
 # 1 ------ generado por recibo (no aplicable)
-
+# 3 ------ rechazado
 
 =begin
 flag = false
