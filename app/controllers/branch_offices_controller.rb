@@ -5,7 +5,7 @@ class BranchOfficesController < ApplicationController
   # GET /branch_offices.json
   def index
     @branch_offices = BranchOffice.order(:nombre)
-    @branch_offices = @branch_offices.where(id:current_user.branch_offices[0].id)  if (current_user.tipo == 3)
+    @branch_offices = @branch_offices.where(id:current_user.branchOffices[0].id)  if (current_user.tipo == 3)
     
   end
 

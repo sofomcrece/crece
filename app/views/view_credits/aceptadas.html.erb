@@ -51,6 +51,7 @@
                   <tr>
                       <th>AGENTE/EMPRESA</th>
                       <th>FECHA</th>
+                      <th>FECHA CONTRATO</th>
                       <th>NOMBRE</th>
                       <th>RFC</th>
                       <th>MONTO</th>
@@ -63,6 +64,7 @@
                   <tr ng-repeat = "ele in creditos">
                     <td>{{ele.nombre_padre}}</td>
                     <td>{{ele.fecha_formato}}</td>
+                    <td>{{ele.fecha_de_contrato_formato}}</td>
                     <td>{{ele.nombre_completo_deudor}}</td>
                     <td>{{ele.RFC}}</td>
                     <td>{{ele.monto_solicitud_formato}}</td>

@@ -9,5 +9,6 @@ json.array!(@credits) do |credit|
   json.imprimir "/view_credits/documentos?clave=#{credit.id}"
   json.tipo current_user.tipo
   json.sucursal credit.padre.branch_office.nombre
+  json.fecha_de_contrato_formato credit.fecha_de_contrato.strftime("%d/%m/%Y") unless credit.fecha_de_contrato.nil?
   json.nombre_agente credit.padre.nombre_completo
 end

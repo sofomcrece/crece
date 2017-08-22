@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'reports/clientes'
   get 'reports/seguimiento_quincenal'
   get 'reports/tablero'
+  get 'reports/cobranza'
   get 'reports/pronostico_de_cobranza'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   resources :tickets

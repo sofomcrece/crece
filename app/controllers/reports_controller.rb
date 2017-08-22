@@ -22,6 +22,9 @@ class ReportsController < ApplicationController
      @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha)
     end
   end
+  def cobranza
+    @tickets =  Ticket.where(status:0)  
+  end
   def tablero 
      require 'json'
      unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
