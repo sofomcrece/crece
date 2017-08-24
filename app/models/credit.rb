@@ -191,7 +191,7 @@ class Credit < ActiveRecord::Base
      def self.get_by_branch_office(datos,suc_id)
         cad = ""
         co = 0
-        datos.all.each do |credit| 
+        datos.each do |credit| 
             if credit.padre.branch_office.id==suc_id
               cad = cad + " OR " unless co==0
               cad = cad + "credits.id = #{credit.id}"
