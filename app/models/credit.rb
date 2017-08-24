@@ -198,7 +198,7 @@ class Credit < ActiveRecord::Base
               co=co+1
             end
         end
-        return  (cad == "")? nil : Credit.where(cad) 
+        return  (cad == "")? [] : Credit.where(cad) 
     end
     def fecha_de_contrato_formato
         aux= nil
