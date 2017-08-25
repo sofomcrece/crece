@@ -44,7 +44,7 @@
                 </label>
                 <select  class="browser-default" ng-model="fechas_de_pago.selected">
                   <option value="" selected>Fechas</option>
-                  <option ng-repeat="option in fechas_de_pago" value="{{option.fecha_de_pago}}">{{option.fecha_de_pago}}</option>
+                  <option ng-repeat="option in fechas_de_pago" value="{{option.fecha_de_corte}}">{{option.fecha_de_pago}}</option>
                 </select>
                 <a class="waves-effect waves-light btn" ng-click="get_seguimiento()">Cargar</a>
             </div>
