@@ -131,7 +131,7 @@ class ViewCreditsController < ApplicationController
     @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
     @datos = []
     @arreglo = []
-    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL","FECHA DE CORTE", "FECHA DE IMPRESION"])
+    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
         
@@ -145,7 +145,7 @@ class ViewCreditsController < ApplicationController
       puts fecha_de_impresion  
       #              1      2                  3         4       5     6      7                         8                9                 10
       @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}",fecha_de_corte,fecha_de_impresion])
+      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
     end
     puts "=========================================================================================================================================="
   end
