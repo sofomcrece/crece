@@ -100,8 +100,27 @@
       url = url + "fecha=" + $scope.fechas_de_pago.selected;
     if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
       url = url + "&id=" + $scope.hijos.selected;
-    url = url + "&tipo="+$scope.agente_empresa;
-    url = url + "&producto="+$scope.productos.selected;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
+      url = url + "&tipo="+$scope.agente_empresa;
+    if (!($scope.productos.selected == "" ||$scope.productos.selected ==undefined))
+      url = url + "&producto="+$scope.productos.selected;
+    
+     window.location.href = url
+  }
+  $scope.descargar_excel_cobranza = function(){
+     var url ="/reports/cobranza.xlsx?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
+      url = url + "&tipo="+$scope.agente_empresa;
+    if (!($scope.productos.selected == "" ||$scope.productos.selected ==undefined))
+      url = url + "&producto="+$scope.productos.selected;
+    if (!($scope.fecha_inicial == "" || $scope.fecha_inicial == undefined))
+      url= url + "&fecha_inicial="+$scope.fecha_inicial;
+    if (!($scope.fecha_final == "" || $scope.fecha_final == undefined))
+      url= url + "&fecha_final="+$scope.fecha_final;
     
      window.location.href = url
   }
