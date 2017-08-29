@@ -107,6 +107,15 @@
     
      window.location.href = url
   }
+  $scope.imprimir_recibos = function(){
+    var cad = '[';
+    for(var i = 0;i < $scope.pagos.length;i++){
+      cad = cad +'{"id":' + $scope.pagos[i].id + '},'
+    }
+    cad = cad.slice(0, -1);
+    cad = cad + ']';
+    window.open("/multiprint?payments="+cad,'_blank');
+  }
   $scope.descargar_excel_cobranza = function(){
      var url ="/reports/cobranza.xlsx?"
     if (!($scope.fechas_de_pago.selected == ""))

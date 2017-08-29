@@ -6,10 +6,11 @@ class CaratulaPdf < Prawn::Document
 
   end
   def text_content
-      image open("#{Rails.root}/app/pdf/caratulacredito_en_blanco.jpg"), position: :center , :width=>560, :height=>790
+      image open("#{Rails.root}/app/pdf/caratula_credito.jpg"), position: :center , :width=>560, :height=>790
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
-      draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,672]
+      draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,666]
       draw_text  "#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%",:size=>9, :at => [200,610]
+     draw_text  "#{'%.2f' % @credit.product.cat_sin_iva}%",:size=>9, :at => [55 ,619]
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))))}",:size=>9, :at => [440,610]
       draw_text  "12 quincenas",:size=>9, :at => [100,570]
