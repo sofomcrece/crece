@@ -14,6 +14,7 @@ class TicketsController < ApplicationController
     elementos = JSON.parse(params[:payments])
     @tickets = []
     elementos.each do |elemento|
+      next if Payment.find(elemento["id"].to_i).estatus == 2
       pay = Payment.find(elemento["id"].to_i)
       ticket = Ticket.new(cantidad:pay.importe,payment_id:pay.id,status:1)
       if ticket.save
