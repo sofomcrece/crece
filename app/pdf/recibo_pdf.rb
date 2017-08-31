@@ -24,7 +24,7 @@ class ReciboPdf < Prawn::Document
       draw_text  "RECIBÍ DE : #{ticket.payment.credit.nombre_completo_deudor} ",:size=>9, :at => [70,665+des]
       draw_text  "LA CANTIDAD DE:  #{Dinero.to_money(ticket.cantidad)}",:size=>9, :at => [70,652+des]
       draw_text  "                     (#{(I18n.with_locale(:es) { (ticket.cantidad).to_i.to_words }).upcase } PESOS 00/100 M.N.)",:size=>9, :at => [70,639+des]
-      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO QUINCENAL #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
+      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO #{ticket.payment.credit.product.payout.periocidad} #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
       draw_text  "                  OTORGADO EL #{ticket.payment.credit.fecha}",:size=>9, :at => [70,613+des]
       draw_text  "ATRASADO ACTUAL DE: #{Dinero.to_money at} ",:size=>9, :at => [70,600+des]
       
@@ -47,7 +47,7 @@ class ReciboPdf < Prawn::Document
       draw_text  "RECIBÍ DE : #{ticket.payment.credit.nombre_completo_deudor} ",:size=>9, :at => [70,665+des]
       draw_text  "LA CANTIDAD DE:  #{Dinero.to_money(ticket.cantidad)}",:size=>9, :at => [70,652+des]
       draw_text  "                     (#{(I18n.with_locale(:es) { (ticket.cantidad).to_i.to_words }).upcase } PESOS 00/100 M.N.)",:size=>9, :at => [70,639+des]
-      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO QUINCENAL #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
+      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO #{ticket.payment.credit.product.payout.periocidad} #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
       draw_text  "                  OTORGADO EL #{ticket.payment.credit.fecha}",:size=>9, :at => [70,613+des]
       draw_text  "ATRASADO ACTUAL DE: #{Dinero.to_money at} ",:size=>9, :at => [70,600+des]
       
@@ -69,7 +69,7 @@ class ReciboPdf < Prawn::Document
       draw_text  "RECIBÍ DE : #{ticket.payment.credit.nombre_completo_deudor} ",:size=>9, :at => [70,665+des]
       draw_text  "LA CANTIDAD DE:  #{Dinero.to_money(ticket.cantidad)}",:size=>9, :at => [70,652+des]
       draw_text  "                     (#{(I18n.with_locale(:es) { (ticket.cantidad).to_i.to_words }).upcase } PESOS 00/100 M.N.)",:size=>9, :at => [70,639+des]
-      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO QUINCENAL #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
+      draw_text  "POR CONCEPTO DE: PAGO O ABONO AL CARGO #{ticket.payment.credit.product.payout.periocidad} #{ticket.payment.recibo} CORRESPONDIENTE AL CREDITO",:size=>9, :at => [70,626+des]
       draw_text  "                  OTORGADO EL #{ticket.payment.credit.fecha}",:size=>9, :at => [70,613+des]
       draw_text  "ATRASADO ACTUAL DE: #{Dinero.to_money at} ",:size=>9, :at => [70,600+des]
       
