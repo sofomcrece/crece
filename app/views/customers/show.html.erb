@@ -514,7 +514,7 @@
      
      <td>
        <strong >ACTIVIDAD ECONOMICA:</strong>
-         <%= @customer.economical_activity.descripcion %>
+         <%= @customer.economical_activity.descripcion unless @customer.economical_activity.nil? %>
     
      </td>
      <td>
@@ -950,11 +950,7 @@
       <%= @customer.parentesco_del_dependiente_3 %>
     </p>
     
-    <p>
-      <strong>Actividad economica:</strong>
-      <%= @customer.economical_activity.descripcion %>
-    </p>
-    
+   
     <p>
       <strong>Nombre completo familiar 3:</strong>
       <%= @customer.nombre_completo_familiar_3 %>
