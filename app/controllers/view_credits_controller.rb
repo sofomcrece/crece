@@ -3,19 +3,19 @@ class ViewCreditsController < ApplicationController
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
-    @credits = Credit.all.where(status:0)
+    @credits = Credit.all.where(status:0).select(:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     if current_user.tipo==3
       @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
     end
   end
   def aceptadas
-    @credits = Credit.all.where(status:1)
+    @credits = Credit.all.where(status:1).select(:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     if current_user.tipo==3
        @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
     end
   end
   def rechazadas
-    @credits = Credit.all.where(status:2)
+    @credits = Credit.all.where(status:2).select(:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     if current_user.tipo==3
        @credits= Credit.get_by_branch_office(@credits,current_user.branchOffices[0])
     end
