@@ -11,7 +11,7 @@ class CreditsController < ApplicationController
     render text:@credit.pdf64
   end
   def index
-    @credits = Credit.all.where(status:1)
+    @credits = Credit.all.where(status:1).select(:fecha_de_contrato,:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
@@ -23,7 +23,7 @@ class CreditsController < ApplicationController
     branch_office_id = params[:sucursal_id]
     fecha1 = params[:fecha1]
     fecha2 = params[:fecha2]
-    
+    printed = params[:printed]
      @credits =@credits.where("lower(CURP) = '#{curp.downcase}'") unless  params[:curp].nil? or  params[:curp]==""
      @credits =@credits.where("lower(nombre_1) like '#{nom1.downcase}%'") unless  params[:nombre1].nil? or  params[:nombre1]==""
      @credits =@credits.where("lower(nombre_2) like '#{nom2.downcase}%'") unless  params[:nombre2].nil? or  params[:nombre2]==""
@@ -33,7 +33,7 @@ class CreditsController < ApplicationController
      @credits =@credits.where(:fecha_de_contrato => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
      @credits =@credits.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
      @credits =@credits.where("credits.product_id = ?  ",product_id)  unless  params[:product_id].nil? or  params[:product_id]==""
-     
+     @credits =@credits.where(fecha_de_contrato:nil) unless  params[:printed].nil? or  params[:printed]==""
      @credits = Credit.get_by_branch_office(@credits,branch_office_id.to_i) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
      
      @credits = Credit.get_by_branch_office(@credits,current_user.branchOffices[0].id) if (current_user.tipo==3)

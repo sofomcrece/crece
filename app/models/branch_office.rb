@@ -3,7 +3,6 @@ class BranchOffice < ActiveRecord::Base
     belongs_to :product
     has_many :agents
     has_many :companies
-   
     validates :nombre,
     :calle,
     :no_ext,

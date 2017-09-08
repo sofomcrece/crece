@@ -64,7 +64,7 @@
                 <tbody>
                   <tr ng-repeat = "ele in seleccionados">
                     <td>{{ele.tipo==1 ?"Agente":"Empresa"}}</td>
-                    <td>{{ele.clave}}</td>
+                    <td>{{ele.nombre_completo}}</td>
                     <td><a class="waves-effect waves-light btn" ng-click="eliminar($index)">Eliminar</a></td>
                   </tr>
                 </tbody>

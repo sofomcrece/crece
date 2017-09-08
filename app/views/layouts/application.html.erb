@@ -173,7 +173,7 @@
     for (var i = 0; i<$scope.seleccionados.length;i++)
       if($scope.seleccionados[i].padre ==  data.id&& $scope.seleccionados[i].tipo==$scope.agente_empresa) 
         return;
-    $scope.seleccionados.push( {padre:data.id,tipo:$scope.agente_empresa,clave:data.clave});
+    $scope.seleccionados.push( {padre:data.id,tipo:$scope.agente_empresa,clave:data.clave,nombre_completo:data.nombre_completo});
     
     console.log($scope.seleccionados);
   }
@@ -228,9 +228,7 @@
 .controller("payment",["$scope","$http","$location",function($scope,$http,$location){
   $scope.creditos = [];
   $scope.ena_botton=true;
-  $scope.actualizar_pagos = function(){
-    
-  }
+ 
   $scope.cargarHijos = function(){
     var url = "";
     if ($scope.agente_empresa == 1)
@@ -248,33 +246,13 @@
     });
      $scope.tipo = ($scope.agente_empresa == 1)? "Agente": "Empresa";
   }
-  $http.get("/branch_offices.json")
-  .success(function(data){
-    console.log(data);
-    $scope.sucursales=data;
-  })
-  .error(function(data){
-    console.log(data);
-  });
-  $http.get("/products.json")
-  .success(function(data){
-    console.log(data);
-    $scope.productos=data;
-  })
-  .error(function(data){
-    console.log(data);
-  });
-  $http.get("/credits.json")
-  .success(function(data){
-    console.log(data);
-    $scope.creditos=data;
-  })
-  .error(function(data){
-    console.log(data);
-  });
+  
+  
   function cargar_payments(){
        url = window.location+"";
       url = url.split("?")
+      if (url[1]== undefined)
+        return;
       console.log(url[0]+".json?"+url[1]);
       $http.get(url[0]+".json?"+url[1])
       .success(function(data){
@@ -357,6 +335,35 @@
     window.open(url, '_blank');
   }
   $scope.filtrar_pagos = function(){
+    url="/credits.json?printed=1&";
+    
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
+      var p = ($scope.agente_empresa==1)?1:0;
+      url=url+ "tpadre="+p+"&";
+    }
+    if($scope.select_op!=null)
+    if (!($scope.select_op.repeatSelect == "" ||$scope.select_op.repeatSelect ==undefined))
+      url=url+ "padre="+$scope.select_op.repeatSelect+"&";
+    if (!($scope.product_select == "" ||$scope.product_select ==undefined))
+      url=url+ "product_id="+$scope.product_select+"&";
+    if($scope.data!=null)
+    if (!($scope.data.sucursales.repeatSelect == "" ||$scope.data.sucursales.repeatSelect ==undefined))
+      url=url+ "sucursal_id="+$scope.data.sucursales.repeatSelect+"&";
+    if (!($scope.fecha1 == "" ||$scope.fecha1 ==undefined))
+      url=url+ "fecha1="+$scope.fecha1+"&";
+    if (!($scope.fecha2 == "" ||$scope.fecha2 ==undefined))
+      url=url+ "fecha2="+$scope.fecha2+"&";
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.creditos=data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.filtrar_pagos_2 = function(){
     url="/credits.json?";
     
     if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
@@ -385,6 +392,31 @@
       console.log(data);
     });
   }
+  function initial (){
+    if(window.location.pathname == "/view_credits/aceptadas")
+      $scope.filtrar_pagos();
+    if(window.location.pathname == "/payments")
+      $scope.filtrar_pagos_2();
+      
+    $http.get("/branch_offices.json")
+    .success(function(data){
+      console.log(data);
+      $scope.sucursales=data;
+    })
+    .error(function(data){
+      console.log(data);
+    });
+    $http.get("/products.json")
+    .success(function(data){
+      console.log(data);
+      $scope.productos=data;
+    })
+    .error(function(data){
+      console.log(data);
+    });
+    
+  }
+  initial();
   cargar_payments();
 }])
 .controller("productos",["$http","$scope",function($http,$scope){

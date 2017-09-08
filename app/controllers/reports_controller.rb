@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
      padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
      producto = params[:producto].to_i
      @resp = Hash.new("respuesta")
-     @resp["nombre_empresa"] = padre.clave
+     @resp["nombre_empresa"] = padre.nombre_completo
      @resp["fecha"] = fecha
      @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha,producto)
     end
@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
      fecha = params[:fecha].to_date
      padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
      @resp = Hash.new("respuesta")
-     @resp["nombre_empresa"] = padre.clave
+     @resp["nombre_empresa"] = padre.nombre_completo
      @resp["fecha"] = fecha
      @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha)
     end
