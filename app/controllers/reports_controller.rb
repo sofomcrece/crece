@@ -77,7 +77,7 @@ class ReportsController < ApplicationController
     payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
     
     fila = Hash.new()
-    fila["nombre_completo"] = "#{credit.nombre_1} #{credit.nombre_2} #{credit.apellido_paterno} #{credit.apellido_materno}"
+    fila["nombre_completo"] = "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}"
     fila["fecha"] = credit.fecha
     fila["monto_solicitud"] = credit.monto_solicitud
     fila["monto_a_pagar"] = credit.payments.sum(:importe)
