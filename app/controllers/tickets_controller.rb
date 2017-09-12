@@ -23,7 +23,7 @@ class TicketsController < ApplicationController
         @tickets << pay.get_last_generated
       end
     end
-    pdf = ReciboPdf.new(@tickets)
+    pdf = ReciboPdf.new(@tickets.sort_by &:created_at)
     send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"
   end
   # GET /tickets/1
