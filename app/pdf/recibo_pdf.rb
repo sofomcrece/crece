@@ -5,6 +5,7 @@ class ReciboPdf < Prawn::Document
     text_content
   end
   def text_content
+    
     at=0
     contador = 0
     @tickets.each do |ticket|  

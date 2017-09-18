@@ -221,4 +221,9 @@ class Credit < ActiveRecord::Base
             "E"
         end
     end
+    def atrasado
+        #pagos = self.payments.where("payments.fecha_de_pago = ?","31/08/2017".to_date)
+        #deuda = pagos.sum(:importe) + pagos.sum(:interes)
+        #tickets=pagos.joins(:tickets)
+    end
 end

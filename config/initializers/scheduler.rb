@@ -1,7 +1,5 @@
 require 'rufus-scheduler'
-
-Rufus::Scheduler.singleton.cron '5 0 * * *' do
-  # every minute
-
+scheduler = Rufus::Scheduler.new
+scheduler.cron '39 21 * * *' do
   Coman.create(c:"#{Time.now} se creo")
 end

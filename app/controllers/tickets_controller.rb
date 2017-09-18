@@ -19,11 +19,21 @@ class TicketsController < ApplicationController
       ticket = Ticket.new(cantidad:pay.importe,payment_id:pay.id,status:1)
       if ticket.save
         @tickets  << ticket
+        
       else 
         @tickets << pay.get_last_generated
       end
     end
-    pdf = ReciboPdf.new(@tickets.sort_by &:created_at)
+    @tickets.length.times do |x|
+      @tickets.length.times do |y|
+        if @tickets[x].payment.credit.fecha_de_contrato < @tickets[y].payment.credit.fecha_de_contrato 
+          aux = @tickets[y]
+          @tickets[y] = @tickets[x]
+          @tickets[x] = aux
+        end
+      end
+    end
+    pdf = ReciboPdf.new(@tickets)
     send_data pdf.render, filename: 'Recibo.pdf', type: 'application/pdf', disposition: "inline"
   end
   # GET /tickets/1
