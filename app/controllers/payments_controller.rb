@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
     padres = JSON.parse params[:padres] unless  params[:padres].nil? or params[:padres]==""
     fecha = params[:fecha].to_date unless params[:fecha].nil? 
     prod = params[:producto].to_i
-    @credits = Credit.all.where(status:1)
+    @credits = Credit.all.where(status:1).select(:fecha_de_contrato,:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     @payments=  Payment.joins(:credit).where("credits.status = ? ",1)
     @payments = @payments.where(fecha_de_impresion:fecha) unless params[:fecha].nil? or params[:fecha] == ""
     @payments = @payments.where("credits.product_id = ? ",prod) unless params[:producto].nil? or params[producto] == ""
@@ -21,7 +21,9 @@ class PaymentsController < ApplicationController
       end
     end
     @payments = @payments.where(cad) unless  cad==""
-   
+    unless  params[:nextval].nil? or params[:nextval]==""
+      @payments = @payments.reject{|payment| payment.pago_empresa_ready==false}
+    end
      
   end
   def dates
@@ -31,7 +33,15 @@ class PaymentsController < ApplicationController
     pa.cargar_interes
     redirect_to "/payments/show?clave=#{pa.credit.id}"
   end
+  def pagar
+   payment = Payment.find(params[:id])
+   payment.tickets[0].update(status:0)
+   redirect_to payment.tickets[0]
+  end
+  
   def show
     @credit = Credit.find(params[:clave]) unless params[:clave].nil? || params[:clave]==""
+  end
+  def paymentscompany
   end
 end

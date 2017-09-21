@@ -226,4 +226,28 @@ class Credit < ActiveRecord::Base
         #deuda = pagos.sum(:importe) + pagos.sum(:interes)
         #tickets=pagos.joins(:tickets)
     end
+    #def corriente
+    #    count = 0
+    #    payments = self.payments.order(:fecha_de_pago)
+    #    num = payments.count
+    #    payments.each do |payment|
+    #       count += 1
+    #       break unless payment.estatus == 2 
+    #    end
+    #    if (num == count)
+    #        count2 =0 
+    #        praducto = payments[count-1].credit.product
+    #        fechas = producto.fechas_de_corte
+    #        fechas.each do |f|
+    #          count2 += 1
+    #          break unless f.fecha_de_corte == payments[count-1].fecha_de_corte
+    #        end
+    #        fechas[count] > Time.now.to_date 
+    #    else
+    #        payments[count].fecha_de_corte > Time.now.to_date 
+    #    end
+    #end
+    def corriente
+        self.payments.where(estatus:1).count == 0    
+    end
 end

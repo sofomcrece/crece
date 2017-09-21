@@ -164,8 +164,26 @@
       console.log(data);
     });
   }
+    $scope.obtenerPaymentsPorEmpresa = function(){
+    var url = "/payments.json?"
+    url = url + "padres="+ JSON.stringify($scope.seleccionados)
+    url = url + "&&fecha="+ $scope.fechas.selected
+    url = url + "&&nextval=true"
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.pagos = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
   
-  
+  $scope.pagar_por_empresa = function(val){
+    $scope.obtenerPaymentsPorEmpresa();
+    window.open("/payments/"+val.id+"/pagar", '_blank');
+  }
   $scope.agregar = function(data){
     data = JSON.parse(data);
     if (data==undefined)

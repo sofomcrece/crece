@@ -19,5 +19,8 @@ class Product < ActiveRecord::Base
      def fechas_de_impresion
           Payment.joins(:credit=>:product).select(:fecha_de_impresion).where("products.id = ?",self.id).uniq.where("payments.fecha_de_pago < ? ",Time.now + 1.month)
      end
+     def fechas_de_corte
+          Payment.select(:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_corte)
+     end
 
 end

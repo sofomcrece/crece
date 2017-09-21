@@ -5,5 +5,5 @@ scheduler.cron '0 22 * * *' do
   Coman.create(c:"#{Time.now} se creo")
 end
 scheduler.interval '10s' do
-  Coman.debug "I assure you! It's #{Time.now}"
+  Coman.create(c:"I assure you! It's #{Time.now}")
 end
