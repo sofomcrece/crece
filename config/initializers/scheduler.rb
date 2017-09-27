@@ -10,7 +10,7 @@
 #  end
 #end
 require 'rufus-scheduler'
-scheduler = Rufus::Scheduler.start_new
+scheduler = Rufus::Scheduler.new
 job = scheduler.every '60s' do
   Coman.create(c:"#{Time.now} nuevo intento")
 end
