@@ -32,7 +32,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "SEXO : #{@credit.sexo==1?"Hombre":"Mujer"}    NO. DE DEPENDIENTES : #{@credit.numero_de_dependientes_economicos}
       ",:size => 10
-      text "GASTO PROMEDIO :  #{Dinero.to_money(@credit.gasto_promedio_mensual)}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
+      text "GASTO PROMEDIO :  #{(@credit.gasto_promedio_mensual)}  ESTADO CIVIL : #{@credit.estado_civil_cadena}
       ",:size => 10
       text "NOMBRE COMPLETO CÓNYUGE : #{@credit.apellido_paterno_del_conyuge}  #{@credit.apellido_materno_del_conyuge}  #{@credit.nombre_1_del_conyuge} #{@credit.nombre_2_del_conyuge}
       ",:size => 10
@@ -90,7 +90,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "OCUPACION: #{@credit.ocupation.descripcion}
       ",:size => 10
-      text "SUELDO MENSUAL: #{Dinero.to_money(@credit.sueldo_mensual_neto)}   NSS: #{@credit.seguro} 
+      text "SUELDO MENSUAL: #{(@credit.sueldo_mensual_neto)}   NSS: #{@credit.seguro} 
       ",:size => 10
       text "PARA QUE NECESITA EL CREDITO : #{@credit.destination.descricion}
       ",:size => 10
