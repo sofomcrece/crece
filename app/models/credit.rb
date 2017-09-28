@@ -191,7 +191,7 @@ class Credit < ActiveRecord::Base
         cad = ""
         co = 0
         datos.each do |credit| 
-            if credit.padre.branch_office.id==suc_id
+            if credit.padre.branch_office.id==suc_id.id
               cad = cad + " OR " unless co==0
               cad = cad + "credits.id = #{credit.id}"
               co=co+1
