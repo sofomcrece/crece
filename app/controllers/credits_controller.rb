@@ -36,7 +36,7 @@ class CreditsController < ApplicationController
      @credits =@credits.where(fecha_de_contrato:nil) unless  params[:printed].nil? or  params[:printed]==""
      @credits = Credit.get_by_branch_office(@credits,branch_office_id.to_i) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
      
-     @credits = Credit.get_by_branch_office(@credits,current_user.branchOffices[0].id) if (current_user.tipo==3)
+     @credits = Credit.get_by_branch_office(@credits,current_user.branchOffices[0]) if (current_user.tipo==3)
      
      
   end
