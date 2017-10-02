@@ -79,7 +79,7 @@ class ReportsController < ApplicationController
     
     fila = Hash.new()
     fila["nombre_completo"] = "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}"
-    fila["fecha"] = credit.fecha
+    fila["fecha"] = credit.fecha_de_contrato
     fila["monto_solicitud"] = credit.monto_solicitud
     fila["monto_a_pagar"] = credit.payments.sum(:importe)
     fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)

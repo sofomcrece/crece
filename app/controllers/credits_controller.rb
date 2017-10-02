@@ -34,7 +34,7 @@ class CreditsController < ApplicationController
      @credits =@credits.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
      @credits =@credits.where("credits.product_id = ?  ",product_id)  unless  params[:product_id].nil? or  params[:product_id]==""
      @credits =@credits.where(fecha_de_contrato:nil) unless  params[:printed].nil? or  params[:printed]==""
-     @credits = Credit.get_by_branch_office(@credits,branch_office_id.to_i) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
+     @credits = Credit.get_by_branch_office(@credits,BranchOffice.find(branch_office_id.to_i)) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
      
      @credits = Credit.get_by_branch_office(@credits,current_user.branchOffices[0]) if (current_user.tipo==3)
      
