@@ -41,7 +41,7 @@ class Customer < ActiveRecord::Base
         datos.each do |credit| 
             if credit.padre.branch_office.id==suc_id
               cad = cad + " OR " unless co==0
-              cad = cad + "credits.id = #{credit.id}"
+              cad = cad + "customers.id = #{credit.id}"
               co=co+1
             end
         end

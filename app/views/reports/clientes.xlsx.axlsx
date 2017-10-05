@@ -1,5 +1,6 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "pronostico_de_cobranza") do |sheet|
+    sheet.add_row [@dd]
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
     sheet.add_row ["PRONÓSTICO DE COBRANZA QUINCENAL AL #{@fecha} - SISTEMA"]
 
@@ -244,7 +245,7 @@ wb.add_worksheet(name: "pronostico_de_cobranza") do |sheet|
      "TELEFONO FAMILIAR",
      "DOMICILIO FAMILIAR"
  ]
- Customer.all.each do |c|
+ @customers.each do |c|
     sheet.add_row [
         (c.padre.nil?)? "desvinculado" : c.padre.branch_office.nombre,
         (c.padre.nil?)? "desvinculado" : c.padre.nombre_completo,
