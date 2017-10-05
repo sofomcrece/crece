@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
   belongs_to :economical_activity
   belongs_to :ocupation
+  belongs_to :profecion
   has_many :credits
   validates :RFC, uniqueness: true
   validates :CURP, uniqueness: true
@@ -46,4 +47,9 @@ class Customer < ActiveRecord::Base
         end
         return  (cad == "")? [] : Customer.where(cad) 
     end
+  def domicilio
+    cad = "#{calle}, #{numero_exterior}, "
+    cad = cad + " #{numero_interior} " unless numero_interior.nil?
+    cad =cad +"#{colonia}, #{codigo_postal}"
+  end
 end

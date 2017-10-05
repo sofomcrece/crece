@@ -56,6 +56,7 @@ class ReportsController < ApplicationController
   def clientes
       @sucursales = BranchOffice.all
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
+      
   end
   
   
