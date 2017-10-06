@@ -7,7 +7,7 @@ class AutorizacionPdf < Prawn::Document
   end
   def text_content
       image open("#{Rails.root}/app/pdf/autorizacion_en_blanco.jpg"), position: :center , :width=>560, :height=>790
-      draw_text  "#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}",:size=>8, :at => [60,455]
+      draw_text  "#{@credit.nombre_completo_deudor}",:size=>8, :at => [60,455]
       draw_text  "#{@credit.RFC} ",:size=>8, :at => [100,418]
       draw_text  "#{@credit.calle}, ##{@credit.numero_exterior}",:size=>8, :at => [120,405]
       draw_text  "#{@credit.colonia} ",:size=>8, :at => [100,395]
@@ -46,13 +46,13 @@ class AutorizacionPdf < Prawn::Document
           
     text " "
     text "Nombre del solicitante (Persona Física o Denominación / Razón Social de la Persona Moral):
-                 #{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2} ",:size =>10,:align => :justify 
+                 #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify 
     text "Para el caso de persona Moral, nombre del Representante Legal:
-#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}
- R.F.C. #{@credit.RFC}
- Calle y Número #{@credit.calle}, ##{@credit.numero_exterior}
- Colonia #{@credit.colonia}
- Ciudad #{@credit.localidad}  Estado #{@credit.estado_actual}  Codigo Postal 
+#{@credit.nombre_completo_deudor}
+ R.F.C. #{@credit.customer.RFC}
+ Calle y Número #{@credit.customer.calle}, ##{@credit.customer.numero_exterior}
+ Colonia #{@credit.customer.colonia}
+ Ciudad #{@credit.customer.localidad}  Estado #{@credit.customer.estado_actual}  Codigo Postal #{@credit.customer.codigo_postal}
  Lugar y Fecha en que se firma la autorización: #{@credit.fecha.strftime("%d-%m-%Y")}
  Nombre del funcionario que recaba la autorización: ___________________________
 "

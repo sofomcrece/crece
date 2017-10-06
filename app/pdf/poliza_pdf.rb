@@ -17,7 +17,7 @@ class PolizaPdf < Prawn::Document
     draw_text  "FECHA ",:size=>9, :at => [460,710+des]
     draw_text  "#{@credit.fecha_en_español}", :size=>9, :at => [430,703+des]
     
-    draw_text  "#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}", :at => [70,650+des]
+    draw_text  "#{@credit.nombre_completo_deudor}", :at => [70,650+des]
     draw_text  "#{ Dinero.to_money(@credit.monto_solicitud) }", :at => [430,650+des]
     draw_text  "______________________________________________________________________", :at => [70,650+des]
     draw_text  "Paguese este cheque a:",:size=>8, :at => [70,635+des]
@@ -52,7 +52,7 @@ class PolizaPdf < Prawn::Document
     draw_text  "FECHA ",:size=>9, :at => [460,710+des]
     draw_text  "#{@credit.fecha_en_español}", :size=>9, :at => [430,703+des]
     
-    draw_text  "#{@credit.apellido_paterno} #{@credit.apellido_materno} #{@credit.nombre_1} #{@credit.nombre_2}", :at => [70,650+des]
+    draw_text  "#{@credit.nombre_completo_deudor}", :at => [70,650+des]
     draw_text  "#{ Dinero.to_money(@credit.monto_solicitud) }", :at => [430,650+des]
     draw_text  "______________________________________________________________________", :at => [70,650+des]
     draw_text  "Paguese este cheque a:",:size=>8, :at => [70,635+des]

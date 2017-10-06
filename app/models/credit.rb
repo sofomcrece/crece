@@ -166,12 +166,12 @@ class Credit < ActiveRecord::Base
     # agente   === 1
     # empresa === 0
     def nombre_completo_deudor
-        "#{apellido_paterno} #{apellido_materno} #{nombre_1} #{nombre_2}"
+        (self.customer.nil?)? "#{self.apellido_paterno} #{self.apellido_materno} #{self.nombre_1} #{self.nombre_2}" : "#{self.customer.apellido_paterno} #{self.customer.apellido_materno} #{self.customer.nombre_1} #{self.customer.nombre_2}" 
     end
     def domicilio
-    cad = "#{calle}, #{numero_exterior}, "
-    cad = cad + " #{numero_interior} " unless numero_interior.nil?
-    cad =cad +"#{colonia}, #{codigo_postal}"
+    cad = "#{self.customer.calle}, #{self.customer.numero_exterior}, "
+    cad = cad + " #{self.customer.numero_interior} " unless self.customer.numero_interior.nil?
+    cad =cad +"#{self.customer.colonia}, #{self.customer.codigo_postal}"
   end
   def getCorrida 
         total= self.monto_solicitud.to_f + self.monto_solicitud.to_f * (self.product.taza_de_interes_ordinaria/100)

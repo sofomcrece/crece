@@ -14,5 +14,5 @@ json.array!(@payments) do |payment|
   json.sucursal payment.credit.padre.branch_office.nombre
   json.nombre_agente payment.credit.padre.nombre_completo
   json.val payment.pago_empresa_ready
- # json.f_ticket_id payment.tickets[0].id unless payment.tickets.nil? 
+  json.f_ticket_id "#{"0"*(5-payment.tickets[0].id.to_s.length)+payment.tickets[0].id.to_s}" unless payment.tickets[0].nil? 
 end

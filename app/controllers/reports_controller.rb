@@ -80,7 +80,7 @@ class ReportsController < ApplicationController
     payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
     
     fila = Hash.new()
-    fila["nombre_completo"] = "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}"
+    fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
     fila["fecha"] = credit.fecha_de_contrato
     fila["monto_solicitud"] = credit.monto_solicitud
     fila["monto_a_pagar"] = credit.payments.sum(:importe)
@@ -89,7 +89,7 @@ class ReportsController < ApplicationController
     fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
     pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
     fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
-    fila["interes_moratorio"] = Payment.where("credit_id = ? and fecha_de_corte <= ? and estatus != ? ", credit.id, fecha,2).sum(:interes).to_s.to_d
+    fila["interes_moratorio"] = Payment.where("credit_id = ? and fecha_de_corte <= ? ", credit.id, fecha).sum(:interes).to_s.to_d
     fila["total_a_cobrar"] =  fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
     fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
     fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
