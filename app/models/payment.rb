@@ -36,7 +36,7 @@ class Payment < ActiveRecord::Base
     def cargar_interes
         unless self.estatus==2
             inter =  self.deuda_sin_interes * (self.credit.product.interes_moratorio_aplicable.to_f/100)
-            self.update(interes:inter+self.interes,estatus:1,vencimientos:self.vencimientos+1)
+            self.update(interes: inter + self.interes,estatus:1,vencimientos:self.vencimientos.to_i+1)
         end
         
     end
