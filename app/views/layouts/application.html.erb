@@ -383,7 +383,12 @@
   }
   $scope.filtrar_pagos_2 = function(){
     url="/credits.json?";
-    
+    if (!($scope.nombre1==""||$scope.nombre1==undefined))
+        url=url+"nombre1="+ $scope.nombre1;
+    if (!($scope.paterno==""||$scope.paterno==undefined))
+        url=url+"&paterno="+ $scope.paterno;
+    if (!($scope.materno==""||$scope.materno==undefined))
+        url=url+"&materno="+ $scope.materno;
     if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
       var p = ($scope.agente_empresa==1)?1:0;
       url=url+ "tpadre="+p+"&";

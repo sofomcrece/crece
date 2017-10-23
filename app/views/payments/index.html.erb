@@ -30,6 +30,11 @@
                 </br>
                 <a class="waves-effect waves-light btn" ng-click="filtrar_pagos_2()">Filtar</a>
          </div>
+          <div class="col s12 m6 l6">
+            NOMBRE: <input type="text" placeholder="INGRESE EL NOMBRE"ng-model="nombre1" ng-change="filtrar_pagos_2()">
+            PATERNO: <input type="text" placeholder="APELLIDO PATERNO"ng-model="paterno" ng-change="filtrar_pagos_2()">
+            MATERNO: <input type="text" placeholder="APELLIDO MATERNO"ng-model="materno" ng-change="filtrar_pagos_2()">
+          </div>
         <div class= "col s12 m6 l6 "></div>
              <table class="striped" >
                 <thead>

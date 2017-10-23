@@ -1,6 +1,6 @@
 class CreditsController < ApplicationController
   layout "layouts/credito"
-  before_action :set_credit, only: [:show, :edit, :update, :destroy,:aprobar,:pdf,:text]
+  before_action :set_credit, only: [:show, :edit, :editpdf, :update, :destroy,:aprobar,:pdf,:text]
 
   # GET /credits
   # GET /credits.json
@@ -53,6 +53,8 @@ class CreditsController < ApplicationController
 
   # GET /credits/1/edit
   def edit
+  end
+  def editpdf
   end
 
   # POST /credits

@@ -39,7 +39,9 @@ Rails.application.routes.draw do
   get 'view_credits/aceptadas',to:'view_credits#aceptadas',as:'view_credits_aceptadas'
   get 'view_credits/rechazadas',to:'view_credits#rechazadas',as:'view_credits_rechazadas'
   resources :view_credits
+  
   resources :customers
+  get 'credits/:id/editpdf', to:'credits#editpdf',as:'editpdf'
   resources :credits
   resources :payouts
   resources :loans

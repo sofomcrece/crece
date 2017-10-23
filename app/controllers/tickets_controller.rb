@@ -63,7 +63,7 @@ class TicketsController < ApplicationController
     @ticket 
       
       if !(Payment.find(pay).tickets.count ==0)
-          if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe== cant
+          if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe == cant and Payment.find(pay).interes < 0 
             @ticket= Payment.find(pay).tickets.last
             Payment.find(pay).tickets.last.update(status:0)
             flag = true

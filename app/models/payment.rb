@@ -47,7 +47,7 @@ class Payment < ActiveRecord::Base
       self.vencimientos  ||= 0
     end
     def pago_empresa_ready
-        self.tickets.count==1 && self.tickets[0].status==1 && self.estatus == 0
+        self.tickets.count==1 && self.tickets[0].status==1 && self.estatus == 0 && self.credit.corriente
     end
     # 0 ------ al corriente
     # 1 ------ Vencido
