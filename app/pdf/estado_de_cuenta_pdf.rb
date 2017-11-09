@@ -45,7 +45,7 @@ class EstadoDeCuentaPdf < Prawn::Document
       arreglo << ["F. OPERACION","MOVIMIENTO","F. RECIBO","IMPORTE"]
       tickets.each do |ticket|
         fecha_payment = ticket.payment.fecha_de_pago
-        fecha_ticket = ticket.created_at
+        fecha_ticket = ticket.updated_at
         arreglo << [Auxiliar.fecha_formato(fecha_ticket),"pago Capital",Auxiliar.fecha_formato(fecha_payment),Dinero.to_money(ticket.pago_capital)]
         arreglo << [Auxiliar.fecha_formato(fecha_ticket),"pago Interes",Auxiliar.fecha_formato(fecha_payment),Dinero.to_money(ticket.pago_interes_sin_iva)]
         arreglo << [Auxiliar.fecha_formato(fecha_ticket),"pago Iva",Auxiliar.fecha_formato(fecha_payment),Dinero.to_money(ticket.pago_iva)]
