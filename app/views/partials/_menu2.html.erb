@@ -18,10 +18,13 @@
       <li><%= link_to 'Pagos', payments_path%></li>
     </ul>
     <ul id="dropdown4_2" class="dropdown-content">
-      <li><%= link_to 'Seguimento de cobranza',  "/reports/seguimiento"%></li>
-      <li><%= link_to 'Seguimento de cobranza', "/reports/seguimiento"%></li>
+      <li><%= link_to 'Seguimiento de cobranza', "/reports/seguimiento"%></li>
+      <li><%= link_to 'Seguimiento quincenal', "/reports/seguimiento_quincenal"%></li>
+      <li><%= link_to 'Reporte de cobranza', "/reports/cobranza"%></li>
       <li><%= link_to 'Pronostico de cobranza', "/reports/pronostico_de_cobranza"%></li>
       <li><%= link_to 'Clientes', "/reports/clientes"%></li>
+      <li><%= link_to 'Calificaciones', "/reports/calificaciones"%></li>
+      <li><%= link_to 'Estado de cta.', "/reports/estado_de_cuenta"%></li>
     </ul>
 <%if current_user.nil?%>
     <li><%= link_to 'Quienes somos',"#quienes_somos"%></li>

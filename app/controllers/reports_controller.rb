@@ -1,14 +1,61 @@
 class ReportsController < ApplicationController
+  def calificaciones
+    respond_to do |format|
+        format.html {  }
+        format.xlsx { 
+            tipo_padre = params[:tipo]
+            padre_id = params[:id]
+            branch_office_id = params[:sucursal_id]
+            @branch_office = BranchOffice.find(branch_office_id) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
+            unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+                if tipo_padre.to_i == 1
+                    @padre = Agent.find(padre_id)
+                else
+                    @padre = Company.find(padre_id)
+                end
+            end
+            @customers = Customer.all
+            @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+            @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
+            @customers = @customers.order(:updated_at)  unless @customers == []   
+        }
+    end
+    
+  end
+  def estado_de_cuenta
+    @customer = Customer.find(params[:c_id]) unless params[:c_id].nil? or params[:c_id]==""
+   respond_to do |format|
+        format.html {  }
+        format.pdf {
+            fechas = []
+            
+            params[:fecha2]
+            fechas << params[:f1].to_date unless params[:f1].nil? or params[:f1]==""
+            fechas << params[:f2].to_date unless params[:f2].nil? or params[:f2]==""
+            pdf = EstadoDeCuentaPdf.new(@customer,fechas)
+            send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+        }
+    end
+  end
+  def seguimiento_conf
+        require 'json'
+        unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
+         fecha = params[:fecha].to_date
+         padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
+         producto = params[:producto].to_i
+         @resp = Hash.new("respuesta")
+         @resp["nombre_empresa"] = padre.nombre_completo
+         @resp["fecha"] = fecha
+         @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha,producto)
+        end
+        
+  end
   def seguimiento
-    require 'json'
-    unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
-     fecha = params[:fecha].to_date
-     padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
-     producto = params[:producto].to_i
-     @resp = Hash.new("respuesta")
-     @resp["nombre_empresa"] = padre.nombre_completo
-     @resp["fecha"] = fecha
-     @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha,producto)
+    respond_to do |format|
+        format.html {  }
+        format.json { self.seguimiento_conf }
+        format.xlsx{ self.seguimiento_conf }
+        
     end
   end
   def seguimiento_quincenal
@@ -23,17 +70,22 @@ class ReportsController < ApplicationController
     end
   end
   def cobranza
-    tipo_padre = params[:tipo]
-    padre_id = params[:id]
-    product_id = params[:producto]
-    branch_office_id = params[:sucursal_id]
-    fecha1 = params[:fecha1]
-    fecha2 = params[:fecha2]
-    @tickets =  Ticket.joins(:payment => :credit).where(status:0)  
-    @tickets = @tickets.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
-    @tickets = @tickets.where(:created_at => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
-    @tickets = @tickets.where("credits.product_id = ? ",product_id) unless params[:producto].nil? or params[:producto]==""
-    @tickets = @tickets.order(:updated_at)
+    respond_to do |format|
+        format.html {  }
+        format.xlsx{
+            tipo_padre = params[:tipo]
+            padre_id = params[:id]
+            product_id = params[:producto]
+            branch_office_id = params[:sucursal_id]
+            fecha1 = params[:fecha1]
+            fecha2 = params[:fecha2]
+            @tickets =  Ticket.joins(:payment => :credit).where(status:0)  
+            @tickets = @tickets.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+            @tickets = @tickets.where(:created_at => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
+            @tickets = @tickets.where("credits.product_id = ? ",product_id) unless params[:producto].nil? or params[:producto]==""
+            @tickets = @tickets.order(:updated_at)
+        }
+    end
   end
   def tablero 
      require 'json'
@@ -75,8 +127,8 @@ class ReportsController < ApplicationController
   end
   def get_seguimiento_de_cobranza(padre,fecha,producto)
     tabla = []
-    credits = padre.credits.where(product:producto.to_i).where(status:1)
-   credits.each do |credit|
+    credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1)
+    credits.each do |credit|
     payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
     
     fila = Hash.new()

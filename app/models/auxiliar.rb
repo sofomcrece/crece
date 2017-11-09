@@ -49,4 +49,43 @@ class Auxiliar < ActiveRecord::Base
             return "desconocido"
         end
     end
+     def self.mes(val)
+        case val
+        when 1
+            cad = "Enero"
+        when 2
+            cad = "Febrero"
+        when 3
+            cad = "Marzo"
+        when 4
+            cad = "Abril"
+        when 5
+            cad = "Mayo"
+        when 6
+            cad = "Junio"
+        when 7
+            cad = "Julio"
+        when 8
+            cad = "agosto"
+        when 9
+            cad = "Septiembre"
+        when 10
+            cad = "Octubre"
+        when 11
+            cad = "Noviembre"
+        when 12
+            cad = "Diciembre"
+        else
+            cad = "mes invalido"
+        end
+        return cad
+    end
+    def self.fecha_natural(f)
+      return nil if f.nil?
+      cad = f.strftime("%d") + " de #{self.mes(f.strftime("%m").to_i)} del #{f.strftime("%Y")}"  
+    end
+    def self.fecha_formato(f)
+      return nil if f.nil?
+      return f.strftime("%d/%m/%Y")
+    end
 end

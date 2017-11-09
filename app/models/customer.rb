@@ -35,13 +35,13 @@ class Customer < ActiveRecord::Base
     #    datos.all.each { |customer| array << customer if customer.padre.branch_office.id==suc_id.id }
     #    return array
     #end
-    def self.get_by_branch_office(datos,suc_id)
+   def self.get_by_branch_office(datos,suc_id)
         cad = ""
         co = 0
-        datos.each do |credit| 
-            if credit.padre.branch_office.id==suc_id
+        datos.each do |customer| 
+            if customer.padre.branch_office.id==suc_id.id
               cad = cad + " OR " unless co==0
-              cad = cad + "customers.id = #{credit.id}"
+              cad = cad + "customers.id = #{customer.id}"
               co=co+1
             end
         end

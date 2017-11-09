@@ -15,6 +15,18 @@ class Ticket < ActiveRecord::Base
         Coman.create(c:"se ejecuto #{self.payment.deuda_sin_interes}   #{self.cantidad} ")
         true
     end
+    def pago_capital
+        self.cantidad-(self.cantidad * (self.payment.credit.product.taza_de_interes_ordinaria/100))
+    end
+    def pago_interes_con_iva
+        self.cantidad - self.pago_capital
+    end
+    def pago_interes_sin_iva
+        self.pago_interes_con_iva - pago_iva
+    end
+    def pago_iva
+        self.pago_interes_con_iva * 0.16
+    end
 end
 
 

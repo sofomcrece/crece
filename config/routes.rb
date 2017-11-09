@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'reports/tablero'
   get 'reports/cobranza'
   get 'reports/pronostico_de_cobranza'
+  get 'reports/estado_de_cuenta'
+  get 'reports/calificaciones'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   resources :tickets
   resources :destinations

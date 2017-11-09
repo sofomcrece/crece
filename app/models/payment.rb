@@ -15,7 +15,9 @@ class Payment < ActiveRecord::Base
         self.importe - self.total_pagado
     end
     def deuda_con_interes
-        self.importe - self.total_pagado + self.interes
+        val = self.importe - self.total_pagado 
+        val = val + self.interes unless self.interes_flag == true 
+        return val
     end 
     def total_pagado
         Ticket.where(payment_id:self.id).where(status:0).sum(:cantidad)
@@ -44,6 +46,7 @@ class Payment < ActiveRecord::Base
         return self.tickets.where(status:1).last
     end
     def iniciar_vencimientos
+      self.interes_flag  ||= false
       self.vencimientos  ||= 0
     end
     def pago_empresa_ready

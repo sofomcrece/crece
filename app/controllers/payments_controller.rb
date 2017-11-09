@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
-  
+  skip_before_filter :verify_authenticity_token, :only => :update
+  before_action :set_payment, only: [:update]
  def index
     require 'json'
     #suc = params[:sucursal]
@@ -39,9 +40,26 @@ class PaymentsController < ApplicationController
    redirect_to payment.tickets[0]
   end
   
+  def to_bool(s)
+    return true if s =~ (/^(true|t|yes|y|1)$/i)
+    return false if s.empty? || s =~ (/^(false|f|no|n|0)$/i)
+    raise ArgumentError.new "invalid value: #{s}"
+  end
+  
+  def update
+    Coman.create(c:"cacallll #{params[:interes_flag]} #{@payment}")
+    @payment.update(interes_flag:to_bool(params[:interes_flag].to_s))
+
+  end
   def show
     @credit = Credit.find(params[:clave]) unless params[:clave].nil? || params[:clave]==""
   end
   def paymentscompany
+  end
+  def set_payment
+    @payment = Payment.find(params[:id])
+  end
+  def payment_params
+    params.require(:payment).permit(:interes_flag)
   end
 end

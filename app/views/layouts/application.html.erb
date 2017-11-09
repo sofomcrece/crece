@@ -94,6 +94,18 @@
 
   $scope.seguimiento_datos = [];
   $scope.seguimiento
+  
+  $scope.descargar_calificaciones = function(){
+     var url ="/reports/calificaciones.xlsx?"
+    if (!($scope.sucursales.selected == "" || $scope.sucursales.selected ==undefined))
+      url = url + "sucursal_id=" + $scope.sucursales.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
+      url = url + "&tipo="+$scope.agente_empresa;
+    
+     window.location.href = url
+  }
   $scope.descargar_excel = function(){
      var url ="/reports/seguimiento.xlsx?"
     if (!($scope.fechas_de_pago.selected == ""))
@@ -253,7 +265,7 @@
       url = "/agents.json";
     else
       url = "/companies.json"
-   
+    url = url + "?sucursal="+ $scope.data.sucursales.repeatSelect
     $http.get(url)
     .success(function(data){
       console.log(data);
@@ -288,27 +300,11 @@
     }
     if(val.interes>0){
       var r = confirm("Desea condonar interes moratorios? ");
-      if(r){
-        $.ajax({
-            url: '/payments/'+val.id,
-            dataType: "json",
-            type: "PUT",
-            contentType: 'application/json; charset=utf-8',
-            data: {payment:{interes_flag:true}},
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
-      }else{
-        
-      }
       
+      $http.put('/payments/'+val.id+"?interes_flag="+r)
+      .success(function (data, status, headers) {
+          alert("exito");
+      });
     }
     
      $("#ena_botton").hide();
@@ -319,6 +315,7 @@
       console.log(data);
       
       cargar_payments();
+      location.reload();
     })
     .error(function(data){
       console.log(data);
@@ -389,6 +386,49 @@
         url=url+"&paterno="+ $scope.paterno;
     if (!($scope.materno==""||$scope.materno==undefined))
         url=url+"&materno="+ $scope.materno;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
+      var p = ($scope.agente_empresa==1)?1:0;
+      url=url+ "tpadre="+p+"&";
+    }
+    if($scope.select_op!=null)
+    if (!($scope.select_op.repeatSelect == "" ||$scope.select_op.repeatSelect ==undefined))
+      url=url+ "padre="+$scope.select_op.repeatSelect+"&";
+    if (!($scope.product_select == "" ||$scope.product_select ==undefined))
+      url=url+ "product_id="+$scope.product_select+"&";
+    if($scope.data!=null)
+    if (!($scope.data.sucursales.repeatSelect == "" ||$scope.data.sucursales.repeatSelect ==undefined))
+      url=url+ "sucursal_id="+$scope.data.sucursales.repeatSelect+"&";
+    if (!($scope.fecha1 == "" ||$scope.fecha1 ==undefined))
+      url=url+ "fecha1="+$scope.fecha1+"&";
+    if (!($scope.fecha2 == "" ||$scope.fecha2 ==undefined))
+      url=url+ "fecha2="+$scope.fecha2+"&";
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.creditos=data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.abrir_estado_de_cuente=function(val){
+    url="/reports/estado_de_cuenta.pdf?";
+    url=url+"c_id="+ val+"&";
+    if (!($scope.fecha_inicial==""||$scope.fecha_inicial==undefined))
+        url=url+"f1="+ $scope.fecha_inicial+"&";
+    if (!($scope.fecha_final==""||$scope.fecha_final==undefined))
+        url=url+"&f2="+ $scope.fecha_final+"&";
+    window.open(url,"_blank")
+  }
+  $scope.filtrar_pagos_clientes = function(){
+    url="/customers.json?";
+    if (!($scope.nombre1==""||$scope.nombre1==undefined))
+        url=url+"nombre1="+ $scope.nombre1+"&";
+    if (!($scope.paterno==""||$scope.paterno==undefined))
+        url=url+"&paterno="+ $scope.paterno+"&";
+    if (!($scope.materno==""||$scope.materno==undefined))
+        url=url+"&materno="+ $scope.materno+"&";
     if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined)){
       var p = ($scope.agente_empresa==1)?1:0;
       url=url+ "tpadre="+p+"&";

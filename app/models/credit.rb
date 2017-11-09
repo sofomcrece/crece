@@ -207,7 +207,7 @@ class Credit < ActiveRecord::Base
     def calificacion
         count = 0
         self.payments.each do |payment|
-            count = count + payment.vencimientos
+            count = count + payment.vencimientos unless payment.vencimientos.nil?
         end
         if (count == 0)
             "A"
@@ -221,11 +221,58 @@ class Credit < ActiveRecord::Base
             "E"
         end
     end
+    def periodo
+        a = []
+        unless self.payments == []
+            a << self.payments.select(:fecha_de_pago).order(:fecha_de_pago)[0].fecha_de_pago
+            a << self.payments.select(:fecha_de_pago).order(:fecha_de_pago).last.fecha_de_pago
+        end
+        return a 
+    end
+    def capital_pagado
+        self.total_pagado - self.interes_pagado
+    end
+    def total_pagado
+         Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = 0",self.id).sum(:cantidad)
+    end
+    def interes_pagado
+        (self.total_pagado*(self.product.taza_de_interes_ordinaria/100))
+    end
+    def total_vencido
+        sum = 0
+        payments = Payment.joins(:credit).where("credits.id  = ? and payments.estatus = 1", self.id)
+        payments.each do |payment|
+            sum = sum + payment.deuda_sin_interes
+        end
+        return sum 
+    end
+    def total_vencido_con_moratorio
+        sum = 0
+        payments = Payment.joins(:credit).where("credits.id  = ? and payments.estatus = 1", self.id)
+        payments.each do |payment|
+            sum = sum + payment.deuda_con_interes
+        end
+        return sum 
+    end
+    def capital_vencido
+        self.total_vencido - self.interes_vencido
+    end
+    def interes_vencido
+       self.total_vencido * (self.product.taza_de_interes_ordinaria/100)
+    end
+    def interes_moratorio
+        self.total_vencido_con_moratorio - self.total_vencido
+    end
+    def saldo_actual 
+        (self.monto_solicitud * (1+(self.product.taza_de_interes_ordinaria/100))) - self.total_pagado
+    end
     def atrasado
         #pagos = self.payments.where("payments.fecha_de_pago = ?","31/08/2017".to_date)
         #deuda = pagos.sum(:importe) + pagos.sum(:interes)
         #tickets=pagos.joins(:tickets)
     end
+    
+    
     #def corriente
     #    count = 0
     #    payments = self.payments.order(:fecha_de_pago)
