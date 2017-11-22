@@ -16,16 +16,16 @@ class Ticket < ActiveRecord::Base
         true
     end
     def pago_capital
-        self.cantidad-(self.cantidad * (self.payment.credit.product.taza_de_interes_ordinaria/100))
+        self.cantidad/(1 + (self.payment.credit.product.taza_de_interes_ordinaria / 100))
     end
     def pago_interes_con_iva
-        self.cantidad - self.pago_capital
+        self.pago_interes_sin_iva + self.pago_iva
     end
     def pago_interes_sin_iva
-        self.pago_interes_con_iva - pago_iva
+        (self.pago_capital * ((self.payment.credit.product.taza_de_interes_ordinaria / 100) / 1.16))
     end
     def pago_iva
-        self.pago_interes_con_iva * 0.16
+        self.cantidad - self.pago_capital - self.pago_interes_sin_iva 
     end
 end
 

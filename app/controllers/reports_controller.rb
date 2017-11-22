@@ -79,7 +79,7 @@ class ReportsController < ApplicationController
             branch_office_id = params[:sucursal_id]
             fecha1 = params[:fecha1]
             fecha2 = params[:fecha2]
-            @tickets =  Ticket.joins(:payment => :credit).select("tickets.*, credits.agente_empresa, credits.referencia_agente_empresa, credits.product_id ").where(status:0)  
+            @tickets =  Ticket.joins(:payment => :credit).select("tickets.*, credits.agente_empresa, credits.referencia_agente_empresa, credits.product_id,credits.id ").where(status:0)  
             @tickets = @tickets.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
             @tickets = @tickets.where(:created_at => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
             @tickets = @tickets.where("credits.product_id = ? ",product_id) unless params[:producto].nil? or params[:producto]==""
@@ -141,7 +141,7 @@ class ReportsController < ApplicationController
     fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
     pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
     fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
-    fila["interes_moratorio"] = fila["atrasado"]==0? 0: Payment.where("credit_id = ? and fecha_de_corte <= ? ", credit.id, fecha).sum(:interes).to_s.to_d
+    fila["interes_moratorio"] = fila["atrasado"]==0? 0: Payment.where("credit_id = ? and fecha_de_corte <= ? and interes_flag = false", credit.id, fecha).sum(:interes).to_s.to_d
     fila["total_a_cobrar"] =  fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
     fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
     fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d

@@ -3,6 +3,7 @@ class Credit < ActiveRecord::Base
     belongs_to :customer
     belongs_to :product
     belongs_to :ocupation
+    has_many :pdfs
     has_many :payments
     belongs_to :destination
     belongs_to :profecion
@@ -60,6 +61,10 @@ class Credit < ActiveRecord::Base
     :destination_id,
     presence: true
     before_save :default_values
+    after_save :pdf_trans
+    def pdf_trans
+        Pdf.migrate_from_credits
+    end
     def default_values
       self.status ||= 0
     end
@@ -271,8 +276,14 @@ class Credit < ActiveRecord::Base
         #deuda = pagos.sum(:importe) + pagos.sum(:interes)
         #tickets=pagos.joins(:tickets)
     end
-    
-    
+    def pdf64
+        pdf = self.pdfs.order(:created_at)
+        if pdf.empty?
+            return ""
+        else
+            return pdf.last.pdf64
+        end
+    end
     #def corriente
     #    count = 0
     #    payments = self.payments.order(:fecha_de_pago)

@@ -15,6 +15,7 @@ class CreditsController < ApplicationController
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
+    
     mat = params[:materno]
     curp = params[:curp]
     tipo_padre = params[:tpadre]
@@ -55,6 +56,7 @@ class CreditsController < ApplicationController
   def edit
   end
   def editpdf
+    
   end
 
   # POST /credits
@@ -79,9 +81,14 @@ class CreditsController < ApplicationController
   # PATCH/PUT /credits/1.json
   def update
     respond_to do |format|
+      redir =  "/customers/#{@credit.customer.id}/historial"
       if @credit.update(credit_params)
         create_customer
-        format.html { redirect_to "/view_credits", notice: 'Credit was successfully updated.' }
+        if @credit.status ==1
+          format.html { redirect_to redir, notice: 'Credit was successfully updated.' }
+        else
+          format.html { redirect_to "/view_credits", notice: 'Credit was successfully updated.' }
+        end
         format.json { render :show, status: :ok, location: @credit }
       else
         format.html { render :edit }

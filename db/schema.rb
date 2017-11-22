@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112110806) do
+ActiveRecord::Schema.define(version: 20171119173608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -521,6 +521,15 @@ ActiveRecord::Schema.define(version: 20171112110806) do
     t.text     "scope_data"
   end
 
+  create_table "pdfs", force: :cascade do |t|
+    t.text     "pdf64"
+    t.integer  "credit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pdfs", ["credit_id"], name: "index_pdfs_on_credit_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.string   "nombre_del_producto"
     t.string   "registro_del_contrado_de_adhesion"
@@ -654,6 +663,7 @@ ActiveRecord::Schema.define(version: 20171112110806) do
   add_foreign_key "customers", "ocupations"
   add_foreign_key "customers", "profecions"
   add_foreign_key "payments", "credits"
+  add_foreign_key "pdfs", "credits"
   add_foreign_key "products", "loans"
   add_foreign_key "products", "payouts"
   add_foreign_key "receipts", "payments"
