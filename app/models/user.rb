@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :branchOffices
+  has_many :tickets
    attr_accessor :login
     def login=(login)
     @login = login

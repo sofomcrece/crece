@@ -88,4 +88,7 @@ class Auxiliar < ActiveRecord::Base
       return nil if f.nil?
       return f.strftime("%d/%m/%Y")
     end
+    def self.folio(val)
+      return "2503616176B#{"0"*(5-val.to_s.length)+val.to_s}"
+    end
 end

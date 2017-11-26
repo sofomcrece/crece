@@ -58,7 +58,7 @@ class CreditsController < ApplicationController
   def editpdf
     
   end
-
+  
   # POST /credits
   # POST /credits.json
   def create

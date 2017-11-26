@@ -11,10 +11,10 @@
         <table style="font-size:12px;">
               <thead>
                 <tr>
-                  <th>AGENTE/EMPRESA</th>
-                  <th>FECHA</th>
-                  <th>NOMBRE</th>
-                  <th>RFC</th>
+                  <th>PAGO</th>
+                  <th>FECHA PAGO</th>
+                  <th>FOLIO</th>
+                  <th>FOLIO ANTERIOR</th>
                   <th>MONTO</th>
                   <th>ESTADO</th>
                   <th>CALIFICACION</th>
@@ -31,10 +31,14 @@
                 <td><%= Dinero.to_money(credit.monto_solicitud) %></td>
                 <td><%= credit.status==1?"ACTIVO":"FINALIZADO"%></td>
                 <td><%= credit.calificacion%></td>
-                <td><%= link_to 'Modificar PDF',editpdf_path(credit)%></td>
-                <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
-                <td><%= link_to 'Reimpresion',"/view_credits/documentos?clave=#{credit.id}",class:'crud-links' %></td>
-                <td><%= link_to 'Cancelar', credit_path(credit,:credit=>{status:2}), method: :put%></td>
+                <% if params[:op].to_i == 1%>
+                  <td><%= link_to 'Ver pagos',creditpagos_url(credit), class:'crud-links' %></td>
+                <%else%>
+                  <td><%= link_to 'Modificar PDF',editpdf_path(credit)%></td>
+                  <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
+                  <td><%= link_to 'Reimpresion',"/view_credits/documentos?clave=#{credit.id}",class:'crud-links' %></td>
+                  <td><%= link_to 'Cancelar', credit_path(credit,:credit=>{status:2}), method: :put%></td>
+                <%end%>
               </tr>
             <% end %>
           </tbody>

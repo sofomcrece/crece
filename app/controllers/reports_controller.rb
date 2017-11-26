@@ -37,6 +37,9 @@ class ReportsController < ApplicationController
         }
     end
   end
+  def reporte_de_pagos
+  
+  end
   def seguimiento_conf
         require 'json'
         unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?

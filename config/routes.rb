@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'reports/tablero'
   get 'reports/cobranza'
   get 'reports/pronostico_de_cobranza'
+  get 'reports/reporte_de_pagos'
   get 'reports/estado_de_cuenta'
   get 'reports/calificaciones'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
@@ -44,6 +45,7 @@ Rails.application.routes.draw do
   
   resources :customers
   get 'credits/:id/editpdf', to:'credits#editpdf',as:'editpdf'
+  get 'view_credits/:id/pagos', to:'view_credits#pagos',as:'creditpagos'
   resources :credits
   resources :payouts
   resources :loans

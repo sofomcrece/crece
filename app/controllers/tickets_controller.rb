@@ -63,15 +63,17 @@ class TicketsController < ApplicationController
     @ticket 
       
       if !(Payment.find(pay).tickets.count ==0)
-          if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe == cant and Payment.find(pay).interes < 0 
+          if Payment.find(pay).tickets.last.cantidad == Payment.find(pay).importe and Payment.find(pay).tickets.last.status==1 and  Payment.find(pay).importe == cant and Payment.find(pay).interes == 0 
             @ticket= Payment.find(pay).tickets.last
             Payment.find(pay).tickets.last.update(status:0)
             flag = true
           end
       end
-      t=Ticket.new(cantidad:cant,payment_id:pay)
-      if t.save
-        @ticket = t
+      if flag == false
+        t=Ticket.new(cantidad:cant,payment_id:pay,user_id:current_user.id)
+        if t.save
+          @ticket = t
+        end
       end
       flag =  @ticket or flag
     respond_to do |format|

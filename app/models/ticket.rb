@@ -1,5 +1,6 @@
 class Ticket < ActiveRecord::Base
   belongs_to :payment
+  belongs_to :user
    after_initialize :defaults
     validates :cantidad, :payment_id ,  presence:true
     def defaults

@@ -212,6 +212,7 @@ class Credit < ActiveRecord::Base
     def calificacion
         count = 0
         self.payments.each do |payment|
+            next if payment.interes == 0
             count = count + payment.vencimientos unless payment.vencimientos.nil?
         end
         if (count == 0)

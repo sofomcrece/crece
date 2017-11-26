@@ -23,7 +23,10 @@ class ViewCreditsController < ApplicationController
   
   def documentos
   end
-  
+  def pagos
+    @credit = Credit.find(params[:id])
+    @payments = Payment.joins(:credit).where("credits.id = ?",@credit.id).order(:created_at)
+  end
   def autorizacion
     pdf = AutorizacionPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
