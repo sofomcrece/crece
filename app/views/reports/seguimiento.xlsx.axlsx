@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
   wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "FFFF00")
-    wb.add_worksheet(name: "Products") do |sheet|
+    wb.add_worksheet(name: "Seguimiento") do |sheet|
       sheet.add_row [@resp["nombre_empresa"]]
       sheet.add_row ["ABONO A PRESTAMO",@resp["fecha"]]
       sheet.add_row [""]

@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
 wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "FFFF00")
-wb.add_worksheet(name: "Products") do |sheet|
+wb.add_worksheet(name: "Cobranza") do |sheet|
   
   sheet.add_row ["SUCURSAL","EMPRESA","NOMBRE","FECHA DE PRESTAMO","PRESTAMO + INTERES","YEAR PAGO" ,"MES" ,"FECHA","PAGO APLICADO"],style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
   @tickets.each do |fila|

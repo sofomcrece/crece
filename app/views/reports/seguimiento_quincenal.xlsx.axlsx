@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Products") do |sheet|
+wb.add_worksheet(name: "Seguimiento Quincenal") do |sheet|
   sheet.add_row [@resp["nombre_empresa"]]
   sheet.add_row ["ABONO A PRESTAMO",@resp["fecha"]]
   sheet.add_row ["Nombre","Fecha prestamo","Capital","Monto a cobrar","Adeudo","A pagar fecha" ,"Atrasado" ,"Interes moratorio","Total a cobrar","Cobrado","Diferencia","Adelantado","Empresa","No. pago","No. creditos"]
