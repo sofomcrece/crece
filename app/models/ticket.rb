@@ -14,6 +14,8 @@ class Ticket < ActiveRecord::Base
      after_validation(on: :create) do
        # self.payment.update(status:2) if 
         Coman.create(c:"se ejecuto #{self.payment.deuda_sin_interes}   #{self.cantidad} ")
+        credit = self.payment.credit
+        credit.terminado
         true
     end
     def pago_capital

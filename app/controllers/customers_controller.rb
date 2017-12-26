@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
      @customers =@customers.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
      
      @customers =@customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
-     @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(branch_office_id.to_i)) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
+     @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(branch_office_id)) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
      
      
      if current_user.tipo==3

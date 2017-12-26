@@ -15,4 +15,5 @@ json.array!(@payments) do |payment|
   json.nombre_agente payment.credit.padre.nombre_completo
   json.val payment.pago_empresa_ready
   json.f_ticket_id "#{"0"*(5-payment.tickets[0].id.to_s.length)+payment.tickets[0].id.to_s}" unless payment.tickets[0].nil? 
+  json.fecha_contrato payment.credit.fecha_de_contrato.strftime("%d/%m/%Y")
 end

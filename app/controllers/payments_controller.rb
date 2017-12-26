@@ -22,9 +22,11 @@ class PaymentsController < ApplicationController
       end
     end
     @payments = @payments.where(cad) unless  cad==""
+    @payments = @payments.order(:created_at)
     unless  params[:nextval].nil? or params[:nextval]==""
       @payments = @payments.reject{|payment| payment.pago_empresa_ready==false}
     end
+    
      
   end
   def dates

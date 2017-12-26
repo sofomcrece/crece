@@ -78,7 +78,9 @@
                 <thead>
                   <tr>
                       <th>NO.</th>
+                      <th>FECHA CREDITOS</th>
                       <th>NOMBRE</th>
+                      <th>FECHA PAGO</th>
                       <th>FOLIO</th>
                       <th>RECIBO</th>
                       <th>IMPORTE</th>
@@ -88,7 +90,9 @@
                 <tbody>
                   <tr ng-repeat = "pago in pagos">
                     <td>{{$index+1}}</td>
+                    <td>{{pago.fecha_contrato}}</td>
                     <td>{{pago.credit_nombre}}</td>
+                    <td>{{pago.fecha_de_pago_formato}}</td>
                     <td>2503616176B{{pago.f_ticket_id}}</td>
                     <td>{{pago.recibo}}</td>
                     <td>{{pago.importe_formato}}</td>
