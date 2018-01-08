@@ -13,6 +13,7 @@
                 <tr>
                   <th>PAGO</th>
                   <th>FECHA PAGO</th>
+                  <th>FECHA CREDITO</th>
                   <th>FOLIO</th>
                   <th>FOLIO ANTERIOR</th>
                   <th>MONTO</th>
@@ -25,7 +26,7 @@
             <% @credits.each do |credit| %>
               <tr>
                 <td><%= credit.padre.nombre_completo unless credit.padre.nil? %></td>
-                <td><%= credit.fecha.strftime("%d/%m/%Y") %></td>
+                <td><%= credit.fecha_de_contrato.strftime("%d/%m/%Y") unless credit.fecha_de_contrato.nil?  %></td>
                 <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
                 <td><%= credit.RFC %></td>
                 <td><%= Dinero.to_money(credit.monto_solicitud) %></td>

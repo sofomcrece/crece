@@ -15,7 +15,6 @@ class CreditsController < ApplicationController
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
-    
     mat = params[:materno]
     curp = params[:curp]
     tipo_padre = params[:tpadre]

@@ -286,6 +286,7 @@ class Credit < ActiveRecord::Base
     end
     def terminado
         return true if(self.status == 3)
+        return false if(self.payments.count == 0)
         self.payments.each do |p|
             unless (p.pagado)
                 return false
@@ -302,6 +303,9 @@ class Credit < ActiveRecord::Base
             end
         end
         return creditos
+    end
+    def self.terminadosRapido
+        Credit.where(status:3)
     end
     #def corriente
     #    count = 0
