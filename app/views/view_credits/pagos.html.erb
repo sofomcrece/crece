@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2 align="center">LISTA DE PPAGOS</h2>
+<h2 align="center">LISTA DE PAGOS</h2>
 <style>
   td{
     padding:5px 5px; 
@@ -25,7 +25,7 @@
       <%next if payment.tickets.count == 0%> 
       <tr>
         <td><%= payment.total_pagado%></td>
-        <td><%= payment.fecha_de_pago %></td>
+        <td><%= payment.fecha_updated_last_ticket %></td>
         <td><%= Auxiliar.folio payment.tickets.last.id%></td>
         <td><%= Auxiliar.folio payment.tickets.last(2)[1].id unless payment.tickets.last(2)[1].nil? %></td>
         <td><%= (payment.tickets.last.user.nil?)? "desconocido" : payment.tickets.last.user.alias %></td>

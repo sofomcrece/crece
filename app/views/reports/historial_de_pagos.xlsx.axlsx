@@ -9,7 +9,7 @@ wb.styles do |style|
     sheet.add_row [""]
     sheet.add_row ["DETALLE MOVIMIENTOS"]
     sheet.add_row ["FECHA DE OPERACION","FOLIO PRESTAMO","FECHA RECIBO","MOVIMIENTO","PRESTAMO","PAGO","SALDO"], style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
-    @customer.credits.each do |credit|
+    @customer.credits.where("credits.status =  1 or credits.status =  3").each do |credit|
       acu = 0
       sheet.add_row [
       credit.fecha_de_contrato,
@@ -25,7 +25,7 @@ wb.styles do |style|
           sheet.add_row [
               t.updated_at,
               credit.id,
-              t.created_at,
+              t.payment.fecha_de_pago,
               "ABONO A PRESTAMO",
               "",
               t.cantidad,
