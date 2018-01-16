@@ -15,7 +15,6 @@ class CreditsController < ApplicationController
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
-    
     mat = params[:materno]
     curp = params[:curp]
     tipo_padre = params[:tpadre]
@@ -39,7 +38,7 @@ class CreditsController < ApplicationController
      
      @credits = Credit.get_by_branch_office(@credits,current_user.branchOffices[0]) if (current_user.tipo==3)
      
-     
+     @credits = @credits.order(:created_at)
   end
 
   # GET /credits/1

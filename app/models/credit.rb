@@ -284,6 +284,29 @@ class Credit < ActiveRecord::Base
             return pdf.last.pdf64
         end
     end
+    def terminado
+        return true if(self.status == 3)
+        return false if(self.payments.count == 0)
+        self.payments.each do |p|
+            unless (p.pagado)
+                return false
+            end
+        end
+        self.update(status:3)
+        return true
+    end
+    def self.terminados
+        creditos = []
+        Credit.all.each do |credit|
+            if(credit.terminado)
+                creditos << credit
+            end
+        end
+        return creditos
+    end
+    def self.terminadosRapido
+        Credit.where(status:3)
+    end
     #def corriente
     #    count = 0
     #    payments = self.payments.order(:fecha_de_pago)

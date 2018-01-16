@@ -4,28 +4,32 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
-    nom1 = params[:nombre1]
-    nom2 = params[:nombre2]
-    pat = params[:paterno]
-    mat = params[:materno]
-    curp = params[:curp]
-    tipo_padre = params[:tpadre]
-    padre_id = params[:padre]
-    product_id = params[:product_id]
-    branch_office_id = params[:sucursal_id]
-     @customers =@customers.where("lower(CURP) = '#{curp.downcase}'") unless  params[:curp].nil? or  params[:curp]==""
-     @customers =@customers.where("lower(nombre_1) like '#{nom1.downcase}%'") unless  params[:nombre1].nil? or  params[:nombre1]==""
-     @customers =@customers.where("lower(nombre_2) like '#{nom2.downcase}%'") unless  params[:nombre2].nil? or  params[:nombre2]==""
-     @customers =@customers.where("lower(apellido_paterno) like '#{pat.downcase}%'") unless  params[:paterno].nil? or  params[:paterno]==""
-     @customers =@customers.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
-     
-     @customers =@customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
-     @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(branch_office_id.to_i)) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
-     
-     
-     if current_user.tipo==3
-       @customers= Customer.get_by_branch_office(@customers,current_user.branchOffices[0])
+    respond_to do |format|
+      format.html {  }
+      format.json {
+        @customers = Customer.all
+        nom1 = params[:nombre1]
+        nom2 = params[:nombre2]
+        pat = params[:paterno]
+        mat = params[:materno]
+        curp = params[:curp]
+        tipo_padre = params[:tpadre]
+        padre_id = params[:padre]
+        product_id = params[:product_id]
+        branch_office_id = params[:sucursal_id]
+         @customers =@customers.where("lower(CURP) = '#{curp.downcase}'") unless  params[:curp].nil? or  params[:curp]==""
+         @customers =@customers.where("lower(nombre_1) like '#{nom1.downcase}%'") unless  params[:nombre1].nil? or  params[:nombre1]==""
+         @customers =@customers.where("lower(nombre_2) like '#{nom2.downcase}%'") unless  params[:nombre2].nil? or  params[:nombre2]==""
+         @customers =@customers.where("lower(apellido_paterno) like '#{pat.downcase}%'") unless  params[:paterno].nil? or  params[:paterno]==""
+         @customers =@customers.where("lower(apellido_materno) like '#{mat.downcase}%'") unless  params[:materno].nil? or  params[:materno]==""
+         
+         @customers =@customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tpadre].nil? or  params[:tpadre]=="" or  params[:padre].nil? or  params[:padre]==""
+         @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(branch_office_id)) unless  params[:sucursal_id].nil? or  params[:sucursal_id]==""
+  
+        if current_user.tipo==3
+           @customers= Customer.get_by_branch_office(@customers,current_user.branchOffices[0])
+        end
+      }
     end
   end
 

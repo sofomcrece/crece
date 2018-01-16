@@ -5,6 +5,6 @@ class Expire < ActiveRecord::Base
  
   private
     def vencer
-        Coman.create(c:"hola prueva #{Time.now}")
+        Coman.create(c:"hola prueba #{Time.now} expire: #{self.control}")
     end
 end

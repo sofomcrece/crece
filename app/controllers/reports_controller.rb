@@ -40,6 +40,15 @@ class ReportsController < ApplicationController
   def reporte_de_pagos
   
   end
+   def historial_de_pagos
+     respond_to do |format|
+        format.html {  }
+        format.xlsx {
+            @customer = Customer.find(params[:id])
+            
+        }
+    end
+  end
   def seguimiento_conf
         require 'json'
         unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
