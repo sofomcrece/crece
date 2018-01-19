@@ -99,15 +99,17 @@
   $scope.seguimiento
   
   $scope.descargar_calificaciones = function(){
-    <% if current_user.tipo == 3%>
-      if($scope.sucursales.selected === undefined){
-        Materialize.toast('Se debe seleccionar sucursal', 4000);
-        return;
-      }
-      if($scope.hijos.selected === undefined){
-        Materialize.toast('Se debe seleccionar usuario sucursal', 4000);
-        return;
-      }
+    <% unless current_user.nil?%>
+      <% if current_user.tipo == 3%>
+        if($scope.sucursales.selected === undefined){
+          Materialize.toast('Se debe seleccionar sucursal', 4000);
+          return;
+        }
+        if($scope.hijos.selected === undefined){
+          Materialize.toast('Se debe seleccionar usuario sucursal', 4000);
+          return;
+        }
+      <% end %>
     <% end %>
      var url ="/reports/calificaciones.xlsx?"
     if (!($scope.sucursales.selected == "" || $scope.sucursales.selected ==undefined))
@@ -142,15 +144,17 @@
     window.open("/multiprint?payments="+cad,'_blank');
   }
   $scope.descargar_excel_cobranza = function(){
-    <% if current_user.tipo == 3%>
-      if($scope.sucursales.selected === undefined){
-        Materialize.toast('Se debe seleccionar sucursal', 4000);
-        return;
-      }
-      if($scope.hijos.selected === undefined){
-        Materialize.toast('Se debe seleccionar usuario sucursal', 4000);
-        return;
-      }
+    <% unless current_user.nil?%>
+      <% if current_user.tipo == 3%>
+        if($scope.sucursales.selected === undefined){
+          Materialize.toast('Se debe seleccionar sucursal', 4000);
+          return;
+        }
+        if($scope.hijos.selected === undefined){
+          Materialize.toast('Se debe seleccionar usuario sucursal', 4000);
+          return;
+        }
+      <% end %>
     <% end %>
     var url ="/reports/cobranza.xlsx?"
     if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
