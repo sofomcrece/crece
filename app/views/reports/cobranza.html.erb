@@ -7,7 +7,7 @@
                 Sucursales
               </label>
              <select class="browser-default" ng-model="sucursales.selected" ng-change="cargarHijos()">
-                 <option value="" selected>Sucursales</option>
+                <option value="" selected>Sucursales</option>
                 <option ng-repeat="option in sucursales" value="{{option.id}}">{{option.nombre}}</option>
             </select>
               <label>

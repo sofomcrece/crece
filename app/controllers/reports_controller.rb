@@ -85,6 +85,9 @@ class ReportsController < ApplicationController
     respond_to do |format|
         format.html {  }
         format.xlsx{
+            if current_user.tipo == 3
+                branch_office_id = current_user.branchOffices[0].id
+            end
             tipo_padre = params[:tipo]
             padre_id = params[:id]
             product_id = params[:producto]
@@ -92,6 +95,7 @@ class ReportsController < ApplicationController
             fecha1 = params[:fecha1]
             fecha2 = params[:fecha2]
             @tickets =  Ticket.joins(:payment => :credit).select("tickets.*, credits.agente_empresa, credits.referencia_agente_empresa, credits.product_id,credits.id ").where(status:0)  
+            
             @tickets = @tickets.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
             @tickets = @tickets.where(:created_at => fecha1.to_date.beginning_of_day..fecha2.to_date.end_of_day) unless params[:fecha1].nil? or params[:fecha1]=="" or params[:fecha2].nil? or params[:fecha2]==""
             @tickets = @tickets.where("credits.product_id = ? ",product_id) unless params[:producto].nil? or params[:producto]==""
@@ -121,7 +125,7 @@ class ReportsController < ApplicationController
       @sucursales = BranchOffice.all
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
       @customers = Customer.all
-      @customers = Customer.get_by_branch_office(@customers,params[:sucursal].to_i) unless params[:sucursal].nil? or params[:sucursal] ==""
+      @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
   

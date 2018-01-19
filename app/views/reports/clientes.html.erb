@@ -6,8 +6,12 @@
                     Sucursales
                   </label>
                  <select class="browser-default" name="sucursal">
-                    <option value="" selected>Todas</option>
-                    <%BranchOffice.all.each do |sucursal| %>
+                    <% unless current_user.tipo == 3%>
+                        <option value="" selected>Todas</option> 
+                    <% end %>    
+                    <% @branch_offices = BranchOffice.order(:nombre) %>
+                    <% @branch_offices = @branch_offices.where(id:current_user.branchOffices[0].id)  if (current_user.tipo == 3) %>
+                    <%@branch_offices.all.each do |sucursal| %>
                         <option value=<%=sucursal.id%>><%=sucursal.nombre%></option>
                     <%end%>
                 </select>

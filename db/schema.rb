@@ -482,6 +482,22 @@ ActiveRecord::Schema.define(version: 20171126105537) do
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
 
+  create_table "msp_errors", primary_key: "id_sync", force: :cascade do |t|
+    t.datetime "createdAt"
+    t.text     "error",     null: false
+  end
+
+  create_table "msp_synchronization", primary_key: "id_sync", force: :cascade do |t|
+    t.string  "doc_type",   limit: 1, null: false
+    t.integer "status",     limit: 2, null: false
+    t.integer "id_local",             null: false
+    t.integer "id_msp"
+    t.string  "folio_msp",  limit: 9
+    t.integer "id2_msp"
+    t.string  "folio2_msp", limit: 9
+    t.date    "date"
+  end
+
   create_table "ocupations", force: :cascade do |t|
     t.integer  "clave"
     t.string   "descripcion"
@@ -664,6 +680,7 @@ ActiveRecord::Schema.define(version: 20171126105537) do
   add_foreign_key "customers", "economical_activities"
   add_foreign_key "customers", "ocupations"
   add_foreign_key "customers", "profecions"
+  add_foreign_key "msp_errors", "msp_synchronization", column: "id_sync", primary_key: "id_sync", name: "msp_errors_id_sync_fkey"
   add_foreign_key "payments", "credits"
   add_foreign_key "pdfs", "credits"
   add_foreign_key "products", "loans"

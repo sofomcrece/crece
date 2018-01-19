@@ -45,12 +45,12 @@
     
 <%elsif current_user.tipo==2%>
     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
-
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos/recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><%= link_to 'Clientes', customers_path%></li>
 <%elsif current_user.tipo==3%>
     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos/recibos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Reportes<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><%= link_to 'Clientes', customers_path%></li>
     
 <%elsif current_user.tipo==4%>

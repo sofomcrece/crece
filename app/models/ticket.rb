@@ -7,7 +7,7 @@ class Ticket < ActiveRecord::Base
       self.status  ||= 0
     end
     before_validation(on: :create) do
-        if (self.payment.tickets.where(status:1).count>0 and self.status == 1) or self.payment.pagado
+        if (self.payment.tickets.where(status:1).count > 0 and self.status == 1) or self.payment.pagado
             false
         end
     end
