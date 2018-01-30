@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :branch_offices
   resources :users
   get 'perfil',to:'users#perfil',as:'perfil'
+  get 'users/edit_pass/:id',to:'users#edit_pass', as: "edit_pass"
    post 'users/create2',to:'users#create2'
 #  get 'profile/show',to:'profile#show',as:'show_profile'
 #  get 'profile/new',to:'profile#new',as:'new_profile'

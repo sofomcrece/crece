@@ -54,7 +54,7 @@
 #end
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy,:edit_pass]
   before_action :manejo_de_usuarios, only: [:create,:new,:destroy,:edit] 
 
   def perfil
@@ -73,6 +73,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+  
+  def edit_pass
   end
 
   def create2
