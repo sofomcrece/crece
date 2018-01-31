@@ -1,7 +1,7 @@
 <h2>Editar informacion de usuario</h2>
 <h4><%="nombre: #{@user.app} #{@user.apm} #{@user.nom1} #{@user.nom2}"%></h4>
 <h5><%="correo: #{@user.email} "%></h5>
-<a class="crud-links btn waves-effect red" href="<%=edit_pass_path(@user)%>">Cambiar Contraseña</a> <%unless @user.activo == 0%>
-<a class="crud-links btn waves-effect red" href="<%=edit_pass_path(@user)%>"><%= (@user.activo == 0)? "Activar":"Desactivar" %></a>
+<a class="crud-links btn waves-effect red" href="<%=edit_pass_path(@user)%>">Cambiar Contraseña</a> 
 
-<%=render "form"%>
+
+<%=render "form" %>
