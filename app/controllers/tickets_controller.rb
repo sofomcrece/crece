@@ -9,7 +9,6 @@ class TicketsController < ApplicationController
     @tickets = @tickets.joins(:payment).where("payments.id = ?",params[:clave]) unless params[:clave]=="" or params[:clave].nil?
   end
   def multiprint
-    
     require 'json'
     elementos = JSON.parse(params[:payments])
     @tickets = []
@@ -78,6 +77,7 @@ class TicketsController < ApplicationController
       flag =  @ticket or flag
     respond_to do |format|
       if flag
+        @ticket.payment.credit.terminado
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
@@ -92,6 +92,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
+        @ticket.payment.credit.terminado
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
       else

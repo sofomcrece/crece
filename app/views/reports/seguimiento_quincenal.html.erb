@@ -42,9 +42,9 @@
                 <label>
                   Fechas de impresion
                 </label>
-                <select  class="browser-default" ng-model="fechas_de_pago.selected">
+                <select  class="browser-default" ng-model="fechas_de_pago.selected" ng-change="fecha_encabezado_cambio(fechas_de_pago.selected)">
                   <option value="" selected>Fechas</option>
-                  <option ng-repeat="option in fechas_de_pago" value="{{option.fecha_de_pago}}">{{option.fecha_de_pago}}</option>
+                  <option ng-repeat="option in fechas_de_pago" value="{{option.fecha_de_corte}}">{{option.fecha_de_pago}}</option>
                 </select>
                 <a class="waves-effect waves-light btn" ng-click="get_seguimiento()">Cargar</a>
             </div>
@@ -67,7 +67,7 @@
                             Adeudo    
                         </th>
                         <th>
-                            A pagar {{"fecha"}}
+                            A pagar {{fecha_encabezado}}
                         </th>
                         <th>
                             Atrasado

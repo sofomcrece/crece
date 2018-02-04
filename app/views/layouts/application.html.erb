@@ -124,7 +124,7 @@
   $scope.descargar_excel = function(){
      var url ="/reports/seguimiento.xlsx?"
     if (!($scope.fechas_de_pago.selected == ""))
-      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+      url = url + "fecha=" + $scope.fecha_encabezado;
     if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
       url = url + "&id=" + $scope.hijos.selected;
     if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
@@ -202,6 +202,14 @@
     .error(function(data){
       console.log(data);
     });
+  }
+  $scope.fecha_encabezado_cambio = function(val){
+    var fechas = $scope.fechas_de_pago;
+    for (var i = 0; i < fechas.length; i++){
+      if (fechas[i].fecha_de_corte == val){
+        $scope.fecha_encabezado = fechas[i].fecha_de_pago;
+      }
+    }
   }
     $scope.obtenerPaymentsPorEmpresa = function(){
     var url = "/payments.json?"
