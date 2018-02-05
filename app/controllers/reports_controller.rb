@@ -66,7 +66,10 @@ class ReportsController < ApplicationController
     respond_to do |format|
         format.html {  }
         format.json { self.seguimiento_conf }
-        format.xlsx{ self.seguimiento_conf }
+        format.xlsx{ 
+            self.seguimiento_conf 
+            @fecha_encabezado = params[:fecha_encabezado] unless params[:fecha_encabezado].nil? or params[:fecha_encabezado] == ""
+        }
         
     end
   end
