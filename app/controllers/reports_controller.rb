@@ -146,7 +146,7 @@ class ReportsController < ApplicationController
   end
   def get_seguimiento_de_cobranza(padre,fecha,producto)
     tabla = []
-    credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1)
+    credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1).order(:apellido_paterno)
     credits.each do |credit|
     payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
     
