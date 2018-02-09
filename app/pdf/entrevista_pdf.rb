@@ -30,7 +30,7 @@ class EntrevistaPdf < Prawn::Document
       ",:size => 10
       text "CELULAR : #{@credit.customer.telefono_celular} E-MAIL : #{@credit.customer.email_1}
       ",:size => 10
-      text "SEXO : #{@credit.customer.sexo==1?"Hombre":"Mujer"}    NO. DE DEPENDIENTES : #{@credit.customer.numero_de_dependientes_economicos}
+      text "SEXO : #{(@credit.customer.sexo)?"Hombre":"Mujer"}    NO. DE DEPENDIENTES : #{@credit.customer.numero_de_dependientes_economicos}
       ",:size => 10
       text "GASTO PROMEDIO :  #{(@credit.customer.gasto_promedio_mensual)}  ESTADO CIVIL : #{@credit.customer.estado_civil_cadena}
       ",:size => 10
