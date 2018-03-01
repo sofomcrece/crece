@@ -32,7 +32,6 @@ class Payment < ActiveRecord::Base
                     return false
                 end
             end
-                
         end
     end
     def cargar_interes
@@ -60,5 +59,6 @@ class Payment < ActiveRecord::Base
     # 0 ------ al corriente
     # 1 ------ Vencido
     # 2 ------ pagado
+
 
 end

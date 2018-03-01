@@ -39,7 +39,7 @@ class CustomersController < ApplicationController
   end
   
   def historial 
-    @credits = @customer.credits.where("credits.status = ? or credits.status = ? ", 1,3).order(:status)
+    @credits = @customer.credits.where("credits.status = ? or credits.status = ? ", 1,3).order(:fecha_de_contrato)
   end
 
   # GET /customers/new

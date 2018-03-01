@@ -22,5 +22,18 @@ class Product < ActiveRecord::Base
      def fechas_de_corte
           Payment.select(:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_corte)
      end
-
+     def ultimaFechaDeCorte
+          fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
+          
+          fp.reverse.each do |fechas|
+               return fechas if fechas.fecha_de_corte.to_date <= Time.now.to_date
+          end
+     end
+     def proximaFechaDeCorte
+          fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
+          
+          fp.each do |fechas|
+               return fechas if fechas.fecha_de_corte.to_date >= Time.now.to_date
+          end
+     end
 end

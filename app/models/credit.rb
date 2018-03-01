@@ -331,4 +331,13 @@ class Credit < ActiveRecord::Base
     def corriente
         self.payments.where(estatus:1).count == 0    
     end
+    def getAPagar()
+        fecha_de_corte = self.product.ultimaFechaDeCorte.fecha_de_corte
+        payments = self.payments.where("payments.fecha_de_corte <= ? ",fecha_de_corte)
+        acu = 0
+        payments.each do |pay|
+            acu += pay.deuda_con_interes
+        end
+        return acu.to_f
+    end
 end

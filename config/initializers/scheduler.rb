@@ -8,7 +8,7 @@ unless scheduler.down?
 #    Coman.create(c:"#{Time.now} yaaaa jala")
 #  end
   scheduler.every("1m", :blocking => true) do
-    Expire.create(comentarios:"2vecimiento de prssueba3 #{Auxiliar.fecha_natural Time.now}",fecha:Time.now, control:(Expire.last.nil?)? 1 : Expire.last.id + 1 )
+    #Expire.create(comentarios:"2vecimiento de prssueba3 #{Auxiliar.fecha_natural Time.now}",fecha:Time.now, control:(Expire.last.nil?)? 1 : Expire.last.id + 1 )
   end
 end
 

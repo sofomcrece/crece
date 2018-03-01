@@ -47,6 +47,7 @@ class CreditsController < ApplicationController
   # GET /credits/1
   # GET /credits/1.json
   def show
+    @retorno = params[:retorno]
   end
 
   # GET /credits/new
@@ -83,7 +84,8 @@ class CreditsController < ApplicationController
   # PATCH/PUT /credits/1.json
   def update
     respond_to do |format|
-      redir =  "/customers/#{@credit.customer.id}/historial"
+      #redir =  "/customers/#{@credit.customer.id}/historial"
+      redir =  "/view_credits"
       if @credit.update(credit_params)
         create_customer
         if @credit.status ==1
