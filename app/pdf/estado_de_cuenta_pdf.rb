@@ -36,8 +36,8 @@ class EstadoDeCuentaPdf < Prawn::Document
         ["Capital pagado: #{Dinero.to_money credit.capital_pagado}","Capital Vencido: #{Dinero.to_money credit.capital_vencido}","Saldo Actual: #{Dinero.to_money credit.saldo_actual}"],
         ["Interes pagado: #{Dinero.to_money credit.interes_pagado}","Interes Vencido: #{Dinero.to_money credit.interes_vencido}","Fecha Limite de Pago: #{Auxiliar.fecha_natural(credit.payments.order(:fecha_de_pago).last.fecha_de_pago)}"],
         ["Comisiones pagado: 0","Interes Moratorio: #{Dinero.to_money credit.interes_moratorio}","Pago Quincenal : #{Dinero.to_money credit.payments.last.importe}"],
-        ["","Capital a pagar: #{capital}",""],
-        ["","Interes a pagar:#{interes} ",""]
+        ["","Capital a pagar: #{Dinero.to_money capital}",""],
+        ["","Interes a pagar:#{Dinero.to_money interes} ",""]
         
         ],:cell_style => {:border_width => 0, :padding => [0, 10, 0, 0],:size => base_size})
       text  "Detalle Movimientos"

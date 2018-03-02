@@ -18,7 +18,7 @@
     $scope.paices = [];
     $scope.estados =[];
     $scope.cuidades = [];
-    $scope.url = window.location.href;
+    $scope.url = location.protocol + '//' + location.host + location.pathname;
     $("#solo_en_new").hide();
     $("#errores").hide();
     var longitud = $scope.url.split("/").length
