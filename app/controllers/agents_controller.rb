@@ -5,7 +5,7 @@ class AgentsController < ApplicationController
   # GET /agents.json
   def index
     suc = params[:sucursal].to_i
-    @agents = Agent.all
+    @agents = Agent.all.order(:nombre_del_agente)
     @agents = @agents.where(branch_office_id:suc) unless params[:sucursal].nil? or params[:sucursal] == ""
     
   end
