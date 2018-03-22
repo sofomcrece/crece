@@ -45,14 +45,8 @@ class ContratoPdf < Prawn::Document
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
-    
-    
-    
-    
-    
-    
     ",:size =>8,:align => :justify  
-    
+    start_new_page
     
     
     
@@ -95,13 +89,8 @@ class ContratoPdf < Prawn::Document
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
-    
-    
-    
-    
-    
     ",:size =>8,:align => :justify   
-  
+  start_new_page
     
     
    text"Copia 2",:size =>8,:align  => :right
@@ -144,13 +133,8 @@ class ContratoPdf < Prawn::Document
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
     
-    
-    
-    
-    
-    
     ",:size =>8,:align => :justify  
-   
+start_new_page
     
 text "PAGARÉ                                                                                                     No._______ BUENO POR $ ________________",:size =>10
 text" 

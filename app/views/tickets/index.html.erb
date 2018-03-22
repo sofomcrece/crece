@@ -1,5 +1,7 @@
-<p id="notice"><%= notice %></p>
 
+  <div>
+    <a class="waves-effect waves-light btn" href= "/payments/show?clave=<%= @payment.credit.id %>">Atras</a>
+  </div>
 <h1>Historial de Tickets</h1>
 
 <table>
@@ -23,7 +25,7 @@
         <td> <%= Auxiliar.fecha_formato(ticket.updated_at) %></td>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Cancelar', ticket_path(ticket,ticket:{:status => 3}), target: "_blank", :method=> :put, :confirm => "Are you sure?"  %></td>
+        <td><%= link_to 'Cancelar', cancelar_path(ticket), :method=> :put, :confirm => "Are you sure?"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +33,3 @@
 
 <br>
 
-<%= link_to 'New Ticket', new_ticket_path %>

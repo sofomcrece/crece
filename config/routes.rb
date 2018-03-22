@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'reports/calificaciones'
   get 'reports/historial_de_pagos'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
+  put 'cancelar/:id', to:'tickets#cancelar', as: "cancelar"
   resources :tickets
   resources :destinations
   resources :payments

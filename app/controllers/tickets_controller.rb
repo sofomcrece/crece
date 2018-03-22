@@ -1,12 +1,14 @@
 class TicketsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy,:cancelar]
 
   # GET /tickets
   # GET /tickets.json
   def index
+    
     @tickets = Ticket.all
     @tickets = @tickets.joins(:payment).where("payments.id = ?",params[:clave]) unless params[:clave]=="" or params[:clave].nil?
+    @payment = Payment.find(params[:clave])
   end
   def multiprint
     require 'json'
@@ -101,7 +103,24 @@ class TicketsController < ApplicationController
       end
     end
   end
-
+  
+  # PATCH/PUT /cancelar/1
+  # PATCH/PUT /cancelar/1.json
+  def cancelar
+    respond_to do |format|
+      if @ticket.update(status:3)
+        
+        @ticket.payment.update(estatus:0) unless @ticket.payment.pagado 
+        @ticket.payment.update(estatus:1) if !@ticket.payment.pagado and  @ticket.payment.interes > 0
+      
+        format.html { redirect_to "/tickets?clave=#{@ticket.payment.id}", notice: 'Ticket was successfully updated.' }
+        format.json { render :show, status: :ok, location: @ticket }
+      else
+        format.html { render :edit }
+        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /tickets/1
   # DELETE /tickets/1.json
   def destroy
