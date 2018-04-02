@@ -8,12 +8,12 @@ class ReciboPdf < Prawn::Document
     
     contador = 0
     @tickets.each do |ticket|  
-      atrasados= ticket.payment.credit.payments.where("payments.fecha_de_pago <= ? and payments.estatus = ?",ticket.payment.fecha_de_pago,1)
+      atrasados= ticket.payment.credit.payments.where(" payments.estatus = ?",1)
       at =0
       atrasados.each do |atrasado|
         at = at + atrasado.deuda_con_interes
       end
-       
+      at = 0 unless ticket.payment.pagado
       start_new_page unless contador ==0
         des = 0
       rectangle [50,750+des], 500, 190

@@ -7,7 +7,9 @@ class TicketsController < ApplicationController
   def index
     
     @tickets = Ticket.all
+    @tickets = @tickets.order(:updated_at)
     @tickets = @tickets.joins(:payment).where("payments.id = ?",params[:clave]) unless params[:clave]=="" or params[:clave].nil?
+    
     @payment = Payment.find(params[:clave])
   end
   def multiprint
