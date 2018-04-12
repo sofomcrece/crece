@@ -348,11 +348,11 @@
     
     $http.post('/tickets.json',{ticket:{cantidad:parseFloat(val.pago),payment_id:val.id}})
     .success(function(data){
-      window.open('/tickets/'+data.id);
+      window.open('/tickets/'+data.id, '_blank');
       console.log(data);
       
       cargar_payments();
-      location.reload();
+      //location.reload();
     })
     .error(function(data){
       console.log(data);

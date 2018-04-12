@@ -27,6 +27,7 @@
               <tr>
                 <td><%= credit.padre.nombre_completo unless credit.padre.nil? %></td>
                 <td><%= credit.fecha_de_contrato.strftime("%d/%m/%Y") unless credit.fecha_de_contrato.nil?  %></td>
+                <td></td>
                 <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
                 <td><%= credit.RFC %></td>
                 <td><%= Dinero.to_money(credit.monto_solicitud) %></td>
@@ -38,7 +39,7 @@
                   <td><%= link_to 'Modificar PDF',editpdf_path(credit)%></td>
                   <td><%= link_to 'Mostrar',"#{credit_path credit}?retorno=2",class:'crud-links' %></td>
                   <td><%= link_to 'Reimpresion',"/view_credits/documentos?clave=#{credit.id}",class:'crud-links' %></td>
-                  <td><%= link_to 'Cancelar', credit_path(credit,:credit=>{status:2}), method: :put%></td>
+                  <td><%= link_to 'Cancelar', cancelar_credito_path(credit), method: :post, data: { confirm: 'Seguro?, se eliminara toda la informacion de fechas de pagos y abonos.' }%></td>
                 <%end%>
               </tr>
             <% end %>

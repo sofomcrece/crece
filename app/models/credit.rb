@@ -307,6 +307,16 @@ class Credit < ActiveRecord::Base
     def self.terminadosRapido
         Credit.where(status:3)
     end
+    
+    def cancelar_todo
+        self.update(status:2)
+        return if self.payments.count == 0 
+        self.payments.each do |pay|
+            next if pay.tickets.count==0
+            pay.tickets.delete_all
+        end
+        self.payments.delete_all
+    end
     #def corriente
     #    count = 0
     #    payments = self.payments.order(:fecha_de_pago)

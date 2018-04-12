@@ -1,6 +1,6 @@
 class CreditsController < ApplicationController
   layout "layouts/credito"
-  before_action :set_credit, only: [:show, :edit, :editpdf, :update, :destroy,:aprobar,:pdf,:text]
+  before_action :set_credit, only: [:show, :edit, :editpdf, :update, :destroy,:aprobar,:pdf,:text,:cancelar]
 
   # GET /credits
   # GET /credits.json
@@ -60,6 +60,14 @@ class CreditsController < ApplicationController
   end
   def editpdf
     
+  end
+  
+  
+  def cancelar
+    @credit.cancelar_todo
+    respond_to do |format|
+      format.html { redirect_to customer_historial_path(@credit.customer), notice: 'El credito se ha cancelado correctamente' }
+    end
   end
   
   # POST /credits

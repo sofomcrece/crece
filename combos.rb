@@ -1,5 +1,6 @@
-if (CCountry.count == 0)
-CCountry.create(nombre:'MEXICO',clave:'0')
+puts "inicio"
+if (Country.count == 0)
+Country.create(nombre:'MEXICO',clave:'0')
 end
 if (CState.count == 0)
 CState.create(nombre:'Chihuahua',clave:'8',c_country_id:1)
@@ -2494,3 +2495,4 @@ CMunicipality.create(nombre:'Santa Maria Tataltepec',clave:'484204300001',c_stat
 CMunicipality.create(nombre:'Zamora',clave:'484161080001',c_state_id:6)
 CMunicipality.create(nombre:'San Juan Atenco',clave:'484211300001',c_state_id:32)
 end
+puts "fin"
