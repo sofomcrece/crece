@@ -80,6 +80,14 @@
     <strong>Formato impresion:</strong>
     <%= @branch_office.formato_impresion %>
   </p>
+  <p> 
+  <strong>Banco:</strong>
+  <%= @branch_office.banco %>
+  </p>
+  <p> 
+  <strong>Cuenta:</strong>
+  <%= @branch_office.cuenta %>
+  </p>
 </div>
 <%= link_to 'Editar', edit_branch_office_path(@branch_office),class:'crud-links' %> |
 <%= link_to '<- Atras', branch_offices_path,class:'crud-links' %>
