@@ -33,7 +33,10 @@ class Product < ActiveRecord::Base
           fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
           
           fp.each do |fechas|
-               return fechas if fechas.fecha_de_corte.to_date >= Time.now.to_date
+               return fechas if fechas.fecha_de_corte.to_date > Time.now.to_date
           end
+     end
+     def vencer
+          
      end
 end
