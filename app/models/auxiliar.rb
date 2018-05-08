@@ -119,7 +119,7 @@ class Auxiliar < ActiveRecord::Base
       fila["empresa"] = credit.padre.nombre_completo
       fila["numero_de_pago"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].recibo unless Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].nil?
       fila["numero_de_creditos"] = credit.customer.credits.where("credits.status = ? or credits.status = ? ",1,3).count
-      fila["payment_ref"] = payment.id
+      #fila["payment_ref"] = payment.id
       tabla << fila
      end
      return tabla
