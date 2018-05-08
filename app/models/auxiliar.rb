@@ -91,4 +91,128 @@ class Auxiliar < ActiveRecord::Base
     def self.folio(val)
       return "2503616176B#{"0"*(5-val.to_s.length)+val.to_s}"
     end
+    def self.seguimiento(padre,fecha,producto)
+      credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1).order(:apellido_paterno)
+      self.seguimiento_por_creditos(credits,fecha)
+    end
+    def self.seguimiento_por_creditos(credits,fecha)
+      tabla = []
+      credits.each do |credit|
+      payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+      
+      fila = Hash.new()
+      fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
+      fila["fecha"] = credit.fecha_de_contrato
+      fila["monto_solicitud"] = credit.monto_solicitud
+      fila["monto_a_pagar"] = credit.payments.sum(:importe)
+      fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+      fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+      fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
+      pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
+      #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
+      fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
+      fila["interes_moratorio"] = fila["atrasado"]==0? 0: Payment.where("credit_id = ? and fecha_de_corte <= ? and interes_flag = false", credit.id, fecha).sum(:interes).to_s.to_d
+      fila["total_a_cobrar"] =  fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
+      fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
+      fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
+      fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_corte > ? and tickets.status = ?",credit.id, fecha,0).sum(:cantidad)
+      fila["empresa"] = credit.padre.nombre_completo
+      fila["numero_de_pago"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].recibo unless Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].nil?
+      fila["numero_de_creditos"] = credit.customer.credits.where("credits.status = ? or credits.status = ? ",1,3).count
+      fila["payment_ref"] = payment.id
+      tabla << fila
+     end
+     return tabla
+    end
+    def self.vencimientos
+     if Expire.where(fecha:Time.now.to_date).count == 0
+        Expire.create(comentarios:"vencimiento",fecha:Time.now.to_date,afectados:0) 
+        Product.all.each do |p|
+          p.vencer
+        end
+      end
+    end
+    
+    
+    def self.getArreglo(product,fecha)
+      puts "get arreglo"
+      @product = product
+      
+      cantidad= @product.payout.getDays.length
+      fin_mes= @product.payout.getDays.include? "-1"
+      dias=  @product.payout.getDays - ["-1"]
+      cortes =  @product.payout.getFlow.sort!
+      dias_int =[]
+      cortes_int = []
+      dias.each do |i|
+        dias_int.push(i.to_i)
+      end
+      dias_int.sort!
+      dias.push("-1") if fin_mes
+      dia_inicial = nil;
+      cortes.each do |i |
+        cortes_int.push(i.to_i)
+      end
+      cortes_int.sort!
+        cont = 0
+        dias.each do |dia|
+           dia= fecha.end_of_month.day if dia=="-1"
+           if fecha.day<=dia.to_i
+             if fecha.day <=Auxiliar.inferior(dia,cortes_int)
+              dia_inicial=cont
+              puts "dia #{dia}"
+              break
+             end
+           end
+           cont +=1
+        end
+          
+          if dia_inicial==nil
+            dia_inicial = 0
+          end
+          puts "dia inicial #{dia_inicial}"
+          puts dias
+          
+          aux= Auxiliar.getFecha(dias,dia_inicial,1,fecha,cortes_int,@product)
+
+  end
+  
+  
+  
+  
+  def self.getFecha(dias,inicio,contador,fecha,cortes,product)
+    puts "get fecha"
+    puts ".... #{fecha}"
+    @product = product
+    fechas = Hash.new
+    contador = contador + inicio
+    index =(contador)%dias.length
+    avance = 0
+    case @product.payout.type_payout
+    when 0
+      avance = contador%dias.length==0?1.week : 0.week unless contador==0
+      avance = 1.week if (fecha.to_date.wday.to_int-1) >= cortes.max && contador==0
+      fechas["pago"] = fecha.beginning_of_week+(dias[index].to_i-1).day+avance
+      fechas["corte"] = fechas["pago"].beginning_of_week+Auxiliar.inferior(fechas["pago"].day,cortes).days-1.days
+      fechas["impresion"] = fechas["corte"] - (@product.payout.desplazamiento).to_i.days
+      
+    when 1
+      avance = contador%dias.length==0?1.month : 0.month unless contador==0
+      avance = 1.month if fecha.to_date.day.to_int >= cortes.max && contador==0
+      fechas["pago"] = (dias[index].to_i==-1?fecha.end_of_month : fecha-fecha.day.day+dias[index].to_i.day)+avance
+      fechas["corte"] = fechas["pago"].beginning_of_month+Auxiliar.inferior(fechas["pago"].day,cortes).days-1.days
+      fechas["impresion"] = fechas["corte"] - (@product.payout.desplazamiento).to_i.days
+    end
+    return fechas
+  end
+  
+   def self.inferior(val,array)
+    array.sort!
+    array.reverse!
+    array.each do |n|                                                                                                                                                                                                                   
+      return n.to_i if val.to_i > n.to_i
+    end
+    return val.to_i
+   end
+ 
 end

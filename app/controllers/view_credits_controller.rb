@@ -22,6 +22,7 @@ class ViewCreditsController < ApplicationController
   end
   
   def documentos
+    @link =  (params[:retorno] == "1") ? "/view_credits/aceptadas" : "/customers/#{@credit.customer_id}/historial"
   end
   def pagos
     @credit = Credit.find(params[:id])

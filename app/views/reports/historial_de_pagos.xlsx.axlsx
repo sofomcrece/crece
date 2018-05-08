@@ -20,7 +20,7 @@ wb.styles do |style|
       "",
       credit.monto_solicitud*(1+(credit.product.taza_de_interes_ordinaria/100))
       ]
-      Ticket.joins(:payment).where("payments.credit_id = ? and tickets.status = 0",credit.id).each do |t|
+      Ticket.joins(:payment).where("payments.credit_id = ? and tickets.status = 0",credit.id).order("payments.fecha_de_pago").each do |t|
           acu = acu + t.cantidad
           sheet.add_row [
               t.updated_at,

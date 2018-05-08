@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127101138) do
+ActiveRecord::Schema.define(version: 20180507114546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -600,6 +600,29 @@ ActiveRecord::Schema.define(version: 20180127101138) do
 
   add_index "receipts", ["payment_id"], name: "index_receipts_on_payment_id", using: :btree
 
+  create_table "seguimientos", force: :cascade do |t|
+    t.string   "nombre"
+    t.date     "fecha_prestamo"
+    t.float    "capital"
+    t.float    "monto_a_cobrar"
+    t.float    "adeudo"
+    t.float    "a_pagar"
+    t.float    "atrasado"
+    t.float    "interés_moratorio"
+    t.float    "total_a_cobrar"
+    t.float    "cobrado"
+    t.float    "diferencia"
+    t.float    "adelantado"
+    t.string   "empresa"
+    t.string   "no_pago"
+    t.string   "no_creditos"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "payment_id"
+  end
+
+  add_index "seguimientos", ["payment_id"], name: "index_seguimientos_on_payment_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.integer  "clave"
     t.string   "descripcion"
@@ -688,6 +711,7 @@ ActiveRecord::Schema.define(version: 20180127101138) do
   add_foreign_key "products", "loans"
   add_foreign_key "products", "payouts"
   add_foreign_key "receipts", "payments"
+  add_foreign_key "seguimientos", "payments"
   add_foreign_key "tickets", "payments"
   add_foreign_key "tickets", "users"
 end

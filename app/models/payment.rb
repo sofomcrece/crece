@@ -2,6 +2,8 @@ class Payment < ActiveRecord::Base
     belongs_to :credit
     has_many :receipts
     has_many :tickets
+    has_many :seguimiento
+
     before_save :iniciar_vencimientos
     def pagado
         if self.total_pagado.to_f >= self.importe.to_f
