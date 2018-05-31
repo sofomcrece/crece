@@ -15,7 +15,7 @@
       <th>NOMBRE</th>
       <th>RFC</th>
       <th>MONTO</th>
-      
+      <th>CREACION</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -33,6 +33,7 @@
         <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
         <td><%= credit.RFC %></td>
         <td><%= Dinero.to_money(credit.monto_solicitud) %></td>
+        <td><%= credit.created_at.strftime("%d/%m/%Y") %></br> <%= credit.created_at.strftime("%H:%m") %> </td>
         <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
         <td><%= link_to 'Editar', edit_credit_path(credit),class:'crud-links' %></td>
         <% if current_user.tipo == 1%>

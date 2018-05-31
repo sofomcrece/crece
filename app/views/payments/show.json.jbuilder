@@ -11,4 +11,5 @@ json.array!(@credit.payments.order(:fecha_de_pago)) do |payment|
   ticket = payment.tickets.last
   json.folio "2503616176B#{"0"*(5-ticket.id.to_s.length)+ticket.id.to_s}" unless ticket.nil?
   json.ultimo_recibo_url tickets_path(payment.tickets.last)
+  json.empresa_agente payment.credit.padre.nombre_completo
 end

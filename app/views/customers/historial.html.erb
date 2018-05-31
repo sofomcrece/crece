@@ -36,6 +36,7 @@
                 <% if params[:op].to_i == 1%>
                   <td><%= link_to 'Ver pagos',creditpagos_url(credit), class:'crud-links' %></td>
                 <%else%>
+                  <td><%= link_to 'pagos',"/payments/show?clave=#{credit.id}", class:'crud-links' %></td>
                   <td><%= link_to 'Modificar PDF',editpdf_path(credit)%></td>
                   <td><%= link_to 'Mostrar',"#{credit_path credit}?retorno=2",class:'crud-links' %></td>
                   <td><%= link_to 'Reimpresion',"/view_credits/documentos?clave=#{credit.id}",class:'crud-links' %></td>

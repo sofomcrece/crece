@@ -1,4 +1,28 @@
 class ReportsController < ApplicationController
+  def historial_de_recibos
+     respond_to do |format|
+        format.html {  }
+        format.xlsx {
+            @fecha = params[:fecha]
+            id = params[:id]
+            tipo = params[:tipo]
+            @producto = params[:producto]
+            unless params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+                if tipo.to_i==1
+                  @padre =  Agent.find(id)
+                else
+                  @padre = Company.find(id)
+                end
+            end
+            @tickets = Ticket.joins(:payment=>:credit).where(status:1).order('credits.agente_empresa, credits.referencia_agente_empresa,credits.fecha_de_contrato')
+            @tickets = @tickets.where("payments.fecha_de_impresion = ?",@fecha.to_date) unless params[:fecha].nil? or params[:fecha]==""
+            @tickets = @tickets.where("credits.product_id = ?",@producto) unless params[:producto].nil? or params[:producto]==""
+            @tickets = @tickets.where("credits.agente_empresa = ? and credits.referencia_agente_empresa = ?",tipo,id) unless params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+            @producto = Product.find( @producto) unless params[:producto].nil? or params[:producto]==""
+            
+        }
+    end
+  end
   def calificaciones
     respond_to do |format|
         format.html {  }

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'customers/:id/historial',to:'customers#historial',as:'customer_historial'
   get 'reports/seguimiento'
   get 'reports/clientes'
+  get 'reports/historial_de_recibos'
   get 'reports/seguimiento_quincenal'
   get 'reports/tablero'
   get 'reports/cobranza'

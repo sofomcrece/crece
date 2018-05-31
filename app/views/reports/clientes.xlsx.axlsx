@@ -241,12 +241,16 @@ wb.add_worksheet(name: "reporte clientes") do |sheet|
      "NOMBRE REFERENCIA",
      "DOMICILIO REFERENCIA",
      "TELEFONO REFERENCIA",
-     "NOMRE REFERENCIA 2",
+     "TELEFONO CELULAR REFERENCIA",
+     "NOMBRE REFERENCIA 2",
      "DOMICILIO REFERECIA 2",
      "TELEFONO REFERENCIA 2",
+     "TELEFONO CELULAR REFERENCIA 2",
      "NOMBRE FAMILIAR",
+     "DOMICILIO FAMILIAR",
      "TELEFONO FAMILIAR",
-     "DOMICILIO FAMILIAR"
+     "TELEFONO CELULAR FAMILIAR"
+     
  ]
  @customers.each do |c|
     sheet.add_row [
@@ -295,12 +299,16 @@ wb.add_worksheet(name: "reporte clientes") do |sheet|
         c.nombre_referencia_1,
         c.domicilio_referencia_1,
         c.telefono_fijo_referencia_1,
+        c.telefono_celular_referencia_1,
         c.nombre_referencia_2,
         c.domicilio_referencia_2,
         c.telefono_fijo_referencia_2,
+        c.telefono_celular_referencia_2,
         c.nombre_referencia_familiar,
+        c.domicilio_referencia_familiar,
         c.telefono_fijo_referencia_familiar,
-        c.domicilio_referencia_familiar
+        c.telefono_celular_referencia_familiar
+        
         
     ]
   end

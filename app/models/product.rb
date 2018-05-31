@@ -41,6 +41,19 @@ class Product < ActiveRecord::Base
                return fechas if fechas.fecha_de_corte.to_date <= Time.now.to_date
           end
      end
+     def diferenciaDeCorte(fechad)
+          count = 0
+          fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
+          while (fp.last.fecha_de_corte <= Time.now)
+               fp << Payment.new(fecha_de_corte:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["corte"],fecha_de_pago:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["pago"])
+          end
+          fp.reverse.each do |fechas|
+               if fechad < fechas.fecha_de_corte.to_date and fechas.fecha_de_corte.to_date < Time.now.to_date
+                    count+=1
+               end
+               return count if fechas.fecha_de_corte.to_date <= fechad
+          end
+     end
      def proximaFechaDeCorte
           fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
           while (fp.last.fecha_de_corte <= Time.now)

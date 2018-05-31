@@ -128,7 +128,7 @@ class Auxiliar < ActiveRecord::Base
      if Expire.where(fecha:Time.now.to_date).count == 0
         Expire.create(comentarios:"vencimiento",fecha:Time.now.to_date,afectados:0) 
         Product.all.each do |p|
-          p.vencer
+          #p.vencer
         end
       end
     end
