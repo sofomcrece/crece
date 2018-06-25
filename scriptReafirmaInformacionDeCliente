@@ -18,7 +18,8 @@ Customer.all.each do |c|
             colonia:c.credits.last.colonia,
             estado_actual:c.credits.last.estado_actual,
             country:c.credits.last.country,
-            email_1:c.credits.last.email_1
+            email_1:c.credits.last.email_1,
+            telefono_celular:c.credits.last.telefono_celular
         )
     end
 end
