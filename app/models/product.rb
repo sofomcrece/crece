@@ -65,7 +65,8 @@ class Product < ActiveRecord::Base
      end
      def vencer
           fecha = Time.now.to_date
-          if self.ultimaFechaDeCorte.fecha_de_corte == fecha
+          if self.proximaFechaDeCorte.fecha_de_corte == fecha
+               Coman.create(c:"fecha concordo producto.id#{self.id}")
                Payment.joins(:credit).where("credits.product_id = ?",self.id)
                .where("payments.fecha_de_pago <= ?",fecha).where.not(estatus:2).each do |p|
                     p.cargar_interes
@@ -88,7 +89,9 @@ class Product < ActiveRecord::Base
                          empresa:t["empresa"],
                          no_pago:t["numero_de_pago"], 
                          no_creditos:t["numero_de_creditos"],
-                         payment_id:t["payment_ref"]
+                         payment_id:t["payment_ref"],
+                         credit_id:t["credit_id"],
+                         fecha_corte:t["fecha_corte"]
                     )
                end
           end

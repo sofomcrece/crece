@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507114546) do
+ActiveRecord::Schema.define(version: 20180626171735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -619,6 +619,8 @@ ActiveRecord::Schema.define(version: 20180507114546) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "payment_id"
+    t.integer  "credit_id"
+    t.date     "fecha_corte"
   end
 
   add_index "seguimientos", ["payment_id"], name: "index_seguimientos_on_payment_id", using: :btree
