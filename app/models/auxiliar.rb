@@ -93,7 +93,7 @@ class Auxiliar < ActiveRecord::Base
     end
     def self.seguimiento(padre,fecha,producto)
       credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1).order(:apellido_paterno)
-      if true#self.seguimiento_guardado_contador(credits,fecha) > 0
+      if false#self.seguimiento_guardado_contador(credits,fecha) > 0
         self.seguimiento_por_creditos_guardados(credits,fecha)
       else
         self.seguimiento_por_creditos(credits,fecha)
