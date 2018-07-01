@@ -65,7 +65,9 @@ class Product < ActiveRecord::Base
      end
      def vencer
           fecha = Time.now.to_date
-          if self.ultimaFechaDeCorte.fecha_de_corte == fecha
+          desplazo = 0 
+          desplazo = 1 if self.id == 3 or self.id == 5
+          if self.ultimaFechaDeCorte.fecha_de_corte + desplazo.days == fecha
                Coman.create(c:"fecha concordo producto.id#{self.id}")
                Payment.joins(:credit).where("credits.product_id = ?",self.id)
                .where("payments.fecha_de_pago <= ?",fecha).where.not(estatus:2).each do |p|
