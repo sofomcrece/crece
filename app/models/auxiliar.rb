@@ -93,7 +93,7 @@ class Auxiliar < ActiveRecord::Base
     end
     def self.seguimiento(padre,fecha,producto)
       credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where(status:1).order(:apellido_paterno)
-      if false#self.seguimiento_guardado_contador(credits,fecha) > 0
+      if self.seguimiento_guardado_contador(credits,fecha) > 0
         self.seguimiento_por_creditos_guardados(credits,fecha)
       else
         self.seguimiento_por_creditos(credits,fecha)
@@ -143,6 +143,9 @@ class Auxiliar < ActiveRecord::Base
       tabla = []
       credits.each do |credit|
         seguimiento  = Seguimiento.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
+        if seguimiento.nil?
+          next
+        end
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
