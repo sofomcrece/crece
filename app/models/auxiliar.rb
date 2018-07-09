@@ -99,9 +99,7 @@ class Auxiliar < ActiveRecord::Base
         self.seguimiento_por_creditos(credits,fecha)
       end
     end
-    def self.seguimiento_por_creditos(credits,fecha)
-      tabla = []
-      credits.each do |credit|
+    def self.generador_de_tuplas(credit,fecha)
         payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
@@ -126,7 +124,12 @@ class Auxiliar < ActiveRecord::Base
         #fila["payment_ref"] = payment.id
         fila["credit_id"] = credit.id 
         fila["fecha_corte"] = fecha
-        tabla << fila
+        return fila
+    end
+    def self.seguimiento_por_creditos(credits,fecha)
+      tabla = []
+      credits.each do |credit|
+        tabla << self.generador_de_tuplas(credit,fecha)
       end
      return tabla
     end
@@ -144,6 +147,7 @@ class Auxiliar < ActiveRecord::Base
       credits.each do |credit|
         seguimiento  = Seguimiento.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
         if seguimiento.nil?
+          tabla << self.generador_de_tuplas(credit,fecha)
           next
         end
         fila = Hash.new()
@@ -151,8 +155,8 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha"] = credit.fecha_de_contrato
         fila["monto_solicitud"] = credit.monto_solicitud
         fila["monto_a_pagar"] = credit.payments.sum(:importe)
-        #fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
-        fila["adeudo"] = seguimiento.adeudo
+        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
         fila["pagar"] = seguimiento.a_pagar
         pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
         #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
