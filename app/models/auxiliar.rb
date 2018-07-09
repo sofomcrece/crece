@@ -163,7 +163,7 @@ class Auxiliar < ActiveRecord::Base
         fila["atrasado"] = seguimiento.atrasado
         fila["interes_moratorio"] = seguimiento.interés_moratorio
         fila["total_a_cobrar"] =  seguimiento.total_a_cobrar
-        fila["cobrado"] = seguimiento.cobrado
+        fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
         fila["diferencia"] = seguimiento.diferencia
         fila["adelantado"] = seguimiento.adelantado
         fila["empresa"] = credit.padre.nombre_completo
