@@ -70,10 +70,10 @@ class Product < ActiveRecord::Base
           if self.ultimaFechaDeCorte.fecha_de_corte + desplazo.days == fecha
                Coman.create(c:"fecha concordo producto.id#{self.id}")
                Payment.joins(:credit).where("credits.product_id = ?",self.id)
-               .where("payments.fecha_de_pago <= ?",fecha).where.not(estatus:2).each do |p|
+               .where("payments.fecha_de_pago <= ?",fecha-desplazo.days).where.not(estatus:2).each do |p|
                     p.cargar_interes
                end
-               tuplas = Auxiliar.seguimiento_por_creditos(self.credits.where(status:1).order(:apellido_paterno), fecha)
+               tuplas = Auxiliar.seguimiento_por_creditos(self.credits.where(status:1).order(:apellido_paterno), fecha-desplazo.days)
                tuplas.each do |t|
                     Seguimiento.create(
                          nombre:t["nombre_completo"], 

@@ -96,6 +96,7 @@ class Auxiliar < ActiveRecord::Base
       if self.seguimiento_guardado_contador(credits,fecha) > 0
         self.seguimiento_por_creditos_guardados(credits,fecha)
       else
+        credits = credits.where(status:1)
         self.seguimiento_por_creditos(credits,fecha)
       end
     end
