@@ -32,14 +32,17 @@ class Product < ActiveRecord::Base
           end
           arr
      end
-     def ultimaFechaDeCorte
-          fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
+     def ultimaFechaDeCorteFuncion(fecha)
+           fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
           while (fp.last.fecha_de_corte <= Time.now)
                fp << Payment.new(fecha_de_corte:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["corte"],fecha_de_pago:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["pago"])
           end
           fp.reverse.each do |fechas|
-               return fechas if fechas.fecha_de_corte.to_date <= Time.now.to_date
+               return fechas if fechas.fecha_de_corte.to_date <= fecha
           end
+     end
+     def ultimaFechaDeCorte
+         ultimaFechaDeCorteFuncion(Time.now.to_date)
      end
      def diferenciaDeCorte(fechad)
           count = 0
@@ -54,14 +57,21 @@ class Product < ActiveRecord::Base
                return count if fechas.fecha_de_corte.to_date <= fechad
           end
      end
-     def proximaFechaDeCorte
+     def proximaFechaDeCorteFuncion(fecha)
           fp = Payment.select(:fecha_de_pago,:fecha_de_corte).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", self.id).uniq.order(:fecha_de_pago)
           while (fp.last.fecha_de_corte <= Time.now)
                fp << Payment.new(fecha_de_corte:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["corte"],fecha_de_pago:Auxiliar.getArreglo(self,fp.last.fecha_de_corte)["pago"])
           end
           fp.each do |fechas|
-               return fechas if fechas.fecha_de_corte.to_date > Time.now.to_date
+               return fechas if fechas.fecha_de_corte.to_date > fecha
           end
+     end
+     def proximaFechaDeCorte
+          proximaFechaDeCorteFuncion(Time.now)
+     end
+     
+     def rangoDeCorte(fecha_de_corte)
+          return (ultimaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte...proximaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte)
      end
      def vencer
           fecha = Time.now.to_date
