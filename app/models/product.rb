@@ -73,39 +73,48 @@ class Product < ActiveRecord::Base
      def rangoDeCorte(fecha_de_corte)
           return (ultimaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte...proximaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte)
      end
-     def vencer
-          fecha = Time.now.to_date
+     
+     def almacenar_seguimientos(fechainput)
+          creditos = self.credits.where(status:1).order(:apellido_paterno)
+          return if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
+          tuplas = Auxiliar.seguimiento_por_creditos(creditos, fechainput)
+          tuplas.each do |t|
+               Seguimiento.create(
+                    nombre:t["nombre_completo"], 
+                    fecha_prestamo:t["fecha"], 
+                    capital:t["monto_solicitud"], 
+                    monto_a_cobrar:t["monto_a_pagar"],
+                    adeudo:t["adeudo"], 
+                    a_pagar:t["pagar"], 
+                    atrasado:t["atrasado"], 
+                    interés_moratorio:t["interes_moratorio"], 
+                    total_a_cobrar:t["total_a_cobrar"], 
+                    cobrado:t["cobrado"], 
+                    diferencia:t["diferencia"],
+                    adelantado:t["adelantado"], 
+                    empresa:t["empresa"],
+                    no_pago:t["numero_de_pago"], 
+                    no_creditos:t["numero_de_creditos"],
+                    payment_id:t["payment_ref"],
+                    credit_id:t["credit_id"],
+                    fecha_corte:t["fecha_corte"]
+               )
+          end
+     end
+     def vencer(fecha=Time.now.to_date)
           desplazo = 0 
           desplazo = 1 if self.id == 3 or self.id == 5
-          if self.ultimaFechaDeCorte.fecha_de_corte + desplazo.days == fecha
+          fecha = fecha - desplazo 
+          if self.ultimaFechaDeCorteFuncion(fecha).fecha_de_corte == fecha
                Coman.create(c:"fecha concordo producto.id#{self.id}")
                Payment.joins(:credit).where("credits.product_id = ?",self.id)
-               .where("payments.fecha_de_pago <= ?",fecha-desplazo.days).where.not(estatus:2).each do |p|
+               .where("payments.fecha_de_pago <= ?",fecha).where.not(estatus:2).each do |p|
                     p.cargar_interes
                end
-               tuplas = Auxiliar.seguimiento_por_creditos(self.credits.where(status:1).order(:apellido_paterno), fecha-desplazo.days)
-               tuplas.each do |t|
-                    Seguimiento.create(
-                         nombre:t["nombre_completo"], 
-                         fecha_prestamo:t["fecha"], 
-                         capital:t["monto_solicitud"], 
-                         monto_a_cobrar:t["monto_a_pagar"],
-                         adeudo:t["adeudo"], 
-                         a_pagar:t["pagar"], 
-                         atrasado:t["atrasado"], 
-                         interés_moratorio:t["interes_moratorio"], 
-                         total_a_cobrar:t["total_a_cobrar"], 
-                         cobrado:t["cobrado"], 
-                         diferencia:t["diferencia"],
-                         adelantado:t["adelantado"], 
-                         empresa:t["empresa"],
-                         no_pago:t["numero_de_pago"], 
-                         no_creditos:t["numero_de_creditos"],
-                         payment_id:t["payment_ref"],
-                         credit_id:t["credit_id"],
-                         fecha_corte:t["fecha_corte"]
-                    )
-               end
+               
+               almacenar_seguimientos(fecha)
+               
+             
           end
      end
 end
