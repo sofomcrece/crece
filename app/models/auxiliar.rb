@@ -109,7 +109,7 @@ class Auxiliar < ActiveRecord::Base
         fila["monto_a_pagar"] = credit.payments.sum(:importe)
         fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
         fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
-        fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
+        fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Ticket.joins(:payment).where("payments.credit_id = ? and payments.fecha_de_corte = ? and tickets.status = 0 and tickets.updated_at < ?", credit.id, fecha,fecha).sum(:cantidad) #Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
         pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
         #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
         fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
