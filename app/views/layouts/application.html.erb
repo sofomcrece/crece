@@ -152,6 +152,21 @@
     
      window.location.href = url
   }
+   $scope.descargar_excel_quincenal = function(){
+     var url ="/reports/seguimiento_quincenal.xlsx?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
+      url = url + "&tipo="+$scope.agente_empresa;
+    if (!($scope.productos.selected == "" ||$scope.productos.selected ==undefined))
+      url = url + "&producto="+$scope.productos.selected;
+    if (!($scope.fecha_encabezado == "" ||$scope.fecha_encabezado ==undefined))
+      url = url + "&fecha_encabezado="+$scope.fecha_encabezado;
+    
+     window.location.href = url
+  }
   $scope.imprimir_recibos = function(){
     var cad = '[';
     for(var i = 0;i < $scope.pagos.length;i++){
@@ -190,6 +205,25 @@
   }
   $scope.get_seguimiento = function(){
     var url ="/reports/seguimiento.json?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    url = url + "&tipo="+$scope.agente_empresa;
+    url = url + "&producto="+$scope.productos.selected;
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.seguimiento = data;
+      $scope.seguimiento_datos = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+  }
+  $scope.get_seguimiento_quincenal = function(){
+    var url ="/reports/seguimiento_quincenal.json?"
     if (!($scope.fechas_de_pago.selected == ""))
       url = url + "fecha=" + $scope.fechas_de_pago.selected;
     if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))

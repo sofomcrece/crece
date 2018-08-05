@@ -28,7 +28,7 @@
                  </label>
                  <select  class="browser-default" ng-model="hijos.selected">
                     <option value="" selected>{{tipo}}</option>
-                    <option ng-repeat="option in hijos" value="{{option.id}}">{{option.clave}}</option>
+                    <option ng-repeat="option in hijos" value="{{option.id}}">{{option.nombre_completo}}</option>
                 </select>
                   </br>
                   <label>
@@ -46,10 +46,10 @@
                   <option value="" selected>Fechas</option>
                   <option ng-repeat="option in fechas_de_pago" value="{{option.fecha_de_corte}}">{{option.fecha_de_pago}}</option>
                 </select>
-                <a class="waves-effect waves-light btn" ng-click="get_seguimiento()">Cargar</a>
+                <a class="waves-effect waves-light btn" ng-click="get_seguimiento_quincenal()">Cargar</a>
             </div>
             <div class = "col s12">
-                <table class="striped">
+                <table class="striped" style="font-size:12px;">
                     <thead>
                         <th>
                             Nombre
@@ -99,25 +99,25 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat = "fila in seguimiento_datos">
-                            <td>{{fila.nombre_completo}}</td>
+                            <td>|{{fila.tipo}}|-{{fila.nombre_completo}}</td>
                             <td>{{fila.fecha}}</td>
-                            <td>{{fila.monto_solicitud}}</td>
-                            <td>{{fila.monto_a_pagar}}</td>
-                            <td>{{fila.adeudo}}</td>
-                            <td>{{fila.pagar}}</td>
-                            <td>{{fila.atrasado}}</td>
-                            <td>{{fila.interes_moratorio}}</td>
-                            <td>{{fila.total_a_cobrar}}</td>
-                            <td>{{fila.cobrado}}</td>
-                            <td>{{fila.diferencia}}</td>
-                            <td>{{fila.adelantado}}</td>
+                            <td>{{fila.monto_solicitud | currency}}</td>
+                            <td>{{fila.monto_a_pagar | currency}}</td>
+                            <td>{{fila.adeudo | currency}}</td>
+                            <td>{{fila.pagar | currency}}</td>
+                            <td>{{fila.atrasado | currency}}</td>
+                            <td>{{fila.interes_moratorio | currency}}</td>
+                            <td>{{fila.total_a_cobrar | currency}}</td>
+                            <td>{{fila.cobrado | currency}}</td>
+                            <td>{{fila.diferencia | currency}}</td>
+                            <td>{{fila.adelantado | currency}}</td>
                             <td>{{fila.empresa}}</td>
                             <td>{{fila.numero_de_pago}}</td>
                             <td>{{fila.numero_de_creditos}}</td>
                         </tr>
                     </tbody>
                 </table>
-                <a class="waves-effect waves-light btn" ng-click="descargar_excel()">Descargar en Excel</a>                
+                <a class="waves-effect waves-light btn" ng-click="descargar_excel_quincenal()">Descargar en Excel</a>                
             </div>
     </div>
 </div>

@@ -76,15 +76,14 @@ class ReportsController < ApplicationController
   def seguimiento_conf
         require 'json'
         unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
-         fecha = params[:fecha].to_date
-         padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
-         producto = params[:producto].to_i
+         @fecha = params[:fecha].to_date
+         @padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
+         @producto = params[:producto].to_i
          @resp = Hash.new("respuesta")
-         @resp["nombre_empresa"] = padre.nombre_completo
-         @resp["fecha"] = fecha
-         @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha,producto)
+         @resp["nombre_empresa"] = @padre.nombre_completo
+         @resp["fecha"] = @fecha
+         @resp["datos"] = get_seguimiento_de_cobranza(@padre,@fecha,@producto)
         end
-        
   end
   def seguimiento
     respond_to do |format|
@@ -98,14 +97,18 @@ class ReportsController < ApplicationController
     end
   end
   def seguimiento_quincenal
-     require 'json'
-     unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil?
-     fecha = params[:fecha].to_date
-     padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
-     @resp = Hash.new("respuesta")
-     @resp["nombre_empresa"] = padre.nombre_completo
-     @resp["fecha"] = fecha
-     @resp["datos"] = get_seguimiento_de_cobranza(padre,fecha)
+    respond_to do |format|
+        format.html {  }
+        format.json { 
+            self.seguimiento_conf
+            @resp["datos"] = Auxiliar.seguimiento_quincenal(@padre,@fecha,@producto)
+        }
+        format.xlsx{ 
+            self.seguimiento_conf 
+            @resp["datos"] = Auxiliar.seguimiento_quincenal(@padre,@fecha,@producto)
+            @fecha_encabezado = params[:fecha_encabezado] unless params[:fecha_encabezado].nil? or params[:fecha_encabezado] == ""
+        }
+        
     end
   end
   def cobranza

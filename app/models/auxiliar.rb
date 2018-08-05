@@ -91,6 +91,12 @@ class Auxiliar < ActiveRecord::Base
     def self.folio(val)
       return "2503616176B#{"0"*(5-val.to_s.length)+val.to_s}"
     end
+    def self.seguimiento_quincenal(padre,fecha,producto)
+      arr = self.seguimiento(padre,fecha,producto)
+      arr.delete_if { |elem| elem["numero_de_pago"] == "" or elem["numero_de_pago"].nil? }
+      return arr
+      
+    end
     def self.seguimiento(padre,fecha,producto)
       credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where("credits.status = ? or credits.status = ?",1,3).order(:apellido_paterno)
       if self.seguimiento_guardado_contador(credits,fecha) > 0
