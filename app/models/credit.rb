@@ -58,6 +58,7 @@ class Credit < ActiveRecord::Base
     #:localidad,
     :product_id,
     :destination_id,
+    :customer_id,
     presence: true
     before_save :default_values
     after_save :pdf_trans

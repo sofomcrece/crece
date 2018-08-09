@@ -32,6 +32,7 @@ en:
         economical_activity_id: "Actividad Economica"
         product_id: "Producto"
         dirreccion_empresa: "Dirección de empresa"
+        customer_id: "Cliente"
       user:
         email: "Correo"
         password: "Contraseña"
@@ -269,7 +270,7 @@ en:
             country:
               blank: "es requerido"
             customer_id:
-              blank: "es requerido"
+              blank: "no se ha podido crear o vicular por verifique que el RFC y el CURP esten correctos si desea cambiar estos datos de algun cliente existente hagalo desde el formulario de editar cliente"
             antiguedad_laboral_anos:
               blank: "es requerido"
             antiguedad_laboral_meses:
