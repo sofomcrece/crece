@@ -117,4 +117,16 @@ class Product < ActiveRecord::Base
              
           end
      end
+     def soloAlmacenar(fecha=Time.now.to_date)
+          desplazo = 0 
+          desplazo = 1 if self.id == 3 or self.id == 5
+          fecha = fecha - desplazo 
+          if self.ultimaFechaDeCorteFuncion(fecha).fecha_de_corte == fecha
+              
+               
+               almacenar_seguimientos(fecha)
+               
+             
+          end
+     end
 end
