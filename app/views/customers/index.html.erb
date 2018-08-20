@@ -8,15 +8,17 @@
   <h2 align="center">LISTA DE CLIENTES</h2>
   <div class="row card-panel z-depth-4" style="font-size:12px;">
     <div class="col s12 m6 l6">
-      NOMBRE: <input type="text" placeholder="INGRESE EL NOMBRE"ng-model="nombre1" ng-change="getClientes()">
-      PATERNO: <input type="text" placeholder="APELLIDO PATERNO"ng-model="paterno" ng-change="getClientes()">
-      MATERNO: <input type="text" placeholder="APELLIDO MATERNO"ng-model="materno" ng-change="getClientes()">
+      NOMBRE: <input type="text" placeholder="INGRESE EL NOMBRE"ng-model="nombre1" >
+      PATERNO: <input type="text" placeholder="APELLIDO PATERNO"ng-model="paterno" >
+      MATERNO: <input type="text" placeholder="APELLIDO MATERNO"ng-model="materno" >
     </div>
     <div class="col s12 m6 l6">
-      SUCURSAL: <input type="text" placeholder="INGRESE SUCURSAL"ng-model="sucursal" ng-change="getClientes()">
-      EMPRESA: <input type="text" placeholder="INGRESE EMPRESA"ng-model="Empresa" ng-change="getClientes()">
+      SUCURSAL: <input type="text" placeholder="INGRESE SUCURSAL"ng-model="sucursal" >
+      EMPRESA: <input type="text" placeholder="INGRESE EMPRESA"ng-model="Empresa" >
     </div>
+    
   </div>
+  <a ng-click="getClientes()" class="waves-effect waves-light btn">Buscar</a>
   <table style="font-size:12px;">
     <thead>
       <tr>
