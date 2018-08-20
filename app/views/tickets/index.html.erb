@@ -25,7 +25,9 @@
         <td> <%= Auxiliar.fecha_formato(ticket.updated_at) %></td>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Cancelar', cancelar_path(ticket), :method=> :put, :confirm => "Are you sure?"  %></td>
+        <% if current_user.tipo == 1%>
+          <td><%= link_to 'Cancelar', cancelar_path(ticket), :method=> :put, :confirm => "Are you sure?"  %></td>
+       <%end%>
       </tr>
     <% end %>
   </tbody>
