@@ -23,10 +23,10 @@
         <td><%= ticket.payment.id %></td>
         <td><%= ticket.status==0?"aplicable":"No aplicable"%></td>
         <td> <%= Auxiliar.fecha_formato(ticket.updated_at) %></td>
+      <% if current_user.tipo == 1%>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
-        <% if current_user.tipo == 1%>
-          <td><%= link_to 'Cancelar', cancelar_path(ticket), :method=> :put, :confirm => "Are you sure?"  %></td>
+        <td><%= link_to 'Cancelar', cancelar_path(ticket), :method=> :put, :confirm => "Are you sure?"  %></td>
        <%end%>
       </tr>
     <% end %>
