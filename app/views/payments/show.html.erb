@@ -37,11 +37,13 @@
                         <a class="waves-effect waves-light btn" ng-click="pagar(ele)"  id="ena_botton">Hacer Pago</a>
                       </div>
                     </td>
+                    <% if current_user.tipo == 1%>
                     <td>
                       <div>
                         <a href="/payments/{{ele.id}}/vencer">Vencer</a>
                       </div>
                     </td>
+                    <%end%>
                     <td>
                       <a class="waves-effect waves-light btn" href="/tickets?clave={{ele.id}}">Historial</a>
                     </td>
