@@ -245,6 +245,7 @@
     var url = "/payments.json?"
     url = url + "padres="+ JSON.stringify($scope.seleccionados)
     url = url + "&fecha="+ $scope.fechas.selected
+    url = url + "&producto="+ $scope.productos.selected
     console.log(url);
     $http.get(url)
     .success(function(data){

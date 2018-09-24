@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
     @credits = Credit.all.where(status:1).select(:fecha_de_contrato,:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     @payments=  Payment.joins(:credit).where("credits.status = ? ",1)
     @payments = @payments.where(fecha_de_impresion:fecha) unless params[:fecha].nil? or params[:fecha] == ""
-    @payments = @payments.where("credits.product_id = ? ",prod) unless params[:producto].nil? or params[producto] == ""
+    @payments = @payments.where("credits.product_id = ? ",prod) unless params[:producto].nil? or params[:producto] == ""
     cad = ""
     i =0
     unless padres.nil?

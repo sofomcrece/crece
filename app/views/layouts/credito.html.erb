@@ -76,6 +76,12 @@
            $scope.agente_o_empresa();
           $scope.type();
     }
+    function filterfun(p2){ 
+      return function(p) { 
+        console.log("P2",p2);
+        return p.nombre == p2 
+      }
+    }
     $scope.setCredito = function(data){
       if($scope.credito!=null)
         return;
@@ -85,6 +91,8 @@
       $http.get("/combos/pais.json")
       .success(function(data){
         $scope.paices = data;
+        console.log($scope.credito.contry);
+        
         console.log(data);
       })
       .error(function(data){

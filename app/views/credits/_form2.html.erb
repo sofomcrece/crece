@@ -560,8 +560,11 @@
           
             if (file) {
               reader.readAsDataURL(file);
+              alert("El archivo pdf se ha procesado correctamente");
             } else {
               preview.src = "";
+              uploadField = "";
+              alert("Error al procesar pdf, intente cargarlo nuevamente");
             }
           }
         </script>
