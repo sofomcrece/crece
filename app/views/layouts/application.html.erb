@@ -47,12 +47,16 @@
     $scope.materno="";
     $scope.getClientes=function(){
         var url="";
-        if ($scope.nombre!="")
+        if ($scope.nombre!="" && $scope.nombre!=undefined )
             url=url+"nombre1="+ $scope.nombre1;
-        if ($scope.paterno!="")
+        if ($scope.paterno!="" && $scope.paterno != undefined)
             url=url+"&paterno="+ $scope.paterno;
-        if ($scope.materno!="")
+        if ($scope.materno!="" && $scope.materno != undefined)
             url=url+"&materno="+ $scope.materno;
+        if ($scope.sucursal!="" && $scope.sucursal != undefined)
+            url=url+"&sucursal="+ $scope.sucursal;
+        if ($scope.empresa!="" && $scope.empresa != undefined)
+            url=url+"&empresa="+ $scope.empresa;
         $http.get("/customers.json?"+url)
         .success(function(data){
              $scope.clientes=data;
