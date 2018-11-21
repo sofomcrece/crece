@@ -12,7 +12,7 @@ class EstadoDeCuentaPdf < Prawn::Document
   def text_content
     base_size = 9
     contador = 0
-    @credits.each do |credit| 
+    @credits.where.not(status:2).each do |credit| 
       payments = credit.payments.order(:fecha_de_pago)
       image "#{Rails.root}/app/assets/images/logo marjo.png", width: 220, height: 30,position: :right
       text  "FINANCIERA MARJO SA DE CV SOFOM ENR",:size=>base_size+4
@@ -23,7 +23,7 @@ class EstadoDeCuentaPdf < Prawn::Document
       text  "____________________________________________________________________________"
       
       table([ ["No. de cliente : #{@customer.id}", "Fecha de apertura: #{Auxiliar.fecha_natural(credit.fecha_de_contrato)}"],
-           ["Cliente : #{@customer.nombre_completo_deudor}", "Fecha de vencimiento: #{Auxiliar.fecha_natural(payments.last.fecha_de_pago)}"],
+           ["Cliente : #{@customer.nombre_completo_deudor}", "Fecha de vencimiento: #{Auxiliar.fecha_natural(payments.last.fecha_de_pago) }"],
            ["Cuenta : #{credit.id}", "Capital Concedido: #{Dinero.to_money credit.monto_solicitud}"],
            ["Periodo : Del #{(@f1.nil?)? "Inicio " : Auxiliar.fecha_natural(@f1) } al","Plazo pactado: #{credit.product.numero_de_pagos_a_realizar } #{credit.product.payout.periocidad}"],
            [" #{(@f2.nil?)? "Fin " : Auxiliar.fecha_natural(@f2)}","Periocidad: #{credit.product.payout.periocidad}"],
