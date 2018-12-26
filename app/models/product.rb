@@ -71,7 +71,10 @@ class Product < ActiveRecord::Base
      end
      
      def rangoDeCorte(fecha_de_corte)
-          return (ultimaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte...proximaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte)
+          ultima = ultimaFechaDeCorteFuncion(fecha_de_corte).fecha_de_corte
+          proxima = proximaFechaDeCorteFuncion(fecha_de_corte)
+          proxima = (proxima.kind_of?(Array))? ultima + 1.year : proxima.fecha_de_corte
+          return (ultima ... proxima)
      end
      
      def almacenar_seguimientos(fechainput)
