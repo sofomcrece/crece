@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'codigo_postal/:cp', to: 'codigo_postal#index'
+
   get 'combos/pais'
 
   get 'combos/estado'
