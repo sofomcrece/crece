@@ -237,13 +237,18 @@ class Credit < ActiveRecord::Base
         return a 
     end
     def capital_pagado
-        self.total_pagado - self.interes_pagado
+        #self.total_pagado - self.interes_pagado
+        aux = 0
+        Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = 0",self.id).each do |ticket|
+            aux += ticket.pago_capital
+        end
+        return aux
     end
     def total_pagado
          Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = 0",self.id).sum(:cantidad)
     end
     def interes_pagado
-        (self.total_pagado*(self.product.taza_de_interes_ordinaria/100))
+        (self.capital_pagado*(self.product.taza_de_interes_ordinaria/100))
     end
     def total_vencido
         sum = 0

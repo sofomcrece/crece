@@ -42,7 +42,7 @@ gem 'json'
 gem 'axlsx_rails'
 gem 'delayed_job_active_record'
 gem 'rufus-scheduler', '~> 3.2'
-
+gem 'http'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
