@@ -42,4 +42,4 @@ test:
 
 production:
   <<: *default
-  database: marjo_production
+  database: app_production
