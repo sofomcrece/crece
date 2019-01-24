@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(version: 20181227010226) do
     t.string   "giro_de_la_empresa"
     t.string   "puesto"
     t.string   "telefono_empresa"
-    t.string   "sueldo_mensual_neto"
+    t.string   "p.sueldo_mensual_neto"
     t.string   "dirreccion_empresa"
     t.string   "colonia_empresa"
     t.string   "municipio_empresa"
