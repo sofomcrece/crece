@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ver_video/index'
+
   get 'codigo_postal/:cp', to: 'codigo_postal#index'
 
   get 'combos/pais'
@@ -40,8 +42,11 @@ Rails.application.routes.draw do
   get 'view_credits/documentos',to:'view_credits#documentos'
   get 'view_credits/autorizacion',to:'view_credits#autorizacion'
   get 'view_credits/caratula',to:'view_credits#caratula'
+  get 'view_credits/caratulamunicipal',to:'view_credits#caratulamunicipal'
   get 'view_credits/corrida',to:'view_credits#corrida'
+  get 'view_credits/corridamunicipal',to:'view_credits#corridamunicipal'
   get 'view_credits/contrato',to:'view_credits#contrato'
+  get 'view_credits/contratomunicipal',to:'view_credits#contratomunicipal'
   get 'view_credits/entrevista',to:'view_credits#entrevista'
   get 'view_credits/poliza',to:'view_credits#poliza'
   

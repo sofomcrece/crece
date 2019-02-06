@@ -6,6 +6,8 @@ class Pdf < ActiveRecord::Base
           sql = "Select pdf64 from credits where id = #{credit["id"]}"
           data = ActiveRecord::Base.connection.execute(sql)[0]["pdf64"]
           pdf = Pdf.new( pdf64:data, credit_id:credit["id"])
+          
+          
           if pdf.save()
               
               c=Credit.where(id:credit["id"])[0]
@@ -17,4 +19,5 @@ class Pdf < ActiveRecord::Base
       end
   end
   
+ 
 end

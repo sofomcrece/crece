@@ -23,12 +23,21 @@
       <li><%= link_to 'Seguimiento quincenal', "/reports/seguimiento_quincenal"%></li>
       <li><%= link_to 'Reporte de cobranza', "/reports/cobranza"%></li>
       <li><%= link_to 'Pronostico de cobranza', "/reports/pronostico_de_cobranza"%></li>
-      <li><%= link_to 'Clientes', "/reports/clientes"%></li>
+      <!--<li><%= link_to 'Clientes', "/reports/clientes"%></li>-->
       <li><%= link_to 'Calificaciones', "/reports/calificaciones"%></li>
       <li><%= link_to 'Estado de cta.', "/reports/estado_de_cuenta"%></li>
       <li><%= link_to 'Reporte de pagos', "/reports/reporte_de_pagos"%></li>
       <li><%= link_to 'Historial de pagos', "/reports/historial_de_pagos"%></li>
       <li><%= link_to 'Historial de recibos', "/reports/historial_de_recibos"%></li>
+    </ul>
+    <ul id="dropdown5" class="dropdown-content">
+        <li><%= link_to 'Lista de Clientes', customers_path%></li>
+        <li><%= link_to 'Reporte de Clientes', "/reports/clientes"%></li>
+    </ul>
+    
+    <ul id="dropdown6" class="dropdown-content">
+        <li><%= link_to 'Manual del Usuario', "/ver_video/index"%></li>
+       
     </ul>
 <%if current_user.nil?%>
     <li><%= link_to 'Quienes somos',"#quienes_somos"%></li>
@@ -40,8 +49,10 @@
     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Creditos<i class="material-icons right">arrow_drop_down</i></a></li>
     <li><a class="dropdown-button" href="#!" data-activates="dropdown3">Pagos y recibos<i class="material-icons right">arrow_drop_down</i></a></li> 
     <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Administracion<i class="material-icons right">arrow_drop_down</i></a></li> 
-    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Reportes<i class="material-icons right">arrow_drop_down</i></a></li> 
-    <li><%= link_to 'Clientes', customers_path%></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown4">Reportes<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown5">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button" href="#!" data-activates="dropdown6">Ayuda<i class="material-icons right">arrow_drop_down</i></a></li> 
+    <!--<li><%= link_to 'Clientes', customers_path%></li> -->
    
     
 <%elsif current_user.tipo==2%>
@@ -60,6 +71,9 @@
 <%unless current_user.nil?%>
     <li><%= link_to "Cerrar Sesión", destroy_user_session_path, :method => :delete %></li> 
 <%end%>
+
+ 
+        
 
 
 

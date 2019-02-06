@@ -1,5 +1,5 @@
 class ViewCreditsController < ApplicationController
-   before_action :set_credit, only: [:autorizacion,:caratula,:contrato,:entrevista,:poliza,:corrida,:documentos, :getFecha]
+   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamunicipal,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamunicipal,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
@@ -40,6 +40,31 @@ class ViewCreditsController < ApplicationController
     pdf = CaratulaPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
+  
+  def caratulamunicipal
+    pdf = CaratulaMunicipalPdf.new(@credit)
+    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+  end
+  
+  def contratomunicipal
+    if (@credit.fecha_de_contrato.nil?)
+      @credit.update(fecha_de_contrato:Time.now)
+    end
+    if @credit.payments.count==0
+      getArreglo()
+      n = 0
+      @datos.each do |d|
+        n += 1
+        payment_v = Payment.create(fecha_de_pago:d[1],recibo:"#{n}/#{@datos.count}",estatus:0,importe:d[6],credit:@credit, pago:0, interes:0,fecha_de_corte:d[8],fecha_de_impresion:d[9])
+        payment_v.delay(run_at:d[8]).cargar_interes
+      end
+    end
+    
+    #pdf= Prawn:: Document.new(@credit)
+    pdf = ContratoMunicipalPdf.new(@credit)
+    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+  end
+  
   def contrato
     if (@credit.fecha_de_contrato.nil?)
       @credit.update(fecha_de_contrato:Time.now)
@@ -53,7 +78,9 @@ class ViewCreditsController < ApplicationController
         payment_v.delay(run_at:d[8]).cargar_interes
       end
     end
+      
     pdf = ContratoPdf.new(@credit)
+     
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   def entrevista
@@ -67,6 +94,12 @@ class ViewCreditsController < ApplicationController
   def corrida
     getArreglo()
     pdf = CorridaPdf.new(@credit,@arreglo)
+    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+  end
+  
+  def corridamunicipal
+    getArreglo()
+    pdf = CorridaMunicipalPdf.new(@credit,@arreglo)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -176,7 +209,7 @@ class ViewCreditsController < ApplicationController
     return fechas
   end
  def set_credit
-      @credit = Credit.find(params[:clave])
+        @credit = Credit.find(params[:clave])
  end
  def set_credits
       @credit = Credit.find(params[:id])
