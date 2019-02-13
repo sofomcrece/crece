@@ -1,5 +1,5 @@
 class ViewCreditsController < ApplicationController
-   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamunicipal,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamunicipal,:documentos, :getFecha]
+   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamun,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
@@ -41,8 +41,8 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
-  def caratulamunicipal
-    pdf = CaratulaMunicipalPdf.new(@credit)
+  def caratulamun
+    pdf = CaratulamunPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -91,15 +91,16 @@ class ViewCreditsController < ApplicationController
     pdf = PolizaPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
+  
   def corrida
     getArreglo()
     pdf = CorridaPdf.new(@credit,@arreglo)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
-  def corridamunicipal
+  def corridamun
     getArreglo()
-    pdf = CorridaMunicipalPdf.new(@credit,@arreglo)
+    pdf = CorridamunPdf.new(@credit,@arreglo)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -160,11 +161,19 @@ class ViewCreditsController < ApplicationController
     @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
     #@interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
     @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
+    if @credit.product.comision_apert >0
+      @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100)))
+      @iva = @interes*(16/100)
+    else
+      @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
+      @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
+    end
     #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
-    @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
+    
+    @com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
     @datos = []
     @arreglo = []
-    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES", "PAGO TOTAL", "SALDO FINAL"])
+    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
         
@@ -176,9 +185,9 @@ class ViewCreditsController < ApplicationController
       puts fecha
       puts fecha_de_corte
       puts fecha_de_impresion  
-      #              1      2                  3         4       5     6      7                         8                9                 10
-      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+      #              1      2                  3         4       5     6      7           8             9                 10              11
+      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
     end
     puts "=========================================================================================================================================="
   end

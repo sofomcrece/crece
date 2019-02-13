@@ -1,4 +1,4 @@
-class CaratulaMunicipalPdf < Prawn::Document
+class CaratulamunPdf < Prawn::Document
   def initialize(credit)
     super(:margin => [0,0,0,0])
     @credit = credit 
@@ -14,6 +14,7 @@ class CaratulaMunicipalPdf < Prawn::Document
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))))}",:size=>9, :at => [440,610]
       draw_text  "24 quincenas",:size=>9, :at => [100,570]
+      draw_text  "#{'%.2f' % @credit.product.comision_apert}%",:size=>9, :at => [175,531]
       draw_text  "dias #{Payout.array_to_text(@credit.product.payout.getDays)}",:size=>9, :at => [280,579]
       draw_text  "dias #{Payout.array_to_text(@credit.product.payout.getFlow)} de cada #{@credit.product.payout.type_payout==0?"semana":@credit.product.payout.type_payout==1?"mes":"año"}",:size=>9, :at => [260,570]
       draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
