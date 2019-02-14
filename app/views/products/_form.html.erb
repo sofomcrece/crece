@@ -117,6 +117,16 @@
           <%= f.label :etiqueta_plural,'Etiqueta Plural' %>
           <%= f.text_field :etiqueta_plural %>
       </div>
+       <div class="field">
+         <div class="col s11 m11 l11 ">
+            <%= f.label :comision_apert,'Comisión por Apertura' %>
+            <%= f.number_field :comision_apert, :step => 'any' %>
+          </div>
+          <div class="col s1 m1 l1 valign-wrapper">
+          <h5 class="valign">%</h5>
+        </div>
+      
+      </div>
   </div>
       <div class="actions">
         <%= f.submit 'Guardar' %>

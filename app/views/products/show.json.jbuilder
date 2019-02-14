@@ -1,4 +1,4 @@
-json.extract! @product, :id, :nombre_del_producto, :registro_del_contrado_de_adhesion, :plazo_de_prestamo, :numero_de_pagos_a_realizar, :taza_de_interes_ordinaria, :taza_de_interes_moratoria, :cat_sin_iva, :numero_de_meses_de_sueldo_para_prestamo, :created_at, :updated_at
+json.extract! @product, :id, :nombre_del_producto, :registro_del_contrado_de_adhesion, :plazo_de_prestamo, :numero_de_pagos_a_realizar, :taza_de_interes_ordinaria, :taza_de_interes_moratoria, :cat_sin_iva, :numero_de_meses_de_sueldo_para_prestamo, :comision_apert, :created_at, :updated_at
 fa = Payment.select(:fecha_de_impresion).joins(:credit=>:product).where("credits.status = ? ",1 ).where("products.id = ? ", @product.id).uniq.order(:fecha_de_impresion)
 while (fa.last.fecha_de_impresion <= Time.now)
    fa << Payment.new(fecha_de_impresion:Auxiliar.getArreglo(@product,fa.last.fecha_de_impresion)["corte"])

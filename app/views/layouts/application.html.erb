@@ -319,6 +319,7 @@
     });
      $scope.tipo = ($scope.agente_empresa == 1)? "Agente": "Empresa";
   }
+  
   $http.get("/branch_offices.json")
   .success(function(data){
     console.log(data);

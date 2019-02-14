@@ -8,12 +8,13 @@ wb.styles do |style|
     sheet.add_row ["CLIENTE",@customer.nombre_completo_deudor]
     sheet.add_row [""]
     sheet.add_row ["DETALLE MOVIMIENTOS"]
-    sheet.add_row ["FECHA DE OPERACION","FOLIO PRESTAMO","FECHA RECIBO","MOVIMIENTO","PRESTAMO","PAGO","SALDO"], style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+    sheet.add_row ["FECHA DE OPERACION","FOLIO PRESTAMO","RECIBO","FECHA RECIBO","MOVIMIENTO","PRESTAMO","PAGO","SALDO"], style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
     @customer.credits.where("credits.status =  1 or credits.status =  3").each do |credit|
       acu = 0
       sheet.add_row [
       credit.fecha_de_contrato,
       credit.id,
+      "",
       "",
       "PRESTAMO",
       credit.monto_solicitud*(1+(credit.product.taza_de_interes_ordinaria/100)),
@@ -25,6 +26,7 @@ wb.styles do |style|
           sheet.add_row [
               t.updated_at,
               credit.id,
+              t.id,
               t.payment.fecha_de_pago,
               "ABONO A PRESTAMO",
               "",
