@@ -29,12 +29,12 @@
     <%=@product.payout.nombre %>
   </p>
   <p>
-    <strong>Tasa de interes ordinaria:</strong>
+    <strong>Tasa de interés ordinaria:</strong>
     <%= @product.taza_de_interes_ordinaria %>%
   </p>
   
   <p>
-    <strong>Tasa de interes moratoria:</strong>
+    <strong>Tasa de interés moratoria:</strong>
     <%= @product.taza_de_interes_moratoria %>%
   </p>
   
@@ -44,7 +44,7 @@
   </p>
   
   <p>
-    <strong>Numero de meses de sueldo para prestemo:</strong>
+    <strong>Numero de meses de sueldo para préstamo:</strong>
     <%= @product.numero_de_meses_de_sueldo_para_prestamo %>
   </p>
   <p>
@@ -52,14 +52,23 @@
     <%= @product.plazo %>
   </p>
   <p>
-    <strong>Interes moratorio aplicable:</strong>
+    <strong>Interés moratorio aplicable:</strong>
     <%= @product.interes_moratorio_aplicable %>%
   </p>
   
+<<<<<<< Updated upstream
    <p>
     <strong>Comisión por Apertura:</strong>
     <%= @product.comision_apert %>%
   </p>
+=======
+  <p>
+    <strong>Comisión por Apertura:</strong>
+    <%= @product.comision_apert %>%
+  </p>
+  
+  
+>>>>>>> Stashed changes
 </div>
 <%= link_to 'Editar', edit_product_path(@product),class:"crud-links" %> |
 <%= link_to 'Atras', products_path,class:"crud-links" %>

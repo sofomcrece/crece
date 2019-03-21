@@ -89,6 +89,9 @@
   };
   
 }])
+
+
+
 .controller("recibos",["$scope","$http",function($scope,$http){
   $scope.sucursales=[];
   $scope.agente_empresa=1;
@@ -99,10 +102,12 @@
   $scope.fecha=[];
   $scope.fechas_de_pago = [];
   $scope.pagos = [];
- $scope.fechas=[];
- $scope.fechas.selected=[];
-  $scope.seguimiento_datos = [];
+  $scope.fechas=[];
+  $scope.fechas.selected=[];
   $scope.seguimiento
+  $scope.seguimiento_datos = [];
+  $scope.tablero
+  $scope.tablero_datos = [];
   
   $scope.descargar_calificaciones = function(){
     <% unless current_user.nil?%>
@@ -141,6 +146,24 @@
     
      window.location.href = url
   }
+  
+  
+  $scope.descargar_tablero = function(){
+      var url ="/reports/tablero.xlsx?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    if (!($scope.agente_empresa == "" ||$scope.agente_empresa ==undefined))
+      url = url + "&tipo="+$scope.agente_empresa;
+    if (!($scope.productos.selected == "" ||$scope.productos.selected ==undefined))
+      url = url + "&producto="+$scope.productos.selected;
+    if (!($scope.fecha_encabezado == "" ||$scope.fecha_encabezado ==undefined))
+      url = url + "&fecha_encabezado="+$scope.fecha_encabezado;
+    
+     window.location.href = url
+  }
+  
   $scope.descargar_excel = function(){
      var url ="/reports/seguimiento.xlsx?"
     if (!($scope.fechas_de_pago.selected == ""))
@@ -225,6 +248,26 @@
     .error(function(data){
       console.log(data);
     });
+  } 
+   $scope.get_tablero = function(){
+    var url ="/reports/tablero.json?"
+    if (!($scope.fechas_de_pago.selected == ""))
+      url = url + "fecha=" + $scope.fechas_de_pago.selected;
+    if (!($scope.hijos.selected == "" ||$scope.hijos.selected ==undefined))
+      url = url + "&id=" + $scope.hijos.selected;
+    url = url + "&tipo="+$scope.agente_empresa;
+    url = url + "&producto="+$scope.productos.selected;
+    console.log(url);
+    $http.get(url)
+    .success(function(data){
+      $scope.tablero = data;
+      $scope.tablero_datos = data;
+      console.log(data);
+    })
+    .error(function(data){
+      console.log(data);
+    });
+    
   }
   $scope.get_seguimiento_quincenal = function(){
     var url ="/reports/seguimiento_quincenal.json?"

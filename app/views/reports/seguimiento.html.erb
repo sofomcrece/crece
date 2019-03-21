@@ -11,7 +11,7 @@
                 <option ng-repeat="option in sucursales" value="{{option.id}}">{{option.nombre}}</option>
             </select>
               <label>
-                Seleciona...
+                Selecciona...
               </label>
               </br>
                    <p>
@@ -51,6 +51,7 @@
             
             <div class = "col s12">
                 {{seguimiento_datos.length}} filas
+                
                 <table class="striped" style="font-size:12px;">
                     <thead>
                         <th>
@@ -116,10 +117,12 @@
                             <td>{{fila.empresa}}</td>
                             <td>{{fila.numero_de_pago}}</td>
                             <td>{{fila.numero_de_creditos}}</td>
+                           
                         </tr>
                     </tbody>
                 </table>
-                <a class="waves-effect waves-light btn" ng-click="descargar_excel()">Descargar en Excel</a>                
+                <a class="waves-effect waves-light btn" ng-click="descargar_excel()">Descargar en Excel</a>      
+                
             </div>
     </div>
 </div>
