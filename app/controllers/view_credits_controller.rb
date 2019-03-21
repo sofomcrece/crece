@@ -1,9 +1,5 @@
 class ViewCreditsController < ApplicationController
-<<<<<<< Updated upstream
    before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamun,:documentos, :getFecha]
-=======
-   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamunicipal,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamunicipal,:documentos, :getFecha]
->>>>>>> Stashed changes
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
@@ -45,13 +41,8 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
-<<<<<<< Updated upstream
   def caratulamun
     pdf = CaratulamunPdf.new(@credit)
-=======
-  def caratulamunicipal
-    pdf = CaratulaMunicipalPdf.new(@credit)
->>>>>>> Stashed changes
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -107,15 +98,9 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
-<<<<<<< Updated upstream
   def corridamun
     getArreglo()
     pdf = CorridamunPdf.new(@credit,@arreglo)
-=======
-  def corridamunicipal
-    getArreglomun()
-    pdf = CorridamunicipalPdf.new(@credit,@arreglomun)
->>>>>>> Stashed changes
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -176,24 +161,19 @@ class ViewCreditsController < ApplicationController
     @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
     #@interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
     @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
-    if @credit.product.comision_apert >0
-      @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100)))
-      @iva = @interes*(16/100)
-    else
+    #if @credit.product.comision_apert >0
+      #@interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100)))
+      #@iva = @interes*(16/100)
+    #else
       @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
       @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
-    end
+    #end
     #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
     
-    @com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
+    #@com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
     @datos = []
     @arreglo = []
-<<<<<<< Updated upstream
-    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
-=======
-    #@arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
     @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","PAGO TOTAL", "SALDO FINAL"])
->>>>>>> Stashed changes
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
         
@@ -206,15 +186,10 @@ class ViewCreditsController < ApplicationController
       puts fecha_de_corte
       puts fecha_de_impresion  
       #              1      2                  3         4       5     6      7           8             9                 10              11
-<<<<<<< Updated upstream
-      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
-=======
       #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      #@arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
       @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
       @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
->>>>>>> Stashed changes
+      #@arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
     end
     puts "=========================================================================================================================================="
   end
