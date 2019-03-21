@@ -111,11 +111,11 @@ class Auxiliar < ActiveRecord::Base
     
     def self.tablero(padre,fecha,producto)
       credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where("credits.status = ? or credits.status = ?",1,3).order(:apellido_paterno)
-      if self.tablero_guardado_contador(credits,fecha) > 0
-        self.tablero_por_creditos_guardados(credits,fecha)
+      if self.seguimiento_guardado_contador(credits,fecha) > 0
+        self.seguimiento_por_creditos_guardados(credits,fecha)
       else
         credits = credits.where(status:1)
-        self.tablero_por_creditos(credits,fecha)
+        self.seguimiento_por_creditos(credits,fecha)
       end
     end
 
