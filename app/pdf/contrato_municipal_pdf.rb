@@ -17,6 +17,10 @@ class ContratoMunicipalPdf < Prawn::Document
    
  
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
+<<<<<<< Updated upstream
+=======
+    #monto_a_pagar= cap_mas_int + iva_del_interes 
+>>>>>>> Stashed changes
     
     pago_parcial=monto_a_pagar/24
     
@@ -30,7 +34,11 @@ class ContratoMunicipalPdf < Prawn::Document
     text "CLAUSULAS" , :align  => :center, :style=> :bold
      text " "
     
+<<<<<<< Updated upstream
     text "PRIMERA: 'El Acreedor' ha convenido otorgar un crédito por la cantidad de  #{@credit.product.payout.periocidad}) y 'El Deudor' en este acto da en garantía un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
+=======
+    text "PRIMERA: 'El Acreedor' ha convenido otorgar un crédito por la cantidad de  $ #{@credit.monto_solicitud}(#{Dinero.to_words(@credit.monto_solicitud)} pesos 00/100 M.N) y 'El Deudor' en este acto da en garantía un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
+>>>>>>> Stashed changes
     text " "
     text "SEGUNDA: El importe que acepta y se obliga a pagar 'El Deudor', será el estipulado en RECIBO expedido por 'EL Acreedor' y las fechas de pago, serán las estipuladas en este contrato, dicho recibo será firmado por 'El Deudor' o por las personas por él autorizadas.",:size =>10,:align => :justify 
     text " "
@@ -40,8 +48,13 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "QUINTA: En caso de incumplimiento de las obligaciones que se mencionan en la cláusula cuarta, las sumas vencidas del capital causarán  intereses moratorios desde el día siguiente al de su vencimiento y durante el tiempo y en la medida en que no se ha pagada correctamente, a una tasa de interés moratorio fija de 193.57 % anual, estos intereses se devengarán y vencerán diariamente. Los intereses moratorios se calcularán multiplicando el saldo vencido por la tasa de interés moratoria efectiva desde el día inmediato siguiente de su vencimiento hasta el de su pago total.",:size =>10,:align => :justify
     text " "
+<<<<<<< Updated upstream
     text "SEXTA: 'El Acreedor' cobrará al 'El Deudor' una comisión por administración de cartera, dicha comisión se calculará con base en el monto total del crédito otorgado, por un porcentaje correspondiente al 6.75% del mismo. Los pagos de la comisión por administración de cartera se realizarán el cargo de forma quincenal.",:size =>10,:align => :justify
     text " Interes= #{el_interes},   cap_mas_int=#{cap_mas_int},  iva_Int=#{iva_del_interes},  com_apert=#{com_por_apert} "
+=======
+    text "SEXTA: 'El Acreedor' cobrará a 'El Deudor' una comisión por administración de cartera, dicha comisión se calculará con base en el monto total del crédito otorgado, por un porcentaje correspondiente al 6.75% del mismo. Los pagos de la comisión por administración de cartera se realizarán el cargo de forma quincenal.",:size =>10,:align => :justify
+    text " "
+>>>>>>> Stashed changes
     text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de $ #{monto_a_pagar}, (#{Dinero.to_words(monto_a_pagar)} pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{pago_parcial}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N",:size =>10,:align => :justify
     text " "
     text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No 0215861814, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify

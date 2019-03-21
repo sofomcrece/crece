@@ -112,7 +112,7 @@ class Product < ActiveRecord::Base
                Coman.create(c:"fecha concordo producto.id#{self.id}")
                Payment.joins(:credit).where("credits.product_id = ?",self.id)
                .where("payments.fecha_de_pago <= ?",fecha).where.not(estatus:2).each do |p|
-                    p.cargar_interes
+                   p.cargar_interes
                end
                
                almacenar_seguimientos(fecha)

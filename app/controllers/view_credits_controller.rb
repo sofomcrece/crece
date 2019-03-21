@@ -1,5 +1,9 @@
 class ViewCreditsController < ApplicationController
+<<<<<<< Updated upstream
    before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamun,:documentos, :getFecha]
+=======
+   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamunicipal,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamunicipal,:documentos, :getFecha]
+>>>>>>> Stashed changes
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
@@ -41,8 +45,13 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
+<<<<<<< Updated upstream
   def caratulamun
     pdf = CaratulamunPdf.new(@credit)
+=======
+  def caratulamunicipal
+    pdf = CaratulaMunicipalPdf.new(@credit)
+>>>>>>> Stashed changes
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -98,9 +107,15 @@ class ViewCreditsController < ApplicationController
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
+<<<<<<< Updated upstream
   def corridamun
     getArreglo()
     pdf = CorridamunPdf.new(@credit,@arreglo)
+=======
+  def corridamunicipal
+    getArreglomun()
+    pdf = CorridamunicipalPdf.new(@credit,@arreglomun)
+>>>>>>> Stashed changes
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -173,7 +188,12 @@ class ViewCreditsController < ApplicationController
     @com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
     @datos = []
     @arreglo = []
+<<<<<<< Updated upstream
     @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
+=======
+    #@arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
+    @arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","PAGO TOTAL", "SALDO FINAL"])
+>>>>>>> Stashed changes
     puts "=========================================================================================================================================="
     @credit.product.numero_de_pagos_a_realizar.times do |n|
         
@@ -186,15 +206,107 @@ class ViewCreditsController < ApplicationController
       puts fecha_de_corte
       puts fecha_de_impresion  
       #              1      2                  3         4       5     6      7           8             9                 10              11
+<<<<<<< Updated upstream
       @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
       @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+=======
+      #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      #@arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+>>>>>>> Stashed changes
     end
     puts "=========================================================================================================================================="
   end
   
   
-  
-  
+  def getArreglomun
+     if (@credit.fecha_de_contrato.nil?)
+      fecha = Time.now.to_date
+    else
+      fecha = @credit.fecha_de_contrato.to_date
+    end
+    
+    cantidad= @credit.product.payout.getDays.length
+    fin_mes= @credit.product.payout.getDays.include? "-1"
+    dias=  @credit.product.payout.getDays - ["-1"]
+    cortes =  @credit.product.payout.getFlow.sort!
+    dias_int =[]
+    cortes_int = []
+    dias.each do |i|
+      dias_int.push(i.to_i)
+    end
+    dias_int.sort!
+    dias.push("-1") if fin_mes
+    dia_inicial = nil;
+    cortes.each do |i |
+      cortes_int.push(i.to_i)
+    end
+    cortes_int.sort!
+      cont = 0
+      dias.each do |dia|
+         dia= fecha.end_of_month.day if dia=="-1"
+         if fecha.day<dia.to_i
+           if fecha.day <inferior(dia,cortes_int)
+            dia_inicial=cont
+            puts "dia #{dia}"
+            break
+           end
+         end
+         cont +=1
+      end
+        
+        if dia_inicial==nil
+          dia_inicial = 0
+        end
+        puts "dia inicial #{dia_inicial}"
+        puts dias
+    #@total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))
+    @total= @credit.monto_solicitud.to_f 
+    @pago = (@total/@credit.product.numero_de_pagos_a_realizar)
+    @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
+    #@interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
+    @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
+    if @credit.product.comision_apert >0
+      @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100)))
+      @iva = @interes*(16/100)
+    else
+      @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
+      @iva = @interes*(@credit.product.taza_de_interes_ordinaria - 16)/100
+    end
+    #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
+    
+    @com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
+    @datos = []
+    @arreglomun = []
+    #@arreglomun.push(["PERIODOS", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","COM_APERT","PAGO TOTAL", "SALDO FINAL"])
+    @arreglomun.push(["PERIODOS", "FECHA","SALDO INICIAL",  "AMORTIZACIÓN", "INTERES", "IVA_INTERES","SEGURO_VIDA","COM_APERT","PAGO TOTAL"])
+    puts "=========================================================================================================================================="
+    totalcont=(@credit.product.numero_de_pagos_a_realizar) +1
+    totalcont.times   do |n|
+        
+        aux= getFecha(dias,dia_inicial,n,fecha,cortes_int)
+        fecha = aux["pago"]
+        fecha_de_corte = aux["corte"]
+        fecha_de_impresion = aux["impresion"]
+     
+     
+     xint=@pago * (@credit.product.taza_de_interes_ordinaria / 100)
+     xiva=xint * 0.16
+      @com_apert = (@pago + xint) * (@credit.product.comision_apert / 100) 
+     
+      puts fecha
+      puts fecha_de_corte
+      puts fecha_de_impresion  
+      #              1      2                  3         4       5     6      7           8             9                 10              11
+      #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      #@arreglomun.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+      @datos.push([n,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,@com_apert,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      @arreglomun.push([ "#{n}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money((@total/@credit.product.numero_de_pagos_a_realizar).round(2))}","#{Dinero.to_money(xint)}","#{Dinero.to_money((xiva))}","#{Dinero.to_money(0)}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago+xint+xiva+@com_apert)}"])
+    end
+    puts "=========================================================================================================================================="
+  end
+
   def getFecha(dias,inicio,contador,fecha,cortes)
     fechas = Hash.new
     contador = contador + inicio

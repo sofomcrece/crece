@@ -12,21 +12,36 @@
 </div>
 
 <div class="row">
+<<<<<<< Updated upstream
     <% if @credit.product_id ==6 %>
       <a href=<%="/view_credits/contratomunicipal?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Contrato</span></a>
     <%else%>  
+=======
+  
+   <% if @credit.product_id ==6 %>
+      <a href=<%="/view_credits/contratomunicipal?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Contrato</span></a>
+    <%else%>
+>>>>>>> Stashed changes
       <a href=<%="/view_credits/contrato?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Contrato</span></a>
     <%end%>
     
    <% if @credit.product_id ==6 %>
+<<<<<<< Updated upstream
       <a href=<%="/view_credits/corridamun?clave=#{@credit.id}"%> target = "_blank"> <span class="waves-effect waves-light btn">Corrida</span></a>
+=======
+      <a href=<%="/view_credits/corridamunicipal?clave=#{@credit.id}"%> target = "_blank"> <span class="waves-effect waves-light btn">Corrida</span></a>
+>>>>>>> Stashed changes
     <%else%> 
       <a href=<%="/view_credits/corrida?clave=#{@credit.id}"%> target = "_blank"> <span class="waves-effect waves-light btn">Corrida</span></a>
     <%end%> 
     <a href=<%="/view_credits/entrevista?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Entrevista</span></a>
     
     <% if @credit.product_id ==6 %>
+<<<<<<< Updated upstream
         <a href=<%="/view_credits/caratulamun?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Carátula</span></a>
+=======
+        <a href=<%="/view_credits/caratulamunicipal?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Carátula</span></a>
+>>>>>>> Stashed changes
      <%else%>
          <a href=<%="/view_credits/caratula?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Carátula</span></a>
      <%end%>

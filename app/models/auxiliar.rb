@@ -97,7 +97,9 @@ class Auxiliar < ActiveRecord::Base
       return arr
       
     end
+    
     def self.seguimiento(padre,fecha,producto)
+      
       credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where("credits.status = ? or credits.status = ?",1,3).order(:apellido_paterno)
       if self.seguimiento_guardado_contador(credits,fecha) > 0
         self.seguimiento_por_creditos_guardados(credits,fecha)
@@ -106,6 +108,17 @@ class Auxiliar < ActiveRecord::Base
         self.seguimiento_por_creditos(credits,fecha)
       end
     end
+    
+    def self.tablero(padre,fecha,producto)
+      credits = padre.credits.select(Credit.column_names-["pdf64"]).where(product:producto.to_i).where("credits.status = ? or credits.status = ?",1,3).order(:apellido_paterno)
+      if self.tablero_guardado_contador(credits,fecha) > 0
+        self.tablero_por_creditos_guardados(credits,fecha)
+      else
+        credits = credits.where(status:1)
+        self.tablero_por_creditos(credits,fecha)
+      end
+    end
+
     def self.generador_de_tuplas(credit,fecha)
         payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         fila = Hash.new()
@@ -135,6 +148,43 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha_corte"] = fecha
         return fila
     end
+    
+     def self.generador_de_tuplas_tablero(credit,fecha)
+        payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+        fila = Hash.new()
+        fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
+        fila["fecha"] = credit.fecha_de_contrato
+        fila["monto_solicitud"] = credit.monto_solicitud
+        fila["monto_a_pagar"] = credit.payments.sum(:importe)
+        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+        fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Ticket.joins(:payment).where("payments.credit_id = ? and payments.fecha_de_corte = ? and tickets.status = 0 and tickets.updated_at < ?", credit.id, fecha,fecha).sum(:cantidad) #Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
+        pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
+        #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
+        fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
+        fila["interes_moratorio"] = fila["atrasado"]==0? 0: Payment.where("credit_id = ? and fecha_de_corte <= ? and interes_flag = false", credit.id, fecha).sum(:interes).to_s.to_d
+        fila["total_a_cobrar"] =  fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
+        fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_corte > ? and tickets.status = ?",credit.id, fecha,0).sum(:cantidad)
+        #fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
+        fila["cobrado"] = Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
+        fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
+        
+        fila["empresa"] = credit.padre.nombre_completo
+        fila["numero_de_pago"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].recibo unless Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].nil?
+        fila["numero_de_creditos"] = credit.customer.credits.where("credits.status = ? or credits.status = ? ",1,3).count 
+        fila["tipo"] = 1
+        #fila["payment_ref"] = payment.id
+        fila["credit_id"] = credit.id 
+        fila["fecha_corte"] = fecha
+        
+        fila["al_corriente"] =pagos.where("estatus=0").count
+        fila["atrasados"] =pagos.where("estatus=1").count
+        fila["Pagados"] =pagos.where("estatus=2").count
+        #fila["periodos_venc"] = 0
+        
+        return fila
+    end
+    
     def self.seguimiento_por_creditos(credits,fecha)
       tabla = []
       credits.each do |credit|
@@ -142,11 +192,29 @@ class Auxiliar < ActiveRecord::Base
       end
      return tabla
     end
+    
+     def self.tablero_por_creditos(credits,fecha)
+      tabla = []
+      credits.each do |credit|
+        tabla << self.generador_de_tuplas_tablero(credit,fecha)
+      end
+     return tabla
+    end
+    
     def self.seguimiento_guardado_contador(credits,fecha)
       count = 0
       credits.each do |credit|
         seguimiento = Seguimiento.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
         count += 1 unless seguimiento.nil?
+      end
+      return count
+    end
+    
+    def self.tablero_guardado_contador(credits,fecha)
+      count = 0
+      credits.each do |credit|
+        tablero = Tablero.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
+        count += 1 unless tablero.nil?
       end
       return count
     end
@@ -191,6 +259,47 @@ class Auxiliar < ActiveRecord::Base
      return tabla
     end
     
+    def self.tablero_por_creditos_guardados(credits,fecha)
+      tabla = []
+      credits.each do |credit|
+        tablero  = Tablero.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
+        if tablero.nil?
+          next if credit.status == 3
+          tabla << self.generador_de_tuplas_tablero(credit,fecha)
+          next
+        end
+        fila = Hash.new()
+        fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
+        fila["fecha"] = credit.fecha_de_contrato
+        fila["monto_solicitud"] = credit.monto_solicitud
+        fila["monto_a_pagar"] = credit.payments.sum(:importe)
+        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+        fila["pagar"] = tablero.a_pagar
+        pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
+        #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
+        fila["atrasado"] = tablero.atrasado
+        fila["interes_moratorio"] = tablero.interés_moratorio
+        fila["total_a_cobrar"] =  tablero.total_a_cobrar
+        quitar =  (credit.id == 982 and fecha == "13/10/2018".to_date)? 20: 0
+        fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_corte > ? and tickets.status = ? and tickets.updated_at > ?",credit.id, fecha, 0, fecha).sum(:cantidad) - quitar
+        #fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
+        fila["cobrado"] = Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
+        fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
+       
+        fila["empresa"] = credit.padre.nombre_completo
+        fila["numero_de_pago"] = tablero.no_pago
+        fila["numero_de_creditos"] = tablero.no_creditos
+        fila["tipo"] = 2
+        #fila["payment_ref"] = payment.id
+        fila["credit_id"] = credit.id 
+        fila["fecha_corte"] = fecha
+        fila["estatus"] = Payment.select(:estatus)
+        tabla << fila
+      end
+     return tabla
+    end
+    
     def self.vencimientos
         Expire.create(comentarios:"vencimiento",fecha:Time.now.to_date,afectados:0) 
         Coman.create(c:"entro  Auxiliar.vencimientos 2")
@@ -198,7 +307,6 @@ class Auxiliar < ActiveRecord::Base
           p.vencer
         end
     end
-    
     
     def self.getArreglo(product,fecha)
       puts "get arreglo"
@@ -242,9 +350,6 @@ class Auxiliar < ActiveRecord::Base
           aux= Auxiliar.getFecha(dias,dia_inicial,1,fecha,cortes_int,@product)
 
   end
-  
-  
-  
   
   def self.getFecha(dias,inicio,contador,fecha,cortes,product)
     puts "get fecha"

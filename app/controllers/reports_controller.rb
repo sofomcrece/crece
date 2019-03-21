@@ -73,6 +73,7 @@ class ReportsController < ApplicationController
         }
     end
   end
+  
   def seguimiento_conf
         require 'json'
         unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
@@ -85,6 +86,8 @@ class ReportsController < ApplicationController
          @resp["datos"] = get_seguimiento_de_cobranza(@padre,@fecha,@producto)
         end
   end
+ 
+
   def seguimiento
     respond_to do |format|
         format.html {  }
@@ -96,6 +99,39 @@ class ReportsController < ApplicationController
         
     end
   end
+  
+  
+  def tablero_conf
+        require 'json'
+        unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
+         @fecha = params[:fecha].to_date
+         @padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
+         @producto = params[:producto].to_i
+         @resp = Hash.new("respuesta")
+         @resp["nombre_empresa"] = @padre.nombre_completo
+         @resp["fecha"] = @fecha
+         @resp["datos"] = get_seguimiento_tablero(@padre,@fecha,@producto)
+        end
+  end
+  
+  def tablero
+      
+    respond_to do |format|
+        format.html {  }
+        format.json { self.tablero_conf }
+        format.xlsx{ 
+            self.tablero_conf 
+            @fecha_encabezado = params[:fecha_encabezado] unless params[:fecha_encabezado].nil? or params[:fecha_encabezado] == ""
+        }
+        
+    end
+  end
+  
+  
+  
+
+
+  
   def seguimiento_quincenal
     respond_to do |format|
         format.html {  }
@@ -133,19 +169,8 @@ class ReportsController < ApplicationController
         }
     end
   end
-  def tablero 
-     require 'json'
-     unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
-     fecha = params[:fecha].to_date
-     padre = params[:tipo].to_i==1? Agent.find(params[:id].to_i) : Company.find(params[:id].to_i)
-     producto = params[:producto].to_i
-     @resp =Hash.new
-     @resp["fecha"]=fecha
-     @resp["padre"]=padre
-     @resp["producto"]=producto
-     get_tablero(padre,fecha,producto)
-    end
-  end
+  
+ 
   def pronostico_de_cobranza
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all
@@ -158,20 +183,13 @@ class ReportsController < ApplicationController
       @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
-  
-  def get_tablero(padre,fecha,producto)
-    info = Hash.new("datos")
-    tabla = get_seguimiento_de_cobranza(padre,fecha,producto)
-    
-    ac=0
-    info["a_cobrar_1"]=0
-    info["cobrado_1"]=0
-    tabla.each do |fila|
-        info["a_cobrar_1"] = info["a_cobrar_1"].to_d + fila["pagar"].to_d + fila["atrasado"].to_d
-        info["cobrado_1"] = info["cobrado_1"].to_d + fila["cobrado"].to_d
-    end
-  end
   def get_seguimiento_de_cobranza(padre,fecha,producto)
     Auxiliar.seguimiento(padre,fecha,producto)
   end
+  
+  def get_seguimiento_tablero(padre,fecha,producto)
+    Auxiliar.tablero(padre,fecha,producto)
+    
+  end
+ 
 end
