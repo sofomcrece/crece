@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'reports/clientes'
   get 'reports/historial_de_recibos'
   get 'reports/seguimiento_quincenal'
-  get 'reports/tablero'
+  get 'reports/num_tablero'
   get 'reports/cobranza'
   get 'reports/pronostico_de_cobranza'
   get 'reports/reporte_de_pagos'

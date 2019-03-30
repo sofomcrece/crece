@@ -51,7 +51,7 @@ class ViewCreditsController < ApplicationController
       @credit.update(fecha_de_contrato:Time.now)
     end
     if @credit.payments.count==0
-      getArreglo()
+      getArreglomun()
       n = 0
       @datos.each do |d|
         n += 1
@@ -99,8 +99,8 @@ class ViewCreditsController < ApplicationController
   end
   
   def corridamun
-    getArreglo()
-    pdf = CorridamunPdf.new(@credit,@arreglo)
+    getArreglomun()
+    pdf = CorridamunPdf.new(@credit,@arreglomun)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
@@ -201,7 +201,6 @@ class ViewCreditsController < ApplicationController
     else
       fecha = @credit.fecha_de_contrato.to_date
     end
-    
     cantidad= @credit.product.payout.getDays.length
     fin_mes= @credit.product.payout.getDays.include? "-1"
     dias=  @credit.product.payout.getDays - ["-1"]
