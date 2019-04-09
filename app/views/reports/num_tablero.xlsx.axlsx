@@ -1,20 +1,24 @@
 wb = xlsx_package.workbook
-@linea = 0
-@avance = 0
-@fecha='2019-01-31'
+    @linea = 0
+    @avance = 0
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
-        cartera1 = payments.sum(:importe) - payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
+        carterax = payments.where("estatus<?", 2).sum(:importe) - payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
+        cartera1 = payments.where("estatus<?", 2).sum(:importe) 
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
-        cant_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago<= ?",0,@fecha).count
-        imp_corrxcobrar = payments.joins(:payments=>:tickets).where("payments.estatus = ?",0).sum(:cantidad)
-        cant_corr_cobrado = payments.where("payments.estatus = ? and payments.updated_at> ?",2,@fecha).count
-        imp_corr_cobrado = payments.where("payments.estatus = ? and payments.updated_at> ?",2,@fecha).sum(:importe)
-        importe = payments.where("payments.fecha_de_pago = ?",@fecha).sum(:importe)
-        importe_vencido = payments.where("estatus = ?",1).sum(:importe)
-        cant_vencido = payments.where("estatus = ?",1).count
-        atrasado = 0
-        adelantado = payments.joins(:payments=>:tickets).where("tickets.status = ? and  payments.fecha_de_pago > ?",0,@fecha).sum(:cantidad)
+        cant_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).count
+        imp_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).sum(:importe)
+        cant_corr_cobrado = payments.where("payments.estatus = ? and fecha_de_pago<= ?",0,@fecha).count
+        imp_corr_cobrado = payments.where("payments.estatus = ? and fecha_de_pago<= ?",0,@fecha).sum(:importe)
+        cant_atrasxcobrar =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 1,@fecha).count
+        imp_atrasxcobrar =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 1,@fecha).sum(:cantidad)
+        cant_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 1,@fecha).count
+        imp_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 1,@fecha).sum(:cantidad)
+        cant_vencxcobrar =   payments.where("payments.estatus = ? and fecha_de_pago<= ?",1,@fecha).count
+        imp_vencxcobrar =  payments.where("payments.estatus = ? and fecha_de_pago<= ?",1,@fecha).sum(:importe)
+        cant_venc_cobrado =  payments.where("payments.estatus = ? and fecha_de_pago>= ?",1,@fecha).count
+        imp_venc_cobrado =  payments.where("payments.estatus = ? and fecha_de_pago>= ?",1,@fecha).sum(:importe)
+        
         return [
                 nombre,
                 cartera1,
@@ -23,42 +27,53 @@ def llenar_fila(creditos,nombre)
                 imp_corrxcobrar,
                 cant_corr_cobrado,
                 imp_corr_cobrado,
-                importe_vencido,
-                cant_vencido,
-                atrasado,
-                "=C#{@linea+@avance}+D#{@linea+@avance}",
-                0,
-                0,
-                "=F#{@linea+@avance}+G#{@linea+@avance}",
-                "=E#{@linea+@avance}-H#{@linea+@avance}",
-                adelantado,
-                creditos.count
+                cant_atrasxcobrar,
+                imp_atrasxcobrar,
+                cant_atras_cobrado,
+                imp_atras_cobrado,
+                cant_vencxcobrar,
+                imp_vencxcobrar,
+                cant_venc_cobrado,
+                imp_venc_cobrado
                 ]
+   
 end
 
 
 
 wb.add_worksheet(name: "numeros_tablero") do |sheet|
+    wb.styles do |style|
+    highlight_cell = style.add_style(bg_color: "FF5733")
+    border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
+    
+    title = wb.styles.add_style(:bg_color => "FFFF0000",
+                           :fg_color=>"#FF000000",
+                           :border=>Axlsx::STYLE_THIN_BORDER,
+                           :alignment=>{:horizontal => :center})
+
+    currency = wb.styles.add_style(:format_code=>"¥#,##0;[Red]¥-#,##0",
+                              :border=>Axlsx::STYLE_THIN_BORDER)
+    
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
     sheet.add_row ["NÚMEROS TABLERO AL #{@fecha}"]
     sheet.add_row [@fecha]
-    sheet.add_row ["","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS","","TOTAL",@fecha,"ATRASADO","TOTAL"], :height => 20
-    sheet.add_row ["AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","TOTAL",@fecha,"ATRASADO","TOTAL"], :height => 20
-    sheet.add_row ["","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","TOTAL",@fecha,"ATRASADO","TOTAL"], :height => 20
+    sheet.add_row ["","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title, currency]
+    sheet.add_row ["AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title, currency]
+    sheet.add_row ["","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"]
     @linea = 7
     @sucursales.each do |sucursal|
         @linea = @linea+@avance
         @avance = 0
         sucursal.agents.each do |agente|
             creditos = agente.credits.where("credits.status = ?",1)
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo)
+            sheet.add_row llenar_fila(creditos,agente.nombre_completo),:style=>[title, currency]
             @avance += 1
         end
         sucursal.companies.each do |empresa|
             creditos = empresa.credits.where("credits.status = ?",1)
-            sheet.add_row llenar_fila(creditos,empresa.nombre_completo)
+            sheet.add_row llenar_fila(creditos,empresa.nombre_completo),:style=>[title, currency]
             @avance += 1
         end
-       
+    end
     end
 end
