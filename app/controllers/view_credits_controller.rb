@@ -185,9 +185,9 @@ class ViewCreditsController < ApplicationController
       puts fecha
       puts fecha_de_corte
       puts fecha_de_impresion  
-      #              1      2                  3         4       5     6      7           8             9                 10              11
-      #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      #              1   2                         4       5          6      7           8                       9                 10            
       @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
       @arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
       #@arreglo.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
     end
@@ -272,11 +272,11 @@ class ViewCreditsController < ApplicationController
       puts fecha
       puts fecha_de_corte
       puts fecha_de_impresion  
-      #              1      2                  3         4       5     6      7           8             9                 10              11
-      #@datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      #@arreglomun.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
-      @datos.push([n,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@pago,@com_apert,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
-      @arreglomun.push([ "#{n}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money((@total/@credit.product.numero_de_pagos_a_realizar).round(2))}","#{Dinero.to_money(xint)}","#{Dinero.to_money((xiva))}","#{Dinero.to_money(0)}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago+xint+xiva+@com_apert)}"])
+      
+       #              1   2             3            4       5        6      7       8                       9                 10        11    
+      @datos.push([n+1,fecha,(@total-((n)*@pago)),@capital,@interes,@iva,@com_apert,@pago,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+      @arreglomun.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@capital.round(2))}","#{Dinero.to_money(@interes.round(2))}","#{Dinero.to_money(@iva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(((@total-((n)*@pago))-@pago).round(2))}"])
+    
     end
     puts "=========================================================================================================================================="
   end

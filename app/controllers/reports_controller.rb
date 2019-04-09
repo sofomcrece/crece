@@ -50,7 +50,6 @@ class ReportsController < ApplicationController
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-    
   end
   
   def estado_de_cuenta
