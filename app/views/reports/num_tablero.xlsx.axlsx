@@ -1,10 +1,10 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
+    @fecha="2019-03-15"
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
-        carterax = payments.where("estatus<?", 2).sum(:importe) - payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
-        cartera1 = payments.where("estatus<?", 2).sum(:importe) 
+        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ?", 0).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
         cant_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).count
         imp_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).sum(:importe)
@@ -43,35 +43,39 @@ end
 
 wb.add_worksheet(name: "numeros_tablero") do |sheet|
     wb.styles do |style|
-    highlight_cell = style.add_style(bg_color: "FF5733")
+    highlight_cell = style.add_style(bg_color: "F4A460")
     border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
     
-    title = wb.styles.add_style(:bg_color => "FFFF0000",
+    title = wb.styles.add_style(:bg_color => "F4A460",
                            :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
                            :alignment=>{:horizontal => :center})
+                           
+    linea = wb.styles.add_style(:bg_color => "F4A460",
+                           :fg_color=>"#FF000000",
+                           :alignment=>{:horizontal => :center})
 
-    currency = wb.styles.add_style(:format_code=>"¥#,##0;[Red]¥-#,##0",
+    currency = wb.styles.add_style(:format_code=>"#,##0;[Red]-#,##0",
                               :border=>Axlsx::STYLE_THIN_BORDER)
     
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
     sheet.add_row ["NÚMEROS TABLERO AL #{@fecha}"]
     sheet.add_row [@fecha]
-    sheet.add_row ["","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title, currency]
-    sheet.add_row ["AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title, currency]
-    sheet.add_row ["","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"]
+    sheet.add_row ["","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title,title,title,title,title,title,title,title,title,title,title]
+    sheet.add_row ["AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,linea,title,linea,linea,linea,linea,linea,linea,linea,linea,linea,linea]
+    sheet.add_row ["","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title,title,title,title,title,title,title,title,title,title,title]
     @linea = 7
     @sucursales.each do |sucursal|
         @linea = @linea+@avance
         @avance = 0
         sucursal.agents.each do |agente|
             creditos = agente.credits.where("credits.status = ?",1)
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo),:style=>[title, currency]
+            sheet.add_row llenar_fila(creditos,agente.nombre_completo),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
             @avance += 1
         end
         sucursal.companies.each do |empresa|
             creditos = empresa.credits.where("credits.status = ?",1)
-            sheet.add_row llenar_fila(creditos,empresa.nombre_completo),:style=>[title, currency]
+            sheet.add_row llenar_fila(creditos,empresa.nombre_completo),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
             @avance += 1
         end
     end
