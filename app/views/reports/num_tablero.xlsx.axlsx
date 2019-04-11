@@ -1,17 +1,17 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-    @fecha="2019-03-15"
+    @fecha="2019-01-15"
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ?", 0).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
-        cant_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).count
-        imp_corrxcobrar = payments.where("payments.estatus = ? and fecha_de_pago>= ?",0,@fecha).sum(:importe)
-        cant_corr_cobrado = payments.where("payments.estatus = ? and fecha_de_pago<= ?",0,@fecha).count
-        imp_corr_cobrado = payments.where("payments.estatus = ? and fecha_de_pago<= ?",0,@fecha).sum(:importe)
-        cant_atrasxcobrar =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 1,@fecha).count
-        imp_atrasxcobrar =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 1,@fecha).sum(:cantidad)
+        cant_corrxcobrar = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at>= ?", 1,@fecha).count
+        imp_corrxcobrar = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at>= ?", 1,@fecha).sum(:cantidad)
+        cant_corr_cobrado = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 0,@fecha).count
+        imp_corr_cobrado = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 0,@fecha).sum(:cantidad)
+        cant_atrasxcobrar =  payments.where("payments.vencimientos > ? and fecha_de_corte> ?",0,@fecha).count 
+        imp_atrasxcobrar =  payments.where("payments.vencimientos> ?",0).sum(:importe)
         cant_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 1,@fecha).count
         imp_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ?", 1,@fecha).sum(:cantidad)
         cant_vencxcobrar =   payments.where("payments.estatus = ? and fecha_de_pago<= ?",1,@fecha).count
