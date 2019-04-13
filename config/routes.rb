@@ -14,12 +14,14 @@ Rails.application.routes.draw do
   get 'reports/historial_de_recibos'
   get 'reports/seguimiento_quincenal'
   get 'reports/num_tablero'
+  get 'reports/vencidos'
   get 'reports/cobranza'
   get 'reports/pronostico_de_cobranza'
   get 'reports/reporte_de_pagos'
   get 'reports/estado_de_cuenta'
   get 'reports/calificaciones'
   get 'reports/historial_de_pagos'
+  get 'reports/usuarios'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   put 'cancelar/:id', to:'tickets#cancelar', as: "cancelar"
   
