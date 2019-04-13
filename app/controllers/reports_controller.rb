@@ -52,6 +52,12 @@ class ReportsController < ApplicationController
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
+  def vencidos
+      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @sucursales = BranchOffice.all
+      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
+  end
+  
   def estado_de_cuenta
     @customer = Customer.find(params[:c_id]) unless params[:c_id].nil? or params[:c_id]==""
    respond_to do |format|
@@ -133,11 +139,6 @@ class ReportsController < ApplicationController
     end
   end
   
-  
-  
-
-
-  
   def seguimiento_quincenal
     respond_to do |format|
         format.html {  }
@@ -195,7 +196,12 @@ class ReportsController < ApplicationController
   
   def get_seguimiento_tablero(padre,fecha,producto)
     Auxiliar.tablero(padre,fecha,producto)
-    
   end
- 
-end
+  
+  def usuarios
+     @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @users = User.all
+      @users = @users.order(:tipo)
+      
+  end
+end 
