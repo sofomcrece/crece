@@ -1,20 +1,28 @@
 wb = xlsx_package.workbook
+
     @linea = 0
     @avance = 0
-    @fecha="2019-03-15"
-def llenar_fila(cred,pagares, nombre)
-    pag =pagares.joins(:tickets)
+    @fecha="2019-03-31"
+def llenar_fila(cred,pagares, nombre, domicilio, edad, email, cte)
+    pag =pagares.joins(:tickets).order("fecha_de_pago")
+    cant_cred =Customer.joins(:credits)
+    
     pag.each do |tic|
             #payments =creditos.joins(:payments)
             fecha_pago=tic.updated_at
             fecha_debio_pagar=tic.created_at
             return [cred,
                 nombre,
-                fecha_pago,
                 fecha_debio_pagar,
-                tic.estatus
+                fecha_pago,
+                domicilio,
+                edad,
+                email,
+                cant_cred.where("customer_id= ? ",cte).count
             ]
+            
     end
+    
  end
 
 wb.add_worksheet(name: "creditos vencidos") do |sheet|
@@ -25,11 +33,13 @@ wb.add_worksheet(name: "creditos vencidos") do |sheet|
     title = wb.styles.add_style(:bg_color => "F4A460",
                            :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
-                           :alignment=>{:horizontal => :center})
+                           :alignment=>{:horizontal => :left})
+                           
+    
                            
     linea = wb.styles.add_style(:bg_color => "F4A460",
                            :fg_color=>"#FF000000",
-                           :alignment=>{:horizontal => :center})
+                           :alignment=>{:horizontal => :left})
 
     currency = wb.styles.add_style(:format_code=>"#,##0;[Red]-#,##0",
                               :border=>Axlsx::STYLE_THIN_BORDER)
@@ -38,15 +48,21 @@ wb.add_worksheet(name: "creditos vencidos") do |sheet|
     sheet.add_row ["CREDITOS VENCIDOS AL #{@fecha}"]
     sheet.add_row [@fecha]
     @linea = 5
-    sheet.add_row ["CREDITO","CLIENTE","FECHA_LIQUIDO", "FECHA_DEBIO_LIQ", "ESTATUS"],:style=>[title,title,title,title,title]
+    sheet.add_row ["CREDITO","CLIENTE", "FECHA_DEBIO_LIQ","FECHA_LIQUIDO", "DOMICILIO","FECHA_NAC","EMAIL","NUM_CREDITOS"],:style=>[title,title,title,title,title,title,title, title, title]
 
     @sucursales.each do |sucursal|
+       
         @linea = @linea+@avance
         @avance = 0
         sucursal.agents.each do |agente|
            agente.credits.each do |cred|
                 pagares=cred.payments.where("recibo='12/12' and estatus=1 or estatus=2 and fecha_de_pago<payments.updated_at")
-                sheet.add_row llenar_fila(cred.id,pagares,cred.nombre_1)
+                sheet.add_row llenar_fila(cred.id,pagares,
+                    (cred.nombre_1 + ' ' + cred.nombre_2 + ' '+ cred.apellido_paterno + ' ' +cred.apellido_materno),
+                    cred.calle + ' ' + cred.numero_exterior.to_s + ' ' + cred.colonia + ', ' + cred.municipio, 
+                    cred.fecha_de_nacimiento.to_date,
+                    cred.email_1, cred.customer_id
+                )
            end
             @avance += 1
         end
