@@ -56,7 +56,12 @@ class ReportsController < ApplicationController
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-  end
+   
+      @customers = Customer.all
+      @customers = @customers.where("referencia_agente_empresa=20 and status=1")
+ end 
+ 
+
   
   def estado_de_cuenta
     @customer = Customer.find(params[:c_id]) unless params[:c_id].nil? or params[:c_id]==""
