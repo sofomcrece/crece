@@ -251,12 +251,20 @@ class ViewCreditsController < ApplicationController
     #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
   
     
-    @com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
+    #@com_apert = (@capital + @interes) * (@credit.product.comision_apert / 100) 
     @datos = []
     @arreglomun = []
     #@arreglo.push(["PERIODO", "FECHA DE PAGO", "SALDO INICIAL", "CAPITAL", "INTERES", "IVA DE INTERES","PAGO TOTAL", "SALDO FINAL"])
     @arreglomun.push(["PERIODO", "FECHA","SALDO INICIAL",  "AMORTIZACIÓN", "INTERES", "IVA_INTERES","COM_APERT","SEGURO_VIDA","PAGO TOTAL"])
     puts "=========================================================================================================================================="
+    
+    xint=@pago * (@credit.product.taza_de_interes_ordinaria / 100)
+     xiva=xint * 0.16
+    
+      @com_apert = (@pago + xint) * (@credit.product.comision_apert / 100) 
+     
+      xtotpago=@pago + xint + xiva + @com_apert
+    
     totalcont=(@credit.product.numero_de_pagos_a_realizar) 
     totalcont.times   do |n|
         
@@ -266,18 +274,13 @@ class ViewCreditsController < ApplicationController
         fecha_de_impresion = aux["impresion"]
      
      
-     xint=@pago * (@credit.product.taza_de_interes_ordinaria / 100)
-     xiva=xint * 0.16
-    
-      @com_apert = (@pago + xint) * (@credit.product.comision_apert / 100) 
      
-      xtotpago=@pago + xint + xiva + @com_apert
       puts fecha
       puts fecha_de_corte
       puts fecha_de_impresion  
-      
-       #              0   1             2            3    4    5      6        7                8                 9        10    
-      @datos.push([n+1,fecha,(@total-((n)*@pago)),@pago,xint,xiva,@com_apert,0,((@total-((n)*@pago))-@pago),fecha_de_corte,fecha_de_impresion])
+       #        "PERIODO FECHA SALDO INICIAL    AMORTIZ  INT  IVA COM_APE  SEGURO   PAGO TOTAL       FECHA_CORTE   FECHA_IMP              
+       #              0   1             2            3    4    5      6      7              8                 9        10    
+      @datos.push([n+1,fecha,(@total-((n)*@pago)),@pago,xint,xiva,@com_apert,0,xtotpago,fecha_de_corte,fecha_de_impresion])
       @arreglomun.push([ "#{n+1}",fecha.to_date.strftime("%d-%m-%Y"),"#{Dinero.to_money((@total-((n)*@pago)).round(2))}","#{Dinero.to_money(@pago.round(2))}","#{Dinero.to_money(xint.round(2))}","#{Dinero.to_money(xiva.round(2))}","#{Dinero.to_money(@com_apert.round(2))}",0,"#{Dinero.to_money(xtotpago.round(2))}"])
     end
     puts "=========================================================================================================================================="
