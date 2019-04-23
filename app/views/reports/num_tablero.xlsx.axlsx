@@ -1,10 +1,10 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-    @fecha="2019-03-31"
+    @fecha="2019-04-23"
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
-        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at<= ?", 0, @fecha).sum(:cantidad)
+        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0, @fecha).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
         #cant_corrxcobrar = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at>= ?", 1,@fecha).count
         cant_corrxcobrar = payments.where("estatus = ? and payments.created_at>= ?", 0,@fecha).count
