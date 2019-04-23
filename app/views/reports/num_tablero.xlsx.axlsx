@@ -4,8 +4,8 @@ wb = xlsx_package.workbook
     @fecha="2019-04-23"
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
-        cartera1 = payments.where("payments.created_at< ?",'2019-04-15').sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ?", 0).sum(:cantidad)
-        colocado=payments.where("payments.created_at>= ?", '2019-04-13').sum(:importe)
+        cartera1 = payments.where("payments.created_at< ?",'2019-04-15').sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<'2019-04-13'", 0).sum(:cantidad)
+        colocado=payments.where("payments.created_at>= ? and estatus=0", '2019-04-13').sum(:importe)
         cant_corrxcobrar = payments.where("estatus = ? and payments.created_at>= ?", 0,@fecha).count
         #imp_corrxcobrar = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at>= ?", 1,@fecha).sum(:cantidad)
         imp_corrxcobrar = payments.where("estatus = ? and payments.created_at>= ?", 0,@fecha).sum(:importe)       
