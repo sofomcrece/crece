@@ -46,7 +46,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de $ #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
     text " "
-    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No 0215861814, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
+    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No. 11793890, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
     text " "
     text "NOVENA: Ambos partes convienen en que todo pago que realice 'El Deudor',  se aplique de la siguiente manera, intereses moratorios, gastos y comisiones, intereses ordinarios, que en su caso se hayan devengado y por último el pago al capital del crédito.",:size =>10,:align => :justify
     text " "
@@ -117,7 +117,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de $ #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
     text " "
-    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No 0215861814, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
+    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No. 11793890, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
     text " "
     text "NOVENA: Ambos partes convienen en que todo pago que realice 'El Deudor',  se aplique de la siguiente manera, intereses moratorios, gastos y comisiones, intereses ordinarios, que en su caso se hayan devengado y por último el pago al capital del crédito.",:size =>10,:align => :justify
     text " "
@@ -188,7 +188,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de $ #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
     text " "
-    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No 0215861814, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
+    text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No. 11793890, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
     text " "
     text "NOVENA: Ambos partes convienen en que todo pago que realice 'El Deudor',  se aplique de la siguiente manera, intereses moratorios, gastos y comisiones, intereses ordinarios, que en su caso se hayan devengado y por último el pago al capital del crédito.",:size =>10,:align => :justify
     text " "

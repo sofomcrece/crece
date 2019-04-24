@@ -1,5 +1,5 @@
 class ViewCreditsController < ApplicationController
-   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:corrida,:corridamun,:documentos, :getFecha]
+   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:polizamun,:corrida,:corridamun,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
@@ -89,6 +89,11 @@ class ViewCreditsController < ApplicationController
   end
   def poliza
     pdf = PolizaPdf.new(@credit)
+    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+  end
+  
+  def polizamun
+    pdf = PolizamunPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   

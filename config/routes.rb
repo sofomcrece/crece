@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'view_credits/contratomunicipal',to:'view_credits#contratomunicipal'
   get 'view_credits/entrevista',to:'view_credits#entrevista'
   get 'view_credits/poliza',to:'view_credits#poliza'
+  get 'view_credits/polizamun',to:'view_credits#polizamun'
   
   get 'view_credits',to:'view_credits#index',as:'view_credits'
   get 'view_credits/aceptadas',to:'view_credits#aceptadas',as:'view_credits_aceptadas'
