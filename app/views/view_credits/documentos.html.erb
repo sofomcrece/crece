@@ -31,7 +31,11 @@
          <a href=<%="/view_credits/caratula?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Carátula</span></a>
      <%end%>
      
-    <a href=<%="/view_credits/poliza?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Póliza</span></a>
+     <% if @credit.product_id ==6 %>
+         <a href=<%="/view_credits/polizamun?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Póliza</span></a>
+     <%else%> 
+        <a href=<%="/view_credits/poliza?clave=#{@credit.id}"%> target = "_blank"><span class="waves-effect waves-light btn">Póliza</span></a>
+      <%end%>         
   
     <a href=<%="/view_credits/autorizacion?clave=#{@credit.id}"%>  target = "_blank"><span class="waves-effect waves-light btn">Reporte de Crédito</span></a>
 
