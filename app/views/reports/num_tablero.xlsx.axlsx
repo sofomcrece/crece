@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
   
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments)
-        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and payments.updated_at<= ?", 0,@fecha).sum(:cantidad)
+        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ?", 0).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
         cant_corrxcobrar = payments.where("estatus = ? and payments.fecha_de_corte>= ?", 0, @fecha).count
         #imp_corrxcobrar = payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.created_at>= ?", 1,@fecha).sum(:cantidad)
@@ -71,7 +71,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @linea = @linea+@avance
         @avance = 0
         sucursal.agents.each do |agente|
-            creditos = agente.credits.where("credits.status = ?",1)
+            creditos = agente.credits.where("credits.status = ? and credits.fecha <'2019/04/15' ",1)
             sheet.add_row llenar_fila(creditos,agente.nombre_completo),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
             @avance += 1
         end
