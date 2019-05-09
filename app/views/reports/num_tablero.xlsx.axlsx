@@ -16,8 +16,8 @@ def llenar_fila(creditos,nombre)
         imp_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ? and vencimientos> ?", 1,@fecha,0).sum(:cantidad)
         cant_vencxcobrar =   payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).count
         imp_vencxcobrar =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).sum(:importe)
-        cant_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).count
-        imp_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).sum(:importe)
+        cant_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,0).count
+        imp_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,0).sum(:importe)
         
         return [
                 nombre,
