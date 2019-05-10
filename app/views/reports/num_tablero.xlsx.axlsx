@@ -1,7 +1,7 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-  
+    "Saludos"
 def llenar_fila(creditos,nombre)
      payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
