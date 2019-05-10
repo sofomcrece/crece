@@ -1,9 +1,9 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-    @fecha="2019/04/27"
+  
 def llenar_fila(creditos,nombre)
-     payments =creditos.joins(:payments)
+     payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
         cant_corrxcobrar=payments.where("estatus=0 and fecha_de_corte= ?",@fecha).count
