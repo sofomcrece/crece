@@ -1,8 +1,8 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-    "Saludos"
-def llenar_fila(creditos,nombre)
+    @fecha.to_date
+def llenar_fila(creditos,nombre, sucursal)
      payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
@@ -19,7 +19,7 @@ def llenar_fila(creditos,nombre)
         cant_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,0).count
         imp_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,0).sum(:importe)
         
-        return [
+        return [sucursal,
                 nombre,
                 cartera1,
                 colocado,
@@ -46,12 +46,14 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     highlight_cell = style.add_style(bg_color: "F4A460")
     border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
     
-    title = wb.styles.add_style(:bg_color => "F4A460",
+    title = wb.styles.add_style(
+                           :sz=>10,
+                           :bg_color => "F4A460",
                            :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
                            :alignment=>{:horizontal => :center})
                            
-    title2 = wb.styles.add_style(:bg_color => "C0C0C0",
+    title2 = wb.styles.add_style(:sz=>10,:bg_color => "C0C0C0",
                             :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
                            :alignment=>{:horizontal => :center})
@@ -60,23 +62,23 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                            :fg_color=>"#FF000000",
                            :alignment=>{:horizontal => :center})
 
-    currency = wb.styles.add_style(:format_code=>"#,##0;[Red]-#,##0",
+    currency = wb.styles.add_style(:sz=>10,:format_code=>"#,##0;[Red]-#,##0",
                               :border=>Axlsx::STYLE_THIN_BORDER)
   
     
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
     sheet.add_row ["NÚMEROS TABLERO"]
     sheet.add_row [@fecha] 
-    sheet.add_row ["","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
-    sheet.add_row ["AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
-    sheet.add_row ["","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+    sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+    sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
+    sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
     @linea = 7
     @sucursales.each do |sucursal|
         @linea = @linea+@avance
         @avance = 0
         sucursal.agents.each do |agente|
-            creditos = agente.credits.where("credits.status = ?",1)
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
+            creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
+            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
             @avance += 1
         end
 
