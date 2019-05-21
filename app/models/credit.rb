@@ -78,6 +78,11 @@ class Credit < ActiveRecord::Base
     :inclusion => { :in => [nil,1, 0] }
     validates :sexo,
     :presence => { :if => 'sexo.nil?' }
+
+    validates :fiel,
+    :inclusion => { :in => [nil,1, 0] }
+    validates :fiel,
+    :presence => { :if => 'fiel.nil?' }
     
     validates :es_cliente,
     :inclusion => { :in => [nil,1, 0] }

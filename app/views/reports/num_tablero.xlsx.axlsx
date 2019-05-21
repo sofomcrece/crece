@@ -1,13 +1,13 @@
 wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
-    @fecha.to_date
+    @fecha
 def llenar_fila(creditos,nombre, sucursal)
      payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha).sum(:cantidad)
         colocado=payments.where("payments.created_at>= ?", @fecha).sum(:importe)
-        cant_corrxcobrar=payments.where("estatus=0 and fecha_de_corte= ?",@fecha).count
-        imp_corrxcobrar=payments.where("estatus=0 and fecha_de_corte= ?",@fecha).sum(:importe)
+        cant_corrxcobrar=payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.created_at>= ? and tickets.status=1",@fecha).count
+        imp_corrxcobrar=payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.created_at>= ? and tickets.status=1",@fecha).count
         cant_corr_cobrado = payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.updated_at>= ?",@fecha).count
         imp_corr_cobrado = payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.updated_at>= ?",@fecha).sum(:importe)
         cant_atrasxcobrar =  payments.joins(:payments=>:tickets).where("payments.vencimientos > ? and tickets.created_at <= ? and tickets.status=?",0, @fecha,1).count 
@@ -78,7 +78,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         sucursal.agents.each do |agente|
             creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency]
+            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
             @avance += 1
         end
 
