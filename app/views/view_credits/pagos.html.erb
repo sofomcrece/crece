@@ -28,12 +28,11 @@
 
         <td><%= payment.total_pagado%></td>
         <td><%= payment.fecha_updated_last_ticket %></td>
-         <td><%= payment.fecha_de_pago.to_date %></td>
         <% if payment.total_pagado>0 %>
-          <% if payment.fecha_de_pago.to_date + 15 > payment.updated_at.to_date %>
+          <% if payment.fecha_de_pago.to_date + 15 > payment.fecha_updated_last_ticket.to_date %>
              <td><%= "" %></td>
           <% else %>
-            <td><%= ((payment.fecha_de_pago.to_date + 15 - payment.updated_at.to_date) * -1).to_i %></td>
+            <td><%= ((payment.fecha_de_pago.to_date + 15 - payment.fecha_updated_last_ticket.to_date) * -1).to_i %></td>
           <% end %>
             
         <% else %>
