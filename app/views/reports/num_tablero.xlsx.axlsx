@@ -5,15 +5,15 @@ wb = xlsx_package.workbook
     @fecha2=@fecha.day
     
     if @fecha2==(13...27)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 13).to_date
+        @corte=Date.new(@fecha2.year,@fecha2.month, 13)
     end
     
     if @fecha2==(1...12)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 27).to_date
+        @corte=Date.new(@fecha2.year,@fecha2.month, 27)
     end
     
     if @fecha2==(28...31)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 27).to_date
+        @corte=Date.new(@fecha2.year,@fecha2.month, 27)
     end
     
 def llenar_fila(creditos,nombre, sucursal)
