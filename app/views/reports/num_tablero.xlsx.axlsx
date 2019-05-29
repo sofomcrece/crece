@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 def llenar_fila(creditos,nombre, sucursal)
      payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@fecha2).sum(:cantidad)
-        colocado=payments.where("payments.created_at>= ? and credits.status=1", @fecha).sum(:monto_solicitud)
+        colocado=payments.where("payments.created_at>= ? and credits.status=1", @fecha).sum("importe")
         cant_corrxcobrar=payments.joins(:payments=>:tickets).where("tickets.status=1").count
         imp_corrxcobrar=payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.status=1",@fecha).sum(:cantidad)
         cant_corr_cobrado = payments.joins(:payments=>:tickets).where("payments.estatus=0 and tickets.updated_at>= ?",@fecha).count
