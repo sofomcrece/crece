@@ -4,11 +4,15 @@ wb = xlsx_package.workbook
     @fecha
     @fecha2=@fecha.day
     
-    if @fecha2>=13 and @fecha2<27 
+    if @fecha2==(13...27)
         @corte=Date.new(@fecha2.year,@fecha2.month, 13)
     end
     
-    if @fecha2<=12 and @fecha2>27 
+    if @fecha2==(1...12)
+        @corte=Date.new(@fecha2.year,@fecha2.month, 27)
+    end
+    
+    if @fecha2==(28...31)
         @corte=Date.new(@fecha2.year,@fecha2.month, 27)
     end
     
