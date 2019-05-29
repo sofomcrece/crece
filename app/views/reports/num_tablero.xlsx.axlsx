@@ -2,18 +2,18 @@ wb = xlsx_package.workbook
     @linea = 0
     @avance = 0
     @fecha
-    @fecha2=@fecha.day
+    @fecha2=@fecha.day.to_i
     
-    if @fecha2==(13...27)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 13)
+    if @fecha2=(13...27)
+        @corte=Date.new(@fecha.year,@fecha.month, 13)
     end
     
-    if @fecha2==(1...12)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 27)
+    if @fecha2=(1...12)
+        @corte=Date.new(@fecha.year,@fecha.month, 27)
     end
     
-    if @fecha2==(28...31)
-        @corte=Date.new(@fecha2.year,@fecha2.month, 27)
+    if @fecha2=(28...31)
+        @corte=Date.new(@fecha.year,@fecha.month, 27)
     end
     
 def llenar_fila(creditos,nombre, sucursal)
