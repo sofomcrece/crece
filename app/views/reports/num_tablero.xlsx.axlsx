@@ -25,8 +25,7 @@ wb = xlsx_package.workbook
      
 def llenar_fila(creditos,nombre, sucursal)
         payments =creditos.joins(:payments).where("credits.status=1")
-        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,Time.now.to_date).sum(:cantidad)
-        #colocado=payments.where("credits.fecha_de_contrato>= ? and credits.status=1", @corte).sum("importe")
+        cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@corte).sum(:cantidad)
         colocado=creditos.where("credits.fecha_de_contrato>= ?",@corte).sum(:monto_solicitud)
         cant_corrxcobrar=payments.joins(:payments=>:tickets).where("tickets.status=1 and payments.fecha_de_corte= ?",@corte).count
         imp_corrxcobrar=payments.joins(:payments=>:tickets).where("tickets.status=1 and payments.fecha_de_corte= ?",@corte).sum(:cantidad)
