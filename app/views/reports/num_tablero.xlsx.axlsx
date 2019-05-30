@@ -4,24 +4,26 @@ wb = xlsx_package.workbook
     @fecha
     @fecha2=@fecha.day.to_i
     
+
     if @fecha2=(13...27)
-        @corte=Date.new(@fecha.year,@fecha.month, 13)
+        @corte=Date.new(@fecha.year,@fecha.month, 13).to_date
     end
     
     if @fecha2=(1...12)
-        @corte=Date.new(@fecha.year,@fecha.month, 27)
+        @corte=Date.new(@fecha.year,@fecha.month, 27).to_date
     end
     
     if @fecha2=(28...31)
-        @corte=Date.new(@fecha.year,@fecha.month, 27)
+        @corte=Date.new(@fecha.year,@fecha.month, 27).to_date
     end
     
+
+     
 def llenar_fila(creditos,nombre, sucursal)
-   
-     payments =creditos.joins(:payments).where("credits.status=1")
+        payments =creditos.joins(:payments).where("credits.status=1")
         cartera1 = payments.sum(:importe)-payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at<= ?", 0,@corte).sum(:cantidad)
-        colocado=payments.where("credits.fecha_de_contrato>= ? and credits.status=1", @corte).sum("importe")
-        #colocado=creditos.where("credits.fecha>= ?",@corte).sum(:monto_solicitud)
+        #colocado=payments.where("credits.fecha_de_contrato>= ? and credits.status=1", @corte).sum("importe")
+        colocado=creditos.where("credits.fecha_de_contrato>= ?",@corte).sum(:monto_solicitud)
         cant_corrxcobrar=payments.joins(:payments=>:tickets).where("tickets.status=1 and payments.fecha_de_corte= ?",@corte).count
         imp_corrxcobrar=payments.joins(:payments=>:tickets).where("tickets.status=1 and payments.fecha_de_corte= ?",@corte).sum(:cantidad)
         cant_corr_cobrado = payments.joins(:payments=>:tickets).where("payments.fecha_de_corte= ? and tickets.status=0",@corte).count
