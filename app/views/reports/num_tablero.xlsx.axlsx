@@ -50,8 +50,8 @@ def llenar_fila(creditos,nombre, sucursal)
         imp_corr_cobrado = payments.joins(:payments=>:tickets).where("payments.fecha_de_corte=? and tickets.status=0",@corte).sum(:cantidad)
         cant_atrasxcobrar =  payments.joins(:payments=>:tickets).where("payments.fecha_de_pago= ? and tickets.status=1", @finmes).count 
         imp_atrasxcobrar =  payments.joins(:payments=>:tickets).where("payments.fecha_de_pago= ? and tickets.status=1",@finmes).sum(:cantidad)
-        cant_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ? and vencimientos> ?", 0,@fecha,0).count
-        imp_atras_cobrado =  payments.joins(:payments=>:tickets).where("tickets.status = ? and tickets.updated_at> ? and vencimientos> ?", 0,@fecha,0).sum(:cantidad)
+        cant_atras_cobrado =  payments.joins(:payments=>:tickets).where("payments.fecha_de_pago= ? and tickets.status = 0", @finmes).count
+        imp_atras_cobrado =  payments.joins(:payments=>:tickets).where("payments.fecha_de_pago= ? and tickets.status = 0", @finmes).sum(:cantidad)
         cant_vencxcobrar =   payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).count
         imp_vencxcobrar =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,1).sum(:cantidad)
         cant_venc_cobrado =  payments.joins(:payments=>:tickets).where("payments.estatus = ? and tickets.status= ?",1,0).count
