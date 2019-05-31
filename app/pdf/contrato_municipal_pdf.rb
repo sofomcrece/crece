@@ -60,7 +60,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "DECIMA SEGUNDA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole. ",:size =>10,:align => :justify
     text " "
-    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de __________________, __________________ el día ____ de _______________ de _________ . ",:size =>10,:align => :justify
+    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado}  el día de #{@credit.fecha_en_español}.",:size =>10,:align => :justify
     text " "
     text " "
     text " "
@@ -131,7 +131,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "DECIMA SEGUNDA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole. ",:size =>10,:align => :justify
     text " "
-    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de __________________, __________________ el día ____ de _______________ de _________ . ",:size =>10,:align => :justify
+    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado}  el día de #{@credit.fecha_en_español}.",:size =>10,:align => :justify
     text " "
     text " "
     text " "
@@ -202,7 +202,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "DECIMA SEGUNDA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de CULIACÁN, SINALOA, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole. ",:size =>10,:align => :justify
     text " "
-    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de __________________, __________________ el día ____ de _______________ de _________ . ",:size =>10,:align => :justify
+    text "Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado}  el día de #{@credit.fecha_en_español}.",:size =>10,:align => :justify
     text " "
     text " "
     text " "
