@@ -5,6 +5,7 @@ class Credit < ActiveRecord::Base
     belongs_to :ocupation
     has_many :pdfs
     has_many :payments
+    has_many :seguimientos
     belongs_to :destination
     belongs_to :profecion
     belongs_to :ocupation
