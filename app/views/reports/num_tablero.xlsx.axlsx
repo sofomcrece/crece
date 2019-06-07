@@ -134,7 +134,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
             @avance += 1
         end
         
-                 sheet.add_row ["SUB-TOTAL #{sucursal.nombre}",
+                 
+    end
+    sheet.add_row ["TOTAL: ",
                 "",
                 "=SUM(C#{@linea}:C#{@linea+@avance-1})",
                 "=SUM(D#{@linea}:D#{@linea+@avance-1})",
@@ -151,7 +153,5 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 "=SUM(K#{@linea}:O#{@linea+@avance-1})",
                 "=SUM(K#{@linea}:P#{@linea+@avance-1})"
                 ]
-    end
-    sheet.merge_cells "A4:A6"
     end
 end
