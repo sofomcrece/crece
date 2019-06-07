@@ -84,6 +84,7 @@ def llenar_fila(creditos,nombre, sucursal)
                 imp_vencxcobrar,
                 cant_venc_cobrado,
                 imp_venc_cobrado
+            
                 ]
    
 end
@@ -118,9 +119,11 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
     sheet.add_row ["NÚMEROS TABLERO"]
     sheet.add_row [@fecha] 
+    
     sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+    
     @linea = 7
     @sucursales.each do |sucursal|
         @linea = @linea+@avance
@@ -130,7 +133,25 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
             sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
             @avance += 1
         end
-
+        
+                 sheet.add_row ["SUB-TOTAL #{sucursal.nombre}",
+                "",
+                "=SUM(C#{@linea}:C#{@linea+@avance-1})",
+                "=SUM(D#{@linea}:D#{@linea+@avance-1})",
+                "=SUM(E#{@linea}:E#{@linea+@avance-1})",
+                "=SUM(F#{@linea}:F#{@linea+@avance-1})",
+                "=SUM(G#{@linea}:G#{@linea+@avance-1})",
+                "=SUM(H#{@linea}:H#{@linea+@avance-1})",
+                "=SUM(I#{@linea}:I#{@linea+@avance-1})",
+                "=SUM(J#{@linea}:J#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:K#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:L#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:M#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:N#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:O#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:P#{@linea+@avance-1})"
+                ]
     end
+    sheet.merge_cells "A4:A6"
     end
 end
