@@ -75,11 +75,17 @@ class ReportsController < ApplicationController
             params[:fecha2]
             fechas << params[:f1].to_date unless params[:f1].nil? or params[:f1]==""
             fechas << params[:f2].to_date unless params[:f2].nil? or params[:f2]==""
-            pdf = EstadoDeCuentaPdf.new(@customer,fechas)
+            if @product_id ==6
+                pdf = EstadoDeCuentamunPdf.new(@customer,fechas)
+            else
+                pdf = EstadoDeCuentaPdf.new(@customer,fechas)
+            end
             send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
         }
     end
   end
+  
+  
   def reporte_de_pagos
   
   end
