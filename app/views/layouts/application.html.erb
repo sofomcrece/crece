@@ -483,7 +483,7 @@
   $scope.actualizar_pagos = function(val){
     if (parseFloat(val.pago)>parseFloat(val.importe_con_pago)){
       val.pago = parseFloat(val.importe_con_pago);
-      alert("No se puede pagar una catidad mayor al adeudo");
+      alert("No se puede pagar una cantidad mayor al adeudo");
     }
   }
   
