@@ -60,8 +60,9 @@ def llenar_fila(creditos,nombre, sucursal)
         
         cant_atras_cobrado= payments.joins(:payments=>:tickets).where("tickets.status=0 and vencimientos>0 and payments.fecha_de_corte<? and estatus=1",@corte).count
         imp_atras_cobrado= payments.joins(:payments=>:tickets).where("tickets.status=0 and vencimientos>0 and payments.fecha_de_corte<? and estatus=1",@corte).sum(:cantidad)
-        cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and estatus=1 and payments.fecha_de_corte=?",@corte).count
-        imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and estatus=1 and payments.fecha_de_corte=?",@corte).sum(:cantidad)
+        
+        cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and estatus=1 and payments.fecha_de_corte<=?",@corte).count
+        imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and estatus=1 and payments.fecha_de_corte<=?",@corte).sum(:cantidad)
        
         return [
                 sucursal,
