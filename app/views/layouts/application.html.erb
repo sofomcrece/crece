@@ -453,9 +453,6 @@
       });
   }
   $scope.pagar = function (val){
-    if (parseFloat(val.pago)< payment.importe){
-      alert("Cantidad menor a la requerida... se tomará como abono.");
-    }
     if (parseFloat(val.pago)==0){
       alert("Ingrese la cantidad a pagar");
       return  null;
