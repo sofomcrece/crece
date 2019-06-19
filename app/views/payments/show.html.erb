@@ -29,7 +29,7 @@
                     <td>{{ele.estatus==0?"Al corriente":ele.estatus==1?"Vencido":"Pagado"}}</td>
                     <td>{{ele.importe_con_pago_formato}}</td>
                     <td>
-                        <input type="number" min="0" class="validate" ng-model ="ele.pago" ng-change="actualizar_pagos(ele)"  ng-disabled={ele.active}>
+                        <input type="number" min="0" class="validate" ng-model ="ele.pago" ng-change="actualizar_pagos(ele)" ng-enter="valida_cant" ng-disabled={ele.active}>
                     </td>
                     <td>{{ele.interes_formato}}</td>
                     <td>
