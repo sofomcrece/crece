@@ -65,13 +65,13 @@ def llenar_fila(creditos,nombre, sucursal)
         
         #x=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).select("credit_id")
 
+
+
       
 
-        cant_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and diferencia>0",@corte).count
+        cant_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=?",@corte, @corte).count
 
-        xtotcob= segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:total_a_cobrar)
-        xdif=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:diferencia)
-        imp_atras_cobrado=xtotcob - xdif
+        imp_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=?",@corte,@corte).sum(:cantidad)
 
         
         cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and estatus=2 and payments.fecha_de_corte=?",@corte).count
