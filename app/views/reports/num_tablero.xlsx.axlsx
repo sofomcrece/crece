@@ -73,7 +73,7 @@ def llenar_fila(creditos,nombre, sucursal)
 
 
         imp_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12",@corte).sum(:importe)
-        
+      
 
         cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12", @corte).count
         imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12",@corte).sum(:importe)
@@ -144,8 +144,8 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
             creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
             sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
             @avance += 1
-        end
-        
+
+        xtotalazo=SUM(C#{@linea}:D#{@linea+@avance-1})
                  
     end
     sheet.add_row ["TOTAL: ",
