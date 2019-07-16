@@ -15,8 +15,7 @@ wb = xlsx_package.workbook
             @corte=Date.new(@año-1,12, 27).to_date
         else
             @corte=Date.new(@año,@mes-1, 27).to_date
-        end
-        
+        end 
     end
     
     if @dia >=27 and @dia<=31
@@ -42,7 +41,7 @@ wb = xlsx_package.workbook
     #end
 
      
-def llenar_fila(creditos,nombre, sucursal)
+    def llenar_fila(creditos,nombre, sucursal)
         segui =creditos.joins(:seguimientos)
         payments=creditos.joins(:payments)
    
@@ -95,60 +94,56 @@ def llenar_fila(creditos,nombre, sucursal)
                 imp_vencxcobrar,
                 cant_venc_cobrado,
                 imp_venc_cobrado
-                ]
-   
-end
+                ]   
+    end
 
 
 
-wb.add_worksheet(name: "numeros_tablero") do |sheet|
-    wb.styles do |style|
-    highlight_cell = style.add_style(bg_color: "F4A460")
-    border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
+    wb.add_worksheet(name: "numeros_tablero") do |sheet|
+        wb.styles do |style|
+            highlight_cell = style.add_style(bg_color: "F4A460")
+            border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
     
-    title = wb.styles.add_style(
+            title = wb.styles.add_style(
                            :sz=>10,
                            :bg_color => "F4A460",
                            :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
                            :alignment=>{:horizontal => :center})
                            
-    title2 = wb.styles.add_style(:sz=>10,:bg_color => "C0C0C0",
+            title2 = wb.styles.add_style(:sz=>10,:bg_color => "C0C0C0",
                             :fg_color=>"#FF000000",
                            :border=>Axlsx::STYLE_THIN_BORDER,
                            :alignment=>{:horizontal => :center})
                            
-    linea = wb.styles.add_style(:bg_color => "F4A460",
+            linea = wb.styles.add_style(:bg_color => "F4A460",
                            :fg_color=>"#FF000000",
                            :alignment=>{:horizontal => :center})
 
-    currency = wb.styles.add_style(:sz=>10,:format_code=>"#,##0;[Red]-#,##0",
+            currency = wb.styles.add_style(:sz=>10,:format_code=>"#,##0;[Red]-#,##0",
                               :border=>Axlsx::STYLE_THIN_BORDER)
   
     
-    sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
-    sheet.add_row ["NÚMEROS TABLERO"]
-    sheet.add_row [@fecha] 
+            sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
+            sheet.add_row ["NÚMEROS TABLERO"]
+            sheet.add_row [@fecha] 
     
-    sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
-    sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
-    sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+            sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+            sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
+            sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
     
-    @linea = 7
+            @linea = 7
     
-    @sucursales.each do |sucursal|
-        @linea = @linea+@avance
-        @avance = 0
-        @TotCart=0
-        sucursal.agents.each do |agente|
-            creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
-            @avance += 1
-
-        xtotalazo=SUM(C#{@linea}:D#{@linea+@avance-1})
-                 
-    end
-    sheet.add_row ["TOTAL: ",
+        @sucursales.each do |sucursal|
+            @linea = @linea+@avance
+            @avance = 0
+            @TotCart=0
+            sucursal.agents.each do |agente|
+                creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
+                sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
+                @avance += 1
+            end
+            sheet.add_row ["TOTAL: ",
                 "",
                 "=SUM(C#{@linea}:D#{@linea+@avance-1})",
                 "=SUM(D#{@linea}:D#{@linea+@avance-1})",
@@ -165,5 +160,5 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 "=SUM(K#{@linea}:O#{@linea+@avance-1})",
                 "=SUM(K#{@linea}:P#{@linea+@avance-1})"
                 ]
+        end
     end
-end
