@@ -126,6 +126,11 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
 
     currency = wb.styles.add_style(:sz=>10,:format_code=>"#,##0;[Red]-#,##0",
                               :border=>Axlsx::STYLE_THIN_BORDER)
+
+    currency2 = wb.styles.add_style(:sz=>10,:format_code=>"#,##0;[Red]-#,##0",
+                                :bg_color => "F4A460",
+                                :fg_color=>"#FF000000",
+                              :border=>Axlsx::STYLE_THIN_BORDER)
   
     
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
@@ -173,7 +178,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                         "=SUM(N7:N#{@linea})",
                         "=SUM(O7:O#{@linea})",
                         "=SUM(P7:P#{@linea})"
-                        ],:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency]
+                        ],:style=>[currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2]
 
     #sheet.add_row ["TOTAL: ",
     #            "",
