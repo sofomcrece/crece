@@ -136,7 +136,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
 
-    #sheet.merge_cells ("A4:A6")
+    sheet.merge_cells ("A4:A6")
     
     @linea = 7
     
@@ -147,7 +147,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         sucursal.agents.each do |agente|
             creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
             sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
-            @TotCart=@TotCart + C#{@linea}
+            #@TotCart=@TotCart + C#{@linea}
             @avance += 1
 
         end
@@ -156,7 +156,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                  
     end
 
-
+    sheet.add_row [1, 2, 3, "=SUM(C7:C20)"]
     sheet.add_row ["TOTAL: ",
                 "",
                 "=SUM(C#{@linea}:C#{@linea+@avance-1})",
