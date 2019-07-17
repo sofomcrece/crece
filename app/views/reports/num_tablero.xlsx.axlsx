@@ -172,7 +172,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                         "=SUM(M7:M#{@linea})",
                         "=SUM(N7:N#{@linea})",
                         "=SUM(O7:O#{@linea})",
-                        "=SUM(P7:P#{@linea})"
+                        "=SUM(P7:P#{@linea})",:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency
                         ]
 
     #sheet.add_row ["TOTAL: ",
