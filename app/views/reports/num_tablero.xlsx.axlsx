@@ -66,16 +66,13 @@ def llenar_fila(creditos,nombre, sucursal)
         #x=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).select("credit_id")
 
 
-        #x=payments.joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") 
-
-
         cant_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12", @corte).count
-
 
         imp_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12",@corte).sum(:importe)
       
 
         cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12", @corte).count
+
         imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12",@corte).sum(:importe)
 
         return [
@@ -134,6 +131,8 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
     
+    sheet.merge_cells "A4:A6"
+
     @linea = 7
     
     @sucursales.each do |sucursal|
