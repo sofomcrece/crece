@@ -136,7 +136,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
 
-    sheet.merge_cells "A4:A6"
+    #sheet.merge_cells "A4:A6"
     
     @linea = 7
     
@@ -152,24 +152,24 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
 
         end
         
-        #sheet.add_row ["TOTAL: ",
-        #        "",
-        #        "=SUM(C#{@linea}:C#{@linea+@avance-1})",
-        #        "=SUM(D#{@linea}:D#{@linea+@avance-1})",
-        #        "=SUM(E#{@linea}:E#{@linea+@avance-1})",
-        #        "=SUM(F#{@linea}:F#{@linea+@avance-1})",
-        #        "=SUM(G#{@linea}:G#{@linea+@avance-1})",
-        #        "=SUM(H#{@linea}:H#{@linea+@avance-1})",
-        #        "=SUM(I#{@linea}:I#{@linea+@avance-1})",
-        #        "=SUM(J#{@linea}:J#{@linea+@avance-1})",
-        #        "=SUM(K#{@linea}:K#{@linea+@avance-1})",
-        #        "=SUM(L#{@linea}:L#{@linea+@avance-1})",
-        #        "=SUM(M#{@linea}:M#{@linea+@avance-1})",
-        #        "=SUM(N#{@linea}:N#{@linea+@avance-1})",
-        #        "=SUM(O#{@linea}:O#{@linea+@avance-1})",
-        #        "=SUM(P#{@linea}:P#{@linea+@avance-1})"
-        #        ]
-        #end
+        sheet.add_row ["TOTAL: ",
+                "",
+                "=SUM(C#{@linea}:C#{@linea+@avance-1})",
+                "=SUM(D#{@linea}:D#{@linea+@avance-1})",
+                "=SUM(E#{@linea}:E#{@linea+@avance-1})",
+                "=SUM(F#{@linea}:F#{@linea+@avance-1})",
+                "=SUM(G#{@linea}:G#{@linea+@avance-1})",
+                "=SUM(H#{@linea}:H#{@linea+@avance-1})",
+                "=SUM(I#{@linea}:I#{@linea+@avance-1})",
+                "=SUM(J#{@linea}:J#{@linea+@avance-1})",
+                "=SUM(K#{@linea}:K#{@linea+@avance-1})",
+                "=SUM(L#{@linea}:L#{@linea+@avance-1})",
+                "=SUM(M#{@linea}:M#{@linea+@avance-1})",
+                "=SUM(N#{@linea}:N#{@linea+@avance-1})",
+                "=SUM(O#{@linea}:O#{@linea+@avance-1})",
+                "=SUM(P#{@linea}:P#{@linea+@avance-1})"
+                ]
+        end
                  
     end
     
