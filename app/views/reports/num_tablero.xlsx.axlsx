@@ -160,7 +160,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["TOTAL:", 
                         "", 
                         "=SUM(C7:C#{@linea})"
-                        "=SUM(D7:D#{@linea})""
+                        "=SUM(D7:D#{@linea})"
                         "=SUM(E7:E#{@linea})"
                         "=SUM(F7:F#{@linea})"
                         "=SUM(G7:G#{@linea})"
