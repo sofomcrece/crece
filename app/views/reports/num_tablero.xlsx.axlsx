@@ -144,6 +144,8 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
             creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
             sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
             @avance += 1
+        end
+        
                  
     end
     sheet.add_row ["TOTAL: ",
