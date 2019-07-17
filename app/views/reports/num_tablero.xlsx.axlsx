@@ -157,7 +157,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     end
 
     
-    sheet.add_row ["TOTAL:", "", "=SUM(C7:C#{@avance-1})"]
+    sheet.add_row ["TOTAL:", "", "=SUM(C7:C#{@linea})"]
 
     #sheet.add_row ["TOTAL: ",
     #            "",
