@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     :presence => { :if => 'sexo.nil?' }
   validates :tipo,:app,:apm,:nom1,:nom2,:RFC,:CURP,:seguro,:INE,:nacionalidad,:fecha_nacimiento,:nac_ciudad,:nac_estado,
             :nac_pais,:telefono_casa,:telefono_celular,:correo1,:calle,:numero_ext,
-            :colonia,:codigo_postal,:municipio,:estado,:pais,:alias,presence: true
+            :colonia,:codigo_postal,:municipio,:estado,:pais,:ciudad_contrato,:alias,presence: true
   validates :tipo,
     :inclusion => { :in => [1,2,3,4] }
      validates_format_of :RFC, :with => /([A-Z][A-Z]|[A-Z])[A-Z][A-Z]\d\d\d\d\d\d(\w\w\w|)/
