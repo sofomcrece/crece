@@ -37,7 +37,7 @@ before_action :configure_account_update_params, only: [:update]
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password,:tipo,:app,:apm,
             :nom1,:nom2,:RFC,:CURP,:seguro,:INE,:nacionalidad,:fecha_nacimiento,:nac_ciudad,:nac_estado,
             :nac_pais,:sexo,:telefono_casa,:telefono_celular,:correo1,:correo2,:calle,:numero_int,:numero_ext,
-            :colonia,:codigo_postal,:municipio,:estado,:pais) }
+            :colonia,:codigo_postal,:municipio,:estado,:pais,:ciudad_contrato) }
    end
    #If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
