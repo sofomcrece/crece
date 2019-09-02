@@ -176,6 +176,11 @@ class Credit < ActiveRecord::Base
         end
     end 
 
+    def ciudad_tribunal
+       xsuc= (self.padre.branch_office_id)
+       return  BranchOffice.find(xsuc).banco
+    end
+
     # agente   === 1
     # empresa === 0
     def nombre_completo_deudor
