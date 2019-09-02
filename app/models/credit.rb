@@ -175,6 +175,7 @@ class Credit < ActiveRecord::Base
             "Empresa"
         end
     end 
+
     # agente   === 1
     # empresa === 0
     def nombre_completo_deudor
