@@ -41,7 +41,7 @@ class ContratoPdf < Prawn::Document
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
     "
-   text" * CAT (Costo Anual Total) %#{@credit.cat_sin_iva} sin IVA.
+   text" * CAT (Costo Anual Total) %#{@credit.cat_sin_iva}% sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
@@ -85,7 +85,7 @@ class ContratoPdf < Prawn::Document
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
     "
-   text" * CAT (Costo Anual Total) %#{@credit.cat_sin_iva} sin IVA.
+   text" * CAT (Costo Anual Total) %#{@credit.cat_sin_iva}% sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
@@ -128,7 +128,7 @@ class ContratoPdf < Prawn::Document
     text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
     text"
     "
-   text" * CAT (Costo Anual Total) %#{@credit.cat_sin_iva} sin IVA.
+   text" * CAT (Costo Anual Total) #{@credit.cat_sin_iva}% sin IVA.
     * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
      Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
     * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
