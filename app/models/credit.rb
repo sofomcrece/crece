@@ -178,7 +178,7 @@ class Credit < ActiveRecord::Base
 
     def ciudad_tribunal
        xsuc= (self.padre.branch_office_id)
-       return  BranchOffice.find(xsuc).banco
+       return  BranchOffice.find(xsuc).ciudad_tribunal
     end
 
     # agente   === 1
