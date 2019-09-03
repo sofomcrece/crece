@@ -191,6 +191,15 @@ class Credit < ActiveRecord::Base
        
     end
 
+    def cat_sin_iva
+       xsuc= (self.padre.branch_office_id)
+       if xsuc==36
+            return  (327.2).to_f
+       else
+            return  self.product.cat_sin_iva.to_f
+        end
+       
+    end
     # agente   === 1
     # empresa === 0
     def nombre_completo_deudor
