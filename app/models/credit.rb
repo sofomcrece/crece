@@ -181,6 +181,16 @@ class Credit < ActiveRecord::Base
        return  BranchOffice.find(xsuc).ciudad_tribunal
     end
 
+    def taza_ord
+       xsuc= (self.padre.branch_office_id)
+       if xsuc==36
+            return  45
+       else
+            return  self.product.taza_de_interes_ordinaria
+        end
+       
+    end
+
     # agente   === 1
     # empresa === 0
     def nombre_completo_deudor
