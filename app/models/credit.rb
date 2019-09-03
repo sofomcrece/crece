@@ -184,9 +184,9 @@ class Credit < ActiveRecord::Base
     def taza_ord
        xsuc= (self.padre.branch_office_id)
        if xsuc==36
-            return  45
+            return  45.to_f
        else
-            return  self.product.taza_de_interes_ordinaria
+            return  self.product.taza_de_interes_ordinaria.to_f
         end
        
     end
