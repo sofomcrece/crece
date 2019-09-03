@@ -161,9 +161,10 @@ class ViewCreditsController < ApplicationController
         end
         puts "dia inicial #{dia_inicial}"
         puts dias
-    @total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))
+    #@total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))
+    @total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.taza_ord/100))
     @pago = @total/@credit.product.numero_de_pagos_a_realizar
-    @capital = @pago/(1 + (@credit.product.taza_de_interes_ordinaria / 100))
+    @capital = @pago/(1 + (@credi@total= @credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))t.product.taza_de_interes_ordinaria / 100))
     #@interes = (@capital * ( @credit.product.taza_de_interes_ordinaria / 100))/ (1+ ((@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/ 100))
     @interes = (@capital * ((@credit.product.taza_de_interes_ordinaria / 100) / 1.16))
     #if @credit.product.comision_apert >0
