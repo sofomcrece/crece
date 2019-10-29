@@ -256,7 +256,7 @@ class Credit < ActiveRecord::Base
         elsif (count ==5 or count ==6)
             "D"
         elsif (count ==7 or count >7)
-            "E"
+            "F"
         end
     end
     def periodo
