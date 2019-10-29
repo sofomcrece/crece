@@ -255,7 +255,7 @@ class Credit < ActiveRecord::Base
             "C"
         elsif (count ==5 or count ==6)
             "D"
-        elsif (count > 7)
+        elsif (count >= 7)
             "E"
         end
     end
