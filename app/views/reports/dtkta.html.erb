@@ -5,7 +5,15 @@
                   <label>
                     Tipo de Reporte
                   </label>
-                 
+                 <select class="browser-default" name="sucursal">
+                    <% unless current_user.tipo == 3%>
+                        <option value="" selected>Identificación</option> 
+                        <option value="" selected>Cuentas Relacionadas</option> 
+                        <option value="" selected>Perfil Transaccional</option> 
+                        <option value="" selected>Movimientos Diarios</option> 
+                    <% end %>    
+                    
+                </select>
                  <input type="submit" class="waves-effect waves-light btn" value="Generar Reporte">
              </form>
                
