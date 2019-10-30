@@ -220,8 +220,8 @@ class ReportsController < ApplicationController
 
   def dtkta
      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
-      @tickets = Ticket.all
-      @tickets = @tickets.order(:tipo)
+      @tickets = Ticket.all.where("fecha>'2019-10-01'")
+      @tickets = @tickets.order(:fecha)
       
   end
 
