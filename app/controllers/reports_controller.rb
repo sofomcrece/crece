@@ -219,14 +219,10 @@ class ReportsController < ApplicationController
   end
 
   def dtkta
-        respond_to do |format|
-        format.html {  }
-        format.xlsx { 
-              @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
-              @tickets = Ticket.all.where("fecha>'2019-10-01'")
-              @tickets = @tickets.order(:fecha)  
-        }
-    end  
+      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @tickets = Ticket.all.where("fecha>'2019-10-01'")
+      @tickets = @tickets.order(:fecha)  
+     
   end
 
 end 
