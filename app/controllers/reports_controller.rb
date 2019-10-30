@@ -217,4 +217,11 @@ class ReportsController < ApplicationController
       @users = @users.order(:tipo)
       
   end
+
+  def dtkta
+     @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @tickets = Ticket.all
+      @tickets = @tickets.order(:fecha)
+      
+  end
 end 
