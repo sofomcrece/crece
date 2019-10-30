@@ -1,5 +1,5 @@
   <div class = "row">
-       <h1 align="center">MOVIMIENTOS</h1>
+       <h1 align="center">REPORTES DTKTA</h1>
          <div class = "col s12 m6 l4">
              <form action="/reports/dtkta.xlsx" method="get">
                   <label>
@@ -7,13 +7,11 @@
                   </label>
                  <select class="browser-default" name="sucursal">
                     <% unless current_user.tipo == 3%>
-                        <option value="" selected>Todas</option> 
+                        <option value="" selected>Identificación</option> 
+                        <option value="" selected>Cuentas Relacionadas</option> 
+                        <option value="" selected>Perfil Transaccional</option> 
+                        <option value="" selected>Movimientos Diarios</option> 
                     <% end %>    
-                    <% @branch_offices = BranchOffice.order(:nombre) %>
-                    <% @branch_offices = @branch_offices.where(id:current_user.branchOffices[0].id)  if (current_user.tipo == 3) %>
-                    <%@branch_offices.all.each do |sucursal| %>
-                        <option value=<%=sucursal.id%>><%=sucursal.nombre%></option>
-                    <%end%>
                 </select>
                  <input type="submit" class="waves-effect waves-light btn" value="Descargar">
              </form>
