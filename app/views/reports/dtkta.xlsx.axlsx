@@ -6,6 +6,22 @@ wb = xlsx_package.workbook
     @mes=@fecha.month.to_i
     @año=@fecha.year.to_i
 
+if @dia>=13 and @dia<=26
+        @corte=Date.new(@año,@mes, 13).to_date
+    end
+    
+    if @dia>=1 and @dia<=12
+        if @mes==1
+            @corte=Date.new(@año-1,12, 27).to_date
+        else
+            @corte=Date.new(@año,@mes-1, 27).to_date
+        end
+        
+    end
+    
+    if @dia >=27 and @dia<=31
+        @corte=Date.new(@año,@mes, 27).to_date
+    end
  
 
      
