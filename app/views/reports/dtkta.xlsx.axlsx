@@ -1,2 +1,10 @@
 wb = xlsx_package.workbook
-end
+  wb.styles do |style|
+    highlight_cell = style.add_style(bg_color: "FFFF00")
+    wb.add_worksheet(name: "movimientos diarios") do |sheet|
+      sheet.add_row [@payment.estatus]
+      sheet.add_row [""]
+      sheet.add_row ["Sucursal","Empresa","NOMBRE ACREDITADO","Ultima Calif.","Prestamos","Lista de Prestamos"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+     
+    end
+  end
