@@ -132,7 +132,11 @@
     
      window.location.href = url
   }
-  
+  $scope.descargar_dtkta = function(){
+     var url ="/reports/dtkta.xlsx?"
+   
+     window.location.href = url
+  }
   $scope.historial_de_recibos = function(){
      var url = "/reports/historial_de_recibos.xlsx?";
     if (!($scope.fechas.selected == ""||$scope.fechas.selected ==undefined))
