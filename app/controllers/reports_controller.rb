@@ -219,10 +219,13 @@ class ReportsController < ApplicationController
   end
 
   def dtkta
-      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
-      #@sucursales = BranchOffice.all.order("clave")
-      #@sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-     @pagares= Payment.all.order("credit_id")
+     respond_to do |format|
+        format.html {  }
+        format.xlsx { 
+           
+            @payments= Payment.all
+           
+        }
        
      
   end
