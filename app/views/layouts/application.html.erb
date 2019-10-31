@@ -132,16 +132,7 @@
     
      window.location.href = url
   }
-   $scope.generar_dtkta = function(){
-    <% unless current_user.nil?%>
-      <% if current_user.tipo == 3%>
-        
-      <% end %>
-    <% end %>
-     var url ="/reports/dtkta.xlsx?"
-    
-     window.location.href = url
-  }
+  
   $scope.historial_de_recibos = function(){
      var url = "/reports/historial_de_recibos.xlsx?";
     if (!($scope.fechas.selected == ""||$scope.fechas.selected ==undefined))
