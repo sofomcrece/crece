@@ -6,45 +6,29 @@ wb = xlsx_package.workbook
     @mes=@fecha.month.to_i
     @año=@fecha.year.to_i
 
-if @dia>=13 and @dia<=26
-        @corte=Date.new(@año,@mes, 13).to_date
-    end
-    
-    if @dia>=1 and @dia<=12
-        if @mes==1
-            @corte=Date.new(@año-1,12, 27).to_date
-        else
-            @corte=Date.new(@año,@mes-1, 27).to_date
-        end
-        
-    end
-    
-    if @dia >=27 and @dia<=31
-        @corte=Date.new(@año,@mes, 27).to_date
-    end
- 
+
 
      
-def llenar_fila(creditos,nombre, sucursal)
-        payments=creditos.joins(:payments)
+def llenar_fila(tics)
+        
    
-        cartera=segui.where("fecha_corte=?",@corte).sum(:adeudo)
-        colocado=creditos.where("credits.fecha_de_contrato>= ? and credits.fecha_de_contrato<= ?",@corte, @fecha).sum(:monto_solicitud)
+        #cartera=segui.where("fecha_corte=?",@corte).sum(:adeudo)
+        #colocado=creditos.where("credits.fecha_de_contrato>= ? and credits.fecha_de_contrato<= ?",@corte, #@fecha).sum(:monto_solicitud)
        
-        cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=?",@corte,@corte).sum(:cantidad)
+        #cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and #tickets.updated_at>=?",@corte,@corte).sum(:cantidad)
 
         return [
-                sucursal,
-                nombre,
-                cartera,
-                cobrado
+                0,
+                0,
+                0,
+                0
                 ]
    
 end
 
 
 
-wb.add_worksheet(name: "numeros_tablero") do |sheet|
+wb.add_worksheet(name: "Movimientos diarios") do |sheet|
     wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "F4A460")
     border = wb.styles.add_style({:border => { :style => :thin, :color => "000000" }}) 
@@ -85,24 +69,21 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
 
-    
-    
-    @linea = 7
-    
-    @sucursales.each do |sucursal|
+    @pagares.each do |pag|
         @linea = @linea+@avance
         @avance = 0
         @TotCart=0
-        sucursal.agents.each do |agente|
-            creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
+      
+            tics = pag.tickets.where("tickets.status = ?",0)
+            sheet.add_row llenar_fila(tics),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
             #@TotCart=@TotCart + C#{@linea}
             @avance += 1
 
-        end
+    
                 
     end
 
+    
     
     
     
