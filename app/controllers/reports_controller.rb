@@ -124,6 +124,28 @@ class ReportsController < ApplicationController
         
     end
   end
+
+  def Reporte_identificacion
+    respond_to do |format|
+        format.html {  }
+        #format.json { self.seguimiento_conf }
+        format.xlsx{ 
+            self.Reporte_identificacion_conf            
+        }
+        
+    end
+  end
+
+   def Reporte_identificacion_conf    
+        require 'json'         
+         @resp = Hash.new("respuesta")       
+         @resp["datos"] = Reporte_identificacion_Cargar()
+        end
+  end
+
+   def Reporte_identificacion_Cargar()
+    Auxiliar.Reporte_identificacion()
+  end
   
   
   def tablero_conf
