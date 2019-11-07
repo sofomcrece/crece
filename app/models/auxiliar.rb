@@ -119,6 +119,104 @@ class Auxiliar < ActiveRecord::Base
       end
     end
 
+     #Reporte de clientes de identificaciòn
+    def self. Reporte_identificacion()      
+      customers = Customer.all.where("customers.status = ? ",1).order(:apellido_paterno)     
+        self.Reporte_identificacion_clientes(customers)     
+    end
+    def self.Reporte_identificacion_clientes(customers)
+      tabla = []
+      customers.each do |customer|
+        tabla << self.generador_de_Reporte_identificacion_clientes(customer)
+      end
+     return tabla
+    end
+    def self.generador_de_Reporte_identificacion_clientes(customer)        
+        fila = Hash.new()
+         fila["ID_CLIENTE"] = customers.id
+         fila["CUENTA"] = customers.id
+         fila["ORIGEN"] = "cl"
+         fila["NOMBRE"] = customers.nombre_1
+         fila["NOMBRE_ADICIONAL"] = customers.nombre_2
+         fila["APE_PATERNO"] = customers.apellido_paterno
+         fila["APE_MATERNO"] = customers.apellido_materno
+         fila["TIPO_PERSONA"] = "1"
+         fila["CTE_RFC"] = customers.RFC
+         fila["CTE_CURP"] = customers.CURP
+         fila["RAZON_SOCIAL"] ="" 
+         fila["FECHA_NAC"] = customers.fecha_de_nacimiento
+         fila["NACIONALIDAD"] =(customers.nacionalidad == "MEXICO".to_s)? 1:2
+         fila["DOMICILIO"] =  customers.calle.to_s + "#" + customers.numero_exterior.to_s + " C.P." + customers.codigo_postal.to_s
+         fila["COLONIA"] = customers.colonia
+         fila["CIUDAD"] = customers.ciudad_de_nacimiento
+         fila["PAIS"] = (customers.country == "MEXICO".to_s)? 153:153
+         fila["ESTADO"] = (customers.estado_actual == "SINALOA".to_s)? 25:25
+         fila["TELEFONO_PARTICULAR"] = customers.telefono_celular
+         fila["ACTIVIDAD_ECONOMICA"] = customers.economical_activity_id
+         fila["CALIFICACION"] = "1"         
+         fila["FECHA_ALTA"] = customers.created_at
+         fila["SUCURSAL"] = customers.referencia_agente_empresa
+         mi_curp=customers.CURP  
+         fila["GENERO"] = (mi_curp [10]=="M")? 1:2
+         fila["CORREO_ELECTRONICO"] = customers.email_1
+         fila["FIRMA_ELECTRONICA"] = ""
+         fila["PROFESION"] = customers.profecion_id
+         fila["OCUPACION"] = customers.ocupation_id
+         fila["PAIS_NACIMIENTO"] = (customers.country == "MEXICO".to_s)? 153:153       
+         estadoCliente_id= customers.estado_de_nacimiento.to_s
+          id_Estado_de_cliente = case estadoCliente_id
+             when "Sinaloa" then "25"      
+             when "Aguascalientes" then "1"
+             when "Baja California" then "2"
+             when "Baja California Sur" then "3"
+             when "Campeche" then "4"
+             when "Coahuila de Zaragoza" then "5"
+             when "Colima" then "6"
+             when "Chiapas" then "7"
+             when "Chihuahua" then "8"
+             when "Distrito Federal" then "9"
+             when "Durango" then "10"
+             when "Guanajuato" then "11"
+             when "Guerrero" then "12"
+             when "Hidalgo" then "13"
+             when "Jalisco" then "14"
+             when "México" then "15"
+             when "Michoacán de Ocampo" then "16"
+             when "Morelos" then "17"
+             when "Nayarit" then "18"
+             when "Nuevo León" then "19"
+             when "Oaxaca" then "20"
+             when "Puebla" then "21"
+             when "Querétaro Arteaga" then "22"
+             when "Quintana Roo" then "23"
+             when "San Luis Potosí" then "24"
+             when "Sonora" then "26"
+             when "Tabasco" then "27"
+             when "Tamaulipas" then "28"
+             when "Tlaxcala" then "29"
+             when "Veracruz de Ignacio de la Llave" then "30"
+             when "Yucatán" then "31"
+             when "Zacatecas" then "32" 
+             else "25"
+          end
+         fila["ESTADO_NAC"] = estadoCliente_id
+         fila["LUGAR_NAC"] = customers.estado_de_nacimiento
+         fila["NUM_DOCTO"] = customers.INE
+         fila["CONOCIMIENTO_CTE"] = ""
+         fila["REGISTRO_NAC_INMIGRACION"] = ""
+         fila["CUENTA_ORIGINAL"] = ""
+         fila["TIPO_DOCTO"] = "INE"
+         fila["INDICADOR_EMPLEO"] = "Si"
+         fila["cte_empresa_labora"] = customers.empresa_donde_labora
+         fila["INDICADOR_GOBIERNO"] = "VACIA"
+         fila["PUESTO"] = customers.puesto
+         fila["FECHA_INICIO"] = customers.created_at
+         t = Time.now
+         solo_fecha= t.strftime("%d/%m/%Y")
+         fila["FECHA_FIN"] = solo_fecha 
+        return fila
+    end
+
     def self.generador_de_tuplas(credit,fecha)
         payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         fila = Hash.new()
