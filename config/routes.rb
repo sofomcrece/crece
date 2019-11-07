@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'reports/calificaciones'
   get 'reports/historial_de_pagos'
   get 'reports/usuarios'
-  get 'reports/dtkta'
+  get 'reports/clientesdtkta'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   put 'cancelar/:id', to:'tickets#cancelar', as: "cancelar"
   
