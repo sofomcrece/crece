@@ -57,7 +57,7 @@
             url=url+"&sucursal="+ $scope.sucursal;
         if ($scope.empresa!="" && $scope.empresa != undefined)
             url=url+"&empresa="+ $scope.empresa;
-        #$http.get("/customers.json?"+url)
+        $http.get("/customers.json?"+url)
         .success(function(data){
              $scope.clientes=data;
              console.log(data);
