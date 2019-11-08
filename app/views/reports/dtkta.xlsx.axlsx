@@ -47,7 +47,7 @@ wb = xlsx_package.workbook
          customer.puesto,
          customer.created_at,
          customer.created_at
-
+         ]
       end
     end
   end
