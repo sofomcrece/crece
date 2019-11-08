@@ -48,7 +48,7 @@ class ReportsController < ApplicationController
   end
 
 
-  
+
    def num_tablero
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all.order("clave")
