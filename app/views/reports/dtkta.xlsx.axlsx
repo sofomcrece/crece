@@ -13,9 +13,8 @@ wb = xlsx_package.workbook
         customer.credits.select(:id,:fecha_de_contrato).where("status = 1 or status = 3").order(:fecha_de_contrato).each do |credit|
             calificaciones = calificaciones + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
         end
-        sheet.add_row [customer.id,customer.id, "CL",customer.nombre_1, customer.nombre_2, customer.apellido_paterno, customer.apellido_materno]
-
-customers.RFC,
+        sheet.add_row [customer.id,customer.id, "CL",customer.nombre_1, customer.nombre_2, customer.apellido_paterno, customer.apellido_materno,
+        customers.RFC,
          customers.CURP,
          "" ,
          customers.fecha_de_nacimiento,
@@ -88,7 +87,7 @@ customers.RFC,
          t = Time.now
          solo_fecha= t.strftime("%d/%m/%Y")
          solo_fecha 
-
+        ]
 
       end
     end
