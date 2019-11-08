@@ -14,29 +14,29 @@ wb = xlsx_package.workbook
             calificaciones = calificaciones + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
         end
         sheet.add_row [customer.id,customer.id, "CL",customer.nombre_1, customer.nombre_2, customer.apellido_paterno, customer.apellido_materno,
-        customers.RFC,
-         customers.CURP,
+        customer.RFC,
+         customer.CURP,
          "" ,
-         customers.fecha_de_nacimiento,
-         (customers.nacionalidad == "MEXICO".to_s)? 1:2,
-         customers.calle.to_s + "#" + customers.numero_exterior.to_s + " C.P." + customers.codigo_postal.to_s,
-         customers.colonia,
-         customers.ciudad_de_nacimiento,
-         (customers.country == "MEXICO".to_s)? 153:153,
-         (customers.estado_actual == "SINALOA".to_s)? 25:25,
-        customers.telefono_celular,
-         customers.economical_activity_id,
+         customer.fecha_de_nacimiento,
+         (customer.nacionalidad == "MEXICO".to_s)? 1:2,
+         customer.calle.to_s + "#" + customer.numero_exterior.to_s + " C.P." + customer.codigo_postal.to_s,
+         customer.colonia,
+         customer.ciudad_de_nacimiento,
+         (customer.country == "MEXICO".to_s)? 153:153,
+         (customer.estado_actual == "SINALOA".to_s)? 25:25,
+        customer.telefono_celular,
+         customer.economical_activity_id,
         "1",      
-         customers.created_at,
-         customers.referencia_agente_empresa,
-         customers.CURP,  
+         customer.created_at,
+         customer.referencia_agente_empresa,
+         customer.CURP,  
          (mi_curp [10]=="M")? 1:2,
-         customers.email_1,
+         customer.email_1,
          "",
-         customers.profecion_id,
-         customers.ocupation_id,
-        (customers.country == "MEXICO".to_s)? 153:153,      
-         estadoCliente_id= customers.estado_de_nacimiento.to_s
+         customer.profecion_id,
+         customer.ocupation_id,
+        (customer.country == "MEXICO".to_s)? 153:153,      
+         estadoCliente_id= customer.estado_de_nacimiento.to_s
           id_Estado_de_cliente = case estadoCliente_id
              when "Sinaloa" then "25"      
              when "Aguascalientes" then "1"
@@ -73,17 +73,17 @@ wb = xlsx_package.workbook
              else "25"
           end
          estadoCliente_id,
-         customers.estado_de_nacimiento,
-         customers.INE,
+         customer.estado_de_nacimiento,
+         customer.INE,
          "",
          "",
          "",
          "INE",
          "Si",
-         customers.empresa_donde_labora,
+         customer.empresa_donde_labora,
          "VACIA",
-         customers.puesto,
-         customers.created_at,
+         customer.puesto,
+         customer.created_at,
          t = Time.now
          solo_fecha= t.strftime("%d/%m/%Y")
          solo_fecha 
