@@ -5,7 +5,37 @@ wb = xlsx_package.workbook
       sheet.add_row [@branch_office.nombre] unless @branch_office.nil?
       sheet.add_row [@padre.nombre_completo] unless @padre.nil?
       sheet.add_row [""]
-      sheet.add_row ["ID_CLIENTE","CUENTA","ORIGEN","NOMBRE","NOMBRE_ADICIONAL","APE_PATERNO","APE_MATERNO"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+      sheet.add_row ["ID_CLIENTE","CUENTA","ORIGEN","NOMBRE","NOMBRE_ADICIONAL","APE_PATERNO","APE_MATERNO","CTE_RFC", "CTE_CURP","RAZON_SOCIAL","FECHA_NAC","NACIONALIDAD","DOMICILIO","COLONIA","CIUDAD","PAIS", "ESTADO","TELEFONO_PARTICULAR","ACTIVIDAD_ECONOMICA","CALIFICACION","FECHA_ALTA","SUCURSAL","CURP","GENERO","CORREO_ELECTRONICO","FIRMA_ELECTRONICA","PROFESION","OCUPACION","PAIS_NACIMIENTO"],style: [ 
+
+
+fila["CTE_RFC"] = customers.RFC
+         fila["CTE_CURP"] = customers.CURP
+         fila["RAZON_SOCIAL"] ="" 
+         fila["FECHA_NAC"] = customers.fecha_de_nacimiento
+         fila["NACIONALIDAD"] =(customers.nacionalidad == "MEXICO".to_s)? 1:2
+         fila["DOMICILIO"] =  customers.calle.to_s + "#" + customers.numero_exterior.to_s + " C.P." + customers.codigo_postal.to_s
+         fila["COLONIA"] = customers.colonia
+         fila["CIUDAD"] = customers.ciudad_de_nacimiento
+         fila["PAIS"] = (customers.country == "MEXICO".to_s)? 153:153
+         fila["ESTADO"] = (customers.estado_actual == "SINALOA".to_s)? 25:25
+         fila["TELEFONO_PARTICULAR"] = customers.telefono_celular
+         fila["ACTIVIDAD_ECONOMICA"] = customers.economical_activity_id
+         fila["CALIFICACION"] = "1"         
+         fila["FECHA_ALTA"] = customers.created_at
+         fila["SUCURSAL"] = customers.referencia_agente_empresa
+         mi_curp=customers.CURP  
+         fila["GENERO"] = (mi_curp [10]=="M")? 1:2
+         fila["CORREO_ELECTRONICO"] = customers.email_1
+         fila["FIRMA_ELECTRONICA"] = ""
+         fila["PROFESION"] = customers.profecion_id
+         fila["OCUPACION"] = customers.ocupation_id
+         fila["PAIS_NACIMIENTO"] = (customers.country == "MEXICO".to_s)? 153:153     
+
+
+      highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell ]
 
       @customers.each do |customer|
         ultimo_credito = customer.credits.select(:id).where("status = 1 or status = 3").last
