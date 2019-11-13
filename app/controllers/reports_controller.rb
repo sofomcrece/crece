@@ -238,7 +238,7 @@ class ReportsController < ApplicationController
                 end
             end
             @customers = Customer.all
-            @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? and customers.status = 1",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+            @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ?",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
             @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
             @customers = @customers.order(:updated_at)  unless @customers == []   
         }
