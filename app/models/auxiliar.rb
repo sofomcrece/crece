@@ -104,7 +104,7 @@ class Auxiliar < ActiveRecord::Base
       if self.seguimiento_guardado_contador(credits,fecha) > 0
         self.seguimiento_por_creditos_guardados(credits,fecha)
       else
-        credits = credits.where(status:1 and fecha_de_contrato<= ?",fecha)
+        credits = credits.where(status:1) #and fecha_de_contrato<="2019/11/12"
         self.seguimiento_por_creditos(credits,fecha)
       end
     end
