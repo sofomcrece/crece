@@ -224,7 +224,7 @@ class Auxiliar < ActiveRecord::Base
     def self.seguimiento_por_creditos_guardados(credits,fecha)
       tabla = []
       credits.each do |credit|
-        seguimiento  = Seguimiento.all.where("credit_id = ? and fecha_corte = ? and a_pagar>0", credit.id, fecha.to_date)[0]
+        seguimiento  = Seguimiento.all.where("credit_id = ? and fecha_corte = ? and a_pagar>", credit.id, fecha.to_date)[0]
         if seguimiento.nil?
           next if credit.status == 3
           next if credit.fecha_de_contrato >= fecha
