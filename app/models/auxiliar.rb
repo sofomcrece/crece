@@ -123,7 +123,6 @@ class Auxiliar < ActiveRecord::Base
     def self.generador_de_tuplas(credit,fecha)
         payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         fila = Hash.new()
-        fila["cred_id"] = "#{credit.id}"
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
         fila["monto_solicitud"] = credit.monto_solicitud
@@ -232,7 +231,6 @@ class Auxiliar < ActiveRecord::Base
           next
         end
         fila = Hash.new()
-        fila["cred_id"] = credit.id
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
         fila["monto_solicitud"] = credit.monto_solicitud
@@ -273,7 +271,6 @@ class Auxiliar < ActiveRecord::Base
           next
         end
         fila = Hash.new()
-        fila["cred_id"] = credit.id
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
         fila["monto_solicitud"] = credit.monto_solicitud

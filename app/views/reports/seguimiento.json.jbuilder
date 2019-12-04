@@ -1,7 +1,6 @@
 json.nombre_empresa  @resp["nombre_empresa"]
 json.fecha  @resp["fecha"]
 json.array!(@resp["datos"]) do |fila|
-    json.cred_id fila["Id_Cred"]
     json.nombre_completo fila["nombre_completo"]
     json.fecha fila["fecha"]
     json.monto_solicitud fila["monto_solicitud"]
