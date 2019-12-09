@@ -256,6 +256,7 @@ class Auxiliar < ActiveRecord::Base
         #fila["payment_ref"] = payment.id
         fila["credit_id"] = credit.id 
         fila["fecha_corte"] = fecha
+        next if fila["adeudo"]=0
         tabla << fila
       end
      return tabla
