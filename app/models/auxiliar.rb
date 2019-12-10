@@ -231,7 +231,7 @@ class Auxiliar < ActiveRecord::Base
           next
         end
 
-        next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
+        #next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
