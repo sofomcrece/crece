@@ -233,7 +233,7 @@ class Auxiliar < ActiveRecord::Base
         xmonto_a_pagar = credit.payments.sum(:importe)
         xpagado = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
         xadeudo = xmonto_a_pagar - xpagado
-
+        next if xadeudo == 0
         #next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
