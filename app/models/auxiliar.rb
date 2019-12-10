@@ -235,7 +235,7 @@ class Auxiliar < ActiveRecord::Base
         xadeudo = xmonto_a_pagar - xpagado
         xultpago = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).order(:updated_at).last.updated_at.to_date
         if xadeudo == 0 
-          next if xultpago >= fecha
+          #next if xultpago >= fecha
         end
         #next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
         fila = Hash.new()
