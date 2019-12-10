@@ -256,9 +256,10 @@ class Auxiliar < ActiveRecord::Base
         #fila["payment_ref"] = payment.id
         fila["credit_id"] = credit.id 
         fila["fecha_corte"] = fecha
-        
+
         tabla << fila
       end
+      tabla.delete_if {adeudo =< 0}
      return tabla
     end
     
