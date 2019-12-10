@@ -259,7 +259,7 @@ class Auxiliar < ActiveRecord::Base
 
         tabla << fila
       end
-      tabla.delete_if {adeudo =< 0}
+      #tabla.delete_if {adeudo =< 0}
      return tabla
     end
     
