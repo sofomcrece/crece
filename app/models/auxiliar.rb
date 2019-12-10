@@ -233,7 +233,7 @@ class Auxiliar < ActiveRecord::Base
         xmonto_a_pagar = credit.payments.sum(:importe)
         xpagado = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
         xadeudo = xmonto_a_pagar - xpagado
-        xultpago = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).order(:updated_at).last.updated_at.to_date
+        xultpago = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).order(:updated_at).last
         if xadeudo == 0 
           #next if xultpago >= fecha
         end
