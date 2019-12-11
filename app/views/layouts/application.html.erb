@@ -18,7 +18,7 @@
         $scope.colonias=[];
         $scope.type= function(){
         /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)*/
-        http.get("https://api-sepomex.hckdrk.mx/query/info_cp/"+ $scope.codigo)
+        http.get("https://api-sepomex.hckdrk.mx/query/info_cp/"+ $scope.codigo + "?type=simplified")
     		.success(function(data){
     			console.log(data);
     			$scope.data=data;
