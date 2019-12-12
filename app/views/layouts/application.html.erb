@@ -13,11 +13,29 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script>
     angular.module("app_marjo",[])
+    
     .controller("cp",["$scope","$http",function($scope,$http){
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://mexico-zip-codes.p.rapidapi.com/buscar/?codigo_postal=646",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "mexico-zip-codes.p.rapidapi.com",
+        "x-rapidapi-key": "75af737875msh3878ae8de94845bp17bd25jsnb87faf8fef0c"
+      }
+    }
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
         $scope.codigo;
         $scope.colonias=[];
         $scope.type= function(){
-        $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
+        $http.get("https://mexico-zip-codes.p.rapidapi.com/buscar/?codigo_postal="+ $scope.codigo)
+        /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)*/
     		.success(function(data){
     			console.log(data);
     			$scope.data=data;
