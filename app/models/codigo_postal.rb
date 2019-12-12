@@ -2,8 +2,8 @@ class CodigoPostal < ActiveRecord::Base
   
     
     def self.loadData
-        #path = "https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"
-        path = "https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code/"
+        path = "https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"
+        #path = "https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code/"
         (0...99999).each do |i|
            res HTTP.get(path + i.to_s).to_s
            current = self.where(cp:i)[0]
