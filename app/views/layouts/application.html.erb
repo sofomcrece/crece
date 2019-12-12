@@ -17,12 +17,12 @@
         $scope.codigo;
         $scope.colonias=[];
         $scope.type= function(){
-        $http.get("https://mexico-zip-codes.p.rapidapi.com/codigo_postal/"+ $scope.codigo)
+        /*$http.get("https://mexico-zip-codes.p.rapidapi.com/codigo_postal/"+ $scope.codigo)
         $headers:{
               "X-RapidAPI-Host" => "mexico-zip-codes.p.rapidapi.com",
               "X-RapidAPI-Key" => "75af737875msh3878ae8de94845bp17bd25jsnb87faf8fef0c"
-              }
-        /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)*/
+              }*/
+        $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
         /*$http.get("htps://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.codigo)*/
         /*http.get("https://api-sepomex.hckdrk.mx/query/info_cp/"+ $scope.codigo + "?type=simplified")*/
     		.success(function(data){
