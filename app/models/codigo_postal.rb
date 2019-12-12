@@ -5,7 +5,7 @@ class CodigoPostal < ActiveRecord::Base
         #path = "https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"
         path = "https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code/"
         (0...99999).each do |i|
-           res = HTTP.get(path + i.to_s).to_s
+           res HTTP.get(path + i.to_s).to_s
            current = self.where(cp:i)[0]
            if (current.nil?)
              self.create(cp:i, data: res) unless JSON.parse(res)['estado'] == ""
@@ -16,6 +16,8 @@ class CodigoPostal < ActiveRecord::Base
            print JSON.parse(res)['estado']
         end
     end
+
+
     def self.getData(val)
         row = self.where(cp:val).last
         if (row.nil?)
@@ -24,4 +26,8 @@ class CodigoPostal < ActiveRecord::Base
             return row.data
         end
     end
+
+
+
 end
+
