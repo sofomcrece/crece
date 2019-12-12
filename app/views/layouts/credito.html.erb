@@ -214,12 +214,7 @@
         $scope.type= function(){
           $scope.colonias=[];
           $scope.localidades=[];
-          $http.get("https://mexico-zip-codes.p.rapidapi.com/codigo_postal/"+ $scope.credito.codigo_postal)
-          $headers:{
-              "X-RapidAPI-Host" => "mexico-zip-codes.p.rapidapi.com",
-              "X-RapidAPI-Key" => "75af737875msh3878ae8de94845bp17bd25jsnb87faf8fef0c"
-              }
-          /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)*/
+          $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
     		.success(function(data){
     			console.log(data);
     			Array.prototype.unique=function(a){
