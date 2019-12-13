@@ -225,7 +225,8 @@
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
           $scope.credito.estado = data.zip_codes[0].d_estado;
           $scope.localidades.push(data.zip_codes[0].d_ciudad);
-          for (var x=0;data.zip_codes.length;x++){
+          //for (var x=0;data.zip_codes.length;x++){
+          for (var x=0;x<5;x++){
             $scope.colonias.push(data.zip_codes[x].d_asenta);
           } 
     			/*$scope.credito.estado_actual=data.estado;
