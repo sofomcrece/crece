@@ -219,14 +219,14 @@
           $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
     			console.log(data);
-    			Array.prototype.unique=function(a){
+    			/*Array.prototype.unique=function(a){
             return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
-          });
+          });*/
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
           $scope.credito.estado = data.zip_codes[0].d_estado;
           $scope.localidades.push(data.zip_codes[0].d_ciudad);
           //for (var x=0;data.zip_codes.length;x++){
-          for (var x=0;x<14;x++){
+          for (var x=0;data.zip_codes.length;x++){
             $scope.colonias.push(data.zip_codes[x].d_asenta);
           } 
 
