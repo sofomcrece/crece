@@ -225,26 +225,12 @@
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
           $scope.credito.estado = data.zip_codes[0].d_estado;
           $scope.localidades.push(data.zip_codes[0].d_ciudad);
-          for (var x=0;x<data.zip_codes.length;x++){
-          //for (var x=0;x<5;x++){
+          //for (var x=0;data.zip_codes.length;x++){
+          for (var x=0;x<14;x++){
             $scope.colonias.push(data.zip_codes[x].d_asenta);
           } 
 
-          var ret = [];
-           var val = $scope.localidades;
-           var flag = false;
-           for (var x = 0;x < val.length;x++){
-             for (var y = 0;y < ret.length;y++){
-              if (!(val[x]===ret[y]))
-                flag = true;
-              }
-              if (!flag)
-                ret.push(val[x]);
-            }
-            $scope.localidades=[];
-            $scope.localidades.push(ret);
-            
-            console.log(ret);
+
     			/*$scope.credito.estado_actual=data.estado;
     			$scope.credito.municipio=data.municipio;
     			$scope.colonias=data.colonias.unique();
