@@ -225,10 +225,10 @@
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
           $scope.credito.estado = data.zip_codes[0].d_estado;
           $scope.localidades.push(data.zip_codes[0].d_ciudad);
-          for (var x=0;data.zip_codes.length;x++){
-            if (data.zip_codes[0].d_codigo==$scope.credito.codigo_postal){
+          for (var x=0;data.zip_codes.length;x++)
+            //if (data.zip_codes[0].d_codigo==$scope.credito.codigo_postal){
               $scope.colonias.push(data.zip_codes[x].d_asenta);
-            }
+            
           } 
     			/*$scope.credito.estado_actual=data.estado;
     			$scope.credito.municipio=data.municipio;
