@@ -191,12 +191,13 @@ class Auxiliar < ActiveRecord::Base
     def self.seguimiento_por_creditos(credits,fecha)
       tabla = []
       credits.each do |credit|
-        payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
-        if payment.nil?
+        #CODIGO PARA PROBAR QUE NO SALGAN EN CERO
+        #payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+        #if payment.nil?
 
-        else
+        #else
           tabla << self.generador_de_tuplas(credit,fecha)
-        end
+        #end
       end
      return tabla
     end
