@@ -246,6 +246,13 @@ class Auxiliar < ActiveRecord::Base
         #next if xadeudo == 0 
 
         #next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
+
+        #CODIGO PARA PROBAR QUE NO SALGAN EN CERO
+        payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+        if payment.nil?
+
+        else
+
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
@@ -275,7 +282,7 @@ class Auxiliar < ActiveRecord::Base
 
         #fila.delete_if { |adeudo | adeudo =< 0}
         tabla << fila
-
+        end
       end
 
      return tabla
