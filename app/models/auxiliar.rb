@@ -129,8 +129,8 @@ class Auxiliar < ActiveRecord::Base
           xadeudo= xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
           xpagar= Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Ticket.joins(:payment).where("payments.credit_id = ? and payments.fecha_de_corte = ? and tickets.status = 0 and tickets.updated_at < ?", credit.id, fecha,fecha).sum(:cantidad) 
           if xadeudo==0 and xpagar==0
-            fila = Hash.new()
-            return fila
+            #fila = Hash.new()
+            #return fila
           else
 
           fila = Hash.new()
@@ -269,8 +269,8 @@ class Auxiliar < ActiveRecord::Base
         xtotalPagar=seguimiento.a_pagar
 
         if xtotalDeuda==0 and xtotalPagar==0
-          fila = Hash.new()
-          return fila
+          #fila = Hash.new()
+          #return fila
         else
 
 
