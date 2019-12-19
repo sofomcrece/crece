@@ -252,6 +252,17 @@ class Auxiliar < ActiveRecord::Base
         #if payment.nil?
 
         #else
+       
+        monto_a_Pagar=credit.payments.sum(:importe)
+        pagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        totalDeuda=fila["monto_a_Pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+        totalPagar=seguimiento.a_pagar
+
+        if totalDeuda==0 and totalPagar==0
+          fila = Hash.new()
+          return fila
+        else
+
 
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
@@ -283,6 +294,7 @@ class Auxiliar < ActiveRecord::Base
         #fila.delete_if { |adeudo | adeudo =< 0}
         tabla << fila
         #end
+        end
       end
 
      return tabla
@@ -297,6 +309,18 @@ class Auxiliar < ActiveRecord::Base
           tabla << self.generador_de_tuplas_tablero(credit,fecha)
           next
         end
+
+
+        monto_a_pagar= credit.payments.sum(:importe)
+        pagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        adeudo= fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+        pagar= tablero.a_pagar
+        if adeudo==0 and pagar==0
+           fila = Hash.new()
+           return fila
+         else
+
+
         fila = Hash.new()
         fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
         fila["fecha"] = credit.fecha_de_contrato
@@ -325,6 +349,7 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha_corte"] = fecha
         fila["estatus"] = Payment.select(:estatus)
         tabla << fila
+      end
       end
      return tabla
     end
