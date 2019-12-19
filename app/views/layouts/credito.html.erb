@@ -224,10 +224,10 @@
           });*/
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
           $scope.credito.estado = data.zip_codes[0].d_estado;
-          $scope.localidades.push(data.zip_codes[0].d_ciudad);
+          $scope.localidades.push(data.zip_codes[0].d_mnpio);
           //for (var x=0;data.zip_codes.length;x++){
           for (var x=0;data.zip_codes.length;x++){
-            $scope.colonias.push(data.zip_codes[x].d_mnpio);
+            $scope.colonias.push(data.zip_codes[x].d_asenta);
           } 
 
 
