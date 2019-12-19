@@ -253,12 +253,12 @@ class Auxiliar < ActiveRecord::Base
 
         #else
        
-        monto_a_Pagar=credit.payments.sum(:importe)
-        pagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
-        totalDeuda=fila["monto_a_Pagar"].to_s.to_d - fila["pagado"].to_s.to_d
-        totalPagar=seguimiento.a_pagar
+        xmonto_a_pagar=credit.payments.sum(:importe)
+        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        xtotalDeuda=xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
+        xtotalPagar=seguimiento.a_pagar
 
-        if totalDeuda==0 and totalPagar==0
+        if xtotalDeuda==0 and xtotalPagar==0
           fila = Hash.new()
           return fila
         else
@@ -311,11 +311,11 @@ class Auxiliar < ActiveRecord::Base
         end
 
 
-        monto_a_pagar= credit.payments.sum(:importe)
-        pagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
-        adeudo= fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
-        pagar= tablero.a_pagar
-        if adeudo==0 and pagar==0
+        xmonto_a_pagar= credit.payments.sum(:importe)
+        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        xadeudo= xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
+        xpagar= tablero.a_pagar
+        if xadeudo==0 and xpagar==0
            fila = Hash.new()
            return fila
          else
