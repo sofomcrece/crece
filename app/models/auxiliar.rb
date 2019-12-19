@@ -123,6 +123,16 @@ class Auxiliar < ActiveRecord::Base
     def self.generador_de_tuplas(credit,fecha)
         payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
 
+
+          xmonto_a_pagar= credit.payments.sum(:importe)
+          xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+          xadeudo= xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
+          xpagar= Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Ticket.joins(:payment).where("payments.credit_id = ? and payments.fecha_de_corte = ? and tickets.status = 0 and tickets.updated_at < ?", credit.id, fecha,fecha).sum(:cantidad) 
+          if xadeudo==0 and xpagar==0
+            fila = Hash.new()
+            return fila
+          else
+
           fila = Hash.new()
           fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
           fila["fecha"] = credit.fecha_de_contrato
@@ -149,7 +159,7 @@ class Auxiliar < ActiveRecord::Base
           fila["credit_id"] = credit.id 
           fila["fecha_corte"] = fecha
           return fila
-      
+      end
     end
     
      def self.generador_de_tuplas_tablero(credit,fecha)
@@ -311,14 +321,7 @@ class Auxiliar < ActiveRecord::Base
         end
 
 
-        xmonto_a_pagar= credit.payments.sum(:importe)
-        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
-        xadeudo= xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
-        xpagar= tablero.a_pagar
-        if xadeudo==0 and xpagar==0
-           fila = Hash.new()
-           return fila
-         else
+       
 
 
         fila = Hash.new()
@@ -349,7 +352,6 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha_corte"] = fecha
         fila["estatus"] = Payment.select(:estatus)
         tabla << fila
-      end
       end
      return tabla
     end
