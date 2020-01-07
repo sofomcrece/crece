@@ -278,7 +278,7 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha"] = credit.fecha_de_contrato
         fila["monto_solicitud"] = credit.monto_solicitud
         fila["monto_a_pagar"] = credit.payments.sum(:importe)
-        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad).to_s.to_d
         fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
         fila["pagar"] = seguimiento.a_pagar
         pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
