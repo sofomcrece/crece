@@ -262,10 +262,10 @@ class Auxiliar < ActiveRecord::Base
 
         #else
        
-        xmonto_a_pagar=credit.payments.sum(:importe)
-        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+        xmonto_a_pagar=credit.payments.sum(:importe).to_s.to_d
+        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad).to_s.to_d
         xtotalDeuda=xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
-        xtotalPagar=seguimiento.a_pagar
+        xtotalPagar=seguimiento.a_pagar.to_s.to_d
 
         if xtotalDeuda==0 and xtotalPagar==0
           #fila = Hash.new()
