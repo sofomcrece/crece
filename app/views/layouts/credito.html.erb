@@ -135,6 +135,7 @@
     }
     $scope.rellenar=function(data){
       $('#autorelleno').hide();
+      //$('.cerrar_bloquear').prop('disable',true);
       $scope.credito= data;
       ajuste_credito();
       console.log(data);
