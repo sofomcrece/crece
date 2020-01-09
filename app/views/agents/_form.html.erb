@@ -63,13 +63,10 @@
 
       </div>
         <div class="field">
-          <tt>Colonias = {{data.zip_codes}}</tt><br/>
-         <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.Colonias">
+         <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.zip_codes[0].d_asenta.repeatSelect">
              <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{optiond_asenta}}</option>
+            <option ng-repeat="option in data.zip_codes[0].d_asenta" value="{{option}}">{{option}}</option>
         </select>
-
-        
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
