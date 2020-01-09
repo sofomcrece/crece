@@ -61,14 +61,15 @@
         <%= f.label :codigo_postal,"Código postal","ng-init":"codigo='#{:codigo_postal}'" %>
         <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
 
-
-        
       </div>
         <div class="field">
-         <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.zip_codes[0].d_asenta.repeatSelect">
+          <tt>Colonias = {{data.zip_codes}}</tt><br/>
+         <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.Colonias">
              <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.zip_codes[0].d_asenta" value="{{option}}">{{option}}</option>
+            <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{optiond_asenta}}</option>
         </select>
+
+        
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
