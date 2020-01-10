@@ -101,7 +101,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12 m3 l3 offset-s0 offset-m9 offset-l9">
-        <%= f.text_field :fecha, class:"datepicker", class:"cerrar_bloquear",type:"date", autocomplete: "off",:style=>"left:960px;top:115px;position:absolute;" %>
+        <%= f.text_field :fecha, class:"datepicker",type:"date", autocomplete: "off",:style=>"left:960px;top:115px;position:absolute;" %>
       </div>
     </div>
     <div class="row">
@@ -125,7 +125,7 @@
      
     <div class="row">
       <div>
-        <%= f.text_field, class:"cerrar_bloquear", :nombre_completo_familiar_1,:style=>"position:absolute;top:224px;left:70px;width:700px;height:22px;","ng-model":"credito.nombre_completo_familiar_1" ,"ng-disabled":"block"%>
+        <%= f.text_field, :nombre_completo_familiar_1, class:"cerrar_bloquear",:style=>"position:absolute;top:224px;left:70px;width:700px;height:22px;","ng-model":"credito.nombre_completo_familiar_1" ,"ng-disabled":"block"%>
       </div>
       <div class="input-field col s12 m6 l6">
         <%= f.text_field :parentesco_1,:style=>"position:absolute;top:224px;left:815px;width:300px;height:22px;","ng-model":"credito.parentesco_1" ,"ng-disabled":"block"%>
