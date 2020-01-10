@@ -137,10 +137,16 @@
         <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
       </div>
         <div class="field">
-         <select id="user_colonia" name="user[colonia]"class="browser-default" ng-model="data.colonias.repeatSelect">
-            <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.colonias" value="{{option}}">{{option}}</option>
+         
+        <div class="field" style="display: none;">
+            <tt>Colonias = {{data.zip_codes}}</tt><br/>
+          </div>
+         
+         <select id="user_colonia" name="user[colonia]"class="browser-default" ng-model="data.Colonias">
+             <option value="" disabled selected>Colonia</option>
+            <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{option.d_asenta}}</option>
         </select>
+
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
