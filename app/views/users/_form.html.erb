@@ -131,14 +131,13 @@
     <%= f.text_field :numero_int, autocomplete: "off" %>
   </div>
   <div ng-controller="cp">
-    <input type="hidden" ng-model="usuario" ng-init="usuario = '<%=@user.to_json%>'" id = "usuario">
       <div class="field">
-        <%= f.label :codigo_postal,"Código postal" %>
-        <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
+        <%= f.label :codigo_postal,"Código postal","ng-init":"codigo='#{:codigo_postal}'" %>
+        <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-blur":"type()" %>
+
       </div>
         <div class="field">
-         
-        <div class="field" style="display: none;">
+          <div class="field" style="display: none;">
             <tt>Colonias = {{data.zip_codes}}</tt><br/>
           </div>
          
@@ -146,7 +145,6 @@
              <option value="" disabled selected>Colonia</option>
             <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{option.d_asenta}}</option>
         </select>
-
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
