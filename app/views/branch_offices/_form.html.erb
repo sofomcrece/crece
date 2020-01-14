@@ -35,22 +35,25 @@
     <div ng-controller="cp">
       <div class="field">
         <%= f.label :codigo_postal,"Código postal","ng-init":"codigo='#{:codigo_postal}'" %>
-        <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-change":"type()" %>
+        <%= f.text_field :codigo_postal,"ng-model":"codigo","ng-blur":"type()" %>
         
       </div>
         <div class="field">
+          <div class="field" style="display: none;">
+            <tt>Colonias = {{data.zip_codes}}</tt><br/>
+          </div>
          <select id="branch_office_colonia" name="branch_office[colonia]"class="browser-default" ng-model="data.colonias.repeatSelect">
              <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.colonias" value="{{option}}">{{option}}</option>
+             <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{option.d_asenta}}</option>
         </select>
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
-        <%= f.text_field :municipio,"ng-model":"data.municipio" %>
+        <%= f.text_field :municipio,"ng-model":"data.zip_codes[0].d_mnpio" %>
       </div>
       <div class="field">
         <%= f.label :estado,class:"model" %>
-        <%= f.text_field :estado,"ng-model":"data.estado" %>
+        <%= f.text_field :estado,"ng-model":"data.zip_codes[0].d_estado" %>
       </div>
     </div>
     <div class="field">
