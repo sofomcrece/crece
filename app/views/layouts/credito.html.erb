@@ -213,25 +213,55 @@
       
     }
     
+
+
+    $scope.type= function(){
+      $scope.codigo;
+        $scope.colonias=[];        
+       // $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
+        $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.codigo)
+        .success(function(data){
+          console.log(data);
+          $scope.data=data;
+          elementos=$('.model');
+          if (data.estado!==""){
+            for (var x=0;x<elementos.length;x++){
+              $(elementos[x]).addClass("active");
+            }
+          }else{
+            for (var x=0;x<elementos.length;x++){
+              $(elementos[x]).removeClass("active");
+            }
+          }
+            
+        })
+        .error(function(data){
+          console.log(data);
+        });    
+        }
+        $(document).ready(function(){
+          $scope.type();
+        });
+    
         
-        $scope.type= function(){
-          $scope.colonias=[];
-          $scope.localidades=[];
+        //$scope.type= function(){
+          //$scope.colonias=[];
+          //$scope.localidades=[];
 
           /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)*/
-          $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
-    		.success(function(data){
-    			console.log(data);
+          //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
+    		//.success(function(data){
+    			//console.log(data);
     			/*Array.prototype.unique=function(a){
             return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
           });*/
-          $scope.credito.municipio = data.zip_codes[0].d_mnpio;
-          $scope.credito.estado = data.zip_codes[0].d_estado;
-          $scope.localidades.push(data.zip_codes[0].d_mnpio);
+          //$scope.credito.municipio = data.zip_codes[0].d_mnpio;
+          //$scope.credito.estado = data.zip_codes[0].d_estado;
+          //$scope.localidades.push(data.zip_codes[0].d_mnpio);
           //for (var x=0;data.zip_codes.length;x++){
-          for (var x=0;data.zip_codes.length;x++){
-            $scope.colonias.push(data.zip_codes[x].d_asenta);
-          } 
+          //for (var x=0;data.zip_codes.length;x++){
+            //$scope.colonias.push(data.zip_codes[x].d_asenta);
+          //} 
 
 
     			/*$scope.credito.estado_actual=data.estado;
@@ -239,10 +269,10 @@
     			$scope.colonias=data.colonias.unique();
     			$scope.localidades.push(data.municipio);*/
     				
-    		})
-    		.error(function(data){
-    			console.log(data);
-    		});    
+    		//})
+    		//.error(function(data){
+    			//console.log(data);
+    		//});    
         }
         /*$(document).ready($scope.ocultar());
         $scope.ocultar();*/
