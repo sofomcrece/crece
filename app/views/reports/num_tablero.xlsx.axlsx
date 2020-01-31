@@ -54,7 +54,7 @@ def llenar_fila(creditos,nombre, sucursal)
        
          imp_adelantada=  segui.where("fecha_corte=?",@corte).sum(:adelantado)
 
-       imp_venc_cobrado=Ticket.where(:updated_at=@corte).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credits.id).sum("tickets.cantidad") - imp_adelantada
+       imp_venc_cobrado=Ticket.where("updated_at= ?",@corte).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credits.id).sum("tickets.cantidad") - imp_adelantada
 
 
         cant_vencxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
