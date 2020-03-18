@@ -267,10 +267,10 @@ class Auxiliar < ActiveRecord::Base
         xtotalDeuda=xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
         xtotalPagar=seguimiento.a_pagar.to_s.to_d
 
-        if xtotalDeuda==0 and xtotalPagar==0
+        #if xtotalDeuda==0 and xtotalPagar==0
           #fila = Hash.new()
           #return fila
-        else
+        #else
 
 
         fila = Hash.new()
@@ -303,7 +303,7 @@ class Auxiliar < ActiveRecord::Base
         #fila.delete_if { |adeudo | adeudo =< 0}
         tabla << fila
         #end
-        end
+        #end
       end
 
      return tabla
