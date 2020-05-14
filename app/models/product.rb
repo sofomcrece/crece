@@ -77,6 +77,7 @@ class Product < ActiveRecord::Base
           return (ultima ... proxima)
      end
      
+     
      def almacenar_seguimientos(fechainput)
           creditos = self.credits.where(status:1).order(:apellido_paterno)
           return if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
