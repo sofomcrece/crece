@@ -194,6 +194,8 @@ class Auxiliar < ActiveRecord::Base
         fila["Pagados"] =pagos.where("estatus=2").count
         #fila["periodos_venc"] = 0
         
+        
+        
         return fila
     end
     
@@ -206,6 +208,7 @@ class Auxiliar < ActiveRecord::Base
 
         #else
           tabla << self.generador_de_tuplas(credit,fecha)
+          
         #end
       end
      return tabla
@@ -301,6 +304,8 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha_corte"] = fecha
 
         #fila.delete_if { |adeudo | adeudo =< 0}
+        seguimiento.cobrado=fila["cobrado"]
+        
         tabla << fila
         end
         #end
