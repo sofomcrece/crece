@@ -304,7 +304,7 @@ class Auxiliar < ActiveRecord::Base
         fila["fecha_corte"] = fecha
 
         #fila.delete_if { |adeudo | adeudo =< 0}
-        seguimiento.cobrado=fila["cobrado"]
+        #seguimiento.cobrado=fila["cobrado"]
         
         tabla << fila
         end
