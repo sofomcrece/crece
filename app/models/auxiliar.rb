@@ -251,14 +251,7 @@ class Auxiliar < ActiveRecord::Base
           next
         end
 
-        #xmonto_a_pagar = credit.payments.sum(:importe)
-        #xpagado = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ? and tickets.updated_at < ?",credit.id,0, fecha).sum(:cantidad)
-        #xadeudo = xmonto_a_pagar.to_d - xpagado
         
-        #next if xadeudo == 0 
-
-        #next if credit.payments.sum(:importe).to_s.to_d - (Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)) = 0
-
         #CODIGO PARA PROBAR QUE NO SALGAN EN CERO
         #payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         #if payment.nil?
@@ -296,6 +289,74 @@ class Auxiliar < ActiveRecord::Base
         fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
        
         fila["empresa"] = credit.padre.nombre_completo
+        fila["numero_de_pago"] = seguimiento.no_pago
+        fila["numero_de_creditos"] = seguimiento.no_creditos
+        fila["tipo"] = 2
+        #fila["payment_ref"] = payment.id
+        fila["credit_id"] = credit.id 
+        fila["fecha_corte"] = fecha
+
+        #fila.delete_if { |adeudo | adeudo =< 0}
+        #seguimiento.cobrado=fila["cobrado"]
+        
+        tabla << fila
+        end
+        #end
+      end
+
+     return tabla
+    end
+    
+    
+    def self.seg_por_cred_guardados(credits,fecha)
+      tabla = []
+      credits.each do |credit|
+        seguimiento  = Seguimiento.all.where("credit_id = ? and fecha_corte = ?", credit.id, fecha.to_date)[0]
+        if seguimiento.nil?
+          next if credit.status == 3
+          next if credit.fecha_de_contrato >= fecha
+          tabla << self.generador_de_tuplas(credit,fecha)
+          next
+        end
+
+        
+        #CODIGO PARA PROBAR QUE NO SALGAN EN CERO
+        #payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+        #if payment.nil?
+
+        #else
+       
+        xmonto_a_pagar=credit.payments.sum(:importe).to_s.to_d
+        xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad).to_s.to_d
+        xtotalDeuda=xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
+        xtotalPagar=seguimiento.a_pagar.to_s.to_d
+
+        if xtotalDeuda==0 and xtotalPagar==0
+          #fila = Hash.new()
+          #return fila
+        else
+
+
+        fila = Hash.new()
+        fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
+        fila["fecha"] = credit.fecha_de_contrato
+        fila["monto_solicitud"] = credit.monto_solicitud
+        fila["monto_a_pagar"] = credit.payments.sum(:importe)
+        fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad).to_s.to_d
+        fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+        fila["pagar"] = seguimiento.a_pagar
+        pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
+        #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
+        fila["atrasado"] = seguimiento.atrasado
+        fila["interes_moratorio"] = seguimiento.interés_moratorio
+        fila["total_a_cobrar"] =  seguimiento.total_a_cobrar
+        quitar =  (credit.id == 982 and fecha == "13/10/2018".to_date)? 20: 0
+        fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_corte > ? and tickets.status = ? and tickets.updated_at > ?",credit.id, fecha, 0, fecha).sum(:cantidad) - quitar
+        #fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
+        fila["cobrado"] = Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
+        fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
+       
+        fila["empresa"] = "IGNACIO"
         fila["numero_de_pago"] = seguimiento.no_pago
         fila["numero_de_creditos"] = seguimiento.no_creditos
         fila["tipo"] = 2
