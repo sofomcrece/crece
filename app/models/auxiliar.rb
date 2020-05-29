@@ -356,7 +356,7 @@ class Auxiliar < ActiveRecord::Base
         fila["cobrado"] = Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
         fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
        
-        fila["empresa"] = "IGNACIO"
+        fila["empresa"] = credit.padre.nombre_completo
         fila["numero_de_pago"] = seguimiento.no_pago
         fila["numero_de_creditos"] = seguimiento.no_creditos
         fila["tipo"] = 2
