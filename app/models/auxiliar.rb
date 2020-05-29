@@ -163,7 +163,7 @@ class Auxiliar < ActiveRecord::Base
     
     
     def self.generar_cobrado(credit,fecha)
-        payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", cr.id, fecha)[0]
+        payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
 
           fila = Hash.new()
           fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
