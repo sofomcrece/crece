@@ -81,7 +81,7 @@ class Product < ActiveRecord::Base
           creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
           creditos.each do |cr|
                if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
-                    tuplas = Auxiliar.seguimiento_por_creditos_guardados(cr, fechainput)
+                    return Auxiliar.generar_cobrado(cr, fechainput)
                end
           end
           

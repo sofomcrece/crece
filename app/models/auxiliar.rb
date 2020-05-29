@@ -161,6 +161,40 @@ class Auxiliar < ActiveRecord::Base
       #end
     end
     
+    
+    def self.generar_cobrado(credit,fecha)
+        payment = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
+
+          fila = Hash.new()
+          fila["nombre_completo"] = "#{credit.nombre_completo_deudor}"
+          fila["fecha"] = credit.fecha_de_contrato
+          fila["monto_solicitud"] = credit.monto_solicitud
+          fila["monto_a_pagar"] = credit.payments.sum(:importe)
+          fila["pagado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad)
+          fila["adeudo"] = fila["monto_a_pagar"].to_s.to_d - fila["pagado"].to_s.to_d
+          fila["pagar"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha).sum(:importe).to_s.to_d - Ticket.joins(:payment).where("payments.credit_id = ? and payments.fecha_de_corte = ? and tickets.status = 0 and tickets.updated_at < ?", credit.id, fecha,fecha).sum(:cantidad) #Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at < ?", credit.id, fecha,fecha).sum(:cantidad)
+          pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ?", credit.id, fecha)
+          #pagos = Payment.all.where("credit_id = ? and fecha_de_corte < ? updated_at", credit.id, fecha,fecha)
+          fila["atrasado"] = pagos.sum(:importe).to_s.to_d <= fila["pagado"].to_s.to_d ? 0 : pagos.sum(:importe).to_s.to_d - fila["pagado"].to_s.to_d
+          fila["interes_moratorio"] = fila["atrasado"]==0? 0: Payment.where("credit_id = ? and fecha_de_corte <= ? and interes_flag = false", credit.id, fecha).sum(:interes).to_s.to_d
+          fila["total_a_cobrar"] =  fila["interes_moratorio"] + fila["atrasado"] + fila["pagar"]
+          fila["adelantado"] = Ticket.joins(:payment=>:credit).where("credits.id = ? and payments.fecha_de_corte > ? and tickets.status = ?",credit.id, fecha,0).sum(:cantidad)
+          #fila["cobrado"] = Payment.joins(:tickets).where("credit_id = ? and fecha_de_corte = ? and tickets.status = 0 and tickets.created_at >= ? ", credit.id, fecha,fecha).sum(:cantidad)
+          fila["cobrado"] = Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
+          fila["diferencia"] = fila["total_a_cobrar"].to_s.to_d - fila["cobrado"].to_s.to_d
+        
+          fila["empresa"] = credit.padre.nombre_completo
+          fila["numero_de_pago"] = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].recibo unless Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0].nil?
+          fila["numero_de_creditos"] = credit.customer.credits.where("credits.status = ? or credits.status = ? ",1,3).count 
+          fila["tipo"] = 1
+          #fila["payment_ref"] = payment.id
+          fila["credit_id"] = credit.id 
+          fila["fecha_corte"] = fecha
+          return fila
+      #end
+    end
+    
+    
      def self.generador_de_tuplas_tablero(credit,fecha)
         payment  = Payment.all.where("credit_id = ? and fecha_de_corte = ?", credit.id, fecha)[0]
         fila = Hash.new()
