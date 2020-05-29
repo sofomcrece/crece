@@ -87,7 +87,7 @@ class Product < ActiveRecord::Base
                          seg = Seguimiento.where(credit_id:cob["credit_id"], fecha_corte:fechainput)
                          seg.each do |s|
                               #s.modif(cob["cobrado"].to_int)
-                              return s["credit_id"]
+                              #return s["credit_id"]
                          end
                     end
                end
