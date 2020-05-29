@@ -87,8 +87,7 @@ class Product < ActiveRecord::Base
                          seg = Seguimiento.where(credit_id:3330, fecha_corte:fechainput)
 
                          seg.each do |s|
-                              s.update(cobrado:s["cobrado"])
-                              s.save
+                              return s["cobrado"]
                               #s.modif
                               #return s["credit_id"]
                               #return xc
