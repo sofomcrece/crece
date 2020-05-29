@@ -83,7 +83,7 @@ class Product < ActiveRecord::Base
                if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
                     xcobr= Auxiliar.generar_cobrado(cr, fechainput)
                     xcobr.each do |cob|
-                         return cob["cobrado"]
+                         return cob[0]["cobrado"]
                          seg = Seguimiento.where(credit_id:3330, fecha_corte:fechainput)
 
                          seg.each do |s|
