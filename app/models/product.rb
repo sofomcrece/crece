@@ -84,6 +84,10 @@ class Product < ActiveRecord::Base
                     xcobr= Auxiliar.generar_cobrado(cr, fechainput)
                     xcobr.each do |cob|
                          #locob= cob["cobrado"].to_s.to_f
+                         seg = Seguimiento.where("credit_id=cob.id and fecha_corte=fechainput")
+                         seg.each do |s|
+                              s.modif(cob["cobrado"])
+                         end
                     end
                end
           end
