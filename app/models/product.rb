@@ -77,7 +77,7 @@ class Product < ActiveRecord::Base
           return (ultima ... proxima)
      end
      
-     def modificar_seguimientos(fechainput)
+     def modificar_seguimientos(fechainput='2020-05-13')
           creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
           creditos.each do |cr|
                if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
