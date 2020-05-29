@@ -81,7 +81,10 @@ class Product < ActiveRecord::Base
           creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
           creditos.each do |cr|
                if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
-                    return Auxiliar.generar_cobrado(cr, fechainput)
+                    xcobr= Auxiliar.generar_cobrado(cr, fechainput)
+                    xcobr.each do |cob|
+                         return cob["cobrado"]
+                    end
                end
           end
           
