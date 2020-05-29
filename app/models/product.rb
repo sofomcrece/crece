@@ -79,16 +79,20 @@ class Product < ActiveRecord::Base
      
      def modificar_seguimientos(fechainput)
           creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
-          #creditos = self.credits.where(status:1).order(:apellido_paterno)
-          if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
-               tuplas = Auxiliar.seguimiento_por_creditos_guardados(creditos, fechainput)
-               tuplas.each do |t|
-                    Seguimiento.update(
-                         cobrado:t["cobrado"], 
-                         diferencia:t["diferencia"]
-                         )
-               end
+          creditos.each do |cr|
+               return creditos.total_pagado
           end
+          
+          #creditos = self.credits.where(status:1).order(:apellido_paterno)
+          #if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
+          #     tuplas = Auxiliar.seguimiento_por_creditos_guardados(creditos, fechainput)
+          #     tuplas.each do |t|
+          #          Seguimiento.update(
+          #               cobrado:t["cobrado"], 
+          #               diferencia:t["diferencia"]
+          #               )
+          #     end
+          #end
      end
      def almacenar_seguimientos(fechainput)
           creditos = self.credits.where(status:1).order(:apellido_paterno)
