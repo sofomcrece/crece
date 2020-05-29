@@ -80,7 +80,7 @@ class Product < ActiveRecord::Base
      def modificar_seguimientos(fechainput)
           creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
           creditos.each do |cr|
-               return self.credits.where(credits.id:cr.id).total_pagado
+               return cr.total_pagado
           end
           
           #creditos = self.credits.where(status:1).order(:apellido_paterno)
