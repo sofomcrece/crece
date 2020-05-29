@@ -86,7 +86,7 @@ class Product < ActiveRecord::Base
                          #locob= cob["cobrado"].to_s.to_f
                          seg = Seguimiento.where(credit_id:cob["credit_id"], fecha_corte:fechainput)
                          seg.each do |s|
-                              s.modif(cob["cobrado"])
+                              s.modif(cob["cobrado"].to_f)
                          end
                     end
                end
