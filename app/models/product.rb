@@ -90,6 +90,7 @@ class Product < ActiveRecord::Base
                               xc= s["cobrado"].to_f
                               #s.modif
                               #return s["credit_id"]
+                              return xc
                          end
                     end
                end
