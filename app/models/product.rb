@@ -88,6 +88,7 @@ class Product < ActiveRecord::Base
 
                          seg.each do |s|
                               s.update(cobrado:s["cobrado"])
+                              s.save
                               #s.modif
                               #return s["credit_id"]
                               #return xc
