@@ -296,7 +296,7 @@ class Auxiliar < ActiveRecord::Base
         xpagado=Ticket.joins(:payment=>:credit).where("credits.id = ? and tickets.status = ?",credit.id,0).sum(:cantidad).to_s.to_d
         xtotalDeuda=xmonto_a_pagar.to_s.to_d - xpagado.to_s.to_d
         xtotalPagar=seguimiento.a_pagar.to_s.to_d
-        xlocobrado=Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
+        #xlocobrado=Ticket.where(updated_at:credit.product.rangoDeCorte(fecha)).joins(:payment=>:credit).where("tickets.status = ?",0).where("payments.credit_id = ?",credit.id).sum("tickets.cantidad") - fila["adelantado"]
 
         if xtotalDeuda==0 and xtotalPagar==0
           #fila = Hash.new()
