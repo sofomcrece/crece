@@ -24,7 +24,7 @@ wb.styles do |style|
       Ticket.joins(:payment).where("payments.credit_id = ? and tickets.status = 0",credit.id).order("payments.fecha_de_pago").each do |t|
           acu = acu + t.cantidad
           if t.payment.fecha_de_pago.to_date + 15 > t.payment.fecha_updated_last_ticket.to_date
-            xdias=((payment.fecha_de_pago.to_date + 15 - payment.fecha_updated_last_ticket.to_date) * -1).to_i
+            
           end
           sheet.add_row [
               t.updated_at,
