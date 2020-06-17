@@ -32,9 +32,9 @@ wb.styles do |style|
               "",
               t.cantidad,
               credit.monto_solicitud*(1+(credit.product.taza_de_interes_ordinaria/100)) - acu,
-             t.payment.fecha_de_pago.to_date + 15,
-             t.payment.fecha_updated_last_ticket.to_date
-             
+             if t.payment.fecha_de_pago.to_date + 15 > t.payment.fecha_updated_last_ticket.to_date
+                ((payment.fecha_de_pago.to_date + 15 - payment.fecha_updated_last_ticket.to_date) * -1).to_i
+             end
           ]
       end
     end
