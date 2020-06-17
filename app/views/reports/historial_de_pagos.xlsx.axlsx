@@ -31,8 +31,11 @@ wb.styles do |style|
               "ABONO A PRESTAMO",
               "",
               t.cantidad,
-              credit.monto_solicitud*(1+(credit.product.taza_de_interes_ordinaria/100)) - acu
+              credit.monto_solicitud*(1+(credit.product.taza_de_interes_ordinaria/100)) - acu,
+             payments.fecha_de_pago.to_date + 15,
+             payments.fecha_updated_last_ticket.to_date
              
+             end
           ]
       end
     end
