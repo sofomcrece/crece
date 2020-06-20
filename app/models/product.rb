@@ -77,36 +77,35 @@ class Product < ActiveRecord::Base
           return (ultima ... proxima)
      end
      
-     def modificar_seguimientos(fechainput='2020-05-13')
-          creditos = self.credits.where(status:1, referencia_agente_empresa:60).order(:apellido_paterno)
-          creditos.each do |cr|
-               if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
-                    xcobr= Auxiliar.generar_cobrado(cr, fechainput)
-                    xcobr.each do |cob|
-                         return cob["cobrado"]
-                         seg = Seguimiento.where(credit_id:3330, fecha_corte:fechainput)
-
-                         seg.each do |s|
-                              #return s["cobrado"]
-                              #s.modif
-                              #return s["credit_id"]
-                              #return xc
-                         end
-                    end
+     def modificar_seguimientos(fechainput)
+          creditos = self.credits.where(status:1).order(:apellido_paterno)
+          if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
+               tuplas = Auxiliar.seguimiento_por_creditos_guardados(credits,fecha)
+               tuplas.each do |t|
+                    Seguimiento.update(
+                    #nombre:t["nombre_completo"], 
+                    #fecha_prestamo:t["fecha"], 
+                    #capital:t["monto_solicitud"], 
+                    #monto_a_cobrar:t["monto_a_pagar"],
+                    #adeudo:t["adeudo"], 
+                    #a_pagar:t["pagar"], 
+                    #atrasado:t["atrasado"], 
+                    #interés_moratorio:t["interes_moratorio"], 
+                    #total_a_cobrar:t["total_a_cobrar"], 
+                    cobrado:t["cobrado"], 
+                    diferencia:t["diferencia"],
+                    adelantado:t["adelantado"], 
+                    #empresa:t["empresa"],
+                    #no_pago:t["numero_de_pago"], 
+                    #no_creditos:t["numero_de_creditos"],
+                    #payment_id:t["payment_ref"],
+                    #credit_id:t["credit_id"],
+                    #fecha_corte:t["fecha_corte"]
+                    )
                end
           end
-          
-          #creditos = self.credits.where(status:1).order(:apellido_paterno)
-          #if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
-          #     tuplas = Auxiliar.seguimiento_por_creditos_guardados(creditos, fechainput)
-          #     tuplas.each do |t|
-          #          Seguimiento.update(
-          #               cobrado:t["cobrado"], 
-          #               diferencia:t["diferencia"]
-          #               )
-          #     end
-          #end
      end
+     
      def almacenar_seguimientos(fechainput)
           creditos = self.credits.where(status:1).order(:apellido_paterno)
           return if Auxiliar.seguimiento_guardado_contador(creditos,fechainput) > 0
