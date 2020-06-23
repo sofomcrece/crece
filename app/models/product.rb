@@ -84,6 +84,7 @@ class Product < ActiveRecord::Base
                tuplas.each do |t|
                     s=Seguimiento.where("credit_id= ? and fecha_corte= ?", t["credit_id"], fechainput).first
                     s.cobrado = t["cobrado"].to_f
+                    s.diferencia = t["total_a_cobrar"].to_f - t["cobrado"].to_f
                     s.save()
                end
           end
