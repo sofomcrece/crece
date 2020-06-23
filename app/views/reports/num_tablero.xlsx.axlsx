@@ -42,7 +42,9 @@ def llenar_fila(creditos,nombre, sucursal)
         cant_atrasxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).count
         #xatras=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado)
         #xapagar=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:a_pagar + :atrasado)
-        imp_atrasxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado + :a_pagar)
+        xsumatrasado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado)
+        xsuma_pagar=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:a_pagar)
+        imp_atrasxcobrar=xsumatrasado + xsuma_pagar
         
         cant_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
         imp_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).sum(:atrasado)
