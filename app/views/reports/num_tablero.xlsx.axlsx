@@ -162,8 +162,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                         "=SUM(M7:M#{@linea})",
                         "=SUM(N7:N#{@linea})",
                         "=SUM(O7:O#{@linea})",
-                        "=SUM(P7:P#{@linea})"
-                        ],:style=>[currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2, currency2, currency2, currency2]
+                        "=SUM(P7:P#{@linea})",
+                        "=SUM(Q7:Q#{@linea})"
+                        ],:style=>[currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2, currency2, currency2, currency2, currency2]
 
     
     end
