@@ -146,7 +146,19 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 
     end
     
-   
+    @empresas.each do |sucursal|
+        @linea = @linea+@avance
+        @avance = 0
+        @TotCart=0
+        empresa.agents.each do |agente|
+            creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
+            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
+            #@TotCart=@TotCart + C#{@linea}
+            @avance += 1
+
+        end
+                
+    end
 
     
     sheet.add_row ["TOTAL:", 
