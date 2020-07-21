@@ -146,7 +146,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 
     end
     
-    @companies.each do |empresa|
+    @empresas.each do |empresa|
         @linea = @linea+@avance
         @avance = 0
         @TotCart=0
