@@ -54,7 +54,8 @@ class ReportsController < ApplicationController
       @sucursales = BranchOffice.all.order("clave")
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
      
-       
+      @empresas = Company.all.order("clave")
+      @empresas = @companies.where(id:params[:empresa]) unless params[:empresa].nil? or params[:empresa] ==""
   end
   
   def vencidos
