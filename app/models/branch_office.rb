@@ -6,7 +6,7 @@ class BranchOffice < ActiveRecord::Base
     validates :nombre,
     :calle,
     :no_ext,
-    :colonia,
+    #:colonia,
     :codigo_postal,
     :municipio,
     :estado,
