@@ -8,7 +8,7 @@ class Agent < ActiveRecord::Base
     :RFC,
     :calle,
     :numero_exterior,
-    :colonia,
+    #:colonia,
     :codigo_postal,
     :municipio,
     :estado,

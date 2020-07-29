@@ -24,8 +24,6 @@ wb = xlsx_package.workbook
         @corte=Date.new(@año,@mes, 27).to_date
     end
     
-
-     
 def llenar_fila(creditos,nombre, sucursal)
         segui =creditos.joins(:seguimientos)
         payments=creditos.joins(:payments)
