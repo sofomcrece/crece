@@ -137,12 +137,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
             @avance += 1
 
         end
-         
+        
     end
     
-        creditos = Credit.find(2357)
-        sheet.add_row llenar_fila(creditos,"municipal",1),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
-        @avance += 1
     
     
   #@sucursales.each do |sucursal|
