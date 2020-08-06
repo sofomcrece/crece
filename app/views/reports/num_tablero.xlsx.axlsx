@@ -139,7 +139,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         end
         
         sucursal.companies.each do |empresa|
-            
+            creditos=empresa.credits.where("credits.status = 1")
         end
         
     end
