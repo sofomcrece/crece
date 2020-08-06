@@ -140,7 +140,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         
         sucursal.companies.each do |empresa|
             creditos=empresa.credits.where("credits.status = ? or credits.status = ?",1,3).order("empresa.nombre_de_empresa")
-            #sheet.add_row llenar_fila(creditos,empresa.nombre_de_empresa,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
+            sheet.add_row llenar_fila(creditos,empresa.nombre_de_empresa,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
             #@avance += 1
         end
         
