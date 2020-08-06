@@ -138,6 +138,10 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
 
         end
         
+        sucursal.companies.each do |empresa|
+            
+        end
+        
     end
     
     
