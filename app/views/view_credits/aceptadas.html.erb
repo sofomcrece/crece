@@ -39,7 +39,7 @@
                 <a class="waves-effect waves-light btn" ng-click="filtrar_pagos()">Filtrar</a>
          </div>
         <div class= "col s12 m6 l6 ">
-          <p>Nota: se nececita seleccionar las dos fechas para hacer un filtrado.</p><br>
+          <p>Nota: se necesita seleccionar las dos fechas para hacer un filtrado.</p><br>
           <p>El filtrado se hace mediante la fecha de contrato.</p>
            <label>Fecha inicial</label>
            <input type="date" ng-model="fecha1"> <br>
@@ -66,6 +66,7 @@
                     <td>{{ele.nombre_padre}}</td>
                     <td>{{ele.fecha_formato}}</td>
                     <td>{{ele.fecha_de_contrato_formato}}</td>
+                    <!--td>{{ele.customer_id}}</td-->
                     <td>{{ele.nombre_completo_deudor}}</td>
                     <td>{{ele.RFC}}</td>
                     <td>{{ele.monto_solicitud_formato}}</td>
