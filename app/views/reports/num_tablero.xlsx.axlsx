@@ -133,15 +133,15 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         sucursal.agents.each do |agente|
             #@productos.each do |producto|
                 creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
-                if creditos.nil
-                else
+                #if creditos.nil
+                #else
                     sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                     #@TotCart=@TotCart + C#{@linea}
                     @avance += 1
-                end
+                #end
                 
-            end
-        #end
+            #end
+        end
         
         #sucursal.companies.each do |empresa|
             #creditos=empresa.credits.where("credits.status = ? or credits.status = ?",1,3).order("empresa.nombre_de_empresa")
