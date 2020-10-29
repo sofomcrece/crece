@@ -19,7 +19,8 @@ class ContratoMunicipalPdf < Prawn::Document
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
     
-    pago_parcial=monto_a_pagar/24
+    #pago_parcial=monto_a_pagar/24
+    pago_parcial=monto_a_pagar/@credit.product.numero_de_pagos_a_realizar
     
      text " "
     text " "
