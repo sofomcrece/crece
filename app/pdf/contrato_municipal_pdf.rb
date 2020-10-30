@@ -86,14 +86,15 @@ class ContratoMunicipalPdf < Prawn::Document
    cap_mas_int= @credit.monto_solicitud + el_interes
    iva_del_interes=el_interes * 0.16
    com_por_apert=cap_mas_int * (6.75/100)
-   
-   
+ 
  
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
     
     #pago_parcial=monto_a_pagar/24
     pago_parcial=monto_a_pagar/@credit.product.numero_de_pagos_a_realizar
+    
+    xmeses=@credit.product.numero_de_pagos_a_realizar/2
     
      text " "
     text " "
@@ -111,14 +112,14 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "TERCERA: La entrega de los recursos a que se refiere la cláusula primera de este contrato se hará por transferencia electrónica al Deudor.",:size =>10,:align => :justify
     text " "
-    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de 74.40%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y de devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
+    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de #{@credit.product.taza_de_interes_ordinaria}%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y se devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
     text " "
     text "QUINTA: En caso de incumplimiento de las obligaciones que se mencionan en la cláusula cuarta, las sumas vencidas del capital causarán  intereses moratorios desde el día siguiente al de su vencimiento y durante el tiempo y en la medida en que no se ha pagada correctamente, a una tasa de interés moratorio fija de 193.57 % anual, estos intereses se devengarán y vencerán diariamente. Los intereses moratorios se calcularán multiplicando el saldo vencido por la tasa de interés moratoria efectiva desde el día inmediato siguiente de su vencimiento hasta el de su pago total.",:size =>10,:align => :justify
     text " "
     text "SEXTA: 'El Acreedor' cobrará al 'El Deudor' una comisión por administración de cartera, dicha comisión se calculará con base en el monto total del crédito otorgado, por un porcentaje correspondiente al 6.75% del mismo. Los pagos de la comisión por administración de cartera se realizarán el cargo de forma quincenal.",:size =>10,:align => :justify
     #text Interes= #{el_interes},   cap_mas_int=#{cap_mas_int},  iva_Int=#{iva_del_interes},  com_apert=#{com_por_apert} 
     text " "
-    text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
+    text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de #{xmeses} meses, mediante #{@credit.product.numero_de_pagos_a_realizar} pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: #{@credit.product.numero_de_pagos_a_realizar} pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
     text " "
     text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No. 11793890, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
     text " "
@@ -144,8 +145,8 @@ class ContratoMunicipalPdf < Prawn::Document
     text "________________________ 		    	         		  __________________________" ,:size =>10,:align => :center
     text "         'EL ACREEDOR' 	                                   	 'EL DEUDOR'       ",:size =>10,:align => :center
    text " "
-    text " "
-      text "* CAT (Costo Anual Total) #{@credit.product.cat_sin_iva}% sin IVA.",:size =>8,:align => :left
+   text " "
+    text "* CAT (Costo Anual Total) #{@credit.product.cat_sin_iva}% sin IVA.",:size =>8,:align => :left
     text "* Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)",:size =>8,:align => :left
     text "Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx",:size =>8,:align => :left
     text "*Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>8,:align => :left
@@ -158,14 +159,15 @@ class ContratoMunicipalPdf < Prawn::Document
    cap_mas_int= @credit.monto_solicitud + el_interes
    iva_del_interes=el_interes * 0.16
    com_por_apert=cap_mas_int * (6.75/100)
-   
-   
+ 
  
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
     
     #pago_parcial=monto_a_pagar/24
     pago_parcial=monto_a_pagar/@credit.product.numero_de_pagos_a_realizar
+    
+    xmeses=@credit.product.numero_de_pagos_a_realizar/2
     
      text " "
     text " "
@@ -183,14 +185,14 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "TERCERA: La entrega de los recursos a que se refiere la cláusula primera de este contrato se hará por transferencia electrónica al Deudor.",:size =>10,:align => :justify
     text " "
-    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de 74.40%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y de devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
+    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de #{@credit.product.taza_de_interes_ordinaria}%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y se devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
     text " "
     text "QUINTA: En caso de incumplimiento de las obligaciones que se mencionan en la cláusula cuarta, las sumas vencidas del capital causarán  intereses moratorios desde el día siguiente al de su vencimiento y durante el tiempo y en la medida en que no se ha pagada correctamente, a una tasa de interés moratorio fija de 193.57 % anual, estos intereses se devengarán y vencerán diariamente. Los intereses moratorios se calcularán multiplicando el saldo vencido por la tasa de interés moratoria efectiva desde el día inmediato siguiente de su vencimiento hasta el de su pago total.",:size =>10,:align => :justify
     text " "
     text "SEXTA: 'El Acreedor' cobrará al 'El Deudor' una comisión por administración de cartera, dicha comisión se calculará con base en el monto total del crédito otorgado, por un porcentaje correspondiente al 6.75% del mismo. Los pagos de la comisión por administración de cartera se realizarán el cargo de forma quincenal.",:size =>10,:align => :justify
     #text Interes= #{el_interes},   cap_mas_int=#{cap_mas_int},  iva_Int=#{iva_del_interes},  com_apert=#{com_por_apert} 
     text " "
-    text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de 12 meses, mediante 24 pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: 24 pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
+    text "SEPTIMA: ‘El Deudor' se obliga a pagar a 'El Acreedor' la cantidad de #{Dinero.to_money(monto_a_pagar)}, (#{Dinero.to_words(monto_a_pagar)}) pesos 00/100 M.N) en un plazo de #{xmeses} meses, mediante #{@credit.product.numero_de_pagos_a_realizar} pagos  quincenales contados a partir de la firma del presente contrato, mediante la siguiente forma: #{@credit.product.numero_de_pagos_a_realizar} pagos quincenales y consecutivos, cada uno de ellos  por la cantidad de $ #{Dinero.to_money(pago_parcial)}, (#{Dinero.to_words(pago_parcial)} pesos 00/100 M.N)",:size =>10,:align => :justify
     text " "
     text "OCTAVA: ‘El Deudor' se obliga realizar los pagos Quincenales que se señala  en la cláusula séptima abonando a la cuenta bancaria No. 11793890, Banco el Bajío, en las fechas de vencimiento pactadas o en su caso a través del descuento en la nómina.",:size =>10,:align => :justify
     text " "
@@ -216,7 +218,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text "________________________ 		    	         		  __________________________" ,:size =>10,:align => :center
     text "         'EL ACREEDOR' 	                                   	 'EL DEUDOR'       ",:size =>10,:align => :center
    text " "
-text " "
+   text " "
     text "* CAT (Costo Anual Total) #{@credit.product.cat_sin_iva}% sin IVA.",:size =>8,:align => :left
     text "* Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)",:size =>8,:align => :left
     text "Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx",:size =>8,:align => :left
