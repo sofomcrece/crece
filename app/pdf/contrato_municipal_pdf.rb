@@ -14,7 +14,12 @@ class ContratoMunicipalPdf < Prawn::Document
    iva_del_interes=el_interes * 0.16
    com_por_apert=cap_mas_int * (6.75/100)
    
-   
+   if @credit.product_id == 6
+      tasa_anual_fija=74.4
+   end
+   if @credit.product_id == 9
+      tasa_anual_fija=37.2
+   end
  
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
@@ -38,7 +43,7 @@ class ContratoMunicipalPdf < Prawn::Document
     text " "
     text "TERCERA: La entrega de los recursos a que se refiere la cláusula primera de este contrato se hará por transferencia electrónica al Deudor.",:size =>10,:align => :justify
     text " "
-    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de 74.40%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y de devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
+    text "CUARTA: 'El Deudor' se obliga a pagar a 'El Acreedor' Intereses ordinarios, los cuales se generarán de saldos insolutos del crédito a una tasa de intereses anual fija de #{tasa_anual_fija}%, en el entendido de que los intereses ordinarios se calcularán a partir de la fecha de disposición del saldo del crédito correspondiente y de devengarán diariamente, los intereses ordinarios que se hayan acumulado al vencer serán pagaderos los días del pago Quincenales de la fuente del empleo del 'El Deudor'. Los intereses ordinarios se calcularán sobre una base de un año de trescientos sesenta (360) días. Las fechas de corte para el cálculo de intereses serán los días Quincenales, para el caso de que el vencimiento coincida con un día no laborable estos se pagarán el día hábil inmediato posterior, esto para efectos de cobranza.",:size =>10,:align => :justify
     text " "
     text "QUINTA: En caso de incumplimiento de las obligaciones que se mencionan en la cláusula cuarta, las sumas vencidas del capital causarán  intereses moratorios desde el día siguiente al de su vencimiento y durante el tiempo y en la medida en que no se ha pagada correctamente, a una tasa de interés moratorio fija de 193.57 % anual, estos intereses se devengarán y vencerán diariamente. Los intereses moratorios se calcularán multiplicando el saldo vencido por la tasa de interés moratoria efectiva desde el día inmediato siguiente de su vencimiento hasta el de su pago total.",:size =>10,:align => :justify
     text " "
@@ -91,7 +96,8 @@ class ContratoMunicipalPdf < Prawn::Document
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
     
-    pago_parcial=monto_a_pagar/24
+    #pago_parcial=monto_a_pagar/24
+    pago_parcial=monto_a_pagar/@credit.product.numero_de_pagos_a_realizar
     
      text " "
     text " "
@@ -162,7 +168,8 @@ class ContratoMunicipalPdf < Prawn::Document
     monto_a_pagar= cap_mas_int + iva_del_interes + com_por_apert
 
     
-    pago_parcial=monto_a_pagar/24
+    #pago_parcial=monto_a_pagar/24
+    pago_parcial=monto_a_pagar/@credit.product.numero_de_pagos_a_realizar
     
      text " "
     text " "
