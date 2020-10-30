@@ -17,7 +17,7 @@ class CaratulamunPdf < Prawn::Document
       xcomapert=(@credit.monto_solicitud + xmontoInt) * @credit.product.comision_apert/100
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (xmontoInt) + xivaInt + xcomapert))}",:size=>9, :at => [440,610]
       #draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.product.taza_de_interes_ordinaria/100))))}",:size=>9, :at => [440,610]
-      draw_text  "24 quincenas",:size=>9, :at => [100,570]
+      draw_text  "#{@credit.product.numero_de_pagos_a_realizar} quincenas",:size=>9, :at => [100,570]
       draw_text  "#{'%.2f' % @credit.product.comision_apert}%",:size=>9, :at => [175,531]
       draw_text  "dias #{Payout.array_to_text(@credit.product.payout.getDays)}",:size=>9, :at => [280,579]
       draw_text  "dias #{Payout.array_to_text(@credit.product.payout.getFlow)} de cada #{@credit.product.payout.type_payout==0?"semana":@credit.product.payout.type_payout==1?"mes":"año"}",:size=>9, :at => [260,570]
