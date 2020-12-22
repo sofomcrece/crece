@@ -23,6 +23,7 @@ class ReportsController < ApplicationController
         }
     end
   end
+  
   def calificaciones
     respond_to do |format|
         format.html {  }
@@ -44,22 +45,15 @@ class ReportsController < ApplicationController
             @customers = @customers.order(:updated_at)  unless @customers == []   
         }
     end
-    
   end
 
-
-
-   def num_tablero
+  def num_tablero
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all.order("clave")
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-     
-      #@productos = Product.all.order("id")
-      #@empresas = Company.all.order("clave")
-      #@empresas = @empresas.where(id:params[:empresa]) unless params[:empresa].nil? or params[:empresa] ==""
   end
   
-  def vencidos
+ def vencidos
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
@@ -70,7 +64,7 @@ class ReportsController < ApplicationController
  
 
   
-  def estado_de_cuenta
+ def estado_de_cuenta
     @customer = Customer.find(params[:c_id]) unless params[:c_id].nil? or params[:c_id]==""
    respond_to do |format|
         format.html {  }
@@ -88,13 +82,10 @@ class ReportsController < ApplicationController
             send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
         }
     end
-  end
+ end
   
-  
-  def reporte_de_pagos
-  
-  end
-   def historial_de_pagos
+
+  def historial_de_pagos
      respond_to do |format|
         format.html {  }
         format.xlsx {
