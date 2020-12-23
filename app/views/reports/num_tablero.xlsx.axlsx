@@ -58,23 +58,23 @@ def llenar_fila(creditos,nombre, sucursal)
         imp_adelantada=  segui.where("fecha_corte=? and adelantado>0",@corte).sum(:adelantado)
 
         return [
-                sucursal,
-                nombre,
-                cartera,
-                colocado,
-                cant_corrxcobrar,
-                imp_corrxcobrar,
-                cant_corr_cobrado,
-                imp_corr_cobrado,
-                cant_atrasxcobrar,
-                imp_atrasxcobrar,
-                cant_atras_cobrado,
-                imp_atras_cobrado,
-                cant_vencxcobrar,
-                imp_vencxcobrar,
-                cant_venc_cobrado,
-                imp_venc_cobrado,
-                imp_adelantada
+                #sucursal,
+                #nombre,
+                #cartera,
+                #colocado,
+                #cant_corrxcobrar,
+                #imp_corrxcobrar,
+                #cant_corr_cobrado,
+                #imp_corr_cobrado,
+                #cant_atrasxcobrar,
+                #imp_atrasxcobrar,
+                #cant_atras_cobrado,
+                #imp_atras_cobrado,
+                #cant_vencxcobrar,
+                #imp_vencxcobrar,
+                #cant_venc_cobrado,
+                #imp_venc_cobrado,
+                #imp_adelantada
                 ]
    
 end
@@ -131,7 +131,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         sucursal.agents.each do |agente|
                 creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
                     sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
-                    #@TotCart=@TotCart + C#{@linea}
+                    ##@TotCart=@TotCart + C#{@linea}
                     @avance += 1
         end
     end
