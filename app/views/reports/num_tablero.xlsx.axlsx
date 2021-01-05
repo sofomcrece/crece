@@ -24,52 +24,38 @@ wb = xlsx_package.workbook
         @corte=Date.new(@año,@mes, 27).to_date
     end
     
-
-     
 def llenar_fila(creditos,nombre, sucursal)
         segui =creditos.joins(:seguimientos)
         payments=creditos.joins(:payments)
    
         xadeudo=segui.where("fecha_corte=?",@corte).sum(:adeudo) 
-        #xadeudo=payments.where("estatus<?",2).sum(:importe)
-        #xadeudo=payments.joins(:payments=>:tickets).where("tickets.status=1").sum(:cantidad)
         xcobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and tickets.updated_at>=?",@corte).sum(:cantidad)
         cartera= xadeudo-xcobrado
         colocado=creditos.where("credits.fecha_de_contrato>= ? and credits.fecha_de_contrato<= ?",@corte, @fecha).sum(:monto_solicitud)
-        cant_corrxcobrar=segui.where("fecha_corte=? and a_pagar > 0 and atrasado=0",@corte).count
-        imp_corrxcobrar=segui.where("fecha_corte=? and a_pagar>0 and atrasado=0",@corte).sum(:a_pagar)
+        
+        #POR COBRAR
+        cant_corrxcobrar=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0",@corte).count
+        imp_corrxcobrar=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0",@corte).sum(:a_pagar)
+        
         cant_atrasxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).count
-        xatras=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado)
-        xapagar=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:a_pagar)
-        imp_atrasxcobrar=xatras + xapagar
-        #imp_atrasxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado)
-
-
-        cant_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).count
-        imp_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:cobrado)
-
-
-         cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and atrasado>0",@corte).count
+        xsumatrasado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:atrasado)
+        xsuma_pagar=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0",@corte).sum(:a_pagar)
+        imp_atrasxcobrar=xsumatrasado + xsuma_pagar
         
-       
-         imp_adelantada=  segui.where("fecha_corte=?",@corte).sum(:adelantado)
-
-       imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and tickets.updated_at<= ? and tickets.updated_at>=?",@fecha, @corte).sum(:cantidad) 
-
-
-        cant_vencxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
-        imp_vencxcobrar =segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).sum(:atrasado)
+        cant_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
+        imp_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).sum(:atrasado)
         
-        cant_corr_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=?",@corte, @corte).count
-        imp_corr_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=?",@corte,@corte).sum(:cantidad)
+        #COBRADOS
+        cant_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0 and diferencia=0",@corte).count
+        imp_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
+        
+        cant_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).count
+        imp_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
 
-        #cant_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12", @corte).count
-
-        #imp_atras_cobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and tickets.updated_at>=payments.fecha_de_pago+12",@corte).sum(:importe)
-      
-        #cant_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and payments.interes>0", @corte).count
-
-        #imp_venc_cobrado =payments.joins(:payments=>:tickets).where("tickets.status=0 and payments.fecha_de_corte=? and payments.interes>0",@corte).sum(:importe)
+        cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and atrasado>0 and (cobrado + adelantado) > 0",@corte).count
+        imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and atrasado>0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
+        
+        imp_adelantada=  segui.where("fecha_corte=? and adelantado>0",@corte).sum(:adelantado)
 
         return [
                 sucursal,
@@ -132,9 +118,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
 
     #sheet.merge_cells ("A4:A6")
 
-    sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","","VENCIDOS",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
-    sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," "],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2]
-    sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO"],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2]
+    sheet.add_row ["","","","","","CORRIENTE","","","","ATRASADOS","","","","VENCIDOS","","",""],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2, title]
+    sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," ", "ADELANTADO"],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2, title]
+    sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO", " "],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2, title]
 
     
     
@@ -145,15 +131,13 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         @TotCart=0
         sucursal.agents.each do |agente|
-            creditos = agente.credits.where("credits.status = ?",1).order("agente.nombre_completo")
-            sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency]
-            #@TotCart=@TotCart + C#{@linea}
-            @avance += 1
-
+                creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
+                    sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
+                    #@TotCart=@TotCart + C#{@linea}
+                    @avance += 1
         end
-                
     end
-
+    
     
     sheet.add_row ["TOTAL:", 
                         "", 
@@ -170,26 +154,11 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                         "=SUM(M7:M#{@linea})",
                         "=SUM(N7:N#{@linea})",
                         "=SUM(O7:O#{@linea})",
-                        "=SUM(P7:P#{@linea})"
-                        ],:style=>[currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2, currency2, currency2]
+                        "=SUM(P7:P#{@linea})",
+                        "=SUM(Q7:Q#{@linea})"
+                        ],:style=>[currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2,currency2,currency2, currency2, currency2, currency2, currency2, currency2]
 
-    #sheet.add_row ["TOTAL: ",
-    #            "",
-    #            "=SUM(C#{@linea}:C#{@linea+@avance-1})",
-    #            "=SUM(D#{@linea}:D#{@linea+@avance-1})",
-    #            "=SUM(E#{@linea}:E#{@linea+@avance-1})",
-    #            "=SUM(F#{@linea}:F#{@linea+@avance-1})",
-    #            "=SUM(G#{@linea}:G#{@linea+@avance-1})",
-    #            "=SUM(H#{@linea}:H#{@linea+@avance-1})",
-    #            "=SUM(I#{@linea}:I#{@linea+@avance-1})",
-    #            "=SUM(J#{@linea}:J#{@linea+@avance-1})",
-    #            "=SUM(K#{@linea}:K#{@linea+@avance-1})",
-    #            "=SUM(L#{@linea}:L#{@linea+@avance-1})",
-    #            "=SUM(M#{@linea}:M#{@linea+@avance-1})",
-    #            "=SUM(N#{@linea}:N#{@linea+@avance-1})",
-    #            "=SUM(O#{@linea}:O#{@linea+@avance-1})",
-    #            "=SUM(P#{@linea}:P#{@linea+@avance-1})"
-    #            ]
+    
     end
     
 end
