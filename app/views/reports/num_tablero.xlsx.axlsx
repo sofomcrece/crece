@@ -27,6 +27,9 @@ wb = xlsx_package.workbook
     
     
     def llenar_fila(creditos, nombre, sucursal)
+        segui =creditos.joins(:seguimientos)
+        payments=creditos.joins(:payments)
+    
          return [
                 sucursal,
                 nombre
