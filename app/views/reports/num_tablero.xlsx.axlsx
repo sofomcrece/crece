@@ -27,7 +27,26 @@ wb = xlsx_package.workbook
     
     
     def llenar_fila(nombre, sucursal)
-        
+         return [
+                sucursal,
+                nombre
+                #cartera,
+                #colocado
+                #cant_corrxcobrar,
+                #imp_corrxcobrar,
+                #cant_corr_cobrado,
+                #imp_corr_cobrado,
+                #cant_atrasxcobrar,
+                #imp_atrasxcobrar,
+                #cant_atras_cobrado,
+                #imp_atras_cobrado,
+                #cant_vencxcobrar,
+                #imp_vencxcobrar,
+                #cant_venc_cobrado,
+                #imp_venc_cobrado,
+                #imp_adelantada
+                 ]
+   
     end
     
     
