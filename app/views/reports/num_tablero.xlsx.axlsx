@@ -26,7 +26,7 @@ wb = xlsx_package.workbook
     
 def llenar_fila(creditos,nombre, sucursal)
         segui =creditos.joins(:seguimientos)
-        payments=creditos.joins(:payments)
+        #payments=creditos.joins(:payments)
    
         #xadeudo=segui.where("fecha_corte=?",@corte).sum(:adeudo) 
         #xcobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and tickets.updated_at>=?",@corte).sum(:cantidad)
