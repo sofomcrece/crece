@@ -33,15 +33,18 @@ wb = xlsx_package.workbook
         xadeudo=segui.where("fecha_corte=?",@corte).sum(:adeudo) 
         xcobrado=payments.joins(:payments=>:tickets).where("tickets.status=0 and tickets.updated_at>=?",@corte).sum(:cantidad)
         cartera= xadeudo-xcobrado
-         colocado=creditos.where("credits.fecha_de_contrato>= ? and credits.fecha_de_contrato<= ?",@corte, @fecha).sum(:monto_solicitud)
+        colocado=creditos.where("credits.fecha_de_contrato>= ? and credits.fecha_de_contrato<= ?",@corte, @fecha).sum(:monto_solicitud)
+        
+        cant_corrxcobrar=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0",@corte).count
+        imp_corrxcobrar=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0",@corte).sum(:a_pagar)
     
          return [
                 sucursal,
                 nombre,
                 cartera,
-                colocado
-                #cant_corrxcobrar,
-                #imp_corrxcobrar,
+                colocado,
+                cant_corrxcobrar,
+                imp_corrxcobrar
                 #cant_corr_cobrado,
                 #imp_corr_cobrado,
                 #cant_atrasxcobrar,
