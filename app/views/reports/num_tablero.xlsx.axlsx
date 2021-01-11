@@ -74,7 +74,7 @@ wb = xlsx_package.workbook
                 imp_atras_cobrado,
                 cant_vencxcobrar,
                 imp_vencxcobrar,
-                cant_venc_cobrado,
+                cant_venc_cobrado.to_f,
                 #imp_venc_cobrado,
                 #imp_adelantada
                 #0,
