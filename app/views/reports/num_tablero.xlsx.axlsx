@@ -6,6 +6,7 @@ wb = xlsx_package.workbook
     @mes=@fecha.month.to_i
     @año=@fecha.year.to_i
     @imp_venc_cobrado=0
+    @xcred=0
 
 
     if @dia>=13 and @dia<=26
