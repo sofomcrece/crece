@@ -6,7 +6,6 @@ wb = xlsx_package.workbook
     @mes=@fecha.month.to_i
     @año=@fecha.year.to_i
     @imp_venc_cobrado=0
-    @xcred=0
 
 
     if @dia>=13 and @dia<=26
@@ -201,7 +200,6 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         @TotCart=0
         sucursal.agents.each do |agente
-                @xcred = creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).count
                 creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
                     sheet.add_row llenar_fila(creditos, agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                     #sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
