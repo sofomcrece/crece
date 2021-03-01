@@ -8,6 +8,7 @@ wb = xlsx_package.workbook
     @imp_venc_cobrado=0
 
 
+
     if @dia>=13 and @dia<=26
         @corte=Date.new(@año,@mes, 13).to_date
     end
@@ -56,7 +57,7 @@ wb = xlsx_package.workbook
         #cant_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0",@corte).count
         #imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0",@corte).sum(:atrasado)
         cant_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
-        #imp_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).sum(:atrasado)
+        imp_vencxcobrar=segui.where("fecha_corte=? and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and a_pagar=0",@corte).count
         #imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0",@corte).sum(:atrasado)
         
         #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 ",@corte).count
@@ -78,13 +79,13 @@ wb = xlsx_package.workbook
                 imp_atrasxcobrar,
                 cant_atras_cobrado,
                 imp_atras_cobrado,
-                cant_vencxcobrar,
+                #cant_vencxcobrar,
                 #imp_vencxcobrar,
                 #cant_venc_cobrado,
                 #imp_venc_cobrado,
                 #0,
                 #0,
-                #0,
+                0,
                 0,
                 0,
                 0,
