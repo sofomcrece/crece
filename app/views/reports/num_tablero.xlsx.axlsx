@@ -62,7 +62,7 @@ wb = xlsx_package.workbook
         
         #xatrasado=segui.where("fecha_corte=?",@corte).select(:atrasado.nil?)? "" : c.profecion.descripcion
         #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 ",@corte).count
-        cant_venc_cobrado =segui.where("fecha_corte=? and xa_pagar=0 and xatrasado>0",@corte).select(:atrasado.nil?)? sum(:atrasado) : sum(:atrasado)
+        cant_venc_cobrado =segui.where("fecha_corte=? and xa_pagar=0 and xatrasado>0",@corte).select(:atrasado.nil?)? "2" : sum(:atrasado)
         #imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
         
         #imp_adelantada= segui.where("fecha_corte=? and adelantado > 0",@corte).sum(:adelantado)
