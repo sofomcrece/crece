@@ -59,8 +59,10 @@ wb = xlsx_package.workbook
         
 
         #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 ",@corte).count
-        if segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte)=nil?
+        if segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte).nil?
             cant_venc_cobrado=3
+        elsif segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte).count >0
+            cant_venc_cobrado=2
         end
       
         #imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte).select(:atrasado.nil?)? "0" : sum(:atrasado)
