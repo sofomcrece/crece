@@ -101,7 +101,7 @@ wb = xlsx_package.workbook
     end
     
     
- #def llenar_fila(creditos,nombre, sucursal)
+ ##def llenar_fila(creditos,nombre, sucursal)
         #segui =creditos.joins(:seguimientos)
         #payments=creditos.joins(:payments)
    
