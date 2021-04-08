@@ -215,7 +215,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                     #sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                     #@TotCart=@TotCart + C#{@linea}
                     @avance += 1
-    #end
+        end
     end
     
     
