@@ -53,7 +53,7 @@ wb = xlsx_package.workbook
 
         
         cant_vencxcobrar=segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0",@corte).count
-        #imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0",@corte).sum(:atrasado)
+        imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0",@corte).count
         #imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0",@corte).sum(:atrasado)
         #cant_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
         #imp_vencxcobrar=segui.where("fecha_corte=? and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and a_pagar=0",@corte).sum(:atrasado)
