@@ -51,8 +51,8 @@ wb = xlsx_package.workbook
         #imp_vencxcobrar=segui.where("fecha_corte=? and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and a_pagar=0",@corte).sum(:atrasado)
         
         #COBRADO
-        #cant_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0 and diferencia=0",@corte).count
-        #imp_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
+        cant_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0 and diferencia=0",@corte).count
+        imp_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
         
         #cant_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).count
         #imp_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
