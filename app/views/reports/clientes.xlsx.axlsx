@@ -2,7 +2,7 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: "reporte clientes") do |sheet|
     sheet.add_row [@dd]
     sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
-    sheet.add_row ["PRONÓSTICO DE COBRANZA QUINCENAL AL #{@fecha} - SISTEMA"]
+    sheet.add_row [REPORTE DE CLIENTES AL #{@fecha} - SISTEMA"]
 
 #    sheet.add_row [
 #    "agente_empresa",
