@@ -197,17 +197,9 @@ class ReportsController < ApplicationController
       #@sucursales = BranchOffice.all
       #@sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
       #@customers = Customer.where(status:1).all
-      respond_to do |format|
-        format.html {  }
-        format.xlsx { 
-            branch_office_id = params[:sucursal_id]
-            @branch_office = BranchOffice.find(branch_office_id) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
-            @customers = Customer.all
-            #@customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
-            @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
-            @customers = @customers.order(:updated_at)  unless @customers == []   
-        }
-    end
+      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @sucursales = BranchOffice.all
+      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
   def get_seguimiento_de_cobranza(padre,fecha,producto)
