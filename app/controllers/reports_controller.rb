@@ -194,10 +194,29 @@ class ReportsController < ApplicationController
       @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   def clientes
-      @sucursales = BranchOffice.all
-      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-      @customers = Customer.where(status:1).all
-      @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
+      #@sucursales = BranchOffice.all
+      #@sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
+      #@customers = Customer.where(status:1).all
+      respond_to do |format|
+        format.html {  }
+        format.xlsx { 
+            tipo_padre = params[:tipo]
+            padre_id = params[:id]
+            branch_office_id = params[:sucursal_id]
+            @branch_office = BranchOffice.find(branch_office_id) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
+            unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+                if tipo_padre.to_i == 1
+                    @padre = Agent.find(padre_id)
+                else
+                    @padre = Company.find(padre_id)
+                end
+            end
+            @customers = Customer.all
+            @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
+            @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
+            @customers = @customers.order(:updated_at)  unless @customers == []   
+        }
+    end
   end
   
   def get_seguimiento_de_cobranza(padre,fecha,producto)
