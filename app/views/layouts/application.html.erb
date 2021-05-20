@@ -203,7 +203,21 @@
     
      window.location.href = url
   }
-
+$scope.descargar_clientes = function(){
+    <% unless current_user.nil?%>
+      <% if current_user.tipo == 3%>
+        if($scope.sucursales.selected === undefined){
+          Materialize.toast('Se debe seleccionar sucursal', 4000);
+          return;
+        }
+      <% end %>
+    <% end %>
+     var url ="/reports/clientes.xlsx?"
+    if (!($scope.sucursales.selected == "" || $scope.sucursales.selected ==undefined))
+      url = url + "sucursal_id=" + $scope.sucursales.selected;
+    
+     window.location.href = url
+  }
   $scope.descargar_dtkta= function(){
     <% unless current_user.nil?%>
       <% if current_user.tipo == 3%>
