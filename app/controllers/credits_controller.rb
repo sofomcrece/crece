@@ -11,7 +11,7 @@ class CreditsController < ApplicationController
     render text:@credit.pdf64
   end
   def index
-    @credits = Credit.all.where(status:1).select(:fecha_de_contrato,:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
+    @credits = Credit.all.where("status=1 or status=3").select(:fecha_de_contrato,:id,:fecha,:apellido_paterno,:apellido_materno,:nombre_1,:nombre_2,:RFC,:fecha_de_contrato,:monto_solicitud,:agente_empresa,:referencia_agente_empresa)
     nom1 = params[:nombre1]
     nom2 = params[:nombre2]
     pat = params[:paterno]
