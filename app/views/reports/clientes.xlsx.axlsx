@@ -4,6 +4,6 @@ wb = xlsx_package.workbook
     wb.add_worksheet(name: "clientes") do |sheet|
       sheet.add_row [@sucursal.nombre] unless @sucursal.nil?
       sheet.add_row [""]
-      sheet.add_row ["Sucursal","Empresa","NOMBRE"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+      sheet.add_row ["Sucursal","Empresa","Apellido_Paterno","Aellido_Materno","Nombre"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
     end
   end
