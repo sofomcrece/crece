@@ -193,16 +193,9 @@ class ReportsController < ApplicationController
   
   def clientes
       @sucursales = BranchOffice.all
-      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
+      #@sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
       @customers = Customer.all
-      @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
-  end
-  
-  def ctes
-      @sucursales = BranchOffice.all
-      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-      @customers = Customer.all
-      @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
+      #@customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
   def get_seguimiento_de_cobranza(padre,fecha,producto)
