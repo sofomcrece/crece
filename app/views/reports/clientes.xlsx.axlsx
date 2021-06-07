@@ -2,7 +2,7 @@ wb = xlsx_package.workbook
   wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "FFFF00")
     wb.add_worksheet(name: "clientes") do |sheet|
-     
+      sheet.add_row [@sucursal.nombre] unless @sucursal.nil?
     
     end
   end
