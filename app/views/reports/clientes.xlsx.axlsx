@@ -2,9 +2,7 @@ wb = xlsx_package.workbook
   wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "FFFF00")
     wb.add_worksheet(name: "clientes") do |sheet|
-      
-      sheet.add_row [""]
-      sheet.add_row ["Sucursal","Empresa","Apellido Paterno","Apellido Materno","Nombre""],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+     
     
     end
   end
