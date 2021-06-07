@@ -215,7 +215,7 @@
     <% end %>
      var url ="/reports/clientes.xlsx?"
     if (!($scope.sucursales.selected == "" || $scope.sucursales.selected ==undefined))
-      url = url + "referencia_agente_empresa=" + $scope.sucursales.selected;
+      url = url + "id=" + $scope.sucursales.selected;
     
      window.location.href = url
   }
