@@ -61,9 +61,7 @@ class ReportsController < ApplicationController
       @customers = Customer.all
       @customers = @customers.where("referencia_agente_empresa=20 and status=1")
  end 
- 
 
-  
  def estado_de_cuenta
     @customer = Customer.find(params[:c_id]) unless params[:c_id].nil? or params[:c_id]==""
    respond_to do |format|
@@ -121,8 +119,6 @@ class ReportsController < ApplicationController
     end
   end
 
-
-  
   def tablero_conf
         require 'json'
         unless params[:fecha].nil? or params[:tipo].nil? or params[:id].nil? or params[:producto].nil?
@@ -164,6 +160,7 @@ class ReportsController < ApplicationController
         
     end
   end
+  
   def cobranza
     respond_to do |format|
         format.html {  }
@@ -201,6 +198,13 @@ class ReportsController < ApplicationController
       @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
   end
   
+  def ctes
+      @sucursales = BranchOffice.all
+      @sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
+      @customers = Customer.all
+      @customers = Customer.get_by_branch_office(@customers,BranchOffice.find(params[:sucursal].to_i)) unless params[:sucursal].nil? or params[:sucursal] ==""
+  end
+  
   def get_seguimiento_de_cobranza(padre,fecha,producto)
     Auxiliar.seguimiento(padre,fecha,producto)
   end
@@ -208,6 +212,7 @@ class ReportsController < ApplicationController
   def get_seguimiento_tablero(padre,fecha,producto)
     Auxiliar.tablero(padre,fecha,producto)
   end
+  
   
   def usuarios
      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
