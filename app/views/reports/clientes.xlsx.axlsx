@@ -21,8 +21,8 @@ wb = xlsx_package.workbook
      "NOMBRE FAMILIAR",     "DOMICILIO FAMILIAR",     "TELEFONO FAMILIAR",     "TELEFONO CELULAR FAMILIAR"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
      
        @customers.each do |c|
-          creds = c.credits.select(:apellido_paterno).where("status = 1 or status = 3")
-          sheet.add_row [c.creds.apellido_paterno]
+          #creds = c.credits.select(:apellido_paterno).where("status = 1 or status = 3")
+          sheet.add_row [c.credit.apellido_paterno]
       end
     end
   end
