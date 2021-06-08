@@ -67,7 +67,7 @@ wb = xlsx_package.workbook
      "TELEFONO CELULAR FAMILIAR"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
      
        @customers.each do |c|
-          cte = customer.credits.select(:apellido_paterno).where("status = 1 or status = 3").first
+          cte = c.credits.select(:apellido_paterno).where("status = 1 or status = 3").first
       end
     end
   end
