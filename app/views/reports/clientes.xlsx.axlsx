@@ -68,7 +68,7 @@ wb = xlsx_package.workbook
      
        @customers.each do |c|
           cte = c.credits.select(:apellido_paterno).where("status = 1 or status = 3").first
-          sheet.add_row [cte
+          sheet.add_row [cte.apellido_paterno
           ]
       end
     end
