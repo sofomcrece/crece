@@ -7,11 +7,11 @@ wb = xlsx_package.workbook
       sheet.add_row ["Sucursal","Empresa","Apellido_Paterno","Apellido_Materno","Nombre"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
        @customers.each do |customer|
         ultimo_credito = customer.credits.select(:id).where("status = 1 or status = 3").last
-        calificaciones = ""
+        clientes = ""
         customer.credits.select(:id,:fecha_de_contrato).where("status = 1 or status = 3").order(:fecha_de_contrato).each do |credit|
-            calificaciones = calificaciones + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
+            clientes = clientes + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
         end
-        sheet.add_row [customer.padre.branch_office.nombre,customer.padre.nombre_completo,customer.nombre_completo_deudor,(ultimo_credito.nil?)? "" : ultimo_credito.calificacion,customer.credits.where("status = 1 or status = 3").select(:id).count,calificaciones]
+        #sheet.add_row [customer.padre.branch_office.nombre,customer.padre.nombre_completo,customer.nombre_completo_deudor,(ultimo_credito.nil?)? "" : ultimo_credito.calificacion,customer.credits.where("status = 1 or status = 3").select(:id).count,calificaciones]
       end
     end
   end
