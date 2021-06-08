@@ -67,13 +67,12 @@ wb = xlsx_package.workbook
      "TELEFONO CELULAR FAMILIAR"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
      
        @customers.each do |customer|
-        ultimo_credito = customer.credits.select(:id).where("status = 1 or status = 3").last
-        clientes = ""
-        customer.credits.select(:id,:fecha_de_contrato).where("status = 1 or status = 3").order(:fecha_de_contrato).each do |credit|
-            clientes = clientes + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
+
+        customer.credits.select(:id,:apellido_paterno).where("status = 1 or status = 3").order(:apellido_paterno).each do |credit|
+          sheet.add_row [credit.apellido_paterno]
         end
         #sheet.add_row [customer.padre.branch_office.nombre,customer.padre.nombre_completo,customer.nombre_completo_deudor,(ultimo_credito.nil?)? "" : ultimo_credito.calificacion,customer.credits.where("status = 1 or status = 3").select(:id).count,clientes]
-        sheet.add_row [#credit.apellido_paterno]
+        sheet.add_row [#credit.fec]
       end
     end
   end
