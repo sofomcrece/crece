@@ -73,7 +73,7 @@ wb = xlsx_package.workbook
             clientes = clientes + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
         end
         #sheet.add_row [customer.padre.branch_office.nombre,customer.padre.nombre_completo,customer.nombre_completo_deudor,(ultimo_credito.nil?)? "" : ultimo_credito.calificacion,customer.credits.where("status = 1 or status = 3").select(:id).count,clientes]
-        sheet.add_row [customer.padre.sucursal.nombre]
+        sheet.add_row [(customer.padre.nil?)? "desvinculado" : c.padre.branch_office.nombre]
       end
     end
   end
