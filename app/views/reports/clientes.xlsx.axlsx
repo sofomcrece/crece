@@ -22,7 +22,7 @@ wb = xlsx_package.workbook
      
        @customers.each do |c|
           #creds = c.credits.select(:apellido_paterno).where("status = 1 or status = 3")
-          #sheet.add_row [c.sucursal.nombre]
+          sheet.add_row [c.id]
       end
     end
   end
