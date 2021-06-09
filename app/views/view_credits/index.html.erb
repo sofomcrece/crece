@@ -24,7 +24,11 @@
   <tbody>
     <% @credits.each do |credit| %>
       <tr>
-        
+        <%if credit.agente_empresa %>
+          <td><%= credit.padre.nombre_completo%></td>
+        <%else%>
+          <td><%= credit.padre.nombre_completo%></td>
+        <%end%>
         <td><%= credit.padre.branch_office.nombre%></td>
         <td><%= credit.fecha.strftime("%d/%m/%Y") %></td>
         <td><%= "#{credit.apellido_paterno} #{credit.apellido_materno} #{credit.nombre_1} #{credit.nombre_2}" %></td>
@@ -46,4 +50,4 @@
 
 <br>
 
-<%= link_to 'Nueva solicitud', new_credit_path, class:"crud-links" %>
+
