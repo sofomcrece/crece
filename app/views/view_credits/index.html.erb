@@ -37,7 +37,11 @@
         <td><%= credit.created_at.strftime("%d/%m/%Y") %></br> <%= credit.created_at.strftime("%H:%m") %> </td>
         <td><%= link_to 'Mostrar',credit,class:'crud-links' %></td>
         <td><%= link_to 'Editar', edit_credit_path(credit),class:'crud-links' %></td>
-       
+        <% if current_user.tipo == 1%>
+          <td><%=link_to  'Aceptar', credit_path(credit,:credit=>{status:1}), :method=> :put,class:"waves-effect waves-light btn"%></td>
+          <td><%=link_to  'Rechazar', credit_path(credit,:credit=>{status:2}), :method=> :put,class:"waves-effect waves-light btn"%></td>
+        <% end %>
+        <td><%=link_to  'ver PDFS',pdf_path(credit),target:"_blank", class:"waves-effect waves-light btn"%></td>
       </tr>
       
     <% end %>
