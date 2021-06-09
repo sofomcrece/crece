@@ -22,7 +22,22 @@
 
 
   <tbody>
-    
+    <% @credits.each do |credit| %>
+      <tr>
+        <%if credit.agente_empresa %>
+          <td><%= credit.padre.nombre_completo%></td>
+        <%else%>
+          <td><%= credit.padre.nombre_completo%></td>
+        <%end%>
+       
+        <% if current_user.tipo == 1%>
+          <td><%=link_to  'Aceptar', credit_path(credit,:credit=>{status:1}), :method=> :put,class:"waves-effect waves-light btn"%></td>
+          <td><%=link_to  'Rechazar', credit_path(credit,:credit=>{status:2}), :method=> :put,class:"waves-effect waves-light btn"%></td>
+        <% end %>
+        <td><%=link_to  'ver PDFS',pdf_path(credit),target:"_blank", class:"waves-effect waves-light btn"%></td>
+      </tr>
+      
+    <% end %>
   </tbody>
 </table>
 
