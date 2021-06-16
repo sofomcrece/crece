@@ -22,11 +22,6 @@ wb = xlsx_package.workbook
     @linea = 5
     sheet.add_row ["AGENTE","NOMBRE","PERFIL"],:style=>[title,title,title,title,title]
 
-    @agents.each do |agente|
-        @avance = 0
-        
-            sheet.add_row [agente.id, agente.nombre_del_agente]
-            @avance += 1
-    end
+    
    end
 end
