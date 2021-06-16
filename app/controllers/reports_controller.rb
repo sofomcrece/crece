@@ -219,6 +219,13 @@ class ReportsController < ApplicationController
       @users = @users.order(:tipo)
       
   end
+  
+  def agentes
+      @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
+      @agents = Agent.all
+      @agents = @agents.order(:id)
+      
+  end
 
   def dtkta
       respond_to do |format|
