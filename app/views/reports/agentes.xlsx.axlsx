@@ -25,7 +25,7 @@ wb = xlsx_package.workbook
     @agents.each do |agent|
         @avance = 0
         
-            sheet.add_row [agent.id, agent.nombre_1,"",agent.apellido_paterno," ", agent,apellido_materno agent.branch_office_id, agent.fecha_de_nacimiento]
+            sheet.add_row [agent.id, agent.nombre_1 + " " + agent.apellido_paterno + " " + agent.apellido_materno, agent.branch_office_id, agent.fecha_de_nacimiento]
             @avance += 1
     end
    end
