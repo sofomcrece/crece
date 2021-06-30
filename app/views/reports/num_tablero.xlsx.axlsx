@@ -54,10 +54,10 @@ wb = xlsx_package.workbook
         imp_corr_cobrado=segui.where("fecha_corte=? and (a_pagar + adelantado) > 0 and atrasado=0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
         
         cant_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).count
-        #imp_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).sum(:a_pagar)
+        imp_atras_cobrado=segui.where("fecha_corte=? and atrasado>0 and a_pagar>0 and (cobrado + adelantado) > 0",@corte).sum(:a_pagar)
 
         #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 ",@corte).count
-        #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 ",@corte).count
+        cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 ",@corte).count
         #if segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and (cobrado + adelantado) > 0",@corte).nil?
         #cant_venc_cobrado=0
         #else
@@ -65,7 +65,7 @@ wb = xlsx_package.workbook
         #cant_venc_cobrado= segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 and (cobrado + adelantado) > 0",@corte).sum("atrasado").to_i
         #end
       
-        #imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte).select(:atrasado.nil?)? "0" : sum(:atrasado)
+        imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado>0",@corte).select(:atrasado.nil?)? "0" : sum(:atrasado)
         #imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and (cobrado + adelantado) > 0",@corte).sum(:cobrado)
         
         #imp_adelantada= segui.where("fecha_corte=? and adelantado > 0",@corte).select(:adelantado.nil?)? "0" : sum(:adelantado)
