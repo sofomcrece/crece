@@ -51,7 +51,7 @@ class ReportsController < ApplicationController
       @fecha= params[:fecha].to_date unless params[:fecha].nil?  or params[:fecha] == ""
       @sucursales = BranchOffice.all.order("clave")
       #@sucursales = @sucursales.where(id:params[:sucursal]) unless params[:sucursal].nil? or params[:sucursal] ==""
-      @sucursales = @sucursales.where("(id>=1 and id<48) or (id>55)")
+      @sucursales = @sucursales.where("(id>1 and id<48) or (id>50)")
   end
   
  def vencidos
