@@ -47,7 +47,7 @@ wb = xlsx_package.workbook
         cant_vencxcobrar=segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0",@corte).count
         
         
-        cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 ",@corte).count
+        cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0",@corte).count
         
         
         imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0",@corte).sum(:atrasado)
