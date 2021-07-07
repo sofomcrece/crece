@@ -82,10 +82,10 @@ wb = xlsx_package.workbook
                 #0,
                 cant_vencxcobrar,
                 imp_vencxcobrar,
-                #cant_venc_cobrado,
-                #imp_venc_cobrado,
-                0,
-                0,
+                cant_venc_cobrado,
+                imp_venc_cobrado,
+                #0,
+                #0,
                 #0,
                 #0
                 imp_adelantada
