@@ -145,7 +145,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         @TotCart=0
         sucursal.agents.each do |agente|
-                if agente.id >= 41 and agente.id <= 42 
+                if agente.id = 41 or agente.id = 42 
                     next 
                 end
                 #and agente.id = 85 and agente.id = 90 or agente.id = 94
