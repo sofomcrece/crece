@@ -60,7 +60,7 @@ wb = xlsx_package.workbook
 
         #cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and (total_a_cobrar - (a_pagar + interés_moratorio))>0 ",@corte).count
         cant_venc_cobrado =segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0 and cobrado > 0",@corte).count
-        imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 and cobrado > 0",@corte).sum(:atrasado)
+        imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0",@corte).sum(:atrasado)
         ##imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and (cobrado + adelantado) > 0",@corte).count
         
         imp_adelantada= segui.where("fecha_corte=? and adelantado > 0",@corte).select(:adelantado.nil?)? "0" : sum(:adelantado)
@@ -145,7 +145,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         @TotCart=0
         sucursal.agents.each do |agente|
-                next if agente.id >= 41 and agente.id <=42
+                #next if agente.id >= 41 and agente.id <=42
                creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
               
                     sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
