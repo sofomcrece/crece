@@ -578,7 +578,7 @@
         
           <%=f.label :observaciones%>: <br>
           
-          <%= f.text_area(:observaciones, size: '50x10') %>
+          <%= f.text_area(:observaciones, size: '100x5' ,"ng-model":"credito.observaciones") %>
           <!--%= f.text_field :observaciones,:style=>"width:600px;height:100px;","ng-model":"credito.observaciones"%>
         </div>
         <%=f.collection_select(:product_id,Product.all,:id,:nombre_del_producto,{:prompt => 'Productos:'},{"ng-disabled":"block"})%>
