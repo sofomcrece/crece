@@ -24,8 +24,6 @@ wb = xlsx_package.workbook
         @corte=Date.new(@año,@mes, 27).to_date
     end
     
-    
-    
     def llenar_fila(creditos, nombre, sucursal)
         segui =creditos.joins(:seguimientos)
         payments=creditos.joins(:payments)
@@ -46,7 +44,6 @@ wb = xlsx_package.workbook
         
         cant_vencxcobrar=segui.where("fecha_corte=? and a_pagar = 0 and atrasado > 0",@corte).count
         imp_vencxcobrar=segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0",@corte).sum(:atrasado)
-        
         
         ##cant_vencxcobrar=segui.where("fecha_corte=? and atrasado>0 and a_pagar=0",@corte).count
         #imp_vencxcobrar=segui.where("fecha_corte=? and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and a_pagar=0",@corte).sum(:atrasado)
@@ -93,8 +90,6 @@ wb = xlsx_package.workbook
    
     end
     
-    
-
 wb.add_worksheet(name: "numeros_tablero") do |sheet|
     wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "F4A460")
@@ -136,8 +131,6 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
     sheet.add_row ["SUCURSAL","AGENTE","CARTERA","COLOCADO","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO","","POR COBRAR","","COBRADO"," ", "ADELANTADO"],:style=>[title,title,title,title,title2,title2,title2,title2,linea,linea,linea,linea,title2,title2,title2,title2, title]
     sheet.add_row ["","","","","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO","No.","MONTO", " "],:style=>[title,title,title,title,title2,title2,title2,title2,title,title,title,title,title2,title2,title2,title2, title]
 
-    
-    
     @linea = 7
     
     @sucursales.each do |sucursal|
@@ -176,7 +169,6 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                     @avance += 1
         end
     end
-    
     
     sheet.add_row ["TOTAL:", 
                         "", 
