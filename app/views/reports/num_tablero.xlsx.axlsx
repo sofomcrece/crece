@@ -160,7 +160,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 
                 #and agente.id = 85 and agente.id = 90 or agente.id = 94
                 
-               creditos = agente.credits.where("credits.status = ? or credits.status = ? and fecha_de_contrato > @fecha",1,3).order("agente.nombre_completo")
+               creditos = agente.credits.where("credits.status = ? or credits.status = ? and fecha_de_contrato > '2020-01-01'",1,3).order("agente.nombre_completo")
               
                     sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                
