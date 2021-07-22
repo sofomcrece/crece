@@ -142,9 +142,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                 if (agente.id > 0 and agente.id >= 78) 
                 #    next 
                 #end
-               
+               else
                 
-               creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
+                    creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
               
                     sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                
