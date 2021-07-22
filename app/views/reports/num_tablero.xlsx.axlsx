@@ -141,9 +141,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         sucursal.agents.each do |agente|
                 if (agente.id > 0 and agente.id < 79) 
                     
-                    #if agente.id == 79 or agente.id == 80
-                    #     next
-                    #end
+                    if agente.id == 79 
+                         next
+                    end
                 
                     creditos = agente.credits.where("credits.status = ? or credits.status = ?",1,3).order("agente.nombre_completo")
               
