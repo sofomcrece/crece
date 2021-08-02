@@ -146,7 +146,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                          next
                     end
                     
-                    if agente.id > 79 
+                    if agente.id > 80 
                          next
                     end
                 
