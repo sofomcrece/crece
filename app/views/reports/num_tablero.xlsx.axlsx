@@ -60,8 +60,8 @@ wb = xlsx_package.workbook
         imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0 and atrasado > 0 and cobrado > 0",@corte).sum(:cobrado)
         ##imp_venc_cobrado =segui.where("fecha_corte=? and a_pagar=0  and (total_a_cobrar - (a_pagar + interés_moratorio))>0 and (cobrado + adelantado) > 0",@corte).count
         
-        #imp_adelantada= segui.where("fecha_corte=? and adelantado > 0",@corte).sum(:adelantado)
-        imp_adelantada = 0 
+        imp_adelantada= segui.where("fecha_corte=? and adelantado > 0",@corte).sum(:adelantado)
+        #imp_adelantada = 0 
         
          return [
                 sucursal,
@@ -86,7 +86,7 @@ wb = xlsx_package.workbook
                 #0,
                 #0,
                 #0
-                #imp_adelantada
+                imp_adelantada
                  ]
    
     end
