@@ -139,14 +139,9 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
         @avance = 0
         @TotCart=0
         sucursal.agents.each do |agente|
-                #if (agente.id > 0 and agente.id <= 84) 
+                if (agente.id > 0 and agente.id <= 82) 
                     
-                    #if agente.id == 79 or agente.id == 81 or agente.id == 82 or agente.id == 83 or agente.id == 84
-                     if agente.id == 79 
-                         next
-                    end
-                    
-                    if agente.id > 81 
+                    if agente.id == 79 or agente.id == 81 or agente.id == 82 or agente.id == 83 or agente.id == 84
                          next
                     end
                 
@@ -157,7 +152,7 @@ wb.add_worksheet(name: "numeros_tablero") do |sheet|
                     #sheet.add_row llenar_fila(creditos,agente.nombre_completo,sucursal.clave),:style=>[currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency,currency, currency,currency, currency, currency]
                     #@TotCart=@TotCart + C#{@linea}
                     @avance += 1
-                #end
+                end
         end
     end
     
