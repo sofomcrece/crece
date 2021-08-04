@@ -226,6 +226,7 @@ class ReportsController < ApplicationController
       @agents = Agent.all
       @agents = @agents.order(:id)
   end
+  
 
   def dtkta
       respond_to do |format|
