@@ -8,7 +8,7 @@ wb = xlsx_package.workbook
 
       sheet.add_row [""]
       sheet.add_row [
-      "SUCURSAL","EMPRESA","APELLIDO PATERNO","APELLIDO MATERNO","NOMBRE","NOMBRE ADICIONAL",
+      "SUCURSAL","EMPRESA","CLIENTE_ID","APELLIDO PATERNO","APELLIDO MATERNO","NOMBRE","NOMBRE ADICIONAL",
      "DOMICILIO PARTICULAR","PAIS DOMICILIO","ESTADO DOMICILIO","COLONIA","NUM EXTERIOR",	
      "NUM INTERIOR",     "CODIGO POSTAL", "RFC",     "CURP",
      "TELEFONO PARTICULAR",     "TELEFONO OFICINA",     "TELEFONO CELULAR",     "NACIONALIDAD",
@@ -26,6 +26,7 @@ wb = xlsx_package.workbook
        @customers.each do |c|
           sheet.add_row [(c.padre.nil?)? "desvinculado" : c.padre.branch_office.nombre,
         (c.padre.nil?)? "desvinculado" : c.padre.nombre_completo,
+        c.customer_id,
         c.apellido_paterno,
         c.apellido_materno,
         c.nombre_1,
