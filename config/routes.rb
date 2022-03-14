@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'ver_video/index'
 
   get 'codigo_postal/:cp', to: 'codigo_postal#index'
+  get 'credits/nuevo', to:'credits#nuevo' 
 
   get 'combos/pais'
 
