@@ -1,6 +1,6 @@
 <div ng-controller="recibos">
      <div class = "row">
-       <h1 align="center">REPORTE IDENTIFICACION CLIENTES DTKTA</h1>
+       <h1 align="center">REPORTE DTKTA CUENTAS RELACIONADAS</h1>
          <div class = "col s12 m6 l4">
               <label>
                 Sucursales
@@ -29,7 +29,7 @@
                     <option value="" selected>{{tipo}}</option>
                     <option ng-repeat="option in hijos" value="{{option.id}}">{{option.nombre_completo}}</option>
                 </select>
-                <a class="waves-effect waves-light btn" ng-click="descargar_dtkta()">Cargar</a>
+                <a class="waves-effect waves-light btn" ng-click="descargar_dtkta_cuentas()">Cargar</a>
             </div>
     </div>
 </div>
