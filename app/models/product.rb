@@ -124,7 +124,7 @@ class Product < ActiveRecord::Base
      end
      def vencer(fecha=Time.now.to_date)
           desplazo = 0 
-          desplazo = 1 if self.id == 3 or self.id == 5 or self.id == 8
+          desplazo = 1 if self.id == 3 or self.id == 5 or self.id == 8 or self.id == 13
           fecha = fecha - desplazo 
           if self.ultimaFechaDeCorteFuncion(fecha).fecha_de_corte == fecha
                Coman.create(c:"fecha concordo producto.id#{self.id}")
