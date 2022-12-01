@@ -18,7 +18,7 @@
    
     .controller("cp",["$scope","$http",function($scope,$http){
         $scope.codigo;
-        //$scope.colonias=[];
+        $scope.colonias=[];
         $scope.type= function(){
         
 
@@ -29,7 +29,7 @@
           //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code=" + $scope.codigo)
         .success(function(data){
           console.log(data);
-          Array.prototype.unique=function(a){
+          /*Array.prototype.unique=function(a){
             return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
           });
           $scope.credito.municipio = data.zip_codes[0].d_mnpio;
@@ -41,7 +41,7 @@
           } 
 
 
-          $scope.credito.estado_actual=data.estado;
+          /*$scope.credito.estado_actual=data.estado;
           $scope.credito.municipio=data.municipio;
           $scope.colonias=data.colonias.unique();
           $scope.localidades.push(data.municipio);
