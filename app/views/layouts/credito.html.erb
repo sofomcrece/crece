@@ -70,6 +70,7 @@
           $scope.credito.economical_activity_id=$scope.credito.economical_activity_id+"";
           $scope.credito.profecion_id=$scope.credito.profecion_id+"";
           $scope.credito.ocupation_id=$scope.credito.ocupation_id+"";
+          $scope.credito.fiel=$scope.credito.fiel+"";
            $scope.credito.antiguedad_en_el_domicilio_actual_anos = $scope.credito.antiguedad_en_el_domicilio_actual_anos+"";
            $scope.credito.antiguedad_en_el_domicilio_actual_meses = $scope.credito.antiguedad_en_el_domicilio_actual_meses+"";
            $scope.credito.antiguedad_en_el_domicilio_anterior_anos = $scope.credito.antiguedad_en_el_domicilio_anterior_anos+"";
@@ -90,6 +91,19 @@
         return;
        $scope.credito = data;
     }
+    
+    $scope.numquinc=function(){
+      if ($scope.credito.produc_id==12){
+        return num == 8
+      }else
+        return num == 6
+    }
+    
+     $scope.validarcte = function(data){
+      if($scope.credito.customer_id!=null)
+       return valido == 1 
+    }
+    
     $scope.getPaices = function(){
       $http.get("/combos/pais.json")
       .success(function(data){
@@ -156,6 +170,9 @@
         $('#autorelleno').hide();
       console.log($scope.credito.es_cliente);
     }
+    
+
+    
     $scope.agente_o_empresa = function(){
       $scope.tipo="";
       $scope.agentEmp=[];
@@ -216,14 +233,46 @@
       
     }
     
+    
+    $scope.buscarUltCredCte=function(val){
+      var query="/customers.json?"
+      if($scope.credito.CURP!=""&&$scope.credito.CURP!=null)
+        query= query+"curp="+$scope.credito.CURP+"&";
+      if($scope.credito.apellido_paterno!=""&&$scope.credito.apellido_paterno!=null)
+        query= query+"paterno="+$scope.credito.apellido_paterno+"&";
+      if($scope.credito.apellido_materno!=""&&$scope.credito.apellido_materno!=null)
+        query= query+"materno="+$scope.credito.apellido_materno+"&";
+      if($scope.credito.nombre_1!=""&&$scope.credito.nombre_1!=null)
+        query= query+"nombre1="+$scope.credito.nombre_1+"&";
+      if($scope.credito.nombre_2!=""&&$scope.credito.nombre_2!=null)
+        query= query+"nombre2="+$scope.credito.nombre_2+"&";
+      console.log(query);
+      $http.get(query)
+      .success(function(data){
         
+        if (data.length!=0){
+          $scope.clientes=data;
+          $('#autorelleno').show();
+        }else{
+          if(val)
+          $('#autorelleno').hide();
+        }
+        console.log(data);
+      })
+      .error(function(data){
+        console.log(data);
+      });
+      
+    }
+    
+    
+   
         $scope.type= function(){
           $scope.colonias=[];
           $scope.localidades=[];
 
-          $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
-          //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
-          
+          /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)*/
+          $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		 .success(function(data){
           console.log(data);
           $scope.data=data;
