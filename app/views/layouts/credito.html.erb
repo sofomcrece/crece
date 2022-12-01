@@ -265,14 +265,14 @@
           $http.get("https://api.copomex.com/query/info_cp/09810?token=7fd7a63e-46a3-4cfd-bb52-fe97fd381a07")
         //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
-    		  $scope.credito.municipio = data.zip_codes[0].d_mnpio;
-    		  $scope.credito.estado = data.zip_codes[0].d_estado;
+    		  $scope.credito.municipio = data.zip_codes[0].municipio;
+    		  $scope.credito.estado = data.zip_codes[0].estado;
     		  
     		  $scope.colonias=[];
           $scope.localidades=[];
-          $scope.localidades.push(data.zip_codes[0].d_ciudad);
+          $scope.localidades.push(data.zip_codes[0].ciudad);
     			for (var x=0;data.zip_codes.length;x++){
-      			$scope.colonias.push(data.zip_codes[x].d_asenta);
+      			$scope.colonias.push(data.zip_codes[x].asentamiento);
     			} 
     			
     			
