@@ -217,15 +217,15 @@
     }
     
         
-        /*$scope.type= function(){
+        $scope.type= function(){
           $scope.colonias=[];
-          $scope.localidades=[];*/
+          $scope.localidades=[];
 
          
 
           /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)*/
-          //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
-          /*$http.get("https://api.copomex.com/query/info_cp/09810?token=7fd7a63e-46a3-4cfd-bb52-fe97fd381a07")
+          $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
+          //$http.get("https://api.copomex.com/query/info_cp/09810?token=4c53d9e0-f2d9-417c-b545-4004c28584c1")
     		 .success(function(data){
           console.log(data);
           $scope.data=data;
@@ -245,8 +245,6 @@
     			console.log(data);
     		});    
         }
-        */
-
         /*$(document).ready($scope.ocultar());
         $scope.ocultar();*/
         $scope.getPaices();
@@ -262,20 +260,19 @@
         
         
         $scope.type= function(){
-          $http.get("https://api.copomex.com/query/info_cp/09810?token=7fd7a63e-46a3-4cfd-bb52-fe97fd381a07")
-        //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
+        $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
-    		  $scope.credito.municipio = data.zip_codes[0].municipio;
-    		  $scope.credito.estado = data.zip_codes[0].estado;
+    		  $scope.credito.municipio = data.zip_codes[0].d_mnpio;
+    		  $scope.credito.estado = data.zip_codes[0].d_estado;
     		  
     		  $scope.colonias=[];
           $scope.localidades=[];
-          $scope.localidades.push(data.zip_codes[0].ciudad);
+          $scope.localidades.push(data.zip_codes[0].d_ciudad);
     			for (var x=0;data.zip_codes.length;x++){
-      			$scope.colonias.push(data.zip_codes[x].asentamiento);
+      			$scope.colonias.push(data.zip_codes[x].d_asenta);
     			} 
     			
-    			
+    			/*
     			 var ret = [];
     			 var val = $scope.localidades;
     			 var flag = false;
@@ -291,7 +288,8 @@
     			  $scope.localidades.push(ret);
     				alert("dfd");
     				console.log(ret);
-    			
+    				*/
+    				/*
     		})
     		.error(function(data){
     			console.log(data);
@@ -313,7 +311,7 @@
             return false;
           }
         }
-       
+       */
 }]);
   $(document).ready(function(){
     $("input[type='text']").focusout(function(){$('input[type=text]').val (function () {
