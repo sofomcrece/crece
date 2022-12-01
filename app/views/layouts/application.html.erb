@@ -25,8 +25,9 @@
           $scope.colonias=[];
           $scope.localidades=[];
 
-          /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
-          $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code=" + $scope.codigo)
+          /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)*/
+          //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code=" + $scope.codigo)
+          $http.get("https://api.copomex.com/query/info_cp/80197?token=&token=4c53d9e0-f2d9-417c-b545-4004c28584c1")
         .success(function(data){
           console.log(data);
           /*Array.prototype.unique=function(a){
