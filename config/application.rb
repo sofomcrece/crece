@@ -30,5 +30,13 @@ module Workspace
     config.time_zone = 'Mazatlan'
     config.active_record.default_timezone = :local
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
   end
 end
