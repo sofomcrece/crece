@@ -243,7 +243,7 @@
     			console.log(data);
     		});    
         }
-        /*$(document).ready($scope.ocultar());
+        $(document).ready($scope.ocultar());
         $scope.ocultar();*/
         $scope.getPaices();
          
@@ -258,7 +258,8 @@
         
         
         $scope.type= function(){
-        $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
+        $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
+        //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
     		  $scope.credito.municipio = data.zip_codes[0].d_mnpio;
     		  $scope.credito.estado = data.zip_codes[0].d_estado;
