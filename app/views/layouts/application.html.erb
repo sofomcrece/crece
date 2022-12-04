@@ -50,12 +50,12 @@
         .error(function(data){
           console.log(data);
         });    
-        }
+        }*/
 
 
 
 
-        /*$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
+        $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
     		.success(function(data){
     			console.log(data);
     			$scope.data=data;
@@ -79,7 +79,7 @@
           $scope.type();
         });
 
-    }]).*/
+    }]).
 
      .controller("cp",["$scope","$http",function($scope,$http){
         $scope.codigo;
@@ -88,7 +88,7 @@
         $scope.type= function(){
        
         //$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
-         $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.codigo)
+         /*$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.codigo)
     .success(function(data){
     console.log(data);
     $scope.data=data;
@@ -110,7 +110,7 @@
         }
         $(document).ready(function(){
           $scope.type();
-        });
+        });*/
     }]).controller("filtroClientes",["$scope","$http",function($scope,$http){
     $scope.clientes=[];
     $scope.nombre1="";
