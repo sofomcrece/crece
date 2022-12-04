@@ -69,16 +69,16 @@
          
          <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.Colonias">
              <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.zip_codes" value="{{option.colonias}}">{{option.colonias}}</option>
+            <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{option.d_asenta}}</option>
         </select>
       </div>
       <div class="field">
         <%= f.label :municipio,class:"model" %>
-        <%= f.text_field :municipio,"ng-model":"data.zip_codes[0].municipio" %>
+        <%= f.text_field :municipio,"ng-model":"data.zip_codes[0].d_mnpio" %>
       </div>
       <div class="field">
         <%= f.label :estado,class:"model" %>
-        <%= f.text_field :estado,"ng-model":"data.zip_codes[0].estado" %>
+        <%= f.text_field :estado,"ng-model":"data.zip_codes[0].d_estado" %>
       </div>
     </div>
     <div class="field">
