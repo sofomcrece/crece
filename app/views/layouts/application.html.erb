@@ -23,8 +23,7 @@
           $scope.colonias=[];
           $scope.localidades=[];
 
-          $http.get("https://api.copomex.com/query/info_cp/09810?token=7fd7a63e-46a3-4cfd-bb52-fe97fd381a07")
-          //$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
+          $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
           //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code=" + $scope.codigo)
         .success(function(data){
           console.log(data);
@@ -32,15 +31,15 @@
             return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
           });*/
           $scope.credito.municipio = data.zip_codes[0].municipio;
-          $scope.credito.estado = data.zip_codes[0].d_estado;
-          $scope.localidades.push(data.zip_codes[0].municipio;
+          $scope.credito.estado = data.zip_codes[0].estado;
+          $scope.localidades.push(data.zip_codes[0].municipio);
           //for (var x=0;data.zip_codes.length;x++){
           for (var x=0;data.zip_codes.length;x++){
-            $scope.colonias.push(data.zip_codes[x].asentamiento);
+            $scope.colonias.push(data.zip_codes[x].colonias);
           } 
 
 
-          /*$scope.credito.estado_actual=data.estado;
+          $scope.credito.estado_actual=data.estado;
           $scope.credito.municipio=data.municipio;
           $scope.colonias=data.colonias.unique();
           $scope.localidades.push(data.municipio);
