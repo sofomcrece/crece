@@ -1,84 +1,63 @@
 wb = xlsx_package.workbook
   wb.styles do |style|
     highlight_cell = style.add_style(bg_color: "FFFF00")
-    wb.add_worksheet(name: "clientes") do |sheet|
-        sheet.add_row [@dd]
-        sheet.add_row ["FINANCIERA MARJO, S.A. DE C.V., SOFOM, E.N.R."]
-        sheet.add_row ["REPORTE DE CLIENTES"]
-
+    wb.add_worksheet(name: "identifiacion clientes dtkta") do |sheet|
+      sheet.add_row [@branch_office.nombre] unless @branch_office.nil?
+      sheet.add_row [@padre.nombre_completo] unless @padre.nil?
       sheet.add_row [""]
-      sheet.add_row [
-      "SUCURSAL","EMPRESA","CLIENTE_ID","APELLIDO PATERNO","APELLIDO MATERNO","NOMBRE","NOMBRE ADICIONAL",
-     "DOMICILIO PARTICULAR","PAIS DOMICILIO","ESTADO DOMICILIO","COLONIA","NUM EXTERIOR",	
-     "NUM INTERIOR",     "CODIGO POSTAL", "RFC",     "CURP",
-     "TELEFONO PARTICULAR",     "TELEFONO OFICINA",     "TELEFONO CELULAR",     "NACIONALIDAD",
-     "EMAIL",     "SEXO",     "CLIENTE DESDE",     "N. DE DEPENDIENTES ECONOMICOS",     "GASTO MENSUAL",
-     "ESTADO CIVIL",     "NOMBRE CONYUGUE",     "TELEFONO CONYUGUE",     "TELEFONO OFICINA CONYUGUE",
-     "PAIS DE NACIMIENTO",     "ESTADO DE NACIMIENTO",     "CIUDAD DE NACIMIENTO"	,     "NACIONALIDAD",
-     "FECHA DE NACIMIENTO",    "EMPRESA DONDE LABORA",     "TELEFONO EMPRESA",
-     "DIRECCION EMPRESA",     "COLONIA EMPRESA",     "MUNICIPIO EMPRESA",    # "ANTIGUEDAD EN LA EMPRESA",
-   "PROFESION",     "OCUPACION"	,     "SUELDO MENSUAL",     "NUMERO DE SEGURO SOCIAL",
-   "NOMBRE REFERENCIA",     "DOMICILIO REFERENCIA",
-     "TELEFONO REFERENCIA",     "TELEFONO CELULAR REFERENCIA",     "NOMBRE REFERENCIA 2",
-     "DOMICILIO REFERECIA 2",     "TELEFONO REFERENCIA 2",     "TELEFONO CELULAR REFERENCIA 2",
-     "NOMBRE FAMILIAR",     "DOMICILIO FAMILIAR",     "TELEFONO FAMILIAR",     "TELEFONO CELULAR FAMILIAR"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
-     
-       @customers.each do |c|
-          sheet.add_row [(c.padre.nil?)? "desvinculado" : c.padre.branch_office.nombre,
-        (c.padre.nil?)? "desvinculado" : c.padre.nombre_completo,
-        c.id,
-        c.apellido_paterno,
-        c.apellido_materno,
-        c.nombre_1,
-        c.nombre_2,
-        c.calle,
-        c.country,
-        c.estado_actual,
-        c.colonia,
-        c.numero_exterior,
-        c.numero_interior,
-        c.codigo_postal,
-        c.RFC,
-        c.CURP,
-        c.telefono_de_casa,
-        c.telefono_empresa,
-        c.telefono_celular,
-        c.nacionalidad,
-        c.email_1,
-        (c.sexo)?"MASCULINO":"FEMENINO",
-        c.created_at,
-        c.numero_de_dependientes_economicos,
-        c.gasto_promedio_mensual,
-        Auxiliar.estado_civil_nombre(c.estado_civil),
-        "#{c.nombre_1_del_conyuge} #{c.nombre_2_del_conyuge} #{c.apellido_paterno_del_conyuge} #{c.apellido_materno_del_conyuge}",
-        c.telefono_celular_del_conyuge,
-        c.telefono_de_oficina_del_conyuge,
-        c.country,
-        c.estado_de_nacimiento,
-        c.ciudad_de_nacimiento,
-        c.nacionalidad,
-        c.fecha_de_nacimiento,
-        c.empresa_donde_labora,
-        c.telefono_empresa,
-        c.dirreccion_empresa,
-        c.colonia_empresa,
-        c.municipio_empresa,
-        (c.profecion.nil?)? "" : c.profecion.descripcion,
-        (c.ocupation.nil?)? "" : c.ocupation.descripcion ,
-        c.sueldo_mensual_neto,
-        c.seguro,
-        c.nombre_referencia_1,
-        c.domicilio_referencia_1,
-        c.telefono_fijo_referencia_1,
-        c.telefono_celular_referencia_1,
-        c.nombre_referencia_2,
-        c.domicilio_referencia_2,
-        c.telefono_fijo_referencia_2,
-        c.telefono_celular_referencia_2,
-        c.nombre_referencia_familiar,
-        c.domicilio_referencia_familiar,
-        c.telefono_fijo_referencia_familiar,
-        c.telefono_celular_referencia_familiar]
+      sheet.add_row ["ID_CLIENTE","CUENTA","ORIGEN","NOMBRE","NOMBRE_ADICIONAL","APE_PATERNO","APE_MATERNO","CTE_RFC", "CTE_CURP","RAZON_SOCIAL","FECHA_NAC","NACIONALIDAD","DOMICILIO","COLONIA","CIUDAD","PAIS", "ESTADO","TELEFONO_PARTICULAR","ACTIVIDAD_ECONOMICA","CALIFICACION","FECHA_ALTA","SUCURSAL","CURP","GENERO","CORREO_ELECTRONICO","FIRMA_ELECTRONICA","PROFESION","OCUPACION","PAIS_NACIMIENTO"],style: [ 
+
+
+
+      highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+        highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell ]
+
+
+      @customers.each do |customer|
+        ultimo_credito = customer.credits.select(:id).where("status = 1 or status = 3").last
+        calificaciones = ""
+        customer.credits.select(:id,:fecha_de_contrato).where("status = 1 or status = 3").order(:fecha_de_contrato).each do |credit|
+            calificaciones = calificaciones + "#{credit.fecha_de_contrato.strftime("%m/%d/%Y")}(#{credit.calificacion}), " unless credit.fecha_de_contrato.nil?
+        end
+        sheet.add_row [customer.id,customer.id, "CL",customer.nombre_1, customer.nombre_2,customer.apellido_paterno, customer.apellido_materno,
+         customer.RFC,
+         customer.CURP,
+         "",
+         customer.fecha_de_nacimiento,
+         (customer.nacionalidad == "MEXICO".to_s)? 1:2,
+         customer.calle.to_s + "#" + customer.numero_exterior.to_s + " C.P." + customer.codigo_postal.to_s,
+         customer.colonia,
+         customer.ciudad_de_nacimiento,
+         (customer.country == "MEXICO".to_s)? 153:153,
+         (customer.estado_actual == "SINALOA".to_s)? 25:25,
+         customer.telefono_celular,
+         customer.economical_activity_id,
+         "1",       
+         customer.referencia_agente_empresa,
+         customer.CURP,  
+         customer.email_1,
+         "",
+         customer.profecion_id,
+         customer.ocupation_id,
+         (customer.country == "MEXICO".to_s)? 153:153,       
+         "25",
+         customer.estado_de_nacimiento,
+         customer.INE,
+         "",
+         "",
+         "",
+         "INE",
+         "Si",
+         customer.empresa_donde_labora,
+         "VACIA",
+         customer.puesto,
+         customer.created_at,
+         customer.created_at
+         ]
       end
     end
   end
