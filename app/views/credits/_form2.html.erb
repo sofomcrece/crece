@@ -401,7 +401,7 @@
       <div class="input-field col s12 m3 l3">
         <select id="credit_colonia" name="credit[colonia]"class="browser-default" ng-model="credito.colonias" style="position:absolute;top:906px;left:500px;width:340px;height:18px;",ng-disabled="block">
           <option value="" disabled selected>Colonia</option>
-          <option ng-repeat="option in data.zip_codes" value="{{option.colonias}}">{{option.colonias}}</option>
+          <option ng-repeat="option in data.info_cp" value="{{option.asentamiento}}">{{option.asentamiento}}</option>
       </select>
 
       </div>
