@@ -217,13 +217,13 @@
     }
     
         
-        /*$scope.type= function(){
+        $scope.type= function(){
           $scope.colonias=[];
           $scope.localidades=[];
 
-          //$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
+          $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
           //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
-          $http.get("https://api.copomex.com/query/info_cp/" + $scope.credito.codigo_postal + "?token=pruebas")
+          //$http.get("https://api.copomex.com/query/info_cp/" + $scope.credito.codigo_postal + "?token=pruebas")
     		 .success(function(data){
           console.log(data);
           $scope.data=data;
@@ -246,16 +246,17 @@
         /*$(document).ready($scope.ocultar());
         $scope.ocultar();*/
         $scope.getPaices();
-        */
+         
    /* var fecha_part=$scope.fecha_de_nacimiento.split("-");
      $scope.fecha_de_nacimiento =new  Date(fecha_part[0],fecha_part[1],fecha_part[2]);
      */
-     
+     /*
         $scope.municipio;
         $scope.estado;
         $scope.colonias=[];
         $scope.localidades=[];
-              
+        
+        
         $scope.type= function(){
         $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
@@ -269,7 +270,7 @@
       			$scope.colonias.push(data.zip_codes[x].d_asenta);
     			} 
     			
-    			
+    			/*
     			 var ret = [];
     			 var val = $scope.localidades;
     			 var flag = false;
@@ -285,8 +286,8 @@
     			  $scope.localidades.push(ret);
     				alert("dfd");
     				console.log(ret);
-    				
-    				
+    				*/
+    				/*
     		})
     		.error(function(data){
     			console.log(data);
@@ -308,7 +309,7 @@
             return false;
           }
         }
-       
+       */
 }]);
   $(document).ready(function(){
     $("input[type='text']").focusout(function(){$('input[type=text]').val (function () {
