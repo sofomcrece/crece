@@ -255,8 +255,7 @@
         $scope.estado;
         $scope.colonias=[];
         $scope.localidades=[];
-        
-        
+              
         $scope.type= function(){
         $http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
     		.success(function(data){
