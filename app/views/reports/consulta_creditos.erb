@@ -1,3 +1,4 @@
+
 <div ng-controller="recibos">
      <div class = "row">
        <h1 align="center">CONSULTA CREDITOS</h1>
@@ -10,7 +11,7 @@
                 <option ng-repeat="option in sucursales" value="{{option.id}}">{{option.nombre}}</option>
             </select>
               <label>
-                Selecciona...
+                Seleciona...
               </label>
               </br>
                    <p>
@@ -29,7 +30,7 @@
                     <option value="" selected>{{tipo}}</option>
                     <option ng-repeat="option in hijos" value="{{option.id}}">{{option.nombre_completo}}</option>
                 </select>
-                <a class="waves-effect waves-light btn" ng-click="descargar_consulta_cred()">Cargar</a>
+                <a class="waves-effect waves-light btn" ng-click="descargar_consultas()">Cargar</a>
             </div>
     </div>
 </div>
