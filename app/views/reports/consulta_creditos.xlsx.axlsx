@@ -8,7 +8,7 @@ wb = xlsx_package.workbook
       sheet.add_row ["NOMBRE CLIENTE","FECHA_CONTRATO"],style: [ highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
       @customers.each do |customer|
 
-        sheet.add_row [customer.nombre_completo_deudor, #credit.fecha_de_contrato]
+        sheet.add_row [customer.nombre_completo_deudor, customer.credits.fecha_de_contrato]
       end
     end
   end
