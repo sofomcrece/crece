@@ -47,7 +47,7 @@ class ReportsController < ApplicationController
     end
   end
 
-  def consultas_creditos
+  def consulta_creditos
     respond_to do |format|
         format.html {  }
         format.xlsx { 
