@@ -223,7 +223,7 @@
 
           //$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.credito.codigo_postal)
           //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.credito.codigo_postal)
-          $http.get("https://api.copomex.com/query/info_cp/" + $scope.credito.codigo_postal + "?token=7fd7a63e-46a3-4cfd-bb52-fe97fd381a07")
+          $http.get("https://api.copomex.com/query/info_cp/" + $scope.credito.codigo_postal + "?token=pruebas")
     		 .success(function(data){
           console.log(data);
           $scope.data=data;
