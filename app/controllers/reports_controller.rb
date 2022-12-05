@@ -41,12 +41,13 @@ class ReportsController < ApplicationController
             end
             @customers = Customer.all
             @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
-  
+            @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
+            @customers = @customers.order(:updated_at)  unless @customers == []   
         }
     end
   end
 
-  def consulta_creditos
+  def consultas_creditos
     respond_to do |format|
         format.html {  }
         format.xlsx { 
@@ -63,8 +64,7 @@ class ReportsController < ApplicationController
             end
             @customers = Customer.all
             @customers = @customers.where("customers.agente_empresa = ? and customers.referencia_agente_empresa = ? ",tipo_padre,padre_id) unless  params[:tipo].nil? or  params[:tipo]=="" or  params[:id].nil? or  params[:id]==""
-            @customers = Customer.get_by_branch_office(@customers,@branch_office) unless params[:sucursal_id].nil? or params[:sucursal_id]==""
-            @customers = @customers.order(:updated_at)  unless @customers == []   
+ 
         }
     end
   end
