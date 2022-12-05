@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get 'reports/dtkta_movtos'
   get 'multiprint',to:"tickets#multiprint" ,as: "multiprint"
   put 'cancelar/:id', to:'tickets#cancelar', as: "cancelar"
-  
+  get 'reports/consulta_cred'
+
   post 'credit/cancelar/:id', to: 'credits#cancelar', as: "cancelar_credito"
   resources :tickets
   resources :destinations
