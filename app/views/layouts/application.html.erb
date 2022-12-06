@@ -205,7 +205,7 @@
      window.location.href = url
   }
 
-  $scope.descargar_consulta_creditos = function(){
+  $scope.descargar_consulta_creditos= function(){
     <% unless current_user.nil?%>
       <% if current_user.tipo == 3%>
         if($scope.sucursales.selected === undefined){
