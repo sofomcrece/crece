@@ -64,12 +64,12 @@
       </div>
         <div class="field">
           <div class="field" style="display: none;">
-            <tt>Colonias = {{data.info_cp}}</tt><br/>
+            <tt>Colonias = {{data.zip_codes}}</tt><br/>
           </div>
          
          <select id="agent_colonia" name="agent[colonia]"class="browser-default" ng-model="data.Colonias">
              <option value="" disabled selected>Colonia</option>
-            <option ng-repeat="option in data.info_cp" value="{{option.asentamiento}}">{{option.asentamiento}}</option>
+            <option ng-repeat="option in data.zip_codes" value="{{option.d_asenta}}">{{option.d_asenta}}</option>
         </select>
       </div>
       <div class="field">
