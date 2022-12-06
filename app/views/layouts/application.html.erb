@@ -87,8 +87,9 @@
         
         $scope.type= function(){
        
-        $http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
+        //$http.get("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/"+ $scope.codigo)
         //$http.get("https://sepomex-api.herokuapp.com/api/v1/zip_codes?zip_code="+ $scope.codigo)
+        $http.get("https://api.copomex.com/query/info_cp/" + $scope.codigo + "?token=pruebas")
     .success(function(data){
     console.log(data);
     $scope.data=data;
