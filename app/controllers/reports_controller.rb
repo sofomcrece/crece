@@ -64,7 +64,7 @@ class ReportsController < ApplicationController
             end
 
             @credits = Credit.all
-            @credits = @credits.where("credits.fecha_de_contrato > ? and fecha_de_contrato < ?",'2021-12-31','2023-01-01') unless params[:id].nil? or  params[:id]==""
+            @credits = @credits.where("credits.fecha_de_contrato > ? and fecha_de_contrato < ? and status<>2",'2021-12-31','2023-01-01') unless params[:id].nil? or  params[:id]==""
             @credits = @credits.order(:fecha_de_contrato)  unless @credits == [] 
         }
     end
