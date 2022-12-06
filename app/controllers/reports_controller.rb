@@ -64,7 +64,6 @@ class ReportsController < ApplicationController
             end
 
             @credits = Credit.all
-            @credits = @credits.where("credits.referencia_agente_empresa = ?",padre_id) unless params[:id].nil? or  params[:id]==""
             @credits = @credits.order(:fecha_de_contrato)  unless @credits == [] 
         }
     end
