@@ -13,7 +13,7 @@ wb = xlsx_package.workbook
 
          @credits.each do |credit|
 
-        sheet.add_row [credit.nombre_1 + " " + credit.nombre_2 + " " + credit.apellido_paterno + " " + credit.apellido_materno, credit.calle + "," + credit.numero_exterior,credit.telefono_de_casa,credit.telefono_celular,credit.fecha_de_contrato,credit.monto_solicitud
+        sheet.add_row [credit.nombre_1 + " " + credit.nombre_2 + " " + credit.apellido_paterno + " " + credit.apellido_materno, credit.calle + "," + credit.numero_exterior.to_str,credit.telefono_de_casa,credit.telefono_celular,credit.fecha_de_contrato,credit.monto_solicitud
          
          ]
       end
