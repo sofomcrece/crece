@@ -227,7 +227,7 @@
     		 .success(function(data){
           console.log(data);
           $scope.data=data;
-          elementos=$('.model');
+          /*elementos=$('.model');
           if (data.estado!==""){
             for (var x=0;x<elementos.length;x++){
               $(elementos[x]).addClass("active");
@@ -237,7 +237,7 @@
               $(elementos[x]).removeClass("active");
             }
           }
-           
+          */
         })
     		.error(function(data){
     			console.log(data);
