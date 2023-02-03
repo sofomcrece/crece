@@ -29,7 +29,7 @@ class CorridaPdf < Prawn::Document
     table(@arreglo,:cell_style => { size: 8 })
     text " "
     text " "
-    text "CUENTAS BANCARIAS", :align  => :center, :style=> :bold
+    text "CUENTAS BANCARIAS", :align  => :center, :style=> :bold,:size =>8
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
