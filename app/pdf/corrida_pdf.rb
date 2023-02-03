@@ -30,7 +30,7 @@ class CorridaPdf < Prawn::Document
     text " "
     text " "
     text "CUENTAS BANCARIAS", :align  => :center, :style=> :bold,:size =>8
-    text "BANORTE: 0857315292                     INBURSA: 50060343855                       BANBAJIO: 0112248540201"
+    text "BANORTE: 0857315292                     INBURSA: 50060343855                       BANBAJIO: 0112248540201",:size =>8
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
