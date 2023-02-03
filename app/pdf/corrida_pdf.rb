@@ -28,7 +28,7 @@ class CorridaPdf < Prawn::Document
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
 
-    CUENTAS BANCARIAS:
+    "CUENTAS BANCARIAS:"
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
