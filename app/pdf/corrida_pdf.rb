@@ -30,10 +30,9 @@ class CorridaPdf < Prawn::Document
     text " "
     text " "
     text "CUENTAS BANCARIAS", :align  => :left, :style=> :bold,:size =>8
-    table([["BANCO" ,"CUENTA","CLABE","No. TARJETA"],
-           ["BANORTE" ,"0857315292","072730008573152921",""],
-           ["INBURSA" ,"50060343855","036730500603438554","S4658 2858 0047 5869"],
-           ["BANBAJIO", "0112248540201","030730900002594213",""]],:cell_style => { size: ++8 })
+    table([["BANORTE: " ,"0857315292"],
+           ["INBURSA: " ,"50060343855"],
+           ["BANBAJIO: ", "0112248540201"]],:cell_style => { size: 8 })
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
@@ -52,10 +51,8 @@ class CorridaPdf < Prawn::Document
     text " "
     text " "
     text "CUENTAS BANCARIAS", :align  => :left, :style=> :bold,:size =>8
-    table([["BANCO" ,"CUENTA","CLABE","No. TARJETA"],
-           ["BANORTE" ,"0857315292","072730008573152921",""],
-           ["INBURSA" ,"50060343855","036730500603438554","S4658 2858 0047 5869"],
-           ["BANBAJIO", "0112248540201","030730900002594213",""]],:cell_style => { size: ++8 })
-
+    table([["BANORTE: " ,"0857315292"],
+           ["INBURSA: " ,"50060343855"],
+           ["BANBAJIO: ", "0112248540201"]],:cell_style => { size: 8 })
   end
 end
