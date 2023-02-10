@@ -28,6 +28,8 @@ class CorridaPdf < Prawn::Document
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
     text " "
+    text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS"
+    text "A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR"
     table([["BANCO","CUENTA","CLABE","No. TARJETA"],
           ["BANORTE","0857315292","072730008573152921",""],
           ["INBURSA","50060343855","036730500603438554","4658 2858 0047 5869"],
