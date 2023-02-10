@@ -49,6 +49,12 @@ class CorridaPdf < Prawn::Document
           ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]],:cell_style => { size: 8 })
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
-
+    text " "
+    text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS"
+    text "A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR"
+    table([["BANCO","CUENTA","CLABE","No. TARJETA"],
+          ["BANORTE","0857315292","072730008573152921",""],
+          ["INBURSA","50060343855","036730500603438554","4658 2858 0047 5869"],
+          ["BAJIO","112248540201","030730900002594213",""]],:cell_style => { size: 8 })
   end
 end
