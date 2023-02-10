@@ -27,12 +27,7 @@ class CorridaPdf < Prawn::Document
           ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]],:cell_style => { size: 8 })
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
-    text " "
-    text " "
-    text "CUENTAS BANCARIAS", :align  => :left, :style=> :bold,:size =>8
-    table([["BANORTE: " ,"0857315292"],
-           ["INBURSA: " ,"50060343855"],
-           ["BANBAJIO: ", "0112248540201"]],:cell_style => { size: 8 })
+
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45

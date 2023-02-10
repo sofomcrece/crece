@@ -37,8 +37,7 @@ PRIMERA. El crédito autorizado por “LA ACREDITANTE” es el señalado en la c
 ",:size =>10,:align => :justify 
       text "En el importe del crédito o suerte principal no quedan comprendidos los intereses y demás erogaciones que se causen con motivo del presente contrato, los cuales son y serán a cargo de “EL ACREDITADO”.",:size =>10,:align => :justify 
       text "DISPOSICIÓN DEL CRÉDITO", :align  => :center, :style=> :bold
-      text "SEGUNDA. “EL ACREDITADO” dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por "EL ACREDITADO", previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”. 
-",:size =>10,:align => :justify
+      text "SEGUNDA. EL ACREDITADO dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por EL ACREDITADO, previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”. ",:size =>10,:align => :justify
       text "PAGOS, APLICACIÓN Y ADREDITAMIENTO", :align  => :center, :style=> :bold
       text "TERCERA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE”, sin necesidad de requerimiento alguno, el importe del crédito concedido mediante _______ parcialidades de acuerdo a la tabla de amortización que forma parte integrante del presente contrato. “EL ACREDITADO” tendrá como fecha límite de pago los días señalados en la carátula. Cuando la fecha límite de pago sea en un día inhábil esta se recorrerá al siguiente día hábil, sin que proceda el cobro de penalizaciones y/o intereses moratorios.",:size =>10,:align => :justify 
       text "La periodicidad de los pagos será quincenal de acuerdo a lo establecido en la tabla de amortización que forma parte integrante del presente contrato.",:size =>10,:align => :justify 
