@@ -37,6 +37,12 @@ class ReciboPdf < Prawn::Document
       
       draw_text  "_________________________", :at => [370,580+des]
       draw_text  "RECIBIÓ",:size=>8, :at => [430,568+des]
+      draw_text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS"
+      draw_text "A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR"
+      table([["BANCO","CUENTA","CLABE","No. TARJETA"],
+          ["BANORTE","0857315292","072730008573152921",""],
+          ["INBURSA","50060343855","036730500603438554","4658 2858 0047 5869"],
+          ["BAJIO","112248540201","030730900002594213",""]],:cell_style => { size: 8 })
       
       
         des = -230
