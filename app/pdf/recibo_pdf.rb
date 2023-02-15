@@ -37,10 +37,11 @@ class ReciboPdf < Prawn::Document
       
       draw_text  "_________________________", :at => [370,580+des]
       draw_text  "RECIBIÓ",:size=>8, :at => [430,568+des]
+      draw_text  "CUENTAS",:size=>8, :at => [70,568+des]
       
         des = -230
       rectangle [50,750+des], 500, 190
-      draw_text  "CUENTAS",:size=>8, :at => [70,568+des]
+      
       
       image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, :at => [70,740+des]
       draw_text  "FOLIO:  2503616176B#{"0"*(5-ticket.id.to_s.length)+ticket.id.to_s}",:size=>9, :at => [420,720+des]
