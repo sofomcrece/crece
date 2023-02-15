@@ -43,7 +43,7 @@ class ReciboPdf < Prawn::Document
       draw_text "INBURSA:        50060343855       036730500603438554      4658 2858 0047 5869",:size=>7, :at => [70,526+des]
       draw_text "BAJIO:             112248540201     030730900002594213",:size=>7, :at => [70,518+des]
       
-        des = -230
+        des = -235
       rectangle [50,750+des], 500, 190
       
       
@@ -66,7 +66,7 @@ class ReciboPdf < Prawn::Document
       draw_text  "_________________________", :at => [370,580+des]
       draw_text  "RECIBIÓ",:size=>8, :at => [430,568+des]
       
-        des = -470
+        des = -475
       rectangle [50,750+des], 500, 190
       
       image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, :at => [70,740+des]
