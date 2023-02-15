@@ -40,7 +40,7 @@ class ReciboPdf < Prawn::Document
       draw_text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS          A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR",:size=>7, :at => [70,550+des]
       draw_text "BANCO           CUENTA              CLABE                              No. TARJETA",:size=>7, :at => [70,542+des]
       draw_text "BANORTE       0857315292      072730008573152921",:size=>7, :at => [70,534+des]
-      draw_text "INBURSA      50060343855       036730500603438554      4658 2858 0047 5869",:size=>7, :at => [70,526+des]
+      draw_text "INBURSA        50060343855    036730500603438554      4658 2858 0047 5869",:size=>7, :at => [70,526+des]
       draw_text "BAJIO        112248540201      030730900002594213",:size=>7, :at => [70,518+des]
       
         des = -230
