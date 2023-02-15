@@ -37,7 +37,7 @@ class ReciboPdf < Prawn::Document
       
       draw_text  "_________________________", :at => [370,580+des]
       draw_text  "RECIBIÓ",:size=>8, :at => [430,568+des]
-      draw_text  "CUENTAS",:size=>8, :at => [70,560+des]
+      draw_text  "CUENTAS",:size=>8, :at => [70,555+des]
       
         des = -230
       rectangle [50,750+des], 500, 190
