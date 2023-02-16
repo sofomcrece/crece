@@ -36,7 +36,7 @@ class ReciboPdf < Prawn::Document
       draw_text  "ATRASADO ACTUAL DE: #{Dinero.to_money at} ",:size=>9, :at => [70,600+des]
       
       draw_text  "_________________________", :at => [370,580+des]
-      draw_text  "RECIBIÓ",:size=>8, :at => [430,588+des]
+      draw_text  "RECIBIÓ",:size=>8, :at => [430,594+des]
       draw_text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS          A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR",:size=>7, :at => [70,570+des]
       draw_text "BANCO:           CUENTA               CLABE                                 No. TARJETA",:size=>7, :at => [70,562+des]
       draw_text "BANORTE:       0857315292         072730008573152921",:size=>7, :at => [70,554+des]
@@ -44,7 +44,7 @@ class ReciboPdf < Prawn::Document
       draw_text "BAJIO:             112248540201     030730900002594213",:size=>7, :at => [70,538+des]
       
         des = -235
-      rectangle [50,750+des], 500, 190
+      rectangle [50,750+des], 500, 215
       
       
       image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, :at => [70,740+des]
