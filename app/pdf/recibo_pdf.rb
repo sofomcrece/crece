@@ -36,12 +36,12 @@ class ReciboPdf < Prawn::Document
       draw_text  "ATRASADO ACTUAL DE: #{Dinero.to_money at} ",:size=>9, :at => [70,600+des]
       
       draw_text  "_________________________", :at => [370,580+des]
-      draw_text  "RECIBIÓ",:size=>8, :at => [430,568+des]
-      draw_text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS          A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR",:size=>7, :at => [70,550+des]
-      draw_text "BANCO:           CUENTA               CLABE                                 No. TARJETA",:size=>7, :at => [70,542+des]
-      draw_text "BANORTE:       0857315292         072730008573152921",:size=>7, :at => [70,534+des]
-      draw_text "INBURSA:        50060343855       036730500603438554      4658 2858 0047 5869",:size=>7, :at => [70,526+des]
-      draw_text "BAJIO:             112248540201     030730900002594213",:size=>7, :at => [70,518+des]
+      draw_text  "RECIBIÓ",:size=>8, :at => [430,588+des]
+      draw_text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS          A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR",:size=>7, :at => [70,570+des]
+      draw_text "BANCO:           CUENTA               CLABE                                 No. TARJETA",:size=>7, :at => [70,562+des]
+      draw_text "BANORTE:       0857315292         072730008573152921",:size=>7, :at => [70,554+des]
+      draw_text "INBURSA:        50060343855       036730500603438554      4658 2858 0047 5869",:size=>7, :at => [70,546+des]
+      draw_text "BAJIO:             112248540201     030730900002594213",:size=>7, :at => [70,538+des]
       
         des = -235
       rectangle [50,750+des], 500, 190
