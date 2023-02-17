@@ -1,4 +1,4 @@
-class Contrato_Nuevo_Pdf < Prawn::Document
+class ContratoNuevoPdf < Prawn::Document
   def initialize(credit)
     super()
     @credit = credit 
