@@ -7,12 +7,10 @@ class ContratoNuevoPdf < Prawn::Document
     end
     def text_content
           text "Original",:size =>8,:align  => :right
-     text "CONTRATO DE APERTURA DE CRÉDITO Y GARANTÍA      
-     " , :align  => :center, :style=> :bold
+     text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx" , :align  => :center, :style=> :bold
    
     
-        text "En la ciudad de #{@credit.padre.municipio}, a #{@credit.fecha_en_español} comparecieron para celebrar el presente contrato de credito y garantía, por una parte el(la) #{Conf.last.representante_legal}, representante legal de FINANCIERA MARJO, S.A. de C.V. SOFOM, E.N.R., con domicilio en: #{Conf.last.domicilio} de la ciudad de  CULIACÁN, SINALOA  a quien en lo sucesivo se le denominará 'El Acreedor', y por otra parte el Sr(a) #{@credit.nombre_completo_deudor} con domicilio en #{@credit.domicilio } a quien en lo sucesivo se le denominará 'El Deudor', al tenor de las siguientes:
-  ",:size =>10,:align => :justify 
+      text "Contrato de apertura de crédito personal que celebran por una parte Financiera Marjo, S.A. de C.V., Sociedad  Financiera de Objeto Múltiple,  Entidad  no Regulada, representada  en  este  acto  por  el  señor  (a) #{Conf.last.representante_legal} a quien en lo sucesivo  se le denominará  'LA ACREDITANTE'  y por la otra parte, el (la) señor   (a) #{@credit.nombre_completo_deudor} con domicilio en #{@credit.domicilio } a quien en lo sucesivo se le denominara 'EL ACREDITADO' al tenor de las siguientes declaraciones y clausulas.",:size =>10,:align => :justify 
       text "CLAUSULAS" , :align  => :center, :style=> :bold
       text "PRIMERA: 'El Acreedor' ha convenido en otorgar una línea de crédito a 'El Deudor' y este dá en garantia un pagaré por el monto total del crédito. ",:size =>10,:align => :justify 
       text "SEGUNDA: El importe que acepta y se obliga a pagar 'El Deudor', será el estipulado en RECIBO expedido por 'EL Acreedor' y las fechas de pago, serán las estipuladas en este contrato, dicho recibo será firmado por 'El Deudor' o por las personas por él autorizadas.",:size =>10,:align => :justify 
