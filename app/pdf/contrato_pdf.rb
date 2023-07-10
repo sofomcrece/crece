@@ -39,11 +39,11 @@ class ContratoPdf < Prawn::Document
     text " "
     text" E) Asimismo,  declara “EL ACREDITADO”  estar informado  de la facultad y derecho que tiene para consultar  el estado de cuenta del crédito objeto de este contrato, mismo que ha sido pactado por las partes, a la fecha de la última amortización según la tabla anexa en la cláusula novena, en la sucursal de “LA ACREDITANTE”  y que le proporcione una impresión del mismo, teniendo “EL ACREDITADO” un plazo de tres días hábiles para objetarlo y de no realizarlo se tendrá por conformado con el citado estado de cuenta para todos los efectos legales a que haya lugar.",:size =>10,:align => :justify 
     text " "
-    text" F) ",:size =>10,:align => :justify 
+    text" F) Que  previo  a la firma  de este  contrato  ha firmado  el formato  de autorización  para  solicitar  reportes  de crédito  de personas físicas, a las sociedades de información crediticia que estime conveniente “LA ACREDITANTE”, el cual se anexa a este contrato y forma parte integrante del mismo, que se marca como anexo ___, así en este acto “EL ACREDITADO” reitera su entera voluntad de facultar a “LA ACREDITANTE”  para llevar a cabo investigaciones  sobre su comportamiento crediticio, a través de las consultas que se realicen en las sociedades de información crediticia que estime conveniente con una vigencia de tres años a partir de la firma de este contrato y en todo caso durante el tiempo que se mantenga la relación comercial y/o jurídica.",:size =>10,:align => :justify 
     text " "
-    text" G) ",:size =>10,:align => :justify 
+    text" G) Que “EL ACREDITADO” conoce las penas en las que incurren las personas que declaran falsamente o haciendo creer a alguien la capacidad de pago que no se tiene, con el objeto de obtener un crédito a sabiendas de que no va a ser pagado o un lucro indebido y las sanciones de carácter penal que traen como consecuencia dicha conducta ilícita.",:size =>10,:align => :justify 
     text " "
-    text" H) ",:size =>10,:align => :justify 
+    text" H) Que “LA ACREDITANTE” al momento de la firma del contrato le entregó un ejemplar del mismo, así como de todos sus anexos que forman parte integrante y/o suscribió los siguientes documentos: Carátula, misma que forma parte integrante del contrato. (Anexo 1) así como de la Tabla de Amortizaciones (Anexo 2).",:size =>10,:align => :justify 
     text " "
 
     start_new_page
