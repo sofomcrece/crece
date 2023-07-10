@@ -51,8 +51,9 @@ class ContratoPdf < Prawn::Document
     text " "
     text "MONTO AUTORIZADO",:size =>10,:align => :left, :style=> :bold
     text "PRIMERA. El crédito autorizado por “LA ACREDITANTE” es el señalado en la carátula del presente contrato, como monto del crédito autorizado, que le otorgará a favor de “EL ACREDITADO”.",:size =>10,:align => :justify
+    text " "
     text "En el importe del crédito o suerte principal no quedan comprendidos los intereses y demás erogaciones que se causen con motivo del presente contrato, los cuales son y serán a cargo de “EL ACREDITADO”.",:size =>10,:align => :justify
-
+    text " "
     text "DISPOSICIÓN DEL CRÉDITO",:size =>10,:align => :left
     text "SEGUNDA. “EL ACREDITADO” dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por “EL ACREDITADO”, previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”." ,:size =>10,:align => :justify
 
