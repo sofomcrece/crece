@@ -54,7 +54,7 @@ class ContratoPdf < Prawn::Document
     text "En el importe del crédito o suerte principal no quedan comprendidos los intereses y demás erogaciones que se causen con motivo del presente contrato, los cuales son y serán a cargo de “EL ACREDITADO”.",:size =>10,:align => :justify
 
     text "DISPOSICIÓN DEL CRÉDITO",:size =>10,:align => :left
-    text "SEGUNDA. “EL ACREDITADO” dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por "EL ACREDITADO", previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”." ,:size =>10,:align => :justify
+    text "SEGUNDA. “EL ACREDITADO” dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por “EL ACREDITADO”, previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”." ,:size =>10,:align => :justify
 
     start_new_page
     
