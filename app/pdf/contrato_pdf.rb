@@ -6,7 +6,8 @@ class ContratoPdf < Prawn::Document
     text_content
   end
   def text_content
-     
+
+    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará 'LA ACREDITANTE', y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará 'EL ACREDITADO', al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
     text "DECLARACIONES" , :align  => :center, :style=> :bold
@@ -34,20 +35,16 @@ class ContratoPdf < Prawn::Document
     text" C) Que previamente a la firma del presente contrato 'LA ACREDITANTE', le ha informado y explicado a 'EL ACREDITADO' el contenido del mismo y de todos los documentos a suscribir , los cargos, comisiones y/o gastos que en su caso se generarán por su celebración y, en su caso, los descuentos o bonificaciones a que tiene derecho; así como que este producto no genera comisiones.",:size =>10,:align => :justify 
     text " "
     text" D) Que 'LA ACREDITANTE' le informó el Costo Anual Total(CAT): el Costo Anual Total de Financimiento expresado en términos porcentuale anuales que, para fines informativos y de comparación, incorpora la totalidad de los costos y gastos inherentes a los créditos",:size =>10,:align => :justify 
-    text" B. Pago inmediato de la cantidad que como saldo total este adeudándole.",:size =>10,:align => :justify 
-    text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
-    text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
-    text" SEXTA: Para la interpretación del presente contrato, las partes se someten a lo que determinen los tribunales competentes de la ciudad de #{@credit.ciudad_tribunal}, renunciando expresamente a la competencia que pudiera corresponder en razón de sus domicilios presentes o futuro o de cualquier índole.",:size =>10,:align => :justify 
-    text" Para constancia y efectos legales, los contratantes firman el presente contrato en la ciudad de #{@credit.padre.municipio}, #{@credit.padre.estado}  el día de #{@credit.fecha_en_español}.",:size =>10,:align => :justify 
-    text"  __________________________                                                                          ________________________",:size =>10,:align => :justify 
-    text"         'EL ACREEDOR'                                                                                                             'EL DEUDOR'",:size =>10,:align => :justify 
-    text"
-    "
-   text" * CAT (Costo Anual Total) #{@credit.cat_sin_iva}% sin IVA.
-    * Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF)
-     Tel. (55)5340 0999 y 01 800 999 8080 www.condusef.gob.mx
-    * Registro de Contratos de Adhesión (RECA) Número: #{@credit.product.registro_del_contrado_de_adhesion}
-    ",:size =>8,:align => :justify  
+    text " "
+    text" E) Asimismo,  declara “EL ACREDITADO”  estar informado  de la facultad y derecho que tiene para consultar  el estado de cuenta del crédito objeto de este contrato, mismo que ha sido pactado por las partes, a la fecha de la última amortización según la tabla anexa en la cláusula novena, en la sucursal de “LA ACREDITANTE”  y que le proporcione una impresión del mismo, teniendo “EL ACREDITADO” un plazo de tres días hábiles para objetarlo y de no realizarlo se tendrá por conformado con el citado estado de cuenta para todos los efectos legales a que haya lugar.",:size =>10,:align => :justify 
+    text " "
+    text" F) ",:size =>10,:align => :justify 
+    text " "
+    text" G) ",:size =>10,:align => :justify 
+    text " "
+    text" H) ",:size =>10,:align => :justify 
+    text " "
+
     start_new_page
     
     
