@@ -27,10 +27,13 @@ class ContratoPdf < Prawn::Document
     text " "
     text" DECLARA 'EL ACREDITADO':" ,:size =>10,:align => :justify, :style=> :bold 
     text " "
-    text" 'El Acreedor' tiene en todo momento el derecho de negar cualquier pedido a 'El Deudor' cuando su saldo sea mayor de $ #{Dinero.to_money(@credit.monto_solicitud)}, independientemente de su vencimiento.",:size =>10,:align => :justify 
-    text" La línea de crédito otorgada jamás podrá exceder a la cantidad que resulte de 2 meses de sueldo que el cliente demuestre para la apertura del presente contrato de apertura de crédito.",:size =>10,:align => :justify 
-    text" CUARTA: A falta de pago puntual de cualquier recibo emitido por 'El Acreedor' de conformidad con las segunda y tercera, se dará por vencido este contrato, y en consecuencia se suspenderá la linea de crédito, debiendo 'El Acreedor' exigir a 'El Deudor'",:size =>10,:align => :justify 
-    text" A. Interes moratorios de #{'%.2f' %  @credit.product.taza_de_interes_moratoria}% por el importe de saldo insoluto vencido (mensual).",:size =>10,:align => :justify 
+    text" A) Ser mexicano(a), mayor de edad, con capacidad legal suficiente para celebrar el contrato, obligándose consecuentemente a los términos del mismo.",:size =>10,:align => :justify 
+    text " "
+    text" B) Sus datos generales son los que han quedado asentados en la solicitud de crédito",:size =>10,:align => :justify 
+    text " "
+    text" C) Que previamente a la firma del presente contrato 'LA ACREDITANTE', le ha informado y explicado a 'EL ACREDITADO' el contenido del mismo y de todos los documentos a suscribir , los cargos, comisiones y/o gastos que en su caso se generarán por su celebración y, en su caso, los descuentos o bonificaciones a que tiene derecho; así como que este producto no genera comisiones.",:size =>10,:align => :justify 
+    text " "
+    text" D) Que 'LA ACREDITANTE' le informó el Costo Anual Total(CAT): el Costo Anual Total de Financimiento expresado en términos porcentuale anuales que, para fines informativos y de comparación, incorpora la totalidad de los costos y gastos inherentes a los créditos",:size =>10,:align => :justify 
     text" B. Pago inmediato de la cantidad que como saldo total este adeudándole.",:size =>10,:align => :justify 
     text" C. La resición de este contrato y por consiguiente, el pago de las prestaciones legales a que haya lugar.",:size =>10,:align => :justify 
     text" QUINTA: 'El Deudor' o las personas autorizadas por él, al firmar el recibo o el documento hacen constar que recibió el o los artículos descritos en su entera satisfacción.",:size =>10,:align => :justify 
