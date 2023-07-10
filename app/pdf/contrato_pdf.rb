@@ -7,9 +7,7 @@ class ContratoPdf < Prawn::Document
   end
   def text_content
      
-    text "Contrato de apertura de crédito personal", :style=> :bold
-    text " que celebran por una parte ",:align  => :justify
-    text "Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada"
+    text "Contrato de apertura de crédito personal", :style=> :bold," que celebran por una parte ",:align  => :justify, "Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada"
     text ", representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará 'LA ACREDITANTE', y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará 'EL ACREDITADO', al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text "DECLARACIONES" , :align  => :center, :style=> :bold
     text " "
