@@ -8,11 +8,12 @@ class ContratoPdf < Prawn::Document
   def text_content
 
     text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
-    text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará 'LA ACREDITANTE', y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará 'EL ACREDITADO', al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
+    text " "
+    text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
     text "DECLARACIONES" , :align  => :center, :style=> :bold
     text " "
-    text "I. DECLARA 'LA ACREDITANTE' A TRAVÉS DE SU REPRESENTANTE:",:size =>10,:align => :justify, :style=> :bold 
+    text "I. DECLARA “LA ACREDITANTE” A TRAVÉS DE SU REPRESENTANTE:",:size =>10,:align => :justify, :style=> :bold 
     text " "
     text "A) Que es una sociedad mercantil constituida de conformidad con las leyes de los Estados Unidos Mexicanos, según consta en la escritura pública número 11936 volumen 276(doscientos setenta y seis) de fecha 26 de febrero del año 2020(dos mil veinte), otorgada ante la fé del licenciado Teresa Peña Gaspar notario público número 138(ciento treinta y ocho) del Estado de México, inscrita en el registro público de la propiedad y del comercio de Culiacán,  Sinaloa, bajo el folio mercantil numero N-2020019087." ,:size =>10 ,:align => :justify
     text " "
@@ -24,17 +25,17 @@ class ContratoPdf < Prawn::Document
     text " "
     text "E) Que el Sr(a) #{@credit.nombre_completo_deudor} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número, de fecha #{@credit.fecha_en_español} y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
     text " "
-    text "F) Que conforme a su objeto social, está interesada en otorgar a 'EL ACREDITADO' un crédito por la cantidad, características y con las condiciones que más adelante se señalan, toda vez que la información que éste ha proporcionado a 'LA ACREDITANTE' lo hace aparecer como persona solvente moral y económicamente y por lo tanto, sujeto de crédito.",:size =>10,:align => :justify 
+    text "F) Que conforme a su objeto social, está interesada en otorgar a “EL ACREDITADO” un crédito por la cantidad, características y con las condiciones que más adelante se señalan, toda vez que la información que éste ha proporcionado a “LA ACREDITANTE” lo hace aparecer como persona solvente moral y económicamente y por lo tanto, sujeto de crédito.",:size =>10,:align => :justify 
     text " "
-    text" DECLARA 'EL ACREDITADO':" ,:size =>10,:align => :justify, :style=> :bold 
+    text" DECLARA “EL ACREDITADO”:" ,:size =>10,:align => :justify, :style=> :bold 
     text " "
     text" A) Ser mexicano(a), mayor de edad, con capacidad legal suficiente para celebrar el contrato, obligándose consecuentemente a los términos del mismo.",:size =>10,:align => :justify 
     text " "
     text" B) Sus datos generales son los que han quedado asentados en la solicitud de crédito",:size =>10,:align => :justify 
     text " "
-    text" C) Que previamente a la firma del presente contrato 'LA ACREDITANTE', le ha informado y explicado a 'EL ACREDITADO' el contenido del mismo y de todos los documentos a suscribir , los cargos, comisiones y/o gastos que en su caso se generarán por su celebración y, en su caso, los descuentos o bonificaciones a que tiene derecho; así como que este producto no genera comisiones.",:size =>10,:align => :justify 
+    text" C) Que previamente a la firma del presente contrato “LA ACREDITANTE”, le ha informado y explicado a “EL ACREDITADO” el contenido del mismo y de todos los documentos a suscribir , los cargos, comisiones y/o gastos que en su caso se generarán por su celebración y, en su caso, los descuentos o bonificaciones a que tiene derecho; así como que este producto no genera comisiones.",:size =>10,:align => :justify 
     text " "
-    text" D) Que 'LA ACREDITANTE' le informó el Costo Anual Total(CAT): el Costo Anual Total de Financimiento expresado en términos porcentuale anuales que, para fines informativos y de comparación, incorpora la totalidad de los costos y gastos inherentes a los créditos",:size =>10,:align => :justify 
+    text" D) Que “LA ACREDITANTE” le informó el Costo Anual Total(CAT): el Costo Anual Total de Financimiento expresado en términos porcentuale anuales que, para fines informativos y de comparación, incorpora la totalidad de los costos y gastos inherentes a los créditos",:size =>10,:align => :justify 
     text " "
     text" E) Asimismo,  declara “EL ACREDITADO”  estar informado  de la facultad y derecho que tiene para consultar  el estado de cuenta del crédito objeto de este contrato, mismo que ha sido pactado por las partes, a la fecha de la última amortización según la tabla anexa en la cláusula novena, en la sucursal de “LA ACREDITANTE”  y que le proporcione una impresión del mismo, teniendo “EL ACREDITADO” un plazo de tres días hábiles para objetarlo y de no realizarlo se tendrá por conformado con el citado estado de cuenta para todos los efectos legales a que haya lugar.",:size =>10,:align => :justify 
     text " "
