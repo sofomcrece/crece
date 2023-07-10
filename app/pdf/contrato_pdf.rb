@@ -13,10 +13,11 @@ class ContratoPdf < Prawn::Document
     text " "
     text "I. DECLARA 'LA ACREDITANTE' A TRAVÉS DE SU REPRESENTANTE:",:size =>10,:align => :justify, :style=> :bold 
     text " "
-    text "A) Que es una sociedad mercantil constituida ed conformidad con las leyes de los Estados Unidos Mexicanos" ,:size =>10 ,:align => :justify
-    text "
-                 PRÉSTAMO       ABONO (#{@credit.product.payout.periocidad})" , :align  => :center,:size =>10       
-    text "_________         __________ "  , :align  => :center,:size =>10          
+    text "A) Que es una sociedad mercantil constituida de conformidad con las leyes de los Estados Unidos Mexicanos, según consta en la escritura pública número 11936 volumen 276(doscientos setenta y seis) de fecha 26 de febrero del año 2020(dos mil veinte), otorgada ante la fé del licenciado Teresa Peña Gaspar notario público número 138(ciento treinta y ocho) del Estado de México, inscrita en el registro público de la propiedad y del comercio de Culiacán,  Sinaloa, bajo el folio mercantil numero N-2020019087." ,:size =>10 ,:align => :justify
+    text " "
+    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave CPR20022645" , :align  => :center,:size =>10       
+    text " "
+    text "C) Que tiene su domicilio en Río Nazas No. 1240, colonia Los Pinos, código postal 80128, Culiacán, Sinaloa."  , :align  => :center,:size =>10          
     text "1,000.00          #{Dinero.to_money((1000*(1+@credit.product.taza_de_interes_ordinaria/100))/@credit.product.numero_de_pagos_a_realizar)}   " , :align  => :center,:size =>10                            
     text " 2,000.00          #{Dinero.to_money((2000*(1+@credit.product.taza_de_interes_ordinaria/100))/@credit.product.numero_de_pagos_a_realizar)} " , :align  => :center,:size =>10                            
     text " 3,000.00          #{Dinero.to_money((3000*(1+@credit.product.taza_de_interes_ordinaria/100))/@credit.product.numero_de_pagos_a_realizar)} " , :align  => :center,:size =>10                            
