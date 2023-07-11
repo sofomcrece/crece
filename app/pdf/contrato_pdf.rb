@@ -56,6 +56,45 @@ class ContratoPdf < Prawn::Document
     text " "
     text "DISPOSICIÓN DEL CRÉDITO",:size =>10,:align => :left
     text "SEGUNDA. “EL ACREDITADO” dispondrá del importe del crédito, a la firma del presente contrato mediante cheque o mediante transferencia electrónica a la cuenta señalada por “EL ACREDITADO”, previa suscripción del (los) pagaré(s) respectivo(s), a favor de “LA ACREDITANTE”." ,:size =>10,:align => :justify
+    text " "
+    text "PAGOS, APLICACIÓN Y ADREDITAMIENTO",:size =>10,:align => :center, :style=> :bold
+    text " "
+    text "TERCERA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE”, sin necesidad de requerimiento alguno, el importe del crédito concedido mediante _______ parcialidades de acuerdo a la tabla de amortización que forma parte integrante del presente contrato. “EL ACREDITADO” tendrá como fecha límite de pago los días señalados en la carátula. Cuando la fecha límite de pago sea en un día inhábil esta se recorrerá al siguiente día hábil, sin que proceda el cobro de penalizaciones y/o intereses moratorios.",:size =>10,:align => :justify
+    text " "
+    text "La periodicidad de los pagos será semanal de acuerdo a lo establecido en la tabla de amortización que forma parte integrante del presente contrato.",:size =>10,:align => :justify
+    text " "
+    text "“EL ACREDITADO” podrá realizar los pagos a través de depósitos y/o transferencia electrónica en cualquiera de las siguientes cuentas bancarias: cuenta número _______________ del Banco ___________________________________, cuenta número ____________________ del Banco _______________________________________ o bien podrá entregar el efectivo al representante de “LA ACREDITANTE”.",:size =>10,:align => :justify
+    text " "
+    text "El acreditamiento de los pagos referidos se verificará conforme a lo siguiente:",:size =>10,:align => :justify
+    text " "
+    text "A) Dinero en efectivo el mismo día en que sea recibido.",:size =>10,:align => :justify
+    text " "
+    text "B) Depósito y/o transferencia bancaria al día siguiente de reflejarse la misma en el estado de cuenta bancario de “LA ACREDITANTE”",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” aplicará las cantidades que reciba en pago por orden de vencimiento conforme al orden siguiente:",:size =>10,:align => :justify
+    text " "
+    text "a) Impuesto al valor agregado;",:size =>10,:align => :justify
+    text " "
+    text "b) Intereses moratorios;",:size =>10,:align => :justify
+    text " "
+    text "c) Otros gastos y costas derivados del presente contrato;",:size =>10,:align => :justify
+    text " "
+    text "d) Intereses ordinarios;",:size =>10,:align => :justify
+    text " "
+    text "e) Capital vencido",:size =>10,:align => :justify
+    text " "
+    ext "f)  Capital vigente.",:size =>10,:align => :justify
+    text " "
+    text "En todo momento “EL ACREDITADO” podrá realizar pagos adelantados o anticipados.",:size =>10,:align => :justify
+    text " "
+    text "PAGOS ANTICIPADOS. “LA ACREDITANTE” se obliga a aceptar pagos anticipados de los créditos menores al equivalente a 900,000 UDIS, siempre que “EL ACREDITADO” lo solicite, esté al corriente con los pagos exigibles y el importe del pago anticipado sea por una cantidad igual o mayor al pago que deba realizarse en el periodo correspondiente. Los pagos que realice “EL ACREDITADO” antes de la fecha en que sea exigible, deberán de considerarse como pagos anticipados y no pago adelantado.",:size =>10,:align => :justify
+    text " "
+    text "Cuando “EL ACREDITADO” solicite efectuar pagos anticipados, “LA ACREDITANTE” le informará el saldo insoluto. Dicha información le será entregada por escrito si el pago anticipado se efectúa en alguna de sus sucursales o en su defecto vía telefónica.",:size =>10,:align => :justify
+    text " "
+    text "Los pagos anticipados se aplicarán en forma exclusiva al saldo insoluto de capital.",:size =>10,:align => :justify
+    text " "
+    text "Cuando el importe de los pagos anticipados no fuere suficiente para amortizar el saldo insoluto en su totalidad, “LA ACREDITANTE” deberá reducir el monto de los pagos periódicos pendientes, salvo cuando pacte con “EL ACREDITADO” que se disminuya el número de pagos a realizar. “LA ACREDITANTE” deberá calcular el importe de los intereses por devengar, con base en el nuevo saldo insoluto.",:size =>10,:align => :justify
+    text " "
 
     start_new_page
     
