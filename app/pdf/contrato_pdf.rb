@@ -157,19 +157,19 @@ class ContratoPdf < Prawn::Document
     text " "
     text "De igual forma, se hace del conocimiento de “EL ACREDITADO”, el número telefónico de atención a usuarios de la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF): 55 5340 0999 y 800 999 80 80, dirección en internet: www.condusef.gob.mx y correo electrónico: asesoria@condusef.gob.mx. ",:size =>10,:align => :justify
     text " "
-    #text "VIGENCIA Y MODIFICACIÓN",:size =>10,:align => :left, :style=> :bold
-    #text "DÉCIMA PRIMERA. El plazo del crédito es el señalado en la Carátula del presente contrato y estará vigente hasta el pago total del principal e intereses del préstamo personal otorgado a “EL ACREDITADO”. ",:size =>10,:align => :justify
-    #text " "
-    #text "El presente contrato no estará sujeto a prorroga o cambio alguno. En caso de realizar alguna modificación se atenderá al procedimiento siguiente: ",:size =>10,:align => :justify
-    #text " "
-    #text "LA ACREDITANTE” se reserva el derecho de efectuar modificaciones a los términos y condiciones de este Contrato en cualquiera de sus secciones o apartados, bastando para ello un aviso dado con 30 (treinta) días naturales de anticipación a la fecha en que las modificaciones entren en vigor a través del estado de cuenta proporcionado a “EL ACREDITADO”, adicionalmente se dará aviso mediante un mensaje de texto. ",:size =>10,:align => :justify
-    #text " "
-    #text "En caso de que “EL ACREDITADO” no esté de acuerdo con las modificaciones dadas a conocer por “LA ACREDITANTE”, podrá solicitar la terminación anticipada del Contrato dentro de los 30 días posteriores al aviso al que se refiere el párrafo anterior, sin responsabilidad alguna a su cargo y bajo las condiciones anteriores a la modificación; debiendo cubrir, en su caso, los adeudos que se generen hasta el término de la operación, sin que la Entidad Financiera pueda cobrarle penalización alguna por dicha causa",:size =>10,:align => :justify
-    #text " "
-    #text "Una vez transcurrido el plazo señalado en el párrafo anterior, sin que “LA ACREDITANTE” haya recibido comunicación alguna por parte de “EL ACREDITADO” en relación con las modificaciones realizadas, se tendrán por aceptadas todas las modificaciones al presente Contrato. ",:size =>10,:align => :justify
-    #text " "
-    #text "No obstante lo anterior, no se podrán establecer nuevas comisiones, incrementar su monto, ni modificar tasas de interés, salvo en caso de reestructuración, sin que las partes de común acuerdo pacten la modificación de este Contrato y en la forma establecida por la ley. ",:size =>10,:align => :justify
-    #text " "
+    text "VIGENCIA Y MODIFICACIÓN",:size =>10,:align => :left, :style=> :bold
+    text "DÉCIMA PRIMERA. El plazo del crédito es el señalado en la Carátula del presente contrato y estará vigente hasta el pago total del principal e intereses del préstamo personal otorgado a “EL ACREDITADO”. ",:size =>10,:align => :justify
+    text " "
+    text "El presente contrato no estará sujeto a prorroga o cambio alguno. En caso de realizar alguna modificación se atenderá al procedimiento siguiente: ",:size =>10,:align => :justify
+    text " "
+    text "LA ACREDITANTE” se reserva el derecho de efectuar modificaciones a los términos y condiciones de este Contrato en cualquiera de sus secciones o apartados, bastando para ello un aviso dado con 30 (treinta) días naturales de anticipación a la fecha en que las modificaciones entren en vigor a través del estado de cuenta proporcionado a “EL ACREDITADO”, adicionalmente se dará aviso mediante un mensaje de texto. ",:size =>10,:align => :justify
+    text " "
+    text "En caso de que “EL ACREDITADO” no esté de acuerdo con las modificaciones dadas a conocer por “LA ACREDITANTE”, podrá solicitar la terminación anticipada del Contrato dentro de los 30 días posteriores al aviso al que se refiere el párrafo anterior, sin responsabilidad alguna a su cargo y bajo las condiciones anteriores a la modificación; debiendo cubrir, en su caso, los adeudos que se generen hasta el término de la operación, sin que la Entidad Financiera pueda cobrarle penalización alguna por dicha causa",:size =>10,:align => :justify
+    text " "
+    text "Una vez transcurrido el plazo señalado en el párrafo anterior, sin que “LA ACREDITANTE” haya recibido comunicación alguna por parte de “EL ACREDITADO” en relación con las modificaciones realizadas, se tendrán por aceptadas todas las modificaciones al presente Contrato. ",:size =>10,:align => :justify
+    text " "
+    text "No obstante lo anterior, no se podrán establecer nuevas comisiones, incrementar su monto, ni modificar tasas de interés, salvo en caso de reestructuración, sin que las partes de común acuerdo pacten la modificación de este Contrato y en la forma establecida por la ley. ",:size =>10,:align => :justify
+    text " "
     #text "CANCELACIÓN Y TERMINACIÓN ANTICIPADA",:size =>10,:align => :left, :style =>bold
     #text "DÉCIMA SEGUNDA. “EL ACREDITADO” podrá cancelar sin ninguna responsabilidad o comisión a su cargo el crédito objeto del presente contrato dentro de los 10 (diez) días hábiles posteriores a la firma del presente, siempre y cuando no haya utilizado o dispuesto del crédito",:size =>10,:align => :justify
     #text " "
