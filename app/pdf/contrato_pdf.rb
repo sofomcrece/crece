@@ -151,45 +151,25 @@ class ContratoPdf < Prawn::Document
     text " "
     text "III. Dentro del plazo de cuarenta y cinco días naturales contado a partir de la entrega del dictamen a que se refiere la fracción anterior, la institución estará obligada a poner a disposición del Cliente en la sucursal en la que radica la cuenta, o bien, en la unidad especializada de la institución de que se trate, el expediente generado con motivo de la solicitud, así como a integrar en éste, bajo su más estricta responsabilidad, toda la documentación e información que, conforme a las disposiciones aplicables, deba obrar en su poder y que se relacione directamente con la solicitud de aclaración que corresponda y sin incluir datos correspondientes a operaciones relacionadas con terceras personas; ",:size =>10,:align => :justify
     text " "
-
     text "IV. En caso de que la institución no diere respuesta oportuna a la solicitud del Cliente o no le entregare el dictamen e informe detallado, así como la documentación o evidencia antes referidos, la Comisión Nacional para la Protección y Defensa de los Usuarios de los Servicios Financieros, impondrá multa en los términos previstos en la fracción XI del artículo 43 de esta Ley por un monto equivalente al reclamado por el Cliente en términos de este artículo, y hasta en tanto la solicitud de aclaración de que se trate no quede resuelta de conformidad con el procedimiento señalado en este artículo, la institución no podrá reportar como vencidas las cantidades sujetas a dicha aclaración a las sociedades de información crediticia. ",:size =>10,:align => :justify
     text " "
-
     text "Lo antes dispuesto es sin perjuicio del derecho de los Clientes de acudir ante la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros o ante la autoridad jurisdiccional correspondiente conforme a las disposiciones legales aplicables, así como de las sanciones que deban imponerse a la institución por incumplimiento a lo establecido en el presente artículo. Sin embargo, el procedimiento previsto en este artículo quedará sin efectos a partir de que el Cliente presente su demanda ante autoridad jurisdiccional o conduzca su reclamación en términos y plazos de la Ley de Protección y Defensa al Usuario de Servicios Financieros.” ",:size =>10,:align => :justify
     text " "
-
     text "De igual forma, se hace del conocimiento de “EL ACREDITADO”, el número telefónico de atención a usuarios de la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF): 55 5340 0999 y 800 999 80 80, dirección en internet: www.condusef.gob.mx y correo electrónico: asesoria@condusef.gob.mx. ",:size =>10,:align => :justify
     text " "
-
-
     text "VIGENCIA Y MODIFICACIÓN",:size =>10,:align => :left, :style=> :bold
     text "DÉCIMA PRIMERA. El plazo del crédito es el señalado en la Carátula del presente contrato y estará vigente hasta el pago total del principal e intereses del préstamo personal otorgado a “EL ACREDITADO”. ",:size =>10,:align => :justify
-
     text " "
-
     text "El presente contrato no estará sujeto a prorroga o cambio alguno. En caso de realizar alguna modificación se atenderá al procedimiento siguiente: ",:size =>10,:align => :justify
-
     text " "
-
-
     text "LA ACREDITANTE” se reserva el derecho de efectuar modificaciones a los términos y condiciones de este Contrato en cualquiera de sus secciones o apartados, bastando para ello un aviso dado con 30 (treinta) días naturales de anticipación a la fecha en que las modificaciones entren en vigor a través del estado de cuenta proporcionado a “EL ACREDITADO”, adicionalmente se dará aviso mediante un mensaje de texto. ",:size =>10,:align => :justify
-
     text " "
-
-
     text "En caso de que “EL ACREDITADO” no esté de acuerdo con las modificaciones dadas a conocer por “LA ACREDITANTE”, podrá solicitar la terminación anticipada del Contrato dentro de los 30 días posteriores al aviso al que se refiere el párrafo anterior, sin responsabilidad alguna a su cargo y bajo las condiciones anteriores a la modificación; debiendo cubrir, en su caso, los adeudos que se generen hasta el término de la operación, sin que la Entidad Financiera pueda cobrarle penalización alguna por dicha causa",:size =>10,:align => :justify
-
     text " "
-
     text "Una vez transcurrido el plazo señalado en el párrafo anterior, sin que “LA ACREDITANTE” haya recibido comunicación alguna por parte de “EL ACREDITADO” en relación con las modificaciones realizadas, se tendrán por aceptadas todas las modificaciones al presente Contrato. ",:size =>10,:align => :justify
-
     text " "
-
-
     text "No obstante lo anterior, no se podrán establecer nuevas comisiones, incrementar su monto, ni modificar tasas de interés, salvo en caso de reestructuración, sin que las partes de común acuerdo pacten la modificación de este Contrato y en la forma establecida por la ley. ",:size =>10,:align => :justify
-
     text " "
-
     text "CANCELACIÓN Y TERMINACIÓN ANTICIPADA",:size =>10,:align => :left, :style =>bold
     text "DÉCIMA SEGUNDA. “EL ACREDITADO” podrá cancelar sin ninguna responsabilidad o comisión a su cargo el crédito objeto del presente contrato dentro de los 10 (diez) días hábiles posteriores a la firma del presente, siempre y cuando no haya utilizado o dispuesto del crédito",:size =>10,:align => :justify
     text " "
@@ -200,7 +180,7 @@ class ContratoPdf < Prawn::Document
     text "“LA ACREDITANTE” deberá cancelar el cobro de productos o servicios asociados, lo anterior, toda vez que, de conformidad con lo establecido en el contrato, deben cancelar (los seguros en caso de haberlos). ",:size =>10,:align => :justify
     text " "
     text "“LA ACREDITANTE” se abstendrá de condicionar la terminación del contrato a cualquier otro acto no previsto en el mismo. ",:size =>10,:align => :justify
-    text " “LA ACREDITANTE” se abstendrá de cobrar al usuario comisión o penalización por la terminación del contrato, salvo las pactadas por pago anticipado”. ",:size =>10,:align => :justify
+    text "“LA ACREDITANTE” se abstendrá de cobrar al usuario comisión o penalización por la terminación del contrato, salvo las pactadas por pago anticipado”. ",:size =>10,:align => :justify
     text " "
     text "“LA ACREDITANTE” dará por terminado el contrato al siguiente día hábil a aquel en que se reciba la solicitud de terminación, siempre y cuando no existan adeudos”. ",:size =>10,:align => :justify
     text " "
@@ -208,13 +188,12 @@ class ContratoPdf < Prawn::Document
     text " "
     text "“LA ACREDITANTE” “entregará a “EL ACREDITADO” su saldo a favor (en caso de tenerlo), en la fecha en que se dé por terminada la operación o al no haber acudido “EL ACREDITADO” a la sucursal u oficina de “LA ACREDITANTE”, ésta deberá informarle que se encuentra a su disposición en la oficina de “LA ACREDITANTE”. ",:size =>10,:align => :justify
     text " "
-    text "Establecer la obligación de “reportar a las Sociedades de Información Crediticia, que la cuenta está cerrada y sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia”. ",:size =>10,:align => :justify
+    text "Establecer la obligación de “reportar a las Sociedades de Información Crediticia, que la cuenta está cerrada y sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia.",:size =>10,:align => :justify
     text " "
     text "“LA ACREDITANTE” pondrá a disposición de ” EL ACREDITADO” el documento en donde conste el fin de la relación contractual y la inexistencia de adeudos derivados de dicha relación, dentro de los diez días hábiles posteriores al día en  que se hubiere realizado el pago de los adeudos y reportará a las sociedades de información crediticia que la cuenta está cerrada sin adeudo. ",:size =>10,:align => :justify
     text " "
     text "“LA ACREDITANTE” deberá reportar a las sociedades de información crediticia que la cuenta está cerrada sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia. ",:size =>10,:align => :justify
     text " "
     text "Cuando la terminación del contrato sea por conducto de otra entidad financiera esta liquidará el adeudo de” EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos “LA ACREDITANTE” renunciará a todos los derechos de cobro remanente que pudiera subsistir después del momento de la cancelación. ",:size =>10,:align => :justify
-
   end
 end
