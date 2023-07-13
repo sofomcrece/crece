@@ -36,7 +36,7 @@ class CorridaPdf < Prawn::Document
           ["BAJIO","112248540201","030730900002594213",""]],:cell_style => { size: 8 })
     start_new_page 
 
-    image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
     text "#{@credit.nombre_completo_deudor}"
     table([["FECHA DE PRESTAMO", @credit.fecha_de_contrato.strftime("%d/%m/%Y")], 
           ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
