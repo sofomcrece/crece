@@ -223,7 +223,7 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA SEXTA. Para todos los efectos legales correspondientes, el presente contrato se regirá supletoriamente por las disposiciones de las leyes mercantiles y en defecto de ellas por los usos mercantiles, y el código civil vigente en Culiacán, Sinaloa. Para la interpretación y cumplimiento del presente contrato las partes se someten a la competencia de los tribunales del lugar de la firma del mismo, por lo que “EL ACREDITADO” renuncia clara y terminantemente al fuero que le corresponde por razón de su domicilio presente o futuro",:size =>10,:align => :justify
     text " "
     
-    text "TÍTULOS DE LAS CLÁUSULAS",:size =>10,:align => :justify. :style => :bold
+    text "TÍTULOS DE LAS CLÁUSULAS",:size =>10,:align => :justify, :style => :bold
     text "DÉCIMA SÉPTIMA. Los títulos de las cláusulas que aparecen en el presente instrumento se han puesto con el exclusivo propósito de facilitar su lectura por tanto no definen ni limitan el contenido de las mismas. Para efectos de interpretación de este instrumento deberá atenderse exclusivamente al contenido de sus declaraciones y cláusulas y de ninguna manera al título de estas últimas",:size =>10,:align => :justify
     text " "
     
