@@ -170,31 +170,31 @@ class ContratoPdf < Prawn::Document
     text " "
     text "No obstante lo anterior, no se podrán establecer nuevas comisiones, incrementar su monto, ni modificar tasas de interés, salvo en caso de reestructuración, sin que las partes de común acuerdo pacten la modificación de este Contrato y en la forma establecida por la ley. ",:size =>10,:align => :justify
     text " "
-    #text "CANCELACIÓN Y TERMINACIÓN ANTICIPADA",:size =>10,:align => :left, :style =>bold
-    #text "DÉCIMA SEGUNDA. “EL ACREDITADO” podrá cancelar sin ninguna responsabilidad o comisión a su cargo el crédito objeto del presente contrato dentro de los 10 (diez) días hábiles posteriores a la firma del presente, siempre y cuando no haya utilizado o dispuesto del crédito",:size =>10,:align => :justify
-    #text " "
-    #text "EL ACREDITADO” puede solicitar por escrito con firma autógrafa, en cualquier sucursal u oficina de la Entidad Financiera, a través de medios electrónicos, ópticos o de cualquier otra tecnología, la terminación anticipada de Contrato de Adhesión; asimismo, “LA ACREDITANTE” utilizará un mecanismo de verificación de identidad. ",:size =>10,:align => :justify
-    #text " "
-    #text "Cuando “EL ACREDITADO” solicite la terminación anticipada de su contrato “LA ACREDITANTE” proporcionará acuse de recibo y clave de confirmación o número de folio, así como se cerciorará de la autenticidad y veracidad de la identidad de “EL ACREDITADO” que formule la solicitud de terminación respectiva, confirmando sus datos personalmente, por vía telefónica o cualquier otro medio pactado. ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” deberá cancelar el cobro de productos o servicios asociados, lo anterior, toda vez que, de conformidad con lo establecido en el contrato, deben cancelar (los seguros en caso de haberlos). ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” se abstendrá de condicionar la terminación del contrato a cualquier otro acto no previsto en el mismo. ",:size =>10,:align => :justify
-    #text "“LA ACREDITANTE” se abstendrá de cobrar al usuario comisión o penalización por la terminación del contrato, salvo las pactadas por pago anticipado”. ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” dará por terminado el contrato al siguiente día hábil a aquel en que se reciba la solicitud de terminación, siempre y cuando no existan adeudos”. ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” comunicará a “EL ACREDITADO”, a más tardar el día hábil siguiente al de la recepción de la solicitud, el importe de los adeudos y dentro de los cinco días hábiles siguientes al de la recepción de la solicitud pondrá a su disposición dicho dato a determinada fecha en la sucursal elegida por “EL ACREDITADO”, y una vez liquidados los adeudos se dará por terminado el Contrato de Adhesión. ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” “entregará a “EL ACREDITADO” su saldo a favor (en caso de tenerlo), en la fecha en que se dé por terminada la operación o al no haber acudido “EL ACREDITADO” a la sucursal u oficina de “LA ACREDITANTE”, ésta deberá informarle que se encuentra a su disposición en la oficina de “LA ACREDITANTE”. ",:size =>10,:align => :justify
-    #text " "
-    #text "Establecer la obligación de “reportar a las Sociedades de Información Crediticia, que la cuenta está cerrada y sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia.",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” pondrá a disposición de ” EL ACREDITADO” el documento en donde conste el fin de la relación contractual y la inexistencia de adeudos derivados de dicha relación, dentro de los diez días hábiles posteriores al día en  que se hubiere realizado el pago de los adeudos y reportará a las sociedades de información crediticia que la cuenta está cerrada sin adeudo. ",:size =>10,:align => :justify
-    #text " "
-    #text "“LA ACREDITANTE” deberá reportar a las sociedades de información crediticia que la cuenta está cerrada sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia. ",:size =>10,:align => :justify
-    #text " "
-    #text "Cuando la terminación del contrato sea por conducto de otra entidad financiera esta liquidará el adeudo de” EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos “LA ACREDITANTE” renunciará a todos los derechos de cobro remanente que pudiera subsistir después del momento de la cancelación. ",:size =>10,:align => :justify
+    text "CANCELACIÓN Y TERMINACIÓN ANTICIPADA",:size =>10,:align => :left, :style => :bold
+    text "DÉCIMA SEGUNDA. “EL ACREDITADO” podrá cancelar sin ninguna responsabilidad o comisión a su cargo el crédito objeto del presente contrato dentro de los 10 (diez) días hábiles posteriores a la firma del presente, siempre y cuando no haya utilizado o dispuesto del crédito",:size =>10,:align => :justify
+    text " "
+    text "EL ACREDITADO” puede solicitar por escrito con firma autógrafa, en cualquier sucursal u oficina de la Entidad Financiera, a través de medios electrónicos, ópticos o de cualquier otra tecnología, la terminación anticipada de Contrato de Adhesión; asimismo, “LA ACREDITANTE” utilizará un mecanismo de verificación de identidad. ",:size =>10,:align => :justify
+    text " "
+    text "Cuando “EL ACREDITADO” solicite la terminación anticipada de su contrato “LA ACREDITANTE” proporcionará acuse de recibo y clave de confirmación o número de folio, así como se cerciorará de la autenticidad y veracidad de la identidad de “EL ACREDITADO” que formule la solicitud de terminación respectiva, confirmando sus datos personalmente, por vía telefónica o cualquier otro medio pactado. ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” deberá cancelar el cobro de productos o servicios asociados, lo anterior, toda vez que, de conformidad con lo establecido en el contrato, deben cancelar (los seguros en caso de haberlos). ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” se abstendrá de condicionar la terminación del contrato a cualquier otro acto no previsto en el mismo. ",:size =>10,:align => :justify
+    text "“LA ACREDITANTE” se abstendrá de cobrar al usuario comisión o penalización por la terminación del contrato, salvo las pactadas por pago anticipado”. ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” dará por terminado el contrato al siguiente día hábil a aquel en que se reciba la solicitud de terminación, siempre y cuando no existan adeudos”. ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” comunicará a “EL ACREDITADO”, a más tardar el día hábil siguiente al de la recepción de la solicitud, el importe de los adeudos y dentro de los cinco días hábiles siguientes al de la recepción de la solicitud pondrá a su disposición dicho dato a determinada fecha en la sucursal elegida por “EL ACREDITADO”, y una vez liquidados los adeudos se dará por terminado el Contrato de Adhesión. ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” “entregará a “EL ACREDITADO” su saldo a favor (en caso de tenerlo), en la fecha en que se dé por terminada la operación o al no haber acudido “EL ACREDITADO” a la sucursal u oficina de “LA ACREDITANTE”, ésta deberá informarle que se encuentra a su disposición en la oficina de “LA ACREDITANTE”. ",:size =>10,:align => :justify
+    text " "
+    text "Establecer la obligación de “reportar a las Sociedades de Información Crediticia, que la cuenta está cerrada y sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia.",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” pondrá a disposición de ” EL ACREDITADO” el documento en donde conste el fin de la relación contractual y la inexistencia de adeudos derivados de dicha relación, dentro de los diez días hábiles posteriores al día en  que se hubiere realizado el pago de los adeudos y reportará a las sociedades de información crediticia que la cuenta está cerrada sin adeudo. ",:size =>10,:align => :justify
+    text " "
+    text "“LA ACREDITANTE” deberá reportar a las sociedades de información crediticia que la cuenta está cerrada sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia. ",:size =>10,:align => :justify
+    text " "
+    text "Cuando la terminación del contrato sea por conducto de otra entidad financiera esta liquidará el adeudo de” EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos “LA ACREDITANTE” renunciará a todos los derechos de cobro remanente que pudiera subsistir después del momento de la cancelación. ",:size =>10,:align => :justify
   
   end
 end
