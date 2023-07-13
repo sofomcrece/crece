@@ -7,7 +7,7 @@ class PolizaPdf < Prawn::Document
   def text_content
     rectangle [50,750], 500, 250
     des = 0
-    draw_text  "FINANCIERA MARJO SA DE CV SOFOM ENR",:size=>9, :at => [70,720+des]
+    draw_text  "CRECE PRESTACIONES SOFOM ENR",:size=>9, :at => [70,720+des]
     draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [70,710+des]
     draw_text  "CULIACAN DE ROSALES, SINALOA C.P. 80128",:size=>9, :at => [70,700+des]
     draw_text  "#{Conf.last.RFC}",:size=>9, :at => [70,690+des]
@@ -26,7 +26,7 @@ class PolizaPdf < Prawn::Document
     draw_text  "______________________________________________________________________", :at => [70,620+des]
     draw_text  "La cantidad de: ",:size=>8, :at => [70,610+des]
     
-    image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, :at => [70,600+des]
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85, :at => [70,600+des]
     
     draw_text  "_________________________", :at => [370,580+des]
     draw_text  "FIRMA CHEQUE RECIBIDO",:size=>8, :at => [400,570+des]
@@ -42,7 +42,7 @@ class PolizaPdf < Prawn::Document
     
     des = -400 
     
-    draw_text  "FINANCIERA MARJO SA DE CV SOFOM ENR",:size=>9, :at => [70,720+des]
+    draw_text  "CRECE PRESTACIONES SOFOM ENR",:size=>9, :at => [70,720+des]
     draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [70,710+des]
     draw_text  "CULIACAN DE ROSALES, SINALOA C.P. 80128",:size=>9, :at => [70,700+des]
     draw_text  "#{Conf.last.RFC}",:size=>9, :at => [70,690+des]
@@ -61,7 +61,7 @@ class PolizaPdf < Prawn::Document
     draw_text  "______________________________________________________________________", :at => [70,620+des]
     draw_text  "La cantidad de: ",:size=>8, :at => [70,610+des]
     
-    image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, :at => [70,600+des]
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85, :at => [70,600+des]
     
     draw_text  "_________________________", :at => [370,580+des]
     draw_text  "FIRMA CHEQUE RECIBIDO",:size=>8, :at => [400,570+des]

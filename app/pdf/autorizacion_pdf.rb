@@ -27,7 +27,7 @@ class AutorizacionPdf < Prawn::Document
   end
   def text_content
      font_size 9
-     image "#{Rails.root}/app/assets/images/logo marjo.png", width: 155, height: 45, position: :left
+     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85, position: :left
      text " "
      text " "
      text "Autorización para solicitar Reportes de Crédito" , :size => 10,:align => :center, :style => :bold
@@ -38,7 +38,7 @@ class AutorizacionPdf < Prawn::Document
      text "Autorización para:",:size =>10,:align => :justify 
      text "Persona Física (PF) [ X ] 	 Persona Física con Actividad Empresarial (PFAE) [ ]       Persona Moral (PM) [ ] ",:size =>10,:align => :justify 
      
-     text "Por este conducto autorizo expresamente a Financiera Marjo, S.A. de C.V., SOFOM, ENR, para que por conducto de sus funcionarios facultados lleve a cabo investigaciones sobre mi comportamiento crediticio o el de la empresa que represento en las Sociedades de Información Crediticia que estime conveniente.",:size =>10,:align => :justify 
+     text "Por este conducto autorizo expresamente a Crece Prestaciones, SOFOM, ENR, para que por conducto de sus funcionarios facultados lleve a cabo investigaciones sobre mi comportamiento crediticio o el de la empresa que represento en las Sociedades de Información Crediticia que estime conveniente.",:size =>10,:align => :justify 
      text " "
      text "Así mismo, declaro que conozco la naturaleza y alcance de las sociedades de información crediticia y de la información contenida en los reportes de crédito y reporte de crédito especial, declaro que conozco la naturaleza y alcance de la información que se solicitará, del uso que Financiera Marjo, S.A. de C.V., SOFOM, ENR hará de tal información y de que ésta podrá realizar consultas periódicas de mi historial crediticio o el de la empresa que represento, consintiendo que esta autorización se encuentre vigente por un período de 3 años contados a partir de la fecha de su expedición y en todo caso durante el tiempo que mantengamos relación jurídica.",:size =>10,:align => :justify 
      text " "
@@ -65,7 +65,7 @@ Nombre y Firma de PF, PFAE o Representante Legal de la empresa
  ",:size =>10,:align => :justify 
   text " "
   text "___________________________________________________________________________________________________________
-Para uso exclusivo de Financiera Marjo, S.A. de C.V., SOFOM, ENR
+Para uso exclusivo de Crece Prestaciones, SOFOM, ENR
 Clave de usuario:_______________________________________
 Fecha de la consulta (dd-mm-aaaa):______________________
 Folio de consulta (Obligatorio):________________________
