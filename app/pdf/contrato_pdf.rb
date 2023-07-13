@@ -195,6 +195,43 @@ class ContratoPdf < Prawn::Document
     text "“LA ACREDITANTE” deberá reportar a las sociedades de información crediticia que la cuenta está cerrada sin adeudo alguno dentro del plazo que para tales efectos señala la Ley para Regular las Sociedades de Información Crediticia. ",:size =>10,:align => :justify
     text " "
     text "Cuando la terminación del contrato sea por conducto de otra entidad financiera esta liquidará el adeudo de” EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos “LA ACREDITANTE” renunciará a todos los derechos de cobro remanente que pudiera subsistir después del momento de la cancelación. ",:size =>10,:align => :justify
-  
+    text " "
+    text "RESCISIÓN DEL CONTRATO ",:size =>10,:align => :justify, :style => :bold
+    text "DÉCIMA TERCERA. “LA ACREDITANTE” se reserva la facultad de dar por vencido anticipadamente el plazo para el pago del importe del crédito y sus intereses, sin necesidad de requisito o trámite previo alguno, bastando para ello notificar por escrito a “EL ACREDITADO” si este faltare al cumplimiento de cualesquiera de las obligaciones contraídas en este contrato, o en los casos que la ley así lo previene, en cualesquiera de los siguientes supuestos: ",:size =>10,:align => :justify
+    text " "
+    text "A) Si “EL ACREDITADO” hubiera hecho alguna declaración falsa, que a juicio de “LA ACREDITANTE” haya sido determinante para el otorgamiento del crédito. ",:size =>10,:align => :justify
+    text " "
+    text "B) Si “EL ACREDITADO” dejara de efectuar, en forma total o parcial uno o más de los pagos que se obliga a realizar conforme al presente contrato, sean éstos de capital o intereses. ",:size =>10,:align => :justify
+    text " "
+    text "ANEXO DE DISPOSICIONES JURÍDICAS",:size =>10,:align => :justify, :style => :bold
+    text "DÉCIMA CUARTA. El presente contrato cuenta con un anexo con la transcripción de todas y cada una de las disposiciones jurídicas contenidas en el mismo, el cual forma parte integral del presente. Dicho anexo estará a disposición de “EL ACREDITADO” cuando este lo requiera vía telefónica o en la oficina de “LA ACREDITADA” en los datos señalados en la Cláusula décima. ",:size =>10,:align => :justify
+    
+    text " "
+    
+    text "DOMICILIOS",:size =>10,:align => :justify, :style => :bold
+    text "DÉCIMA QUINTA. Para todos los efectos legales correspondientes las partes señalan como domicilios: ",:size =>10,:align => :justify
+    text " "
+    
+    text "“LA ACREDITANTE”: Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128. Culiacán, Sinaloa. ",:size =>10,:align => :justify
+    text " "
+    
+    text "“EL ACREDITADO”: _____________________________________________________________________________",:size =>10,:align => :justify
+    
+    text " "
+    
+    text "LEYES APLICABLES Y JURISDICCIÓN",:size =>10,:align => :justify, :style => :bold
+    text "DÉCIMA SEXTA. Para todos los efectos legales correspondientes, el presente contrato se regirá supletoriamente por las disposiciones de las leyes mercantiles y en defecto de ellas por los usos mercantiles, y el código civil vigente en Culiacán, Sinaloa. Para la interpretación y cumplimiento del presente contrato las partes se someten a la competencia de los tribunales del lugar de la firma del mismo, por lo que “EL ACREDITADO” renuncia clara y terminantemente al fuero que le corresponde por razón de su domicilio presente o futuro",:size =>10,:align => :justify
+    text " "
+    
+    text "TÍTULOS DE LAS CLÁUSULAS",:size =>10,:align => :justify. :style => :bold
+    text "DÉCIMA SÉPTIMA. Los títulos de las cláusulas que aparecen en el presente instrumento se han puesto con el exclusivo propósito de facilitar su lectura por tanto no definen ni limitan el contenido de las mismas. Para efectos de interpretación de este instrumento deberá atenderse exclusivamente al contenido de sus declaraciones y cláusulas y de ninguna manera al título de estas últimas",:size =>10,:align => :justify
+    text " "
+    
+    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a los _________ días del mes de _______________________ de 20_____ en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    
+    text "“LA ACREDITANTE”	                                  		“EL ACREDITADO” ",:size =>10,:align => :justify
+    
+    text "Representante legal						Nombre completo ",:size =>10,:align => :justify
+    
   end
 end
