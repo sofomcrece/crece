@@ -256,11 +256,13 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA SÉPTIMA. Los títulos de las cláusulas que aparecen en el presente instrumento se han puesto con el exclusivo propósito de facilitar su lectura por tanto no definen ni limitan el contenido de las mismas. Para efectos de interpretación de este instrumento deberá atenderse exclusivamente al contenido de sus declaraciones y cláusulas y de ninguna manera al título de estas últimas",:size =>10,:align => :justify
     text " "
     
-    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a los _________ días del mes de _______________________ de 20_____ en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a la fecha #{@credit.fecha_en_español} en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text " "
+    text " "
+    text " "
+    text "    “LA ACREDITANTE”	                                                         “EL ACREDITADO” ",:size =>10,:align => :justify
     
-    text "“LA ACREDITANTE”	                                  		“EL ACREDITADO” ",:size =>10,:align => :justify
-    
-    text "Representante legal						Nombre completo ",:size =>10,:align => :justify
+    text "    Representante legal				                                          		  #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify
     
     start_new_page
 
