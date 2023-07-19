@@ -7,7 +7,7 @@ class ContratoPdf < Prawn::Document
   end
   def text_content
 
-    text "RECA: ",:size =>10,:align => :right
+    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
     text " "
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
@@ -110,7 +110,7 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del  % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
