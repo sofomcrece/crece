@@ -17,7 +17,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text "A) Que es una sociedad mercantil constituida de conformidad con las leyes de los Estados Unidos Mexicanos, según consta en la escritura pública número 11936 volumen 276(doscientos setenta y seis) de fecha 26 de febrero del año 2020(dos mil veinte), otorgada ante la fé del licenciado Teresa Peña Gaspar notario público número 138(ciento treinta y ocho) del Estado de México, inscrita en el registro público de la propiedad y del comercio de Culiacán,  Sinaloa, bajo el folio mercantil numero N-2020019087." ,:size =>10 ,:align => :justify
     text " "
-    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave #{Conf.last.representante_legal}  " , :align  => :justify,:size =>10       
+    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave #{Conf.last.RFC}  " , :align  => :justify,:size =>10       
     text " "
     text "C) Que tiene su domicilio en"  , :align  => :justify,:size =>10          
     text " "
