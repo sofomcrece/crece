@@ -7,7 +7,7 @@ class ContratoPdf < Prawn::Document
   end
   def text_content
 
-    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-,:size =>10,:align => :right
+    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
     text " "
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
@@ -19,11 +19,11 @@ class ContratoPdf < Prawn::Document
     text " "
     text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave #{Conf.last.RFC}." , :align  => :justify,:size =>10       
     text " "
-    text "C) Que tiene su domicilio en #{Conf.last.domicilio}."  , :align  => :justify,:size =>10          
+    text "C) Que tiene su domicilio en #{Conf.last.domicilio}"  , :align  => :justify,:size =>10          
     text " "
     text "D) Que para su constitución y operación con carácter de Sociedad Financiera de Objeto Múltiple Entidad no Regulada. no requiere de autorización de la Secretaria de Hacienda y Credito Público y únicamente está sujeta a la supervisión de La Comisión Nacional Bancaria y de Valores para efectos del artículo 56 de la Ley General de Organizaciones y Actividades Auxiliares del Crédito",:size =>10,:align => :justify 
     text " "
-    text "E) Que el Sr(a) #{@Conf.last.representante_legal} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número 11936, de fecha 26 de Febrero de 2020 y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
+    text "E) Que el Sr(a) #{@credit.nombre_completo_deudor} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número, de fecha #{@credit.fecha_en_español} y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
     text " "
     text "F) Que conforme a su objeto social, está interesada en otorgar a “EL ACREDITADO” un crédito por la cantidad, características y con las condiciones que más adelante se señalan, toda vez que la información que éste ha proporcionado a “LA ACREDITANTE” lo hace aparecer como persona solvente moral y económicamente y por lo tanto, sujeto de crédito.",:size =>10,:align => :justify 
     text " "
