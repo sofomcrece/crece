@@ -10,7 +10,7 @@ class CaratulaPdf < Prawn::Document
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
       draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,666]
       draw_text  "#{'%.2f' % @credit.taza_ord}%",:size=>9, :at => [230,620]
-      draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [230,630]
+      draw_text  "#{@credit.product.taza_de_interes_moratoria} %",:size=>9, :at => [230,650]
      draw_text  "#{'%.2f' % @credit.cat_sin_iva}%",:size=>9, :at => [55 ,619]
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.taza_ord/100))))}",:size=>9, :at => [440,610]
