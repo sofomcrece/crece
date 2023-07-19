@@ -266,9 +266,7 @@ class ContratoPdf < Prawn::Document
     
     start_new_page
 
-    text"Copia 1",:size =>8,:align  => :right
-
-    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
+    text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right
     text " "
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
@@ -278,13 +276,13 @@ class ContratoPdf < Prawn::Document
     text " "
     text "A) Que es una sociedad mercantil constituida de conformidad con las leyes de los Estados Unidos Mexicanos, según consta en la escritura pública número 11936 volumen 276(doscientos setenta y seis) de fecha 26 de febrero del año 2020(dos mil veinte), otorgada ante la fé del licenciado Teresa Peña Gaspar notario público número 138(ciento treinta y ocho) del Estado de México, inscrita en el registro público de la propiedad y del comercio de Culiacán,  Sinaloa, bajo el folio mercantil numero N-2020019087." ,:size =>10 ,:align => :justify
     text " "
-    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave CPR20022645" , :align  => :justify,:size =>10       
+    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave #{Conf.last.RFC}." , :align  => :justify,:size =>10       
     text " "
-    text "C) Que tiene su domicilio en Río Nazas No. 1240, colonia Los Pinos, código postal 80128, Culiacán, Sinaloa."  , :align  => :justify,:size =>10          
+    text "C) Que tiene su domicilio en #{Conf.last.domicilio}"  , :align  => :justify,:size =>10          
     text " "
     text "D) Que para su constitución y operación con carácter de Sociedad Financiera de Objeto Múltiple Entidad no Regulada. no requiere de autorización de la Secretaria de Hacienda y Credito Público y únicamente está sujeta a la supervisión de La Comisión Nacional Bancaria y de Valores para efectos del artículo 56 de la Ley General de Organizaciones y Actividades Auxiliares del Crédito",:size =>10,:align => :justify 
     text " "
-    text "E) Que el Sr(a) #{@credit.nombre_completo_deudor} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número, de fecha #{@credit.fecha_en_español} y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
+    text "E) Que el Sr(a) #{Conf.last.representante_legal} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número 11936, de fecha 26 de Febrero del 2020 y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
     text " "
     text "F) Que conforme a su objeto social, está interesada en otorgar a “EL ACREDITADO” un crédito por la cantidad, características y con las condiciones que más adelante se señalan, toda vez que la información que éste ha proporcionado a “LA ACREDITANTE” lo hace aparecer como persona solvente moral y económicamente y por lo tanto, sujeto de crédito.",:size =>10,:align => :justify 
     text " "
@@ -300,7 +298,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text" E) Asimismo,  declara “EL ACREDITADO”  estar informado  de la facultad y derecho que tiene para consultar  el estado de cuenta del crédito objeto de este contrato, mismo que ha sido pactado por las partes, a la fecha de la última amortización según la tabla anexa en la cláusula novena, en la sucursal de “LA ACREDITANTE”  y que le proporcione una impresión del mismo, teniendo “EL ACREDITADO” un plazo de tres días hábiles para objetarlo y de no realizarlo se tendrá por conformado con el citado estado de cuenta para todos los efectos legales a que haya lugar.",:size =>10,:align => :justify 
     text " "
-    text" F) Que  previo  a la firma  de este  contrato  ha firmado  el formato  de autorización  para  solicitar  reportes  de crédito  de personas físicas, a las sociedades de información crediticia que estime conveniente “LA ACREDITANTE”, el cual se anexa a este contrato y forma parte integrante del mismo, que se marca como anexo ___, así en este acto “EL ACREDITADO” reitera su entera voluntad de facultar a “LA ACREDITANTE”  para llevar a cabo investigaciones  sobre su comportamiento crediticio, a través de las consultas que se realicen en las sociedades de información crediticia que estime conveniente con una vigencia de tres años a partir de la firma de este contrato y en todo caso durante el tiempo que se mantenga la relación comercial y/o jurídica.",:size =>10,:align => :justify 
+    text" F) Que  previo  a la firma  de este  contrato  ha firmado  el formato  de autorización  para  solicitar  reportes  de crédito  de personas físicas, a las sociedades de información crediticia que estime conveniente “LA ACREDITANTE”, el cual se anexa a este contrato y forma parte integrante del mismo, que se marca como anexo 3, así en este acto “EL ACREDITADO” reitera su entera voluntad de facultar a “LA ACREDITANTE”  para llevar a cabo investigaciones  sobre su comportamiento crediticio, a través de las consultas que se realicen en las sociedades de información crediticia que estime conveniente con una vigencia de tres años a partir de la firma de este contrato y en todo caso durante el tiempo que se mantenga la relación comercial y/o jurídica.",:size =>10,:align => :justify 
     text " "
     text" G) Que “EL ACREDITADO” conoce las penas en las que incurren las personas que declaran falsamente o haciendo creer a alguien la capacidad de pago que no se tiene, con el objeto de obtener un crédito a sabiendas de que no va a ser pagado o un lucro indebido y las sanciones de carácter penal que traen como consecuencia dicha conducta ilícita.",:size =>10,:align => :justify 
     text " "
@@ -371,7 +369,7 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -382,7 +380,7 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del % anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -421,7 +419,7 @@ class ContratoPdf < Prawn::Document
     text "NOVENA. “LAS PARTES” acuerdan que “LA ACREDITANTE” pondrá a disposición de “EL ACREDITADO” de forma mensual, dentro de los diez días hábiles siguientes a la fecha de corte, es decir, al último día natural de cada mes copia de su estado de cuenta, de manera gratuita en sus oficinas o sucursales, lo anterior en sustitución de la obligación del envío al domicilio de “EL ACREDITADO”, en el entendido de que “EL ACREDITADO” puede solicitar en cualquier momento el envío del estado de cuenta a su domicilio.  Así mismo “EL ACREDITADO” podrá consultar saldos, transacciones y movimientos en el domicilio de “LA ACREDITANTE”, para tal efecto tendrá que exhibir una identificación oficial vigente.",:size =>10,:align => :justify 
     text " "
     text "ATENCIÓN A USUARIOS",:size =>10,:align => :justify 
-    text "DÉCIMA. Para cualquier aclaración o queja que se relacione con el crédito, “LA ACREDITANTE” pone a disposición de “EL ACREDITADO” la Unidad Especializada de Atención a Usuarios ubicada en Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128, Culiacán, Sinaloa, con horario de atención de lunes a jueves de 8:00 a 17:00 hrs y viernes de 8:00 a 15:00 hrs. asimismo para cualquier solicitud o consulta que se relacione con el crédito, “EL ACREDITADO” podrá formularla vía telefónica al número de teléfono 667 7660935 o por escrito, ante el titular de la unidad referida al correo electrónico contacto@financieramarjo.com.mx",:size =>10,:align => :justify 
+    text "DÉCIMA. Para cualquier aclaración o queja que se relacione con el crédito, “LA ACREDITANTE” pone a disposición de “EL ACREDITADO” la Unidad Especializada de Atención a Usuarios ubicada en #{Conf.last.domicilio}, con horario de atención de lunes a viernes de 10:00 hrs. a 14:00 hrs, asimismo para cualquier solicitud o consulta que se relacione con el crédito, “EL ACREDITADO” podrá formularla vía telefónica al número de teléfono #{Conf.last.telefono} o por escrito, ante el titular de la unidad referida al correo electrónico #{Conf.last.correo}",:size =>10,:align => :justify 
     text " "
     text "Para efecto de formular cualquier aclaración, consulta (incluida información de saldos, transacciones y movimientos), inconformidad, reclamación o queja con respecto a la información contenida en el estado de cuenta o por cualquier acontecimiento suscitado con motivo de la apertura de crédito materia del presente contrato “EL ACREDITADO” podrá realizarlo a través de la Unidad Especializada de Atención a Usuarios, cuyos datos fueron precisados en el párrafo anterior.",:size =>10,:align => :justify 
     text " "
@@ -502,10 +500,10 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA QUINTA. Para todos los efectos legales correspondientes las partes señalan como domicilios: ",:size =>10,:align => :justify
     text " "
     
-    text "“LA ACREDITANTE”: Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128. Culiacán, Sinaloa. ",:size =>10,:align => :justify
+    text "“LA ACREDITANTE”: #{Conf.last.domicilio} ",:size =>10,:align => :justify
     text " "
     
-    text "“EL ACREDITADO”: _____________________________________________________________________________",:size =>10,:align => :justify
+    text "“EL ACREDITADO”: #{@credit.domicilio }",:size =>10,:align => :justify
     
     text " "
     
@@ -517,17 +515,16 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA SÉPTIMA. Los títulos de las cláusulas que aparecen en el presente instrumento se han puesto con el exclusivo propósito de facilitar su lectura por tanto no definen ni limitan el contenido de las mismas. Para efectos de interpretación de este instrumento deberá atenderse exclusivamente al contenido de sus declaraciones y cláusulas y de ninguna manera al título de estas últimas",:size =>10,:align => :justify
     text " "
     
-    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a los _________ días del mes de _______________________ de 20_____ en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a la fecha #{@credit.fecha_en_español} en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text " "
+    text " "
+    text " "
+    text "    “LA ACREDITANTE”	                                                                “EL ACREDITADO” ",:size =>10,:align => :justify
     
-    text "“LA ACREDITANTE”	                                  		“EL ACREDITADO” ",:size =>10,:align => :justify
-    
-    text "Representante legal						Nombre completo ",:size =>10,:align => :justify
-    
+    text "    Representante legal				                                          		  #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify
+        
     start_new_page
-
-    text"Copia 2",:size =>8,:align  => :right
-
-    text "RECA: xxxx-xxx-xxxxxx/xx-xxxxx-xxxx",:size =>10,:align => :right
+    text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right
     text " "
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
     text " "
@@ -537,13 +534,13 @@ class ContratoPdf < Prawn::Document
     text " "
     text "A) Que es una sociedad mercantil constituida de conformidad con las leyes de los Estados Unidos Mexicanos, según consta en la escritura pública número 11936 volumen 276(doscientos setenta y seis) de fecha 26 de febrero del año 2020(dos mil veinte), otorgada ante la fé del licenciado Teresa Peña Gaspar notario público número 138(ciento treinta y ocho) del Estado de México, inscrita en el registro público de la propiedad y del comercio de Culiacán,  Sinaloa, bajo el folio mercantil numero N-2020019087." ,:size =>10 ,:align => :justify
     text " "
-    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave CPR20022645" , :align  => :justify,:size =>10       
+    text "B) Estar inscrita en el Registro Federal de Contribuyentes con la clave #{Conf.last.RFC}." , :align  => :justify,:size =>10       
     text " "
-    text "C) Que tiene su domicilio en Río Nazas No. 1240, colonia Los Pinos, código postal 80128, Culiacán, Sinaloa."  , :align  => :justify,:size =>10          
+    text "C) Que tiene su domicilio en #{Conf.last.domicilio}"  , :align  => :justify,:size =>10          
     text " "
     text "D) Que para su constitución y operación con carácter de Sociedad Financiera de Objeto Múltiple Entidad no Regulada. no requiere de autorización de la Secretaria de Hacienda y Credito Público y únicamente está sujeta a la supervisión de La Comisión Nacional Bancaria y de Valores para efectos del artículo 56 de la Ley General de Organizaciones y Actividades Auxiliares del Crédito",:size =>10,:align => :justify 
     text " "
-    text "E) Que el Sr(a) #{@credit.nombre_completo_deudor} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número, de fecha #{@credit.fecha_en_español} y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
+    text "E) Que el Sr(a) #{Conf.last.representante_legal} tiene facultades para la celebración del presente contrato, según consta en la escritura pública número 11936, de fecha 26 de Febrero del 2020 y que dichas facultades no le han sido revocadas ni modificadas en forma alguna.",:size =>10,:align => :justify 
     text " "
     text "F) Que conforme a su objeto social, está interesada en otorgar a “EL ACREDITADO” un crédito por la cantidad, características y con las condiciones que más adelante se señalan, toda vez que la información que éste ha proporcionado a “LA ACREDITANTE” lo hace aparecer como persona solvente moral y económicamente y por lo tanto, sujeto de crédito.",:size =>10,:align => :justify 
     text " "
@@ -559,7 +556,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text" E) Asimismo,  declara “EL ACREDITADO”  estar informado  de la facultad y derecho que tiene para consultar  el estado de cuenta del crédito objeto de este contrato, mismo que ha sido pactado por las partes, a la fecha de la última amortización según la tabla anexa en la cláusula novena, en la sucursal de “LA ACREDITANTE”  y que le proporcione una impresión del mismo, teniendo “EL ACREDITADO” un plazo de tres días hábiles para objetarlo y de no realizarlo se tendrá por conformado con el citado estado de cuenta para todos los efectos legales a que haya lugar.",:size =>10,:align => :justify 
     text " "
-    text" F) Que  previo  a la firma  de este  contrato  ha firmado  el formato  de autorización  para  solicitar  reportes  de crédito  de personas físicas, a las sociedades de información crediticia que estime conveniente “LA ACREDITANTE”, el cual se anexa a este contrato y forma parte integrante del mismo, que se marca como anexo ___, así en este acto “EL ACREDITADO” reitera su entera voluntad de facultar a “LA ACREDITANTE”  para llevar a cabo investigaciones  sobre su comportamiento crediticio, a través de las consultas que se realicen en las sociedades de información crediticia que estime conveniente con una vigencia de tres años a partir de la firma de este contrato y en todo caso durante el tiempo que se mantenga la relación comercial y/o jurídica.",:size =>10,:align => :justify 
+    text" F) Que  previo  a la firma  de este  contrato  ha firmado  el formato  de autorización  para  solicitar  reportes  de crédito  de personas físicas, a las sociedades de información crediticia que estime conveniente “LA ACREDITANTE”, el cual se anexa a este contrato y forma parte integrante del mismo, que se marca como anexo 3, así en este acto “EL ACREDITADO” reitera su entera voluntad de facultar a “LA ACREDITANTE”  para llevar a cabo investigaciones  sobre su comportamiento crediticio, a través de las consultas que se realicen en las sociedades de información crediticia que estime conveniente con una vigencia de tres años a partir de la firma de este contrato y en todo caso durante el tiempo que se mantenga la relación comercial y/o jurídica.",:size =>10,:align => :justify 
     text " "
     text" G) Que “EL ACREDITADO” conoce las penas en las que incurren las personas que declaran falsamente o haciendo creer a alguien la capacidad de pago que no se tiene, con el objeto de obtener un crédito a sabiendas de que no va a ser pagado o un lucro indebido y las sanciones de carácter penal que traen como consecuencia dicha conducta ilícita.",:size =>10,:align => :justify 
     text " "
@@ -630,7 +627,7 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -641,7 +638,7 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del % anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -680,7 +677,7 @@ class ContratoPdf < Prawn::Document
     text "NOVENA. “LAS PARTES” acuerdan que “LA ACREDITANTE” pondrá a disposición de “EL ACREDITADO” de forma mensual, dentro de los diez días hábiles siguientes a la fecha de corte, es decir, al último día natural de cada mes copia de su estado de cuenta, de manera gratuita en sus oficinas o sucursales, lo anterior en sustitución de la obligación del envío al domicilio de “EL ACREDITADO”, en el entendido de que “EL ACREDITADO” puede solicitar en cualquier momento el envío del estado de cuenta a su domicilio.  Así mismo “EL ACREDITADO” podrá consultar saldos, transacciones y movimientos en el domicilio de “LA ACREDITANTE”, para tal efecto tendrá que exhibir una identificación oficial vigente.",:size =>10,:align => :justify 
     text " "
     text "ATENCIÓN A USUARIOS",:size =>10,:align => :justify 
-    text "DÉCIMA. Para cualquier aclaración o queja que se relacione con el crédito, “LA ACREDITANTE” pone a disposición de “EL ACREDITADO” la Unidad Especializada de Atención a Usuarios ubicada en Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128, Culiacán, Sinaloa, con horario de atención de lunes a jueves de 8:00 a 17:00 hrs y viernes de 8:00 a 15:00 hrs. asimismo para cualquier solicitud o consulta que se relacione con el crédito, “EL ACREDITADO” podrá formularla vía telefónica al número de teléfono 667 7660935 o por escrito, ante el titular de la unidad referida al correo electrónico contacto@financieramarjo.com.mx",:size =>10,:align => :justify 
+    text "DÉCIMA. Para cualquier aclaración o queja que se relacione con el crédito, “LA ACREDITANTE” pone a disposición de “EL ACREDITADO” la Unidad Especializada de Atención a Usuarios ubicada en #{Conf.last.domicilio}, con horario de atención de lunes a viernes de 10:00 hrs. a 14:00 hrs, asimismo para cualquier solicitud o consulta que se relacione con el crédito, “EL ACREDITADO” podrá formularla vía telefónica al número de teléfono #{Conf.last.telefono} o por escrito, ante el titular de la unidad referida al correo electrónico #{Conf.last.correo}",:size =>10,:align => :justify 
     text " "
     text "Para efecto de formular cualquier aclaración, consulta (incluida información de saldos, transacciones y movimientos), inconformidad, reclamación o queja con respecto a la información contenida en el estado de cuenta o por cualquier acontecimiento suscitado con motivo de la apertura de crédito materia del presente contrato “EL ACREDITADO” podrá realizarlo a través de la Unidad Especializada de Atención a Usuarios, cuyos datos fueron precisados en el párrafo anterior.",:size =>10,:align => :justify 
     text " "
@@ -761,10 +758,10 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA QUINTA. Para todos los efectos legales correspondientes las partes señalan como domicilios: ",:size =>10,:align => :justify
     text " "
     
-    text "“LA ACREDITANTE”: Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128. Culiacán, Sinaloa. ",:size =>10,:align => :justify
+    text "“LA ACREDITANTE”: #{Conf.last.domicilio} ",:size =>10,:align => :justify
     text " "
     
-    text "“EL ACREDITADO”: _____________________________________________________________________________",:size =>10,:align => :justify
+    text "“EL ACREDITADO”: #{@credit.domicilio }",:size =>10,:align => :justify
     
     text " "
     
@@ -776,10 +773,13 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA SÉPTIMA. Los títulos de las cláusulas que aparecen en el presente instrumento se han puesto con el exclusivo propósito de facilitar su lectura por tanto no definen ni limitan el contenido de las mismas. Para efectos de interpretación de este instrumento deberá atenderse exclusivamente al contenido de sus declaraciones y cláusulas y de ninguna manera al título de estas últimas",:size =>10,:align => :justify
     text " "
     
-    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a los _________ días del mes de _______________________ de 20_____ en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text "Leído y comprendido el presente contrato, y enteradas las partes que intervienen de su contenido, alcances, consecuencias legales y económicas, lo firman de conformidad a la fecha #{@credit.fecha_en_español} en la ciudad de Culiacán, Sinaloa y en este acto se hace entrega una copia  a  cada  una  de  las  partes  que  intervienen  en  el  presente contrato, de este instrumento y sus respectivos anexos. ",:size =>10,:align => :justify
+    text " "
+    text " "
+    text " "
+    text "    “LA ACREDITANTE”	                                                                “EL ACREDITADO” ",:size =>10,:align => :justify
     
-    text "“LA ACREDITANTE”	                                  		“EL ACREDITADO” ",:size =>10,:align => :justify
+    text "    Representante legal				                                          		  #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify
     
-    text "Representante legal						Nombre completo ",:size =>10,:align => :justify
   end
 end
