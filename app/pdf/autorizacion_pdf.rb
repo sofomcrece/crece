@@ -65,14 +65,14 @@ Nombre y Firma de PF, PFAE o Representante Legal de la empresa
  ",:size =>10,:align => :justify 
   text " "
   text "___________________________________________________________________________________________________________
-Para uso exclusivo de Crece Prestaciones, SAPI de C.V. SOFOM, ENRs
+Para uso exclusivo de Crece Prestaciones, SAPI de C.V. SOFOM, ENR
 Clave de usuario:_______________________________________
 Fecha de la consulta (dd-mm-aaaa):______________________
 Folio de consulta (Obligatorio):________________________
 Firma: ________________________________________________________________",:size =>10,:align => :justify
 text"IMPORTANTE: Este formato debe ser llenado individualmente, para una sola persona física ó para una sola empresa. En caso de requerir el Historial crediticio del representante legal, favor de llenar un formato adicional.",:size =>10,:align => :justify 
 #{Conf.last.domicilio} TEL. #{Conf.last.telefono}
-CULIACÁN DE ROSALES, SINALOA #{Conf.last.correo}",:size =>10,:align => :justify 
+text "CULIACÁN DE ROSALES, SINALOA #{Conf.last.correo}",:size =>10,:align => :justify 
   
   end
 end
