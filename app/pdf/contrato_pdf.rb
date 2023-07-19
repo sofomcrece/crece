@@ -121,7 +121,7 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del % anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
