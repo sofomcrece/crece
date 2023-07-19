@@ -241,10 +241,10 @@ class ContratoPdf < Prawn::Document
     text "DÉCIMA QUINTA. Para todos los efectos legales correspondientes las partes señalan como domicilios: ",:size =>10,:align => :justify
     text " "
     
-    text "“LA ACREDITANTE”: Río Nazas No. 1240, Colonia Los Pinos, Código Postal 80128. Culiacán, Sinaloa. ",:size =>10,:align => :justify
+    text "“LA ACREDITANTE”: #{Conf.last.domicilio} ",:size =>10,:align => :justify
     text " "
     
-    text "“EL ACREDITADO”: _____________________________________________________________________________",:size =>10,:align => :justify
+    text "“EL ACREDITADO”: #{@credit.domicilio }",:size =>10,:align => :justify
     
     text " "
     
