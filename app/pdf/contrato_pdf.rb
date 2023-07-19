@@ -260,7 +260,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text " "
     text " "
-    text "    “LA ACREDITANTE”	                                                         “EL ACREDITADO” ",:size =>10,:align => :justify
+    text "    “LA ACREDITANTE”	                                                                “EL ACREDITADO” ",:size =>10,:align => :justify
     
     text "    Representante legal				                                          		  #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify
     
