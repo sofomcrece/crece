@@ -30,10 +30,7 @@ class CorridaPdf < Prawn::Document
     text " "
     text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS"
     text "A NOMBRE DE: FINANCIERA MARJO, S.A. DE C.V., SOFOM, ENR"
-    table([["BANCO","CUENTA","CLABE","No. TARJETA"],
-          ["BANORTE","0857315292","072730008573152921",""],
-          ["INBURSA","50060343855","036730500603438554","4658 2858 0047 5869"],
-          ["BAJIO","112248540201","030730900002594213",""]],:cell_style => { size: 8 })
+    table([["BANCO","CUENTA","CLABE","No. TARJETA"]],:cell_style => { size: 8 })
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
