@@ -14,7 +14,7 @@ class CorridaPdf < Prawn::Document
   def text_content
    #monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
    monto_a_pagar= @credit.monto_solicitud*(1+(@credit.taza_ord/100))
-    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85, align: left
     text "TABLA DE AMORTIZACIÓN",:size =>10,:align => :left
     text "CRECE PRESTACIONES, S.A.P.I. DE C.V. SOFOM, E.N.R.",:size =>10,:align => :left
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :left
