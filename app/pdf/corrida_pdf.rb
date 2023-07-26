@@ -19,9 +19,12 @@ class CorridaPdf < Prawn::Document
     text "CRECE PRESTACIONES, S.A.P.I. DE C.V. SOFOM, E.N.R."
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}"
     table([["FOLIO DEL CRÉDITO: ",""],
-            ["NOMBRE: ",@credit.nombre_completo_deudor]
-      ],:cell_style => { size: 8 })
-    text "#{@credit.nombre_completo_deudor}"
+            ["NOMBRE: ",@credit.nombre_completo_deudor],
+            ["FECHA DEL PRÉSTAMO: ",@credit.fecha_de_contrato.strftime("%d/%m/%Y")],
+            ["MONTO DEL PRÉSTAMO: ",Dinero.to_money(@credit.monto_solicitud)],
+            ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)]
+            ],:cell_style => { size: 8 })
+    
     table([["FECHA DE PRESTAMO", @credit.fecha_de_contrato.strftime("%d/%m/%Y")], 
           ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
           ["MONTO A PAGAR", Dinero.to_money(monto_a_pagar)], 
