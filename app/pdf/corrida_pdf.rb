@@ -14,7 +14,7 @@ class CorridaPdf < Prawn::Document
   def text_content
    #monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
    monto_a_pagar= @credit.monto_solicitud*(1+(@credit.taza_ord/100))
-    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85, align: left
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
     text "TABLA DE AMORTIZACIÓN",:size =>10,:align => :left
     text "CRECE PRESTACIONES, S.A.P.I. DE C.V. SOFOM, E.N.R.",:size =>10,:align => :left
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :left
@@ -22,18 +22,14 @@ class CorridaPdf < Prawn::Document
             ["NOMBRE: ",@credit.nombre_completo_deudor],
             ["FECHA DEL PRÉSTAMO: ",@credit.fecha_de_contrato.strftime("%d/%m/%Y")],
             ["MONTO DEL PRÉSTAMO: ",Dinero.to_money(@credit.monto_solicitud)],
-            ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)]
+            ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)],
+            ["PLAZO "," #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
+            ["PERIODICIDAD", @credit.product.payout.periocidad], 
+            ["TASA INTERES ORDINARIA ANUAL","#{'%.2f' % @credit.taza_ord}%"], 
+            ["TASA INTERES MORATORIA ANUAL","#{'%.2f' % @credit.taza_de_interes_moratoria}%"], 
+            ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]
             ],:cell_style => { size: 8 })
     
-    table([["FECHA DE PRESTAMO", @credit.fecha_de_contrato.strftime("%d/%m/%Y")], 
-          ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
-          ["MONTO A PAGAR", Dinero.to_money(monto_a_pagar)], 
-          ["PAGO FIJO", Dinero.to_money(monto_a_pagar/@credit.product.numero_de_pagos_a_realizar)], 
-          #["TASA INTERES","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"], 
-          ["TASA INTERES","#{'%.2f' % @credit.taza_ord}%"], 
-          ["PLAZO "," #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
-          ["PERIODICIDAD", @credit.product.payout.periocidad], 
-          ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]],:cell_style => { size: 8 })
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
     text " "
