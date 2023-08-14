@@ -23,8 +23,8 @@ class CorridaPdf < Prawn::Document
             ["FECHA DEL PRÉSTAMO: ",@credit.fecha_de_contrato.strftime("%d/%m/%Y")],
             ["MONTO DEL PRÉSTAMO: ",Dinero.to_money(@credit.monto_solicitud)],
             ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)],
-            ["PLAZO ", ""],  
-            ["PERIODICIDAD", ""], 
+            ["PLAZO ", " #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
+            ["PERIODICIDAD", "ANUAL"], 
             ["TASA INTERES ORDINARIA ANUAL",""], 
             ["TASA INTERES MORATORIA ANUAL", ""], 
             ["CAT SIN IVA", ""]
