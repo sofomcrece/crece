@@ -25,9 +25,9 @@ class CorridaPdf < Prawn::Document
             ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)],
             ["PLAZO ", " #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
             ["PERIODICIDAD", "ANUAL"], 
-            ["TASA INTERES ORDINARIA ANUAL",""], 
-            ["TASA INTERES MORATORIA ANUAL", ""], 
-            ["CAT SIN IVA", ""]
+            ["TASA INTERES ORDINARIA ANUAL","36%"], 
+            ["TASA INTERES MORATORIA ANUAL", "120%"], 
+            ["CAT SIN IVA", "76.72%"]
             ],:cell_style => { size: 8 })
     
     move_down 20
