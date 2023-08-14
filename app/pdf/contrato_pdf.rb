@@ -110,7 +110,8 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    #text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del 31.03% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -121,7 +122,8 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    #text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del 120% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -369,7 +371,7 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del 31.03% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -380,7 +382,7 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del 120% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -627,7 +629,7 @@ class ContratoPdf < Prawn::Document
     text "Cuando la terminación del contrato sea por conducto de otra “ENTIDAD FINANCIERA” esta liquidará el adeudo de “EL ACREDITADO” de acuerdo a la información que proporcione “LA ACREDITANTE” y una vez cubiertos los adeudos esta última renuncia a todos los derechos de cobro remanente que pudieran subsistir después del momento de la cancelación.",:size =>10,:align => :justify
     text " "
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual, más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del 31.03% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
@@ -638,7 +640,7 @@ class ContratoPdf < Prawn::Document
     text "La fecha de corte para el cálculo de los intereses se señala en la carátula, la cual forma parte integrante del presente contrato.",:size =>10,:align => :justify
 
     text "INTERESES MORATORIOS.",:size =>10,:align => :justify
-    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del #{@credit.product.taza_de_interes_moratoria}% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
+    text "QUINTA. En caso de incumplimiento de la obligación de pago, según lo pactado en la cláusula tercera de este contrato el acreditado se obliga a pagar una tasa fija de interés moratorio del 120% anual, calculada diariamente sobre el capital devengado y no pagado, aplicable desde el día siguiente en que incurrió en mora y hasta el día en que se efectúe el pago total del adeudo.",:size =>10,:align => :justify
     text " "
     text "Los intereses moratorios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
