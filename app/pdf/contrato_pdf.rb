@@ -808,7 +808,9 @@ class ContratoPdf < Prawn::Document
     text " "
     text " "
  
-    text "POR SU PROPIO DERECHO NOMBRE: #{@credit.nombre_completo_deudor}",:size =>8,:align => :left
+    text "POR SU PROPIO DERECHO",:size =>8,:align => :left
+    text " "
+    text "NOMBRE: #{@credit.nombre_completo_deudor}",:size =>8,:align => :left
     text " "
     text "RFC:#{Conf.last.RFC}",:size =>8,:align => :left
 
