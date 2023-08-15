@@ -172,8 +172,8 @@ class ViewCreditsController < ApplicationController
       #@iva = @interes*(16/100)
     #else
       @interes = (@capital * ((@credit.taza_ord / 100) / 1.16))
-      #@iva = @interes*(@credit.taza_ord - 16)/100
-      @iva = @interes * (16/100)
+      @iva = @interes*(16)/100
+      ##@iva = @interes * (16/100)
     #end
     #@iva = @interes*(@credit.product.taza_de_interes_ordinaria - @credit.product.cat_sin_iva)/100
     
