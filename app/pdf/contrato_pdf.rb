@@ -783,10 +783,15 @@ class ContratoPdf < Prawn::Document
     
     text "    Representante legal				                                          		  #{@credit.nombre_completo_deudor} ",:size =>10,:align => :justify
     start_new_page
-    text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right    
-    text "PAGARÉ",:size =>10
-    text "Por el presente Pagaré, por mi propio derecho (en lo sucesivo, el “DEUDOR”) en su calidad de Deudor, promete pagar incondicionalmente a la orden de CRECE PRESTACIONES, S.A.P.I. DE C.V., SOCIEDAD FINANCIERA DE OBJETO MULTIPLE, ENTIDAD NO REGULADA, (en lo
-    sucesivo FINANCIERA MARJO) en su calidad de Acreedor, en   sus   oficinas   con   Domicilio:Río   Nazas   No.   1240,   Colonia   Los   Pinos,   C.P. 80128, Culiacán, Sinaloa, y/o en la cuenta bancaria	, CLABE	, BANCO	, la cantidad total de $0.00 (), correspondiente al principal, a los intereses ordinarios y   la   comisión   por   apertura,   mediante   pagos   conforme   a   la   tabla   de   amortización debidamente firmada por el DEUDOR."
+    text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>8,:align => :right    
+    text "PAGARÉ",:size =>8,:align => :center
     text " "
+    text "     Por el presente Pagaré, por mi propio derecho (en lo sucesivo, el “DEUDOR”) en su calidad de Deudor, promete pagar incondicionalmente a la orden de CRECE PRESTACIONES, S.A.P.I. DE C.V., SOCIEDAD FINANCIERA DE OBJETO MULTIPLE, ENTIDAD NO REGULADA, (en lo
+    sucesivo FINANCIERA MARJO) en su calidad de Acreedor, en   sus   oficinas   con   Domicilio:Río   Nazas   No.   1240,   Colonia   Los   Pinos,   C.P. 80128, Culiacán, Sinaloa, y/o en la cuenta bancaria _________, CLABE ________, BANCO	_____________, la cantidad total de $0.00 (), correspondiente al principal, a los intereses ordinarios y   la   comisión   por   apertura,   mediante   pagos   conforme   a   la   tabla   de   amortización debidamente firmada por el DEUDOR.",:size =>8,:align => :justify
+    text " "
+    text "El presente Pagaré es causal y documental del Contrato de Crédito Simple de fecha , celebrado entre el DEUDOR del presente Pagaré, en calidad de ACREDITADO, y el Acreedor del presente Pagaré, en calidad de ACREDITANTE del Crédito Personal otorgado (en lo sucesivo el “Crédito”).",:size =>8,:align => :justify
+    text ""
+    text "Si el DEUDOR incumple con el pago oportuno antes   del   vencimiento   del   presente   Pagaré,   éste   pagará   al Acreedor,   intereses   moratorios sobre el saldo insoluto del Crédito conforme a la tasa de interés moratoria pactada, calculada sobre la porción del saldo insoluto del Crédito. Dichos intereses moratorios se causarán durante todo el tiempo en que dure la mora y hasta la total liquidación del Crédito, obligándose así mismo a pagar los gastos de cobranza y, en su caso, honorarios de abogado y gastos y costas judiciales.",:size =>8,:align => :justify
+
   end
 end
