@@ -798,13 +798,19 @@ class ContratoPdf < Prawn::Document
     text "Para toda controversia o litigio de cualquier tipo en relación con el presente   Pagaré,   el   DEUDOR   está   de   acuerdo   en   someterme expresamente a la jurisdicción y competencia de los Tribunales de la Ciudad de México, por lo tanto, el DEUDOR renuncia al fuero territorial que por cualquier causa pudiere corresponderle, ya sea en lo presente o en lo futuro.",:size =>8,:align => :justify
     text " "
     text "Este Pagaré se suscribe por el DEUDOR en la Culiacán, Sinaloa el , y consta de una página.",:size =>8,:align => :justify
-    text "EL DEUDOR",:size =>8,:align => :center
+    text " "
+    text " "
+    text " "
+    text " "
+    text "EL DEUDOR",:size =>8,:align => :left
+    text " "
+    text " "
     text " "
     text " "
  
-    text "POR SU PROPIO DERECHO NOMBRE: #{@credit.nombre_completo_deudor}",:size =>8,:align => :center
+    text "POR SU PROPIO DERECHO NOMBRE: #{@credit.nombre_completo_deudor}",:size =>8,:align => :left
     text " "
-    text "RFC:#{Conf.last.RFC}",:size =>8,:align => :center
+    text "RFC:#{Conf.last.RFC}",:size =>8,:align => :left
 
   end
 end
