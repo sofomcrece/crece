@@ -787,7 +787,7 @@ class ContratoPdf < Prawn::Document
     text "PAGARÉ",:size =>8,:align => :center
     text " "
     text "     Por el presente Pagaré, por mi propio derecho (en lo sucesivo, el “DEUDOR”) en su calidad de Deudor, promete pagar incondicionalmente a la orden de CRECE PRESTACIONES, S.A.P.I. DE C.V., SOCIEDAD FINANCIERA DE OBJETO MULTIPLE, ENTIDAD NO REGULADA, (en lo
-    sucesivo CRECE PRESTACIONES) en su calidad de Acreedor, en   sus   oficinas   con   Domicilio: #{Conf.last.domicilio}, y/o en la cuenta bancaria _________, CLABE ________, BANCO	_____________, la cantidad total de $0.00 (), correspondiente al principal, a los intereses ordinarios y   la   comisión   por   apertura,   mediante   pagos   conforme   a   la   tabla   de   amortización debidamente firmada por el DEUDOR.",:size =>8,:align => :justify
+    sucesivo CRECE PRESTACIONES) en su calidad de Acreedor, en   sus   oficinas   con   Domicilio: #{Conf.last.domicilio}, y/o en la cuenta bancaria _________, CLABE ________, BANCO	_____________, la cantidad total de $#{@credito.monto}(), correspondiente al principal, a los intereses ordinarios y   la   comisión   por   apertura,   mediante   pagos   conforme   a   la   tabla   de   amortización debidamente firmada por el DEUDOR.",:size =>8,:align => :justify
     text " "
     text "El presente Pagaré es causal y documental del Contrato de Crédito Simple de fecha , celebrado entre el DEUDOR del presente Pagaré, en calidad de ACREDITADO, y el Acreedor del presente Pagaré, en calidad de ACREDITANTE del Crédito Personal otorgado (en lo sucesivo el “Crédito”).",:size =>8,:align => :justify
     text " "
