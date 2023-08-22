@@ -812,7 +812,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text "NOMBRE: #{@credit.nombre_completo_deudor}",:size =>8,:align => :left
     text " "
-    text "RFC:#{Conf.last.RFC}",:size =>8,:align => :left
+    text "RFC:#{credit.RFC}",:size =>8,:align => :left
 
   end
 end
