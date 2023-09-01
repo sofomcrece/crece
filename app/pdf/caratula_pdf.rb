@@ -16,7 +16,7 @@ class CaratulaPdf < Prawn::Document
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.taza_ord/100))))}",:size=>9, :at => [440,610]
       draw_text  "52 semanas",:size=>9, :at => [100,570]
-      draw_text  "Sábados ",:size=>9, :at => [280,579]
+      draw_text  "Viernes",:size=>9, :at => [280,579]
       draw_text  "Miércoles ",:size=>9, :at => [260,570]
       draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
       draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [100,232]
