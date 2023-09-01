@@ -18,7 +18,7 @@ class CorridaPdf < Prawn::Document
     text "TABLA DE AMORTIZACIÓN",:size =>10,:align => :left
     text "CRECE PRESTACIONES, S.A.P.I. DE C.V. SOFOM, E.N.R.",:size =>10,:align => :left
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :left
-    table([["FOLIO DEL CRÉDITO: ",""],
+    table([
             ["NOMBRE: ",@credit.nombre_completo_deudor],
             ["FECHA DEL PRÉSTAMO: ",@credit.fecha_de_contrato.strftime("%d/%m/%Y")],
             ["MONTO DEL PRÉSTAMO: ",Dinero.to_money(@credit.monto_solicitud)],
