@@ -459,10 +459,10 @@ en:
               blank: "es requerido"
             numero_interior:
               blank: "es requerido"
-            colonia:
-              blank: "es requerido"
-            codigo_postal:
-              blank: "es requerido"
+            #colonia:
+            #  blank: "es requerido"
+            #codigo_postal:
+            #  blank: "es requerido"
             municipio:
               blank: "es requerido"
             estado:
