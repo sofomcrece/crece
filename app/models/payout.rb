@@ -16,7 +16,7 @@ class Payout < ActiveRecord::Base
         return "" if val.nil?
         if (val.include?("-1"))
             val.delete("-1")
-            val=val.join(", ")+" ultimo del mes"
+            val=val.join(", ")+" Último dia"
         else
             dat = val.delete(val.last)
             val=val.join(", ").to_s + " #{dat}"  
