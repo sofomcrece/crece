@@ -44,10 +44,10 @@ class CorridaPdf < Prawn::Document
           ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
           ["MONTO A PAGAR", Dinero.to_money(monto_a_pagar)], 
           ["PAGO FIJO", Dinero.to_money(monto_a_pagar/@credit.product.numero_de_pagos_a_realizar)], 
-          #["TASA INTERES","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"], 
-          ["TASA INTERES","#{'%.2f' % @credit.taza_ord}%"], 
+          ["TASA INTERES","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"], 
+          #["TASA INTERES","#{'%.2f' % @credit.taza_ord}%"], 
           ["PLAZO "," #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
-          ["PERIODICIDAD", @credit.product.payout.periocidad.upcase], 
+          ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase], 
           ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]],:cell_style => { size: 8 })
     move_down 20
     table(@arreglo,:cell_style => { size: 8 })
