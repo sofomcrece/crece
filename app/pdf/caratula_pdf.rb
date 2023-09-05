@@ -21,7 +21,7 @@ class CaratulaPdf < Prawn::Document
       #draw_text  "     Miércoles ",:size=>9, :at => [260,570]
       draw_text  "Dias #{Payout.array_to_text(@credit.product.payout.getDays)}",:size=>9, :at => [280,579]
       draw_text  "Dias #{Payout.array_to_text(@credit.product.payout.getFlow)} de cada #{@credit.product.payout.type_payout==0?"semana":@credit.product.payout.type_payout==1?"mes":"año"}",:size=>9, :at => [260,570]
-      draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
+      #draw_text  "#{@credit.product.taza_de_interes_moratoria}",:size=>9, :at => [175,501]
       draw_text  "#{Conf.last.domicilio}",:size=>9, :at => [100,232]
       draw_text  "#{Conf.last.telefono}",:size=>9, :at => [100,215]
       draw_text  "#{Conf.last.pagina}",:size=>9, :at => [140,203]

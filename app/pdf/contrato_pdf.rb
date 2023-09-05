@@ -61,7 +61,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text "TERCERA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE”, sin necesidad de requerimiento alguno, el importe del crédito concedido mediante parcialidades de acuerdo a la tabla de amortización que forma parte integrante del presente contrato. “EL ACREDITADO” tendrá como fecha límite de pago los días señalados en la carátula. Cuando la fecha límite de pago sea en un día inhábil esta se recorrerá al siguiente día hábil, sin que proceda el cobro de penalizaciones y/o intereses moratorios.",:size =>10,:align => :justify
     text " "
-    text "La periodicidad de los pagos será semanal de acuerdo a lo establecido en la tabla de amortización que forma parte integrante del presente contrato.",:size =>10,:align => :justify
+    text "La periodicidad de los pagos será #{(@credit.product.payout.periocidad).upcase} de acuerdo a lo establecido en la tabla de amortización que forma parte integrante del presente contrato.",:size =>10,:align => :justify
     text " "
     text "“EL ACREDITADO” podrá realizar los pagos a través de depósitos y/o transferencia electrónica en cualquiera de las siguientes cuentas bancarias: cuenta número  del Banco , cuenta número del Banco  o bien podrá entregar el efectivo al representante de “LA ACREDITANTE”.",:size =>10,:align => :justify
     text " "
