@@ -24,8 +24,9 @@ class CorridaPdf < Prawn::Document
             ["MONTO DEL PRÉSTAMO: ",Dinero.to_money(@credit.monto_solicitud)],
             ["MONTO TOTAL A PAGAR: ",Dinero.to_money(monto_a_pagar)],
             ["PLAZO ", " #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
-            ["PERIODICIDAD", @credit.product.payout.periocidad], 
-            ["TASA INTERES ORDINARIA ANUAL","36%"], 
+            ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase],
+            ["TASA INTERES", @credit.product.taza_de_interes_ordinaria], 
+            #["TASA INTERES ORDINARIA ANUAL","36%"], 
             ["TASA INTERES MORATORIA ANUAL", "120%"], 
             ["CAT SIN IVA", "76.72%"]
             ],:cell_style => { size: 8 })
@@ -44,7 +45,7 @@ class CorridaPdf < Prawn::Document
           ["MONTO PRESTAMO",Dinero.to_money(@credit.monto_solicitud)], 
           ["MONTO A PAGAR", Dinero.to_money(monto_a_pagar)], 
           ["PAGO FIJO", Dinero.to_money(monto_a_pagar/@credit.product.numero_de_pagos_a_realizar)], 
-          #["TASA INTERES", @credit.product.taza_de_interes_ordinaria], 
+          ["TASA INTERES", @credit.product.taza_de_interes_ordinaria], 
           #["TASA INTERES","#{'%.2f' % @credit.taza_ord}%"], 
           ["PLAZO "," #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
           ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase], 
