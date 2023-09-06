@@ -36,7 +36,9 @@ class CorridaPdf < Prawn::Document
     text " "
     text "CUENTAS BANCARIAS PARA REALIZAR SUS PAGOS"
     text "A NOMBRE DE: CRECE PRESTACIONES, S.A.P.I. DE C.V., SOFOM, ENR"
-    table([["BANCO","CUENTA","CLABE","No. TARJETA"]],:cell_style => { size: 8 })
+    table([["BANCO","CUENTA","CLABE","No. TARJETA"],
+          ["BANCO","CUENTA","CLABE","No. TARJETA"]
+          ],:cell_style => { size: 8 })
     start_new_page 
 
     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
