@@ -8,7 +8,7 @@ class ContratoPdf < Prawn::Document
   def text_content
     @xtasa = 0
     @xperiod = @credit.product.payout.periocidad.upcase
-    alert ""
+    flash[:error] = "Mensaje"
     if @xperiod == "SEMANAL"
       @xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     elsif
