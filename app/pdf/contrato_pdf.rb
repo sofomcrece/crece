@@ -13,7 +13,7 @@ class ContratoPdf < Prawn::Document
 
     if str(xperiod) == "SEMANAL"
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
-      text "#{@credit.product.taza_de_interes_ordinaria}"
+      text "TEXTO"
     elsif
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     end if
