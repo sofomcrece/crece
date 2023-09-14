@@ -12,9 +12,9 @@ class CorridaPdf < Prawn::Document
   end
   
   def text_content
-    xtasa = @credit.product.payout.periocidad
-    if xtasa == "SEMANAL"
-      
+    xperiod = @credit.product.payout.periocidad
+    if xperiod == "SEMANAL"
+        xtasa = 36
     end if
    #monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
    monto_a_pagar= @credit.monto_solicitud*(1+(@credit.taza_ord/100))
