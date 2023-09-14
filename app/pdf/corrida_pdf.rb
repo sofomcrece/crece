@@ -12,7 +12,7 @@ class CorridaPdf < Prawn::Document
   end
   
   def text_content
-    xperiod = @credit.product.payout.periocidad
+    xperiod = @credit.product.payout.periocidad.upcase
     if xperiod == "SEMANAL"
       xtasa = "36%"
     end if
