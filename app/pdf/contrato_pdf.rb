@@ -798,7 +798,7 @@ class ContratoPdf < Prawn::Document
     text " "
     text "Para toda controversia o litigio de cualquier tipo en relación con el presente   Pagaré,   el   DEUDOR   está   de   acuerdo   en   someterme expresamente a la jurisdicción y competencia de los Tribunales de la ciudad de Hermosillo, Sonora, por lo tanto, el DEUDOR renuncia al fuero territorial que por cualquier causa pudiere corresponderle, ya sea en lo presente o en lo futuro.",:size =>8,:align => :justify
     text " "
-    text "Este Pagaré se suscribe por el DEUDOR en la ciudad de #{Company.last.municipio},#{Company.last.estado} el #{@credit.fecha_en_español}, y consta de una página.",:size =>8,:align => :justify
+    text "Este Pagaré se suscribe por el DEUDOR en la ciudad de Hermosillo, Sonora, el #{@credit.fecha_en_español}, y consta de una página.",:size =>8,:align => :justify
     text " "
     text " "
     text " "
