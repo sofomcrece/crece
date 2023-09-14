@@ -15,6 +15,8 @@ class CorridaPdf < Prawn::Document
     xperiod = @credit.product.payout.periocidad.upcase
     if xperiod == "SEMANAL"
       xtasa = "36%"
+    else|
+      xtasa = "36%"
     end if
 
     #if xperiod != "SEMANAL"
