@@ -6,6 +6,7 @@ class ContratoPdf < Prawn::Document
     text_content 
   end
   def text_content
+    @xtasa = 0
     @xperiod = @credit.product.payout.periocidad.upcase
     if @xperiod == "SEMANAL"
       @xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
