@@ -6,13 +6,13 @@ class ContratoPdf < Prawn::Document
     text_content 
   end
   def text_content
-    @xtasa = 0
-    @xperiod = @credit.product.payout.periocidad.upcase
+    xtasa = 0
+    xperiod = @credit.product.payout.periocidad.upcase
     
-    if @xperiod == "SEMANAL"
-      @xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
+    if xperiod == "SEMANAL"
+      xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     elsif
-      @xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
+      xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     end if
 
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right
@@ -120,7 +120,7 @@ class ContratoPdf < Prawn::Document
     text "TASA DE INTERÉS ORDINARIA",:size =>10,:align => :justify
     #text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{@credit.product.taza_de_interes_ordinaria} % (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     #text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{(@credit.product.taza_de_interes_ordinaria / 1.16).to_f}% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
-    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{(@xtasa)}% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
+    text "CUARTA. “EL ACREDITADO” se obliga a pagar a “LA ACREDITANTE” intereses ordinarios sobre el monto del crédito a razón de una tasa fija del #{(xtasa)}% (por ciento) anual más IVA (Impuesto al Valor Agregado). Convienen las partes en que el interés que se aplique al importe financiero se calculará a partir de la fecha de firma del presente contrato, los mismos se pagarán en las fechas indicadas en la tabla de amortización. El pago de los intereses no podrá ser exigido por adelantado, sino únicamente por períodos vencidos.",:size =>10,:align => :justify
     text " "
     text "Los intereses ordinarios se calcularán de acuerdo a la siguiente fórmula:",:size =>10,:align => :justify
     text " "
