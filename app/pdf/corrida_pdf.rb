@@ -12,7 +12,7 @@ class CorridaPdf < Prawn::Document
   end
   
   def text_content
-    xtasa = @credit.product.payout.periocidad.ucase
+    xtasa = @credit.product.payout.periocidad
    #monto_a_pagar= @credit.monto_solicitud*(1+(@credit.product.taza_de_interes_ordinaria/100))
    monto_a_pagar= @credit.monto_solicitud*(1+(@credit.taza_ord/100))
     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
