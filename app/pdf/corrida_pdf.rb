@@ -27,7 +27,7 @@ class CorridaPdf < Prawn::Document
             ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase],
             #["TASA INTERES ORDINARIA ANUAL", @credit.product.taza_de_interes_ordinaria],
             #if @credit.product.payout.periocidad.upcase == "SEMANAL"
-            xtasa = @credit.product.payout.periocidad.upcase
+            xtasa = @credit.product.payout.periocidad
             ["TASA INTERES ORDINARIA ANUAL","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"],
             ["TASA INTERES MORATORIA ANUAL", "120%"], 
             ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]
