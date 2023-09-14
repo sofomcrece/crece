@@ -6,7 +6,12 @@ class CaratulaPdf < Prawn::Document
 
   end
   def text_content
-      
+      xperiod = @credit.product.payout.periocidad.upcase
+      if xperiod == "SEMANAL"
+        xtasa = "36%"
+      elsif
+        xtasa = @credit.product.taza_de_interes_ordinaria
+      end if
       image open("#{Rails.root}/app/pdf/caratula_credito.jpg"), position: :center , :width=>560, :height=>790
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
       draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,666]
