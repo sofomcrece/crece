@@ -6,13 +6,14 @@ class ContratoPdf < Prawn::Document
     text_content
 
     xperiod = @credit.product.payout.periocidad.upcase
+    
+  end
+  def text_content
     if xperiod == "SEMANAL"
       xtasa = 36 / 1.16
     elsif
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     end if
-  end
-  def text_content
 
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right
     text " "
