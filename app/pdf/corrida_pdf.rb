@@ -26,7 +26,7 @@ class CorridaPdf < Prawn::Document
             ["PLAZO ", " #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
             ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase],
             #["TASA INTERES ORDINARIA ANUAL", @credit.product.taza_de_interes_ordinaria],
-            if @credit.product.payout.periocidad.upcase == "SEMANAL"
+            #if @credit.product.payout.periocidad.upcase == "SEMANAL"
               ["TASA INTERES ORDINARIA ANUAL","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"],
             ["TASA INTERES MORATORIA ANUAL", "120%"], 
             ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]
