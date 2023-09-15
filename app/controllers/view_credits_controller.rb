@@ -1,5 +1,5 @@
 class ViewCreditsController < ApplicationController
-   before_action :set_credit, only: [:autorizacion,:caratula,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:polizamun,:corrida,:corridamun,:documentos, :getFecha]
+   before_action :set_credit, only: [:autorizacion,:caratula,:disposiciones,:caratulamun,:contratomunicipal,:contrato,:entrevista,:poliza,:polizamun,:corrida,:corridamun,:documentos, :getFecha]
   before_action :set_credits, only:[:show, :edit, :update, :destroy]
  
   def index
