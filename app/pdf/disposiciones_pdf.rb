@@ -13,6 +13,7 @@ class DisposicionesPdf < Prawn::Document
         xtasa = @credit.product.taza_de_interes_ordinaria
       end if
       image open("#{Rails.root}/app/pdf/disposiciones1.jpg"), position: :center , :width=>560, :height=>790
+      image open("#{Rails.root}/app/pdf/disposiciones2.jpg"), position: :center , :width=>560, :height=>790
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
       draw_text  "#{@credit.product.loan.nombre}",:size=>9, :at => [140,666]
       draw_text  "#{'%.2f' % xtasa}%",:size=>9, :at => [230,620]
