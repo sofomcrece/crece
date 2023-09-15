@@ -47,7 +47,7 @@ class ViewCreditsController < ApplicationController
   end
 
   def disposiciones
-    pdf = CaratulamunPdf.new(@credit)
+    pdf = DisposicionesPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
   
