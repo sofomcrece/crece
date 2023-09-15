@@ -1,4 +1,4 @@
-class CaratulaPdf < Prawn::Document
+class DisposicionesPdf < Prawn::Document
   def initialize(credit)
     super(:margin => [0,0,0,0])
     @credit = credit 
