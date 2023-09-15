@@ -45,6 +45,11 @@ class ViewCreditsController < ApplicationController
     pdf = CaratulamunPdf.new(@credit)
     send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
   end
+
+  def disposiciones
+    pdf = CaratulamunPdf.new(@credit)
+    send_data pdf.render, filename: 'report.pdf', type: 'application/pdf', disposition: "inline"
+  end
   
   def contratomunicipal
     if (@credit.fecha_de_contrato.nil?)
