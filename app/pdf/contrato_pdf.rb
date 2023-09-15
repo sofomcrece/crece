@@ -8,8 +8,8 @@ class ContratoPdf < Prawn::Document
   def text_content
     xtasa = 0
     xpay = @credit.product.payout.id
-    text "#{xpay}"
-    if @credit.product.etiqueta_plural.to_s == "SEMANAS"
+    #text "#{xpay}"
+    if xpay == 27
       text "TEXTO"
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16  
     elsif
