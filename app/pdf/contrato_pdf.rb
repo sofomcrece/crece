@@ -10,6 +10,7 @@ class ContratoPdf < Prawn::Document
     xperiod = @credit.product.payout.periocidad.upcase
     
     xper = xperiod.to_s
+    text xper.to_s
 
     if xper.to_s != "SEMANAL"
       text "TEXTO"
