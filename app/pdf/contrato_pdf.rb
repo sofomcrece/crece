@@ -7,12 +7,9 @@ class ContratoPdf < Prawn::Document
   end
   def text_content
     xtasa = 0
-    xperiod = @credit.product.payout.periocidad.upcase
-    
-    xper = xperiod.to_s
-    
-
-    if xper.to_s != "SEMANAL"
+    xper = @credit.product.etiqueta_plural.to_s
+    text "#{xper}"
+    if xper.to_s != "SEMANAS"
       text "TEXTO"
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
       
@@ -20,7 +17,6 @@ class ContratoPdf < Prawn::Document
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
     end if
 
-    text "#{xtasa.to_f}"
     text "RECA: #{@credit.product.registro_del_contrado_de_adhesion}",:size =>10,:align => :right
     text " "
     text "Contrato de apertura de crédito personal que celebran por una parte Crece Prestaciones, S.A.P.I. de C.V., Sociedad Financiera de Objeto Múltiple, Entidad no Regulada, representada en este acto por el(la) señor(a) #{Conf.last.representante_legal} a quien en lo sucesivo se le denominará “LA ACREDITANTE, y por la otra parte el(la) Sr(a) #{@credit.nombre_completo_deudor} a quien en lo sucesivo se le denominará “EL ACREDITADO”, al tenor de las siguientes declaraciones y claúsulas:",:size =>10,:align => :justify
