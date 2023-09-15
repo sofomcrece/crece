@@ -9,7 +9,7 @@ class ContratoPdf < Prawn::Document
     xtasa = 0
     xper = @credit.product.etiqueta_plural.to_s
     text "#{xper}"
-    if xper.to_s != "SEMANAS"
+    if xper.to_s == "SEMANAS"
       text "TEXTO"
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
       
