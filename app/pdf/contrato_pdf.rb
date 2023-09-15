@@ -11,7 +11,7 @@ class ContratoPdf < Prawn::Document
     
     xper= xperiod
 
-    if xper.to_s = "SEMANAL"
+    if xper = "SEMANAL"
       text "TEXTO"
       xtasa = @credit.product.taza_de_interes_ordinaria / 1.16
       
