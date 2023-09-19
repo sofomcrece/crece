@@ -15,12 +15,11 @@ class CaratulaPdf < Prawn::Document
         end
       elsif
         case @credit.product.payout.id
-          case 27
+        when 27
             xtasa = @credit.product.taza_de_interes_ordinaria
-          case 29
+        when 29
             xtasa = "12%"
-        end
-          
+        end        
       end if
      
       image open("#{Rails.root}/app/pdf/caratula_credito.jpg"), position: :center , :width=>560, :height=>790
