@@ -24,10 +24,8 @@ class CaratulaPdf < Prawn::Document
       else
         xtasa = 0
         
-      ensure
-        
       end
-      end
+
 
       image open("#{Rails.root}/app/pdf/caratula_credito.jpg"), position: :center , :width=>560, :height=>790
       draw_text  "#{@credit.product.nombre_del_producto}",:size=>9, :at => [190,685]
