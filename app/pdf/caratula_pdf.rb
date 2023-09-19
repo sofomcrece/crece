@@ -9,10 +9,7 @@ class CaratulaPdf < Prawn::Document
       xperiod = @credit.product.payout.periocidad.upcase
       if xperiod == "SEMANAL"
         #xtasa = "36"
-        case @credit.product.payout.id
-        when 28
           xtasa = "36%"
-        end
       elsif
         case @credit.product.payout.id
         when 27
