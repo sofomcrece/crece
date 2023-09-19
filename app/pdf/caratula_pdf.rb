@@ -20,6 +20,13 @@ class CaratulaPdf < Prawn::Document
         xtasa = "36%"
       when 29 #Mensual
         xtasa = "12%"
+        
+      else
+        xtasa = 0
+        
+      ensure
+        
+      end
       end
 
       image open("#{Rails.root}/app/pdf/caratula_credito.jpg"), position: :center , :width=>560, :height=>790
