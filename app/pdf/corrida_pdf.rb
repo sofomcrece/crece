@@ -60,6 +60,14 @@ class CorridaPdf < Prawn::Document
           ["ACTINVER","10268530","133760000102685307",""]],:cell_style => { size: 8 })
     start_new_page 
 
+    case @credit.product.payout.id
+    when 27 #Mensual 
+      xtasa = @credit.product.taza_de_interes_ordinaria.to_f
+    when 28 #Semanal
+      xtasa = "36%"
+    when 29 #Mensual
+      xtasa = "12%"
+    end
     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
     text "#{@credit.nombre_completo_deudor}"
     table([["FECHA DE PRESTAMO", @credit.fecha_de_contrato.strftime("%d/%m/%Y")], 
@@ -70,7 +78,7 @@ class CorridaPdf < Prawn::Document
           ["PLAZO "," #{@credit.product.numero_de_pagos_a_realizar} #{@credit.product.etiqueta_plural}"],  
           ["PERIODICIDAD", (@credit.product.payout.periocidad).upcase], 
           #["TASA INTERES ORDINARIA ANUAL", @credit.product.taza_de_interes_ordinaria], 
-          ["TASA INTERES ORDINARIA ANUAL","#{'%.2f' % @credit.product.taza_de_interes_ordinaria}%"],
+          ["TASA INTERES ORDINARIA ANUAL", xtasa],
           ["TASA INTERES MORATORIA ANUAL", "120%"], 
           ["CAT SIN IVA","#{'%.2f' % @credit.cat_sin_iva}%"]],:cell_style => { size: 8 })
     move_down 20
