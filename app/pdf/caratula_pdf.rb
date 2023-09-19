@@ -12,6 +12,7 @@ class CaratulaPdf < Prawn::Document
       #elsif
       #  xtasa = @credit.product.taza_de_interes_ordinaria
       #end if
+      xtasa = 0
       case @credit.product.payout.id
       when 27 #Mensual 
         xtasa = @credit.product.taza_de_interes_ordinaria
