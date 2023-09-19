@@ -15,7 +15,7 @@ class CaratulaPdf < Prawn::Document
         when 27
             xtasa = @credit.product.taza_de_interes_ordinaria
         when 29
-            xtasa = "12%"
+            xtasa = 12
         end        
       end if
      
