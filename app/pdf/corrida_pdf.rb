@@ -21,11 +21,11 @@ class CorridaPdf < Prawn::Document
 
     case @credit.product.payout.id
     when 27 #Mensual 
-      xtasa = @credit.product.taza_de_interes_ordinaria
+      xtasa = @credit.product.taza_de_interes_ordinaria.to_f
     when 28 #Semanal
       xtasa = "36%"
     when 29 #Mensual
-      xtasa = 12
+      xtasa = "12%"
     end
 
     #if xperiod != "SEMANAL"
