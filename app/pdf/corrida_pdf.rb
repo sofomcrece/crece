@@ -12,12 +12,12 @@ class CorridaPdf < Prawn::Document
   end
   
   def text_content
-   """ xperiod = @credit.product.payout.periocidad.upcase
-    if xperiod == "SEMANAL"
-      xtasa = "36%"
-    elsif
-      xtasa = @credit.product.taza_de_interes_ordinaria
-    end if"""
+   #xperiod = @credit.product.payout.periocidad.upcase
+   # if xperiod == "SEMANAL"
+   #   xtasa = "36%"
+   # elsif
+   #   xtasa = @credit.product.taza_de_interes_ordinaria
+   # end if"""
 
     case @credit.product.payout.id
     when 27 #Mensual 
