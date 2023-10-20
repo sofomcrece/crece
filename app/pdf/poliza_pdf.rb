@@ -26,7 +26,7 @@ class PolizaPdf < Prawn::Document
     draw_text  "______________________________________________________________________", :at => [70,620+des]
     draw_text  "La cantidad de: ",:size=>8, :at => [70,610+des]
     
-    image "#{Rails.root}/app/assets/images/logo crece.png", width: 95, height: 85, :at => [70,590+des]
+    image "#{Rails.root}/app/assets/images/logo crece.png", width: 95, height: 85, :at => [70,620+des]
     
     draw_text  "_________________________", :at => [370,580+des]
     draw_text  "FIRMA CHEQUE RECIBIDO",:size=>8, :at => [400,570+des]
