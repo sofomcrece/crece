@@ -26,6 +26,8 @@ class CorridaPdf < Prawn::Document
       xtasa = "36%"
     when 29 #Mensual
       xtasa = "12%"
+    when 31 #Mensual36
+      xtasa = "36%"
     end
 
     #if xperiod != "SEMANAL"
@@ -67,6 +69,8 @@ class CorridaPdf < Prawn::Document
       xtasa = "36%"
     when 29 #Mensual
       xtasa = "12%"
+    when 31 #Mensual36
+      xtasa = "36%"
     end
     image "#{Rails.root}/app/assets/images/logo crece.png", width: 155, height: 85
     text "#{@credit.nombre_completo_deudor}"
