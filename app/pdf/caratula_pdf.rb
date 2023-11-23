@@ -30,7 +30,7 @@ class CaratulaPdf < Prawn::Document
       #draw_text  "#{'%.2f' % xtasa}%",:size=>9, :at => [230,620]
       #draw_text  "#{@credit.product.taza_de_interes_moratoria} %",:size=>9, :at => [230,610]
       draw_text  "120%",:size=>9, :at => [230,610]
-     draw_text  "#{'%.2f' % @credit.cat_sin_iva}%",:size=>9, :at => [55 ,619]
+     draw_text  "#{'%.1f' % @credit.cat_sin_iva}%",:size=>9, :at => [55 ,619]
       draw_text  "#{Dinero.to_money(@credit.monto_solicitud)}",:size=>9, :at => [340,610]
       draw_text  "#{Dinero.to_money((@credit.monto_solicitud.to_f + (@credit.monto_solicitud.to_f * (@credit.taza_ord/100))))}",:size=>9, :at => [440,610]
       #draw_text  "52 semanas",:size=>9, :at => [100,570]
