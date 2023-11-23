@@ -18,6 +18,8 @@ class CaratulaPdf < Prawn::Document
             xtasa = 12
           when 32
             xtasa = 36
+          when 33
+            xtasa = 24
         end        
       end if
      
